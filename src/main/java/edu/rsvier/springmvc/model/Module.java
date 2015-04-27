@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -13,8 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "module", catalog = "cursisttraject_relatiebeheer"
-)
+@Table(name = "module", catalog = "cursisttraject_relatiebeheer")
 public class Module implements java.io.Serializable {
 
     private Integer id;
@@ -25,8 +25,7 @@ public class Module implements java.io.Serializable {
     private Set<Toets> toetsen;
 
     @Id
-    @GeneratedValue(strategy = IDENTITY)
-
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true, nullable = false)
     public Integer getId() {
         return this.id;
@@ -76,6 +75,13 @@ public class Module implements java.io.Serializable {
 
     public void setToetsen(Set<Toets> toetsen) {
         this.toetsen = toetsen;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Integer id) {
+        this.id = id;
     }
 
 }

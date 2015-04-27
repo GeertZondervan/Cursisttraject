@@ -14,8 +14,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "toets_resultaat", catalog = "cursisttraject_relatiebeheer"
-)
+@Table(name = "toets_resultaat", catalog = "cursisttraject_relatiebeheer")
 public class ToetsResultaat implements java.io.Serializable {
 
     private ToetsResultaatId id;
@@ -25,7 +24,6 @@ public class ToetsResultaat implements java.io.Serializable {
     private float resultaat;
 
     @EmbeddedId
-
     @AttributeOverrides({
         @AttributeOverride(name = "persoonsrolId", column = @Column(name = "persoonsrol_id", nullable = false)),
         @AttributeOverride(name = "toetsId", column = @Column(name = "toets_id", nullable = false))})
@@ -70,6 +68,13 @@ public class ToetsResultaat implements java.io.Serializable {
 
     public void setResultaat(float resultaat) {
         this.resultaat = resultaat;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(ToetsResultaatId id) {
+        this.id = id;
     }
 
 }

@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -11,8 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "materiaal", catalog = "cursisttraject_relatiebeheer"
-)
+@Table(name = "materiaal", catalog = "cursisttraject_relatiebeheer")
 public class Materiaal implements java.io.Serializable {
 
     private Integer id;
@@ -27,8 +27,7 @@ public class Materiaal implements java.io.Serializable {
     private Integer isbn10;
 
     @Id
-    @GeneratedValue(strategy = IDENTITY)
-
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true, nullable = false)
     public Integer getId() {
         return this.id;
@@ -96,6 +95,13 @@ public class Materiaal implements java.io.Serializable {
 
     public void setIsbn10(Integer isbn10) {
         this.isbn10 = isbn10;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Integer id) {
+        this.id = id;
     }
 
 }

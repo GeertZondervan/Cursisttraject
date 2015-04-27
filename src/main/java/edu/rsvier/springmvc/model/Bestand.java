@@ -4,13 +4,14 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "bestand", catalog = "cursisttraject_relatiebeheer"
-)
+@Table(name = "bestand", catalog = "cursisttraject_relatiebeheer")
 public class Bestand implements java.io.Serializable {
 
     private int id;
@@ -19,7 +20,7 @@ public class Bestand implements java.io.Serializable {
     private Set<Toets> toetsen;
 
     @Id
-
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true, nullable = false)
     public int getId() {
         return this.id;
@@ -31,7 +32,7 @@ public class Bestand implements java.io.Serializable {
     }
 
     public void setBestand(byte[] bestand) {
-        this.bestand = bestand;
+        this.setBestand(bestand);
     }
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "bestand")
@@ -50,6 +51,13 @@ public class Bestand implements java.io.Serializable {
 
     public void setToetsen(Set<Toets> toetsen) {
         this.toetsen = toetsen;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 
 }
