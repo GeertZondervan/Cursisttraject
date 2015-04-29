@@ -11,12 +11,12 @@ public interface PersoonService {
     void updatePersoon(Persoon persoon);
      
     List<Persoon> findAllPersonen(); 
-    
+    /*
     Persoon getPersoon(String voornaam, String achternaam);
     
     Integer getPersoonId(String voornaam, String achternaam);
      
     void deletePersoon(String voornaam, String achternaam);
-    
+    */
     Persoon read(int id);
 }

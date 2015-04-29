@@ -23,7 +23,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class PersoonDaoImplTest {
     
     @Autowired
-    private PersoonDaoImpl dao;
+    private PersoonDao dao;
+    //private PersoonDaoImpl dao;
     private Persoon persoon;
        
     @Before
@@ -42,7 +43,10 @@ public class PersoonDaoImplTest {
     public void testCreate() {
         System.out.println("creating terrorist");
         dao.create(persoon);
-        Persoon result = dao.getPersoon("Ali", "Chemicali");
+        System.out.println(persoon.getId());
+       
+        Persoon result = (Persoon) dao.read(persoon.getId());
+        //Persoon result = dao.getPersoon("Ali", "Chemicali");
         int persoonId = result.getId();
         
         assertNotNull("persoon, must not be null", persoon);

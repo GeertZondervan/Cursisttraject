@@ -1,3 +1,4 @@
+
 package edu.rsvier.springmvc.service;
 
 import edu.rsvier.springmvc.dao.PersoonDao;
@@ -19,21 +20,22 @@ public class PersoonServiceImpl implements PersoonService {
     }
 
     public List<Persoon> findAllPersonen() {
+    System.out.println("Derp!");
        return dao.getAll();
     }
-
+/*
     public void deletePersoon(String voornaam, String achternaam) {
         dao.delete(dao.getPersoon(voornaam, achternaam));
     }
-
+*/
     public void updatePersoon(Persoon persoon) {     
         dao.update(persoon);
     }
-
+/*
     public Persoon getPersoon(String voornaam, String achternaam) {
         return(((Persoon)dao.getPersoon(voornaam, achternaam)));    
     }
-
+*/
     public Persoon read(int id) {
         return(dao.read(id));
     }
