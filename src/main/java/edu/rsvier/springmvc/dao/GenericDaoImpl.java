@@ -14,7 +14,6 @@ public class GenericDaoImpl<T extends Serializable> implements IGenericDao<T> {
     @Autowired
     private SessionFactory sessionFactory;
 
-    //voor de connectie met de database (inclusief exception handling)
     public GenericDaoImpl(Class<T> type) {
         this.type = type;
     }
@@ -53,7 +52,7 @@ public class GenericDaoImpl<T extends Serializable> implements IGenericDao<T> {
 
     @SuppressWarnings("unchecked")
     public List<T> getAll() {
-        System.out.println("Duh");
+        
         return getSession().createQuery("from " + type.getName()).list();
     }
 

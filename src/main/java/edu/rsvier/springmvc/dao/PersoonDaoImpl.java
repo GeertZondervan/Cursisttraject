@@ -22,15 +22,15 @@ public class PersoonDaoImpl extends GenericDaoImpl<Persoon> implements PersoonDa
         }
         return list.get(list.size() - 1).getId();
     }
-
-    public Persoon getPersoon(String voornaam, String achternaam) {
+*/
+    public List<Persoon> read(String voornaam, String achternaam) {
         String sql = "SELECT p FROM Persoon p WHERE p.voornaam = :voornaam AND p.achternaam = :achternaam";
         Query query = getSession().createQuery(sql).setParameter("voornaam", voornaam).setParameter("achternaam", achternaam);
         if (query.list().isEmpty()) {
             return null;
         }
-        return ((Persoon) query.list().get(query.list().size() - 1));
+        return query.list();
     }
-*/
+
 
 }

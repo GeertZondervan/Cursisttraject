@@ -12,9 +12,9 @@ public interface PersoonDao {
     Persoon read(int id);
     /*
      int getPersoonId(String voornaam, String achternaam);
-    
-     Persoon getPersoon(String voornaam, String achternaam);
      */
+
+    List<Persoon> read(String voornaam, String achternaam);
 
     void delete(Persoon persoon);
 

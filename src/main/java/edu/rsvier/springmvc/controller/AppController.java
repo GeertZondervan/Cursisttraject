@@ -22,7 +22,7 @@ public class AppController {
     @RequestMapping(value = {"/"}, method = RequestMethod.GET)
     public String listPersonen(ModelMap model) {
 
-        List<Persoon> personen = service.findAllPersonen();
+        List<Persoon> personen = service.getAll();
         model.addAttribute("personen", personen);
         return "start";
     }     

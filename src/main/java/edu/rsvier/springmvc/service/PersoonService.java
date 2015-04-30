@@ -6,17 +6,15 @@ import java.util.List;
  
 public interface PersoonService {
  
-    void createPersoon(Persoon persoon);
+    void create(Persoon persoon);
     
-    void updatePersoon(Persoon persoon);
+    void update(Persoon persoon);
      
-    List<Persoon> findAllPersonen(); 
-    /*
-    Persoon getPersoon(String voornaam, String achternaam);
-    
-    Integer getPersoonId(String voornaam, String achternaam);
-     
-    void deletePersoon(String voornaam, String achternaam);
-    */
+    List<Persoon> getAll(); 
+   
+    List<Persoon> read(String voornaam, String achternaam);
+
+    void delete(Persoon persoon);
+   
     Persoon read(int id);
 }
