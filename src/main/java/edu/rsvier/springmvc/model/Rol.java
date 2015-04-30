@@ -54,4 +54,24 @@ public class Rol implements java.io.Serializable {
         this.persoonsrollen = persoonsrollen;
     }
 
+    @Override
+    public String toString() {
+        return ("Rol: " + this.getNaam());
+    }
+
+    @Override
+    public boolean equals(Object rol2) {
+        if (!(rol2 instanceof Rol)) {
+            return false;
+        }
+        if (this.getId() == (((Rol) rol2).getId())
+                && this.getNaam().equals(((Rol) rol2).getNaam())
+                && this.getPersoonsrollen().equals(((Rol) rol2).getPersoonsrollen())) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
 }
