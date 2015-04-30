@@ -125,6 +125,8 @@ public class TrajectDaoImplTest {
         
         List<Traject> lijst = dao.read("Java Developer");
         System.out.println(lijst);
+        
+        assertNotNull("Lijst, is not null", lijst);
     }
     
 }

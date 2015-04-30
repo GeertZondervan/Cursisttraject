@@ -88,5 +88,24 @@ public class Traject implements java.io.Serializable {
     public void setModules(Set<Module> modules) {
         this.modules = modules;
     }
+    
+    @Override
+    public String toString() {
+        return ("Traject: "  + this.getNaam() + " : " + this.getOmschrijving() + " " + this.getStartdatum() +  " " + this.getSluitingsdatum());
+    }
+    
+    @Override
+    public boolean equals(Object traject2) {
+        if(!(traject2 instanceof Traject))
+            return false;
+        if(this.getId() == (((Traject)traject2).getId()) 
+            && this.getNaam().equals(((Traject)traject2).getNaam())
+            && this.getStartdatum().equals(((Traject)traject2).getStartdatum())
+            && this.getOmschrijving().equals(((Traject)traject2).getOmschrijving()))
+            return true;
+        else
+            return false;
+        
+    }
 
 }
