@@ -3,8 +3,12 @@ package edu.rsvier.springmvc.dao;
 import edu.rsvier.springmvc.configuration.AppConfig;
 import edu.rsvier.springmvc.configuration.AppInitializer;
 import edu.rsvier.springmvc.configuration.HibernateConfiguration;
+import edu.rsvier.springmvc.model.Bestand;
 import edu.rsvier.springmvc.model.Expertise;
+import edu.rsvier.springmvc.model.Module;
 import edu.rsvier.springmvc.model.Persoon;
+import edu.rsvier.springmvc.model.Traject;
+import javax.persistence.Transient;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,19 +25,19 @@ import org.springframework.transaction.annotation.Transactional;
 @ContextConfiguration(classes = {AppInitializer.class, AppConfig.class, HibernateConfiguration.class})
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 @WebAppConfiguration
-public class ExpertiseDaoImplTest {
+public class ModuleDaoImplTest {
     
     @Autowired
-    private ExpertiseDao dao;
+    private ModuleDao dao;
     //private PersoonDaoImpl dao;
-    private Expertise expertise;
+    private Module module;
     
     @Before
     public void setUp() {
-        expertise = new Expertise();
-        expertise.setModule(null);
-        expertise.setNaam("IED's maken");
-        expertise.setOmschrijving("Boem maken!");
+       module = new Module();
+       
+       module.setOmschrijving("Modulair denken!");
+       module.setLengteInWeken(10);
     }
     
     @After
@@ -43,12 +47,7 @@ public class ExpertiseDaoImplTest {
     @Test
     @Transactional
     public void testCreate() {
-        System.out.println("creating bomb making expertise");
-        
-        System.out.println(expertise.getId());
-        
-      
-        assertNotNull("expertise, must not be null", expertise);
-
+        System.out.println("creating module");
+        assertNotNull("module, must not be null", module);
     }
 }
