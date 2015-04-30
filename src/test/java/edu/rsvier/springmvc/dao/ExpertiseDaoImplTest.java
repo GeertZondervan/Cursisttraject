@@ -4,7 +4,6 @@ import edu.rsvier.springmvc.configuration.AppConfig;
 import edu.rsvier.springmvc.configuration.AppInitializer;
 import edu.rsvier.springmvc.configuration.HibernateConfiguration;
 import edu.rsvier.springmvc.model.Expertise;
-import edu.rsvier.springmvc.model.Persoon;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,7 +24,7 @@ public class ExpertiseDaoImplTest {
     
     @Autowired
     private ExpertiseDao dao;
-    //private PersoonDaoImpl dao;
+
     private Expertise expertise;
     
     @Before

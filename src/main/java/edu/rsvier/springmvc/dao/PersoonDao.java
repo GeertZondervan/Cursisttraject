@@ -10,9 +10,6 @@ public interface PersoonDao {
     void update(Persoon persoon);
 
     Persoon read(int id);
-    /*
-     int getPersoonId(String voornaam, String achternaam);
-     */
 
     List<Persoon> read(String voornaam, String achternaam);
 

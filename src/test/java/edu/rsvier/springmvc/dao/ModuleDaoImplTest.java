@@ -29,7 +29,7 @@ public class ModuleDaoImplTest {
     
     @Autowired
     private ModuleDao dao;
-    //private PersoonDaoImpl dao;
+
     private Module module;
     
     @Before

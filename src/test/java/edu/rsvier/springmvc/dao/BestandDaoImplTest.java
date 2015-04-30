@@ -26,7 +26,7 @@ public class BestandDaoImplTest {
     
     @Autowired
     private BestandDao dao;
-    //private PersoonDaoImpl dao;
+
     private Bestand bestand;
     
     @Before

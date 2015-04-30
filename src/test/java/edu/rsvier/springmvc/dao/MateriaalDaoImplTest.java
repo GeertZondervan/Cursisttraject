@@ -4,8 +4,6 @@ import edu.rsvier.springmvc.configuration.AppConfig;
 import edu.rsvier.springmvc.configuration.AppInitializer;
 import edu.rsvier.springmvc.configuration.HibernateConfiguration;
 import edu.rsvier.springmvc.model.Materiaal;
-import edu.rsvier.springmvc.model.Expertise;
-import edu.rsvier.springmvc.model.Persoon;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +24,7 @@ public class MateriaalDaoImplTest {
     
     @Autowired
     private MateriaalDao dao;
-    //private PersoonDaoImpl dao;
+   
     private Materiaal materiaal;
     
     @Before
