@@ -12,13 +12,13 @@ public class ExpertiseDaoImpl extends GenericDaoImpl<Expertise> implements Exper
         super(Expertise.class);
     }
 
-    public Expertise getExpertise(String naam) {
+    public List<Expertise> read(String naam) {
         String sql = "SELECT e FROM Expertise e WHERE e.naam = :naam";
         Query query = getSession().createQuery(sql).setParameter("naam", naam);
         if (query.list().isEmpty()) {
             return null;
         }
-        return ((Expertise) query.list().get(query.list().size() - 1));
+        return(List<Expertise>)query.list();
     }
 
 }
