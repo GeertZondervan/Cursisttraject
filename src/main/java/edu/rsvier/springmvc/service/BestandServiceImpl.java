@@ -25,18 +25,20 @@ public class BestandServiceImpl implements BestandService {
 
     public Bestand read(int id) throws NullPointerException {
         Bestand bestand = dao.read(id);
-        if (bestand == null) {
+        if (bestand == null ) {
             throw new NullPointerException("Bestand not found");
         }
 
-        return ((Bestand) dao.read(id));
+        return bestand;
     }
 
-    public void update(Bestand bestand) {
+    public void update(Bestand bestand) throws IllegalArgumentException {
+        dao.read(bestand.getId());
         dao.update(bestand);
+
     }
 
-    public void delete(Bestand bestand){
+    public void delete(Bestand bestand) {
         dao.delete(bestand);
     }
 

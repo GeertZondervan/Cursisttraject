@@ -26,7 +26,7 @@ public class Bestand implements java.io.Serializable {
     private Set<Toets> toetsen = new HashSet<Toets>(0);
 
     @Id
-     @GeneratedValue(strategy = IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
     public int getId() {
         return this.id;
@@ -62,9 +62,19 @@ public class Bestand implements java.io.Serializable {
     public void setToetsen(Set<Toets> toetsen) {
         this.toetsen = toetsen;
     }
-    
-    public String toString(){
-        return("Bestand: " + id);
+
+    public String toString() {
+        return ("Bestand: " + id);
+    }
+
+    @Override
+    public boolean equals(Object anderBestand) {
+        if (anderBestand instanceof Bestand) {
+            if (getId() == ((Bestand) anderBestand).getId() && getBestand() == ((Bestand) anderBestand).getBestand()) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

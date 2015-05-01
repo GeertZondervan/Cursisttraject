@@ -3,7 +3,7 @@ package edu.rsvier.springmvc.service;
 import edu.rsvier.springmvc.configuration.AppConfig;
 import edu.rsvier.springmvc.configuration.AppInitializer;
 import edu.rsvier.springmvc.configuration.HibernateConfiguration;
-import edu.rsvier.springmvc.model.Bestand;
+import edu.rsvier.springmvc.model.Expertise;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,21 +22,21 @@ import org.springframework.transaction.annotation.Transactional;
 @ContextConfiguration(classes = {AppInitializer.class, AppConfig.class, HibernateConfiguration.class})
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 @WebAppConfiguration
-public class BestandServiceImplTest {
+public class ExpertiseServiceImpl {
 
     @Autowired
-    private BestandService service;
+    private ExpertiseService service;
 
-    private Bestand bestand;
+    private Expertise expertise;
 
     @Rule
     public ExpectedException expectedEx = ExpectedException.none();
 
     @Before
     public void setUp() {
-        bestand = new Bestand();
-        bestand.setBestand(new byte[2]);
-        service.create(bestand);
+        expertise = new Expertise();
+        
+        service.create(expertise);
     }
 
     @After
@@ -46,60 +46,60 @@ public class BestandServiceImplTest {
     @Test
     @Transactional
     public void testCreate() {
-        Bestand bestand2 = new Bestand();
-        bestand2.setBestand(new byte[2]);
-        service.create(bestand2);
-        Bestand result = service.read(bestand2.getId());
+        Expertise expertise2 = new Expertise();
+        
+        service.create(expertise2);
+        Expertise result = service.read(expertise2.getId());
         System.out.println(result);
-        assertNotNull("bestand, must not be null", bestand2);
+        assertNotNull("expertise, must not be null", expertise2);
         assertNotNull("Result, must not be null", result);
         assertTrue("id, must be positive", result.getId() >= 0);
-        assertEquals("persoon, all fields must be equal", bestand2, result);
+        assertEquals("persoon, all fields must be equal", expertise2, result);
     }
 
     @Test
     @Transactional
     public void testCreateNotComplete() {
-        Bestand bestand2 = new Bestand();
+        Expertise expertise2 = new Expertise();
         expectedEx.expect(IllegalArgumentException.class);
-        expectedEx.expectMessage("Bestand not complete");
-        service.create(bestand2);
+        expectedEx.expectMessage("Expertise not complete");
+        service.create(expertise2);
     }
 
     @Test
     @Transactional
     public void testRead() {
-        Bestand result = service.read(bestand.getId());
+        Expertise result = service.read(expertise.getId());
         System.out.println(result);
-        assertNotNull("bestand, must not be null", bestand);
+        assertNotNull("expertise, must not be null", expertise);
         assertNotNull("Result, must not be null", result);
         assertTrue("id, must be positive", result.getId() >= 0);
-        assertEquals("persoon, all fields must be equal", bestand, result);
+        assertEquals("persoon, all fields must be equal", expertise, result);
     }
 
     @Test
     @Transactional
     public void testReadNotFound() {
         expectedEx.expect(NullPointerException.class);
-        expectedEx.expectMessage("Bestand not found");
-        Bestand result = service.read(0);
+        expectedEx.expectMessage("Expertise not found");
+        Expertise result = service.read(0);
     }
 
     // Wiemer: Leroy/Timo/iemand anders vragen hoe we de Hibernate cache kunnen omzeilen. TestUpdate werkt nu ook zonder update aan te roepen.
     @Test
     @Transactional
     public void testUpdate() {
-        Bestand bestand2 = service.read(bestand.getId());
+        Expertise expertise2 = service.read(expertise.getId());
 
-        bestand2.setBestand(new byte[5]);
-        service.update(bestand2);
+       
+        service.update(expertise2);
 
-        int id = bestand.getId();
+        int id = expertise.getId();
 
-        Bestand result = service.read(id);
+        Expertise result = service.read(id);
 
         assertNotNull("Result, must not be null", result);
-        assertTrue("Bestandlengte, must be 5", result.getBestand().length == 5);
+        
     }
 
     
@@ -109,27 +109,27 @@ public class BestandServiceImplTest {
     public void testUpdateNotFound() {
 
         //expectedEx.expect(IllegalArgumentException.class);
-        //expectedEx.expectMessage("Cannot update, bestand not found");
-        Bestand bestand3 = new Bestand();
+        //expectedEx.expectMessage("Cannot update, expertise not found");
+        Expertise expertise3 = new Expertise();
 
-        bestand3.setBestand(new byte[42]);
+        expertise3.setExpertise(new byte[42]);
 
-        System.out.println("Update: " + bestand3);
-        service.update(bestand3);
+        System.out.println("Update: " + expertise3);
+        service.update(expertise3);
 
-        System.out.println("Update: " + bestand3);
+        System.out.println("Update: " + expertise3);
     }
 
     @Test
     @Transactional
     public void testDelete() {
         expectedEx.expect(NullPointerException.class);
-        expectedEx.expectMessage("Bestand not found");
+        expectedEx.expectMessage("Expertise not found");
 
-        service.create(bestand);
-        service.delete(bestand);
-        int id = bestand.getId();
-        Bestand result = service.read(id);
+        service.create(expertise);
+        service.delete(expertise);
+        int id = expertise.getId();
+        Expertise result = service.read(id);
     }
 
 }
