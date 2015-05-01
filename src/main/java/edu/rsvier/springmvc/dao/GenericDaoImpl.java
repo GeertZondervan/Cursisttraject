@@ -39,7 +39,7 @@ public class GenericDaoImpl<T extends Serializable> implements IGenericDao<T> {
     }
 
     public void update(T entity) {
-        getSession().update(entity);
+        getSession().merge(entity);
     }
 
     public void delete(T entity) {

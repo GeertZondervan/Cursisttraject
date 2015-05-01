@@ -6,6 +6,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -24,6 +26,7 @@ public class Bestand implements java.io.Serializable {
     private Set<Toets> toetsen = new HashSet<Toets>(0);
 
     @Id
+     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
     public int getId() {
         return this.id;
@@ -58,6 +61,10 @@ public class Bestand implements java.io.Serializable {
 
     public void setToetsen(Set<Toets> toetsen) {
         this.toetsen = toetsen;
+    }
+    
+    public String toString(){
+        return("Bestand: " + id);
     }
 
 }
