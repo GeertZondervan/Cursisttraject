@@ -14,12 +14,20 @@ public class PersoonServiceImpl implements PersoonService {
     @Autowired
     private PersoonDao dao;
 
-    public void create(Persoon persoon) {
+    public void create(Persoon persoon) throws IllegalArgumentException {
+        if (persoon.getVoornaam() == null || persoon.getAchternaam() == null
+                || persoon.getPersoonsrollen() == null) {
+            throw new IllegalArgumentException("Persoon not complete");
+        }
         dao.create(persoon);
     }
 
-    public Persoon read(int id) {
-        return ((Persoon) dao.read(id));
+    public Persoon read(int id) throws NullPointerException {
+        Persoon persoon = dao.read(id);
+        if (persoon ==  null) {
+            throw new NullPointerException("Persoon not found");
+        }
+        return persoon;
     }
 
     public void update(Persoon persoon) {
