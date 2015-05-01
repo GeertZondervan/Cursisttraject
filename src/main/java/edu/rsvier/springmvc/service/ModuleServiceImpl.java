@@ -14,12 +14,20 @@ public class ModuleServiceImpl implements ModuleService {
     @Autowired
     private ModuleDao dao;
 
-    public void create(Module module) {
+    public void create(Module module) throws IllegalArgumentException {
+        if (module.getTraject() == null) {
+            throw new IllegalArgumentException("Module not complete");
+        }
         dao.create(module);
     }
 
-    public Module read(int id) {
-        return ((Module) dao.read(id));
+    public Module read(int id) throws NullPointerException {
+        Module module = dao.read(id);
+        if (module == null) {
+            throw new NullPointerException("Module not found");
+        }
+
+        return module;
     }
 
     public void update(Module module) {

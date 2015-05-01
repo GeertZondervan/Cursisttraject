@@ -5,10 +5,21 @@
  */
 package edu.rsvier.springmvc.service;
 
+import edu.rsvier.springmvc.model.Traject;
+import java.util.List;
+
 /**
  *
  * @author Geert
  */
 public interface TrajectService {
-    
+        void create(Traject traject);
+
+    void update(Traject traject);
+
+    Traject read(int id);
+
+    void delete(Traject traject);
+
+    List<Traject> getAll();
 }
