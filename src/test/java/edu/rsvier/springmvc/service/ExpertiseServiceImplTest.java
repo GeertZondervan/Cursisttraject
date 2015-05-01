@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 @ContextConfiguration(classes = {AppInitializer.class, AppConfig.class, HibernateConfiguration.class})
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 @WebAppConfiguration
-public class ExpertiseServiceImpl {
+public class ExpertiseServiceImplTest {
 
     @Autowired
     private ExpertiseService service;
@@ -35,7 +35,8 @@ public class ExpertiseServiceImpl {
     @Before
     public void setUp() {
         expertise = new Expertise();
-        
+        expertise.setNaam("Bermbommen bouwen");
+        expertise.setOmschrijving("The art of making and baking bermbombs");
         service.create(expertise);
     }
 
@@ -47,7 +48,8 @@ public class ExpertiseServiceImpl {
     @Transactional
     public void testCreate() {
         Expertise expertise2 = new Expertise();
-        
+        expertise2.setNaam("Bermbommen bouwen");
+        expertise2.setOmschrijving("The art of making and baking bermbombs");
         service.create(expertise2);
         Expertise result = service.read(expertise2.getId());
         System.out.println(result);
@@ -112,7 +114,7 @@ public class ExpertiseServiceImpl {
         //expectedEx.expectMessage("Cannot update, expertise not found");
         Expertise expertise3 = new Expertise();
 
-        expertise3.setExpertise(new byte[42]);
+        expertise3.setNaam("");
 
         System.out.println("Update: " + expertise3);
         service.update(expertise3);

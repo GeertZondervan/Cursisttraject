@@ -1,9 +1,7 @@
 package edu.rsvier.springmvc.service;
 
 import edu.rsvier.springmvc.dao.BestandDao;
-import edu.rsvier.springmvc.dao.ExpertiseDao;
 import edu.rsvier.springmvc.model.Bestand;
-import edu.rsvier.springmvc.model.Expertise;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,9 +31,7 @@ public class BestandServiceImpl implements BestandService {
     }
 
     public void update(Bestand bestand) throws IllegalArgumentException {
-        dao.read(bestand.getId());
         dao.update(bestand);
-
     }
 
     public void delete(Bestand bestand) {

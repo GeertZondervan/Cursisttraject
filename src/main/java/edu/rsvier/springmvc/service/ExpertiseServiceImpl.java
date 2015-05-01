@@ -14,12 +14,20 @@ public class ExpertiseServiceImpl implements ExpertiseService {
     @Autowired
     private ExpertiseDao dao;
 
-    public void create(Expertise expertise) {
+    public void create(Expertise expertise) throws IllegalArgumentException {
+        if (expertise.getNaam() == null) {
+            throw new IllegalArgumentException("Expertise not complete");
+        }
         dao.create(expertise);
     }
 
-    public Expertise read(int id) {
-        return ((Expertise) dao.read(id));
+    public Expertise read(int id) throws NullPointerException {
+        Expertise expertise = dao.read(id);
+        if (expertise == null) {
+            throw new NullPointerException("Expertise not found");
+        }
+
+        return expertise;
     }
 
     public void update(Expertise expertise) {
@@ -37,6 +45,5 @@ public class ExpertiseServiceImpl implements ExpertiseService {
     public List<Expertise> read(String naam) {
         return dao.read(naam);
     }
-
 
 }

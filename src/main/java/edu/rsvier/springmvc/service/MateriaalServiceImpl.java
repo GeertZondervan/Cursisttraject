@@ -14,12 +14,20 @@ public class MateriaalServiceImpl implements MateriaalService {
     @Autowired
     private MateriaalDao dao;
 
-    public void create(Materiaal materiaal) {
+    public void create(Materiaal materiaal) throws IllegalArgumentException {
+        if (materiaal.getTitel() == null) {
+            throw new IllegalArgumentException("Materiaal not complete");
+        }
         dao.create(materiaal);
     }
 
-    public Materiaal read(int id) {
-        return ((Materiaal) dao.read(id));
+    public Materiaal read(int id) throws NullPointerException {
+        Materiaal materiaal = dao.read(id);
+        if (materiaal == null) {
+            throw new NullPointerException("Materiaal not found");
+        }
+
+        return materiaal;
     }
 
     public void update(Materiaal materiaal) {
