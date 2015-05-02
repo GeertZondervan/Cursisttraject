@@ -14,9 +14,12 @@ import edu.rsvier.springmvc.model.ToetsResultaatId;
 import edu.rsvier.springmvc.model.Traject;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 import org.junit.After;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -146,74 +149,74 @@ public class ToetsResultaatServiceImplTest {
         assertEquals("toetsResultaat, all fields must be equal", toetsResultaat, result);
     }
 
-//    /**
-//     * Test of update method, of class ToetsResultaatServiceImpl.
-//     */
-//    @Test
-//    @Transactional
-//    public void testUpdate() {
-//        ToetsResultaatId toetsResultaatId = toetsResultaat.getId();
-//        ToetsResultaat result = (ToetsResultaat) service.read(toetsResultaatId);
-//        result.setResultaat(10f);
-//        service.update(result);
-//
-//        toetsResultaat = service.read(toetsResultaatId);
-//
-//        assertNotNull("result must not be null", toetsResultaat);
-//
-//        assertEquals("toetsResultaat, all fields must be equal", toetsResultaat, result);
-//    }
-//
-//    /**
-//     * Test of read method, of class ToetsResultaatServiceImpl.
-//     */
-//    @Test
-//    @Transactional
-//    public void testRead_id() {
-//        System.out.println("creating toetsResultaat");
-//        service.create(toetsResultaat);
-//
-//        ToetsResultaat result = (ToetsResultaat) service.read(toetsResultaat.getId());
-//        ToetsResultaatId toetsResultaatId = result.getId();
-//
-//        assertNotNull("toetsResultaat must not be null", toetsResultaat);
-//        assertNotNull("result must not be null", result);
-//
-//        assertEquals("toetsResultaat, all fields must be equal", toetsResultaat, result);
-//    }
-//
-//
-//
-//    /**
-//     * Test of delete method, of class ToetsResultaatServiceImpl.
-//     */
-//    @Test
-//    @Transactional
-//    public void testDelete() {
-//        service.create(toetsResultaat);
-//        ToetsResultaatId toetsResultaatId = toetsResultaat.getId();
-//        service.delete(toetsResultaat);
-//
-//        ToetsResultaat result = service.read(toetsResultaatId);
-//        assertNull("Result is null, object has been deleted", result);
-//
-//    }
-//
-//    /**
-//     * Test of getAll method, of class ToetsResultaatServiceImpl.
-//     */
-//    @Test
-//    @Transactional
-//    public void testGetAll() {
-//        System.out.println("getAll");
-//        //service.create(toetsResultaat);
-//
-//        List<ToetsResultaat> resultList = service.getAll();
-//        assertNotNull("resultList must not be null", resultList);
-//
-//        assertTrue("toetsResultaat must be in the resultList", resultList.contains(toetsResultaat));
-//        //assertTrue("toetsResultaat2 must be in the resultList", resultList.contains(toetsResultaat2));
-//
-//    }
+    /**
+     * Test of update method, of class ToetsResultaatServiceImpl.
+     */
+    @Test
+    @Transactional
+    public void testUpdate() {
+        ToetsResultaatId toetsResultaatId = toetsResultaat.getId();
+        ToetsResultaat result = (ToetsResultaat) service.read(toetsResultaatId);
+        result.setResultaat(10f);
+        service.update(result);
+
+        toetsResultaat = service.read(toetsResultaatId);
+
+        assertNotNull("result must not be null", toetsResultaat);
+
+        assertEquals("toetsResultaat, all fields must be equal", toetsResultaat, result);
+    }
+
+    /**
+     * Test of read method, of class ToetsResultaatServiceImpl.
+     */
+    @Test
+    @Transactional
+    public void testRead_id() {
+        System.out.println("creating toetsResultaat");
+        service.create(toetsResultaat);
+
+        ToetsResultaat result = (ToetsResultaat) service.read(toetsResultaat.getId());
+        ToetsResultaatId toetsResultaatId = result.getId();
+
+        assertNotNull("toetsResultaat must not be null", toetsResultaat);
+        assertNotNull("result must not be null", result);
+
+        assertEquals("toetsResultaat, all fields must be equal", toetsResultaat, result);
+    }
+
+
+
+    /**
+     * Test of delete method, of class ToetsResultaatServiceImpl.
+     */
+    @Test
+    @Transactional
+    public void testDelete() {
+        service.create(toetsResultaat);
+        ToetsResultaatId toetsResultaatId = toetsResultaat.getId();
+        service.delete(toetsResultaat);
+
+        ToetsResultaat result = service.read(toetsResultaatId);
+        assertNull("Result is null, object has been deleted", result);
+
+    }
+
+    /**
+     * Test of getAll method, of class ToetsResultaatServiceImpl.
+     */
+    @Test
+    @Transactional
+    public void testGetAll() {
+        System.out.println("getAll");
+        //service.create(toetsResultaat);
+
+        List<ToetsResultaat> resultList = service.getAll();
+        assertNotNull("resultList must not be null", resultList);
+
+        assertTrue("toetsResultaat must be in the resultList", resultList.contains(toetsResultaat));
+        //assertTrue("toetsResultaat2 must be in the resultList", resultList.contains(toetsResultaat2));
+
+    }
 
 }
