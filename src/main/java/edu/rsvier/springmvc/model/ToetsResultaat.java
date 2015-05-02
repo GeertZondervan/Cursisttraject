@@ -97,4 +97,8 @@ public class ToetsResultaat implements java.io.Serializable {
         this.resultaat = resultaat;
     }
 
+     @Override
+    public String toString() {
+        return ("ToetsResultaat: " + this.getResultaat());
+    }
 }

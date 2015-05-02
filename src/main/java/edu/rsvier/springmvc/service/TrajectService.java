@@ -13,11 +13,13 @@ import java.util.List;
  * @author Geert
  */
 public interface TrajectService {
-        void create(Traject traject);
+      void create(Traject traject);
 
     void update(Traject traject);
 
     Traject read(int id);
+
+    List<Traject> read(String naam);
 
     void delete(Traject traject);
 

@@ -1,8 +1,7 @@
 package edu.rsvier.springmvc.dao;
 
 import edu.rsvier.springmvc.model.Toets;
-import java.util.List;
-import org.hibernate.Query;
+import edu.rsvier.springmvc.model.Toets;
 import org.springframework.stereotype.Repository;
 
 @Repository("toetsDao")
