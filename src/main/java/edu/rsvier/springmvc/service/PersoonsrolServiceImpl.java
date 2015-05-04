@@ -14,20 +14,31 @@ public class PersoonsrolServiceImpl implements PersoonsrolService {
     @Autowired
     private PersoonsrolDao dao;
 
-    public void create(Persoonsrol persoonsrol) {
-       dao.create(persoonsrol);
+    public void create(Persoonsrol persoonsrol) throws IllegalArgumentException {
+        if (persoonsrol.getPersoon() == null || persoonsrol.getRol() == null) {
+            throw new IllegalArgumentException("Persoonsrol not complete");
+        }
+        dao.create(persoonsrol);
+    }
+
+    public Persoonsrol read(PersoonsrolId id) throws NullPointerException {
+        Persoonsrol persoonsrol = dao.read(id);
+        if (persoonsrol == null ) {
+            throw new NullPointerException("Persoonsrol not found");
+        }
+
+        return persoonsrol;
     }
 
     public void update(Persoonsrol persoonsrol) {
        dao.update(persoonsrol);
     }
 
-    public Persoonsrol read(PersoonsrolId id) {
-        return ((Persoonsrol)dao.read(id));
-    }
+   
 
     public void delete(Persoonsrol persoonsrol) {
         dao.delete(persoonsrol);
     }
+
     
 }

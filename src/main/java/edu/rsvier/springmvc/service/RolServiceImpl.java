@@ -15,17 +15,26 @@ public class RolServiceImpl implements RolService {
     @Autowired
     private RolDao dao;
 
-    public void create(Rol rol) {
+    public void create(Rol rol) throws IllegalArgumentException  {
+       if (rol.getNaam() == null) {
+            throw new IllegalArgumentException("Rol not complete");
+        }
         dao.create(rol);
+    }
+    
+    
+    public Rol read(int id)  throws NullPointerException {
+       Rol rol = dao.read(id);
+        if (rol ==  null) {
+            throw new NullPointerException("Rol not found");
+        }
+        return rol;
     }
 
     public void update(Rol rol) {
         dao.update(rol);
     }
 
-    public Rol read(int id) {
-       return ((Rol)dao.read(id));
-    }
 
     public void delete(Rol rol) {
        dao.delete(rol);

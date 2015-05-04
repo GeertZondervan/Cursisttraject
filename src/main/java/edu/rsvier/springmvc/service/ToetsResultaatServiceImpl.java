@@ -16,17 +16,27 @@ public class ToetsResultaatServiceImpl implements ToetsResultaatService {
     @Autowired
     private ToetsResultaatDao dao;
     
-    public void create(ToetsResultaat toetsResultaat) {
+    public void create(ToetsResultaat toetsResultaat) throws IllegalArgumentException {
+        if (toetsResultaat.getToets() == null || toetsResultaat.getDatum() == null || toetsResultaat.getPersoonsrol() == null) {
+            throw new IllegalArgumentException("ToetsResultaat not complete");
+        }
         dao.create(toetsResultaat);
+    }
+    
+    
+    public ToetsResultaat read(ToetsResultaatId id)  throws NullPointerException{
+       ToetsResultaat toetsResultaat = dao.read(id);
+        if (toetsResultaat == null ) {
+            throw new NullPointerException("ToetsResultaat not found");
+        }
+
+        return toetsResultaat;
     }
 
     public void update(ToetsResultaat toetsResultaat) {
        dao.update(toetsResultaat);
     }
 
-    public ToetsResultaat read(ToetsResultaatId id) {
-       return ((ToetsResultaat)dao.read(id));
-    }
 
     public void delete(ToetsResultaat toetsResultaat) {
        dao.delete(toetsResultaat);

@@ -13,11 +13,11 @@ import java.util.List;
  * @author Geert
  */
 public interface TrajectService {
-      void create(Traject traject);
+      void create(Traject traject) throws IllegalArgumentException;
 
     void update(Traject traject);
 
-    Traject read(int id);
+    Traject read(int id) throws NullPointerException;
 
     List<Traject> read(String naam);
 

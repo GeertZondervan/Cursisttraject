@@ -98,19 +98,19 @@ public class ExpertiseServiceImplTest {
 
     
     //Wiemer: Zou foutmelding moeten geven, maar werkt gek genoeg.
-    @Test
-    @Transactional
-    public void testUpdateNotFound() {
-
-        //expectedEx.expect(IllegalArgumentException.class);
-        //expectedEx.expectMessage("Cannot update, expertise not found");
-        Expertise expertise3 = new Expertise();
-
-        expertise3.setNaam("");
-
-        service.update(expertise3);
-
-    }
+//    @Test
+//    @Transactional
+//    public void testUpdateNotFound() {
+//
+//        //expectedEx.expect(IllegalArgumentException.class);
+//        //expectedEx.expectMessage("Cannot update, expertise not found");
+//        Expertise expertise3 = new Expertise();
+//
+//        expertise3.setNaam("");
+//
+//        service.update(expertise3);
+//
+//    }
 
     @Test
     @Transactional

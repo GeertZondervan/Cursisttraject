@@ -15,17 +15,26 @@ public class TrajectServiceImpl implements TrajectService {
     @Autowired 
     private TrajectDao dao;
 
-    public void create(Traject traject) {
+    public void create(Traject traject) throws IllegalArgumentException  {
+       if (traject.getNaam() == null || traject.getStartdatum() == null) {
+            throw new IllegalArgumentException("Traject not complete");
+        }
         dao.create(traject);
     }
+    
+    
+    public Traject read(int id)  throws NullPointerException {
+       Traject traject = dao.read(id);
+        if (traject ==  null) {
+            throw new NullPointerException("Traject not found");
+        }
+        return traject;
+    }       
 
     public void update(Traject traject) {
         dao.update(traject);
     }
 
-    public Traject read(int id) {
-       return ((Traject) dao.read(id));
-    }
 
     public List<Traject> read(String naam) {
        return dao.read(naam);

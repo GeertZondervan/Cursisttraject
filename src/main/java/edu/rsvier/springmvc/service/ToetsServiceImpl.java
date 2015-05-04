@@ -15,16 +15,24 @@ public class ToetsServiceImpl implements ToetsService{
     @Autowired
     private ToetsDao dao;
     
-    public void create(Toets toets) {
+    public void create(Toets toets) throws IllegalArgumentException  {
+       if (toets.getNaam() == null) {
+            throw new IllegalArgumentException("Toets not complete");
+        }
         dao.create(toets);
+    }
+    
+    
+    public Toets read(int id)  throws NullPointerException {
+       Toets toets = dao.read(id);
+        if (toets ==  null) {
+            throw new NullPointerException("Toets not found");
+        }
+        return toets;
     }
 
     public void update(Toets toets) {
         dao.update(toets);
-    }
-
-    public Toets read(int id) {
-        return ((Toets)dao.read(id));
     }
 
     public void delete(Toets toets) {
