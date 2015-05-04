@@ -6,7 +6,6 @@ import edu.rsvier.springmvc.configuration.HibernateConfiguration;
 import edu.rsvier.springmvc.model.Module;
 import edu.rsvier.springmvc.model.Toets;
 import edu.rsvier.springmvc.model.Traject;
-import java.util.Date;
 import java.util.List;
 import org.junit.After;
 import org.junit.Before;
@@ -37,30 +36,16 @@ public class ToetsServiceImplTest {
   
     @Before
     public void setUp() {
-        Module module = new Module();
-        Traject traject = new Traject();
-        traject.setNaam("Java Developer");
-        traject.setOmschrijving("Opleiding tot Java Developer");
-        traject.setStartdatum(new Date());
-        module.setTraject(traject);
-        toets = new Toets();
-        toets.setNaam("Java toets 1");
-        toets.setOmschrijving("Eerste toets");
-        toets.setModule(module);
-        toets.setStof("Boek 1");
-        toets.setStatus("Klaar");
-        toets.setMinimumResultaat(5.5f);
+        Traject traject = PojoGenerator.getTraject();
         trajectService.create(traject);
+        
+        Module module = PojoGenerator.getModule(traject);
         moduleService.create(module);
+        
+        toets = PojoGenerator.getToets(module);
         service.create(toets);
         
-        toets2 = new Toets();
-        toets2.setNaam("C++ Developer");
-        toets2.setOmschrijving("Tweede toets");
-        toets2.setModule(module);
-        toets2.setStof("pdf1");
-        toets2.setStatus("Klaar");
-        toets2.setMinimumResultaat(5.5f);
+        toets2 = PojoGenerator.getToets(module);
         
     }
     
@@ -74,7 +59,6 @@ public class ToetsServiceImplTest {
     @Test
     @Transactional
     public void testCreate() {
-        System.out.println("creating toets");
         service.create(toets2);
         
         Toets result = (Toets)service.read(toets2.getId());
@@ -111,9 +95,6 @@ public class ToetsServiceImplTest {
     @Test
     @Transactional
     public void testRead_int() {
-        System.out.println("creating toets");
-        service.create(toets);
-        
         Toets result = (Toets)service.read(toets.getId());
         int toetsId = result.getId();
         
@@ -130,7 +111,6 @@ public class ToetsServiceImplTest {
     @Test
     @Transactional
     public void testDelete() {
-        service.create(toets);
         int id = toets.getId();
         service.delete(toets);
         
@@ -145,7 +125,6 @@ public class ToetsServiceImplTest {
     @Test
     @Transactional
     public void testGetAll() {
-        System.out.println("getAll");
         service.create(toets2);
         
         List<Toets> resultList = service.getAll();
