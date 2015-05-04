@@ -71,5 +71,9 @@ public class Persoon implements java.io.Serializable {
         }
         return false;
     }
+    
+    public String toString(){
+        return ("Persoon: " + voornaam + ", " + achternaam);
+    }
 
 }

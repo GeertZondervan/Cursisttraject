@@ -36,10 +36,7 @@ public class PersoonServiceImplTest {
 
     @Before
     public void setUp() {
-        persoon = new Persoon();
-        persoon.setVoornaam("John");
-        persoon.setAchternaam("Woo");
-        persoon.setPersoonsrollen(new HashSet<Persoonsrol>());
+        persoon = PojoGenerator.getPersoon();
         service.create(persoon);
     }
 
@@ -50,10 +47,9 @@ public class PersoonServiceImplTest {
     @Test
     @Transactional
     public void testCreate() {
-        Persoon persoon2 = new Persoon();
-        persoon2.setVoornaam("Jimmy");
-        persoon2.setAchternaam("Choo");
-        persoon2.setPersoonsrollen(new HashSet<Persoonsrol>());
+        Persoon persoon2 = PojoGenerator.getPersoon();
+        System.out.println(persoon);
+        System.out.println(persoon2);
         service.create(persoon2);
         Persoon result = service.read(persoon2.getId());
         System.out.println(result);
