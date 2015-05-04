@@ -40,7 +40,6 @@ public class BestandServiceImplTest {
         bestand = new Bestand();
         bestand.setBestand(new byte[2]);
         service.create(bestand);
-        Bestand bestand2 = new Bestand();
     }
 
     @After

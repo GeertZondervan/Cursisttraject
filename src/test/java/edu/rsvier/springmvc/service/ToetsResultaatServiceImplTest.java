@@ -56,73 +56,26 @@ public class ToetsResultaatServiceImplTest {
 
     @Before
     public void setUp() {
-      
-        Traject traject = new Traject();
-        traject.setNaam("Java Developer");
-        traject.setOmschrijving("Opleiding tot Java Developer");
-        Calendar calendar = new GregorianCalendar(2015, 05, 02);
-        traject.setStartdatum(calendar.getTime());
+        Traject traject = PojoGenerator.getTraject();
         trajectService.create(traject);
-        
-        Module module = new Module();
-        module.setTraject(traject);
+
+        Module module = PojoGenerator.getModule(traject);
         moduleService.create(module);
-        
-        Toets toets = new Toets();
-        toets.setNaam("Java toets 1");
-        toets.setOmschrijving("Eerste toets");
-        toets.setModule(module);
-        toets.setStof("Boek 1");
-        toets.setStatus("Klaar");
-        toets.setMinimumResultaat(5.5f);
+
+        Toets toets = PojoGenerator.getToets(module);
         toetsService.create(toets);
 
-        Persoon persoon = new Persoon();
-        persoon.setVoornaam("Karel");
-        persoon.setAchternaam("Appel");
+        Persoon persoon = PojoGenerator.getPersoon();
         persoonService.create(persoon);
-        
-        Rol rol = new Rol();
-        rol.setNaam("Cursist");
-        rolService.create(rol);
-        
-        PersoonsrolId persoonsrolId = new PersoonsrolId();
-        persoonsrolId.setPersoonId(persoon.getId());
-        persoonsrolId.setRolId(rol.getId());
-        persoonsrolId.setBegindatum(calendar.getTime());
-        
-        Persoonsrol persoonsrol = new Persoonsrol();
-        persoonsrol.setPersoon(persoon);
-        persoonsrol.setRol(rol);
-        persoonsrol.setId(persoonsrolId);
-        persoonsrolService.create(persoonsrol);
-        
-        toetsResultaatId = new ToetsResultaatId();
-        toetsResultaatId.setPersoonsrolPersoonId(persoonsrolId.getPersoonId());
-        toetsResultaatId.setPersoonsrolRolId(persoonsrolId.getRolId());
-        toetsResultaatId.setPersoonsrolBegindatum(persoonsrolId.getBegindatum());
-        toetsResultaatId.setToetsId(toets.getId());
-        
-        toetsResultaat = new ToetsResultaat();
-        toetsResultaat.setResultaat(8.8f);
-        toetsResultaat.setDatum(calendar.getTime());
-        toetsResultaat.setToets(toets);
-        toetsResultaat.setPersoonsrol(persoonsrol);
-        toetsResultaat.setId(toetsResultaatId);
-        service.create(toetsResultaat);
 
-        ToetsResultaatId toetsResultaatId2 = new ToetsResultaatId();
-        toetsResultaatId2.setPersoonsrolPersoonId(persoonsrolId.getPersoonId());
-        toetsResultaatId2.setPersoonsrolRolId(persoonsrolId.getRolId());
-        toetsResultaatId2.setPersoonsrolBegindatum(persoonsrolId.getBegindatum());
-        toetsResultaatId2.setToetsId(toets.getId());
-        
-        toetsResultaat2 = new ToetsResultaat();
-        toetsResultaat2.setResultaat(5.8f);
-        toetsResultaat2.setDatum(calendar.getTime());
-        toetsResultaat2.setToets(toets);
-        toetsResultaat2.setPersoonsrol(persoonsrol);
-        toetsResultaat2.setId(toetsResultaatId2);
+        Rol rol = PojoGenerator.getRol();
+        rolService.create(rol);
+
+        Persoonsrol persoonsrol = PojoGenerator.getPersoonsrol(persoon, rol);
+        persoonsrolService.create(persoonsrol);
+
+        toetsResultaat = PojoGenerator.getToetsResultaat(toets, persoonsrol);
+        service.create(toetsResultaat);
 
     }
 
@@ -138,11 +91,11 @@ public class ToetsResultaatServiceImplTest {
     public void testCreate() {
         System.out.println("creating toetsResultaat");
         service.create(toetsResultaat);
-        
+
         ToetsResultaat result = (ToetsResultaat) service.read(toetsResultaat.getId());
         System.out.println(toetsResultaat.getId() + " HHHAHHS AFSF G");
-        
-       System.out.println(result + " XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+
+        System.out.println(result + " XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
         assertNotNull("toetsResultaat must not be null", toetsResultaat);
         assertNotNull("result must not be null", result);
 
@@ -184,8 +137,6 @@ public class ToetsResultaatServiceImplTest {
 
         assertEquals("toetsResultaat, all fields must be equal", toetsResultaat, result);
     }
-
-
 
     /**
      * Test of delete method, of class ToetsResultaatServiceImpl.
