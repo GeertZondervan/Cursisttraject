@@ -47,6 +47,7 @@ public class BestandServiceImplTest {
     public void testCreate() {
         Bestand bestand2 = PojoGenerator.getBestand();
         service.create(bestand2);
+        service.flushSession();
         Bestand result = service.read(bestand2.getId());
         assertNotNull("bestand, must not be null", bestand2);
         assertNotNull("Result, must not be null", result);
@@ -66,6 +67,7 @@ public class BestandServiceImplTest {
     @Test
     @Transactional
     public void testRead() {
+        service.flushSession();
         Bestand result = service.read(bestand.getId());
         assertNotNull("bestand, must not be null", bestand);
         assertNotNull("Result, must not be null", result);
@@ -81,36 +83,29 @@ public class BestandServiceImplTest {
         Bestand result = service.read(0);
     }
 
-    // Wiemer: Leroy/Timo/iemand anders vragen hoe we de Hibernate cache kunnen omzeilen. TestUpdate werkt nu ook zonder update aan te roepen.
     @Test
     @Transactional
     public void testUpdate() {
-        Bestand bestand2 = service.read(bestand.getId());
+        bestand.setBestand(new byte[5]);
+        service.update(bestand);
+        service.flushSession();
 
-        bestand2.setBestand(new byte[5]);
-        service.update(bestand2);
-
-        int id = bestand.getId();
-
-        Bestand result = service.read(id);
-
+        Bestand result = service.read(bestand.getId());
         assertNotNull("Result, must not be null", result);
         assertTrue("Bestandlengte, must be 5", result.getBestand().length == 5);
     }
 
-    
-    //Wiemer: Zou foutmelding moeten geven, maar werkt gek genoeg.
-    @Test
-    @Transactional
-    public void testUpdateNotFound() {
-
-        //expectedEx.expect(IllegalArgumentException.class);
-        //expectedEx.expectMessage("Cannot update, bestand not found");
-        Bestand bestand3 = PojoGenerator.getBestand();
-
-        bestand3.setBestand(new byte[42]);
-        service.update(bestand3);
-    }
+//    @Test
+//    @Transactional
+//    public void testUpdateNotFound() {
+//
+//        expectedEx.expect(IllegalArgumentException.class);
+//        expectedEx.expectMessage("Cannot update, bestand not found");
+//        Bestand bestand3 = new Bestand();
+//
+//        bestand3.setBestand(new byte[42]);
+//        service.update(bestand3);
+//    }
 
     @Test
     @Transactional
