@@ -3,6 +3,7 @@ package edu.rsvier.springmvc.model;
 
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -109,7 +110,7 @@ public class Toets implements java.io.Serializable {
         this.minimumResultaat = minimumResultaat;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "toets")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "toets", cascade = {CascadeType.ALL})
     public Set<ToetsResultaat> getToetsResultaten() {
         return this.toetsResultaten;
     }

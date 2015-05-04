@@ -17,6 +17,11 @@ public class GenericDaoImpl<T extends Serializable> implements IGenericDao<T> {
     public GenericDaoImpl(Class<T> type) {
         this.type = type;
     }
+    
+    public void flushSession(){
+        getSession().flush();
+        getSession().clear();
+    }
 
     public SessionFactory getSessionFactory() {
         return sessionFactory;

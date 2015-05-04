@@ -4,6 +4,7 @@ package edu.rsvier.springmvc.model;
 import java.util.Date;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -68,7 +69,7 @@ public class ToetsResultaat implements java.io.Serializable {
         this.persoonsrol = persoonsrol;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "toets_id", nullable = false, insertable = false, updatable = false)
     public Toets getToets() {
         return this.toets;

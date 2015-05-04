@@ -14,11 +14,16 @@ public class ModuleServiceImpl implements ModuleService {
     @Autowired
     private ModuleDao dao;
 
+    @Autowired
+    private TrajectService trajectService;
+
     public void create(Module module) throws IllegalArgumentException {
         if (module.getTraject() == null) {
             throw new IllegalArgumentException("Module not complete");
+        } else {
+            trajectService.create(module.getTraject());
+            dao.create(module);
         }
-        dao.create(module);
     }
 
     public Module read(int id) throws NullPointerException {
@@ -29,9 +34,12 @@ public class ModuleServiceImpl implements ModuleService {
 
         return module;
     }
+    
 
-    public void update(Module module) {
+
+    public void update(Module module) {       
         dao.update(module);
+        dao.flushSession();
     }
 
     public void delete(Module module) {
@@ -43,6 +51,8 @@ public class ModuleServiceImpl implements ModuleService {
     }
 
     public List<Module> read(String omschrijving) {
+         dao.flushSession();
         return dao.read(omschrijving);
+       
     }
 }

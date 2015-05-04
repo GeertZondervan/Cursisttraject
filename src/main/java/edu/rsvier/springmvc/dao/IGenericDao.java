@@ -14,5 +14,7 @@ public interface IGenericDao<T extends Serializable> {
     public void delete(T entity);
 
     public List<T> getAll();
+    
+    public void flushSession();
 
 }

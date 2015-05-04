@@ -3,6 +3,7 @@ package edu.rsvier.springmvc.model;
 
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -45,7 +46,7 @@ public class Rol implements java.io.Serializable {
         this.naam = naam;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "rol")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "rol", cascade = {CascadeType.ALL})
     public Set<Persoonsrol> getPersoonsrollen() {
         return this.persoonsrollen;
     }

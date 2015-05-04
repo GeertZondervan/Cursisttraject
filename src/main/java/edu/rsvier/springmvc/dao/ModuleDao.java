@@ -16,4 +16,6 @@ public interface ModuleDao {
     List<Module> getAll();
     
     List<Module> read(String omschrijving);
+    
+    void flushSession();
 }

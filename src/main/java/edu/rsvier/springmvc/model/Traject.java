@@ -4,6 +4,7 @@ package edu.rsvier.springmvc.model;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -80,7 +81,7 @@ public class Traject implements java.io.Serializable {
         this.sluitingsdatum = sluitingsdatum;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "traject")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "traject", cascade = {CascadeType.ALL})
     public Set<Module> getModules() {
         return this.modules;
     }

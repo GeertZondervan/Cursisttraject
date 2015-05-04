@@ -3,6 +3,7 @@ package edu.rsvier.springmvc.model;
 
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -41,7 +42,7 @@ public class Module implements java.io.Serializable {
         this.id = id;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "traject_id", nullable = false)
     public Traject getTraject() {
         return this.traject;
@@ -69,7 +70,7 @@ public class Module implements java.io.Serializable {
         this.lengteInWeken = lengteInWeken;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "module")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "module", cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST})
     public Set<Expertise> getExpertises() {
         return this.expertises;
     }
@@ -78,7 +79,7 @@ public class Module implements java.io.Serializable {
         this.expertises = expertises;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "module")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "module", cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST})
     public Set<Toets> getToetsen() {
         return this.toetsen;
     }

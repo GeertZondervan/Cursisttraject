@@ -14,6 +14,7 @@ public class BestandServiceImpl implements BestandService {
     @Autowired
     private BestandDao dao;
 
+
     public void create(Bestand bestand) throws IllegalArgumentException {
         if (bestand.getBestand() == null) {
             throw new IllegalArgumentException("Bestand not complete");

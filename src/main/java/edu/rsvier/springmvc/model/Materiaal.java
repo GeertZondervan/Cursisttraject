@@ -1,6 +1,7 @@
 package edu.rsvier.springmvc.model;
 // Generated 29-apr-2015 14:52:58 by Hibernate Tools 4.3.1
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -40,7 +41,7 @@ public class Materiaal implements java.io.Serializable {
         this.id = id;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "bestand_id")
     public Bestand getBestand() {
         return this.bestand;

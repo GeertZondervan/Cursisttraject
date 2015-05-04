@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -39,7 +40,7 @@ public class Persoonsrol implements java.io.Serializable {
         this.id = id;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "persoon_id", nullable = false, insertable = false, updatable = false)
     public Persoon getPersoon() {
         return this.persoon;
@@ -49,7 +50,7 @@ public class Persoonsrol implements java.io.Serializable {
         this.persoon = persoon;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "rol_id", nullable = false, insertable = false, updatable = false)
     public Rol getRol() {
         return this.rol;
@@ -69,7 +70,7 @@ public class Persoonsrol implements java.io.Serializable {
         this.einddatum = einddatum;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "persoonsrol")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "persoonsrol", cascade = {CascadeType.ALL})
     public Set<ToetsResultaat> getToetsResultaten() {
         return this.toetsResultaten;
     }

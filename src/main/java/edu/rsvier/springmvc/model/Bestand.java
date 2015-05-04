@@ -3,6 +3,7 @@ package edu.rsvier.springmvc.model;
 
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -45,7 +46,7 @@ public class Bestand implements java.io.Serializable {
         this.bestand = bestand;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "bestand")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "bestand", cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST})
     public Set<Materiaal> getMaterialen() {
         return this.materialen;
     }
@@ -54,7 +55,7 @@ public class Bestand implements java.io.Serializable {
         this.materialen = materialen;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "bestand")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "bestand", cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST})
     public Set<Toets> getToetsen() {
         return this.toetsen;
     }
