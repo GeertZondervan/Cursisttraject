@@ -18,6 +18,9 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+
+
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {AppInitializer.class, AppConfig.class, HibernateConfiguration.class})
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
@@ -37,6 +40,7 @@ public class BestandServiceImplTest {
         bestand = new Bestand();
         bestand.setBestand(new byte[2]);
         service.create(bestand);
+        Bestand bestand2 = new Bestand();
     }
 
     @After
