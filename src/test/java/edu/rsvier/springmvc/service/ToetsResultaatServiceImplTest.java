@@ -6,14 +6,11 @@ import edu.rsvier.springmvc.configuration.HibernateConfiguration;
 import edu.rsvier.springmvc.model.Module;
 import edu.rsvier.springmvc.model.Persoon;
 import edu.rsvier.springmvc.model.Persoonsrol;
-import edu.rsvier.springmvc.model.PersoonsrolId;
 import edu.rsvier.springmvc.model.Rol;
 import edu.rsvier.springmvc.model.Toets;
 import edu.rsvier.springmvc.model.ToetsResultaat;
 import edu.rsvier.springmvc.model.ToetsResultaatId;
 import edu.rsvier.springmvc.model.Traject;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 import org.junit.After;
 import static org.junit.Assert.assertEquals;
@@ -89,13 +86,9 @@ public class ToetsResultaatServiceImplTest {
     @Test
     @Transactional
     public void testCreate() {
-        System.out.println("creating toetsResultaat");
-        service.create(toetsResultaat);
-
+              
         ToetsResultaat result = (ToetsResultaat) service.read(toetsResultaat.getId());
-        System.out.println(toetsResultaat.getId() + " HHHAHHS AFSF G");
-
-        System.out.println(result + " XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+    
         assertNotNull("toetsResultaat must not be null", toetsResultaat);
         assertNotNull("result must not be null", result);
 
@@ -126,12 +119,10 @@ public class ToetsResultaatServiceImplTest {
     @Test
     @Transactional
     public void testRead_id() {
-        System.out.println("creating toetsResultaat");
         service.create(toetsResultaat);
 
         ToetsResultaat result = (ToetsResultaat) service.read(toetsResultaat.getId());
-        ToetsResultaatId toetsResultaatId = result.getId();
-
+        
         assertNotNull("toetsResultaat must not be null", toetsResultaat);
         assertNotNull("result must not be null", result);
 
@@ -144,7 +135,6 @@ public class ToetsResultaatServiceImplTest {
     @Test
     @Transactional
     public void testDelete() {
-        service.create(toetsResultaat);
         ToetsResultaatId toetsResultaatId = toetsResultaat.getId();
         service.delete(toetsResultaat);
 
@@ -159,9 +149,6 @@ public class ToetsResultaatServiceImplTest {
     @Test
     @Transactional
     public void testGetAll() {
-        System.out.println("getAll");
-        //service.create(toetsResultaat);
-
         List<ToetsResultaat> resultList = service.getAll();
         assertNotNull("resultList must not be null", resultList);
 

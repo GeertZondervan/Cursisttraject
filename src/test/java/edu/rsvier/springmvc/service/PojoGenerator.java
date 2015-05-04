@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.rsvier.springmvc.service;
 
 import edu.rsvier.springmvc.model.*;
@@ -13,7 +8,7 @@ import java.util.HashSet;
 
 /**
  *
- * @author Wiemer
+ * @author Wiemer, Shun, Geert
  */
 public class PojoGenerator {
     static Calendar calendar = new GregorianCalendar(2015, 05, 02);
@@ -124,7 +119,7 @@ public class PojoGenerator {
     static Traject getTraject() {
         i += 1;
         Traject traject = new Traject();
-        traject.setNaam("Basistraject" + i);
+        traject.setNaam("Basistraject");
         traject.setOmschrijving("Opleiding tot Java Developer" + i);
         traject.setStartdatum(new Date());
         return traject;

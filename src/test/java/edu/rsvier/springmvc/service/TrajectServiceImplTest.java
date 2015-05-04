@@ -4,7 +4,6 @@ import edu.rsvier.springmvc.configuration.AppConfig;
 import edu.rsvier.springmvc.configuration.AppInitializer;
 import edu.rsvier.springmvc.configuration.HibernateConfiguration;
 import edu.rsvier.springmvc.model.Traject;
-import java.util.Date;
 import java.util.List;
 import org.junit.After;
 import org.junit.Before;
@@ -31,17 +30,11 @@ public class TrajectServiceImplTest {
   
     @Before
     public void setUp() {
-        traject = new Traject();
-        traject.setNaam("Java Developer");
-        traject.setOmschrijving("Opleiding tot Java Developer");
-        traject.setStartdatum(new Date());
+        traject = PojoGenerator.getTraject();
         service.create(traject);
         
-        traject2 = new Traject();
-        traject2.setNaam("C++ Developer");
-        traject2.setOmschrijving("Opleiding tot C++ developer");
-        traject2.setStartdatum(new Date());
-        
+        traject2 = PojoGenerator.getTraject();
+ 
     }
     
     @After
@@ -54,12 +47,10 @@ public class TrajectServiceImplTest {
     @Test
     @Transactional
     public void testCreate() {
-        System.out.println("creating traject");
         service.create(traject2);
         
         Traject result = (Traject)service.read(traject2.getId());
-        int trajectId = result.getId();
-        
+                
         assertNotNull("traject must not be null", traject2);
         assertNotNull("result must not be null", result);
         
@@ -72,6 +63,7 @@ public class TrajectServiceImplTest {
     @Test
     @Transactional
     public void testUpdate() {
+        
         int id = traject.getId();
         
         Traject result = (Traject)service.read(id);
@@ -91,12 +83,10 @@ public class TrajectServiceImplTest {
     @Test
     @Transactional
     public void testRead_int() {
-        System.out.println("creating traject");
         service.create(traject);
         
         Traject result = (Traject)service.read(traject.getId());
-        int trajectId = result.getId();
-        
+                
         assertNotNull("traject must not be null", traject);
         assertNotNull("result must not be null", result);
         
@@ -109,23 +99,19 @@ public class TrajectServiceImplTest {
     @Test
     @Transactional
     public void testRead_String() {
-        service.create(traject);
-        Traject traject2 = new Traject();
-        traject2.setNaam("Java Developer");
-        traject2.setOmschrijving("Opleiding tot Java Developer nieuwe versie");
-        traject2.setStartdatum(new Date());
         service.create(traject2);
         
-        Traject traject3 = new Traject();
-        traject3.setNaam("Java Developer 3");
-        traject3.setOmschrijving("Opleiding tot Java Developer nieuwe versie");
-        traject3.setStartdatum(new Date());
+        Traject traject3 = PojoGenerator.getTraject();
         service.create(traject3);
         
-        List<Traject> lijst = service.read("Java Developer");
-        System.out.println(lijst);
+        List<Traject> lijst = service.read("Basistraject");
+        
         
         assertNotNull("Lijst, is not null", lijst);
+        assertTrue("lijst contains traject", lijst.contains(traject));
+        assertTrue("lijst contains traject2", lijst.contains(traject2));
+        assertTrue("lijst contains traject3", lijst.contains(traject3));
+        
     }
 
     /**
@@ -134,7 +120,6 @@ public class TrajectServiceImplTest {
     @Test
     @Transactional
     public void testDelete() {
-        service.create(traject);
         int id = traject.getId();
         service.delete(traject);
         
@@ -149,7 +134,6 @@ public class TrajectServiceImplTest {
     @Test
     @Transactional
     public void testGetAll() {
-        System.out.println("getAll");
         service.create(traject2);
         
         List<Traject> resultList = service.getAll();
