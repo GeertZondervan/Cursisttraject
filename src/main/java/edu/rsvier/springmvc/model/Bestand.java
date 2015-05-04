@@ -1,6 +1,7 @@
 package edu.rsvier.springmvc.model;
 // Generated 29-apr-2015 14:52:58 by Hibernate Tools 4.3.1
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -71,7 +72,7 @@ public class Bestand implements java.io.Serializable {
     @Override
     public boolean equals(Object anderBestand) {
         if (anderBestand instanceof Bestand) {
-            if (getId() == ((Bestand) anderBestand).getId() && getBestand() == ((Bestand) anderBestand).getBestand()) {
+            if (getId() == ((Bestand) anderBestand).getId() && Arrays.equals(getBestand(), ((Bestand) anderBestand).getBestand())) {
                 return true;
             }
         }

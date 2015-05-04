@@ -15,4 +15,6 @@ public interface BestandService {
     void delete(Bestand bestand);
 
     Bestand read(int id);
+    
+    void flushSession();
 }

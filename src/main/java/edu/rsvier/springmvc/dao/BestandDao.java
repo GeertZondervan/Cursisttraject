@@ -15,4 +15,5 @@ public interface BestandDao {
 
     List<Bestand> getAll();
     
+    void flushSession();
 }

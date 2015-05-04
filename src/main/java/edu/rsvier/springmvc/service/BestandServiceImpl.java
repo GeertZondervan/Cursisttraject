@@ -42,5 +42,9 @@ public class BestandServiceImpl implements BestandService {
     public List<Bestand> getAll() {
         return dao.getAll();
     }
+    
+    public void flushSession() {
+        dao.flushSession();
+    }
 
 }
