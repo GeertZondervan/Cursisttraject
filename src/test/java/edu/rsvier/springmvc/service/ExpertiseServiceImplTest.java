@@ -34,9 +34,7 @@ public class ExpertiseServiceImplTest {
 
     @Before
     public void setUp() {
-        expertise = new Expertise();
-        expertise.setNaam("Bermbommen bouwen");
-        expertise.setOmschrijving("The art of making and baking bermbombs");
+        expertise = PojoGenerator.getExpertise();
         service.create(expertise);
     }
 
@@ -47,12 +45,9 @@ public class ExpertiseServiceImplTest {
     @Test
     @Transactional
     public void testCreate() {
-        Expertise expertise2 = new Expertise();
-        expertise2.setNaam("Bermbommen bouwen");
-        expertise2.setOmschrijving("The art of making and baking bermbombs");
+        Expertise expertise2 = PojoGenerator.getExpertise();
         service.create(expertise2);
         Expertise result = service.read(expertise2.getId());
-        System.out.println(result);
         assertNotNull("expertise, must not be null", expertise2);
         assertNotNull("Result, must not be null", result);
         assertTrue("id, must be positive", result.getId() >= 0);
@@ -72,7 +67,6 @@ public class ExpertiseServiceImplTest {
     @Transactional
     public void testRead() {
         Expertise result = service.read(expertise.getId());
-        System.out.println(result);
         assertNotNull("expertise, must not be null", expertise);
         assertNotNull("Result, must not be null", result);
         assertTrue("id, must be positive", result.getId() >= 0);
@@ -92,10 +86,8 @@ public class ExpertiseServiceImplTest {
     @Transactional
     public void testUpdate() {
         Expertise expertise2 = service.read(expertise.getId());
-
-       
+      
         service.update(expertise2);
-
         int id = expertise.getId();
 
         Expertise result = service.read(id);
@@ -116,10 +108,8 @@ public class ExpertiseServiceImplTest {
 
         expertise3.setNaam("");
 
-        System.out.println("Update: " + expertise3);
         service.update(expertise3);
 
-        System.out.println("Update: " + expertise3);
     }
 
     @Test

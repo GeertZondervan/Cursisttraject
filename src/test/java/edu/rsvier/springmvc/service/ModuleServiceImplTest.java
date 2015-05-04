@@ -40,12 +40,8 @@ public class ModuleServiceImplTest {
 
     @Before
     public void setUp() {
-        module = new Module();
-        module.setOmschrijving("Module 1");
-        
-        traject = new Traject();
-        traject.setNaam("Basistraject");
-        module.setTraject(traject);
+        traject = PojoGenerator.getTraject();
+        module = PojoGenerator.getModule(traject);
         trajectService.create(traject);
         service.create(module);
     }
@@ -57,12 +53,10 @@ public class ModuleServiceImplTest {
     @Test
     @Transactional
     public void testCreate() {
-        Module module2 = new Module();
-        module2.setOmschrijving("Module 1");
-        module2.setTraject(traject);
+        Module module2 = PojoGenerator.getModule(traject);
         service.create(module2);
         Module result = service.read(module2.getId());
-        System.out.println(result);
+
         assertNotNull("module, must not be null", module2);
         assertNotNull("Result, must not be null", result);
         assertTrue("id, must be positive", result.getId() >= 0);
@@ -83,7 +77,6 @@ public class ModuleServiceImplTest {
     @Transactional
     public void testRead() {
         Module result = service.read(module.getId());
-        System.out.println(result);
         assertNotNull("module, must not be null", module);
         assertNotNull("Result, must not be null", result);
         assertTrue("id, must be positive", result.getId() >= 0);
@@ -103,12 +96,9 @@ public class ModuleServiceImplTest {
     @Transactional
     public void testUpdate() {
         Module module2 = service.read(module.getId());
-
         module2.setOmschrijving("Module 2");
         service.update(module2);
-
         int id = module.getId();
-
         Module result = service.read(id);
 
         assertNotNull("Result, must not be null", result);
@@ -127,10 +117,7 @@ public class ModuleServiceImplTest {
         module3.setTraject(traject);
         module3.setOmschrijving("Module 1");
 
-        System.out.println("Update: " + module3);
         service.update(module3);
-
-        System.out.println("Update: " + module3);
     }
 
     @Test

@@ -34,8 +34,7 @@ public class MateriaalServiceImplTest {
 
     @Before
     public void setUp() {
-        materiaal = new Materiaal();
-        materiaal.setTitel("Javaboek");
+        materiaal = PojoGenerator.getMateriaal();
         service.create(materiaal);
     }
 
@@ -46,12 +45,10 @@ public class MateriaalServiceImplTest {
     @Test
     @Transactional
     public void testCreate() {
-        Materiaal materiaal2 = new Materiaal();
-        materiaal2.setTitel("Javaboek");
-
+        Materiaal materiaal2 = PojoGenerator.getMateriaal();
         service.create(materiaal2);
         Materiaal result = service.read(materiaal2.getId());
-        System.out.println(result);
+
         assertNotNull("materiaal, must not be null", materiaal2);
         assertNotNull("Result, must not be null", result);
         assertTrue("id, must be positive", result.getId() >= 0);
@@ -71,7 +68,6 @@ public class MateriaalServiceImplTest {
     @Transactional
     public void testRead() {
         Materiaal result = service.read(materiaal.getId());
-        System.out.println(result);
         assertNotNull("materiaal, must not be null", materiaal);
         assertNotNull("Result, must not be null", result);
         assertTrue("id, must be positive", result.getId() >= 0);
@@ -91,7 +87,6 @@ public class MateriaalServiceImplTest {
     @Transactional
     public void testUpdate() {
         Materiaal materiaal2 = service.read(materiaal.getId());
-
        
         service.update(materiaal2);
 
@@ -115,10 +110,8 @@ public class MateriaalServiceImplTest {
 
         materiaal3.setTitel("Javaboek 2");
 
-        System.out.println("Update: " + materiaal3);
         service.update(materiaal3);
 
-        System.out.println("Update: " + materiaal3);
     }
 
     @Test

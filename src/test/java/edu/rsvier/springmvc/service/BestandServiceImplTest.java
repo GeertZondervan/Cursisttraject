@@ -18,9 +18,6 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-
-
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {AppInitializer.class, AppConfig.class, HibernateConfiguration.class})
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
@@ -37,8 +34,7 @@ public class BestandServiceImplTest {
 
     @Before
     public void setUp() {
-        bestand = new Bestand();
-        bestand.setBestand(new byte[2]);
+        bestand = PojoGenerator.getBestand();
         service.create(bestand);
     }
 
@@ -49,11 +45,9 @@ public class BestandServiceImplTest {
     @Test
     @Transactional
     public void testCreate() {
-        Bestand bestand2 = new Bestand();
-        bestand2.setBestand(new byte[2]);
+        Bestand bestand2 = PojoGenerator.getBestand();
         service.create(bestand2);
         Bestand result = service.read(bestand2.getId());
-        System.out.println(result);
         assertNotNull("bestand, must not be null", bestand2);
         assertNotNull("Result, must not be null", result);
         assertTrue("id, must be positive", result.getId() >= 0);
@@ -73,7 +67,6 @@ public class BestandServiceImplTest {
     @Transactional
     public void testRead() {
         Bestand result = service.read(bestand.getId());
-        System.out.println(result);
         assertNotNull("bestand, must not be null", bestand);
         assertNotNull("Result, must not be null", result);
         assertTrue("id, must be positive", result.getId() >= 0);
@@ -113,14 +106,10 @@ public class BestandServiceImplTest {
 
         //expectedEx.expect(IllegalArgumentException.class);
         //expectedEx.expectMessage("Cannot update, bestand not found");
-        Bestand bestand3 = new Bestand();
+        Bestand bestand3 = PojoGenerator.getBestand();
 
         bestand3.setBestand(new byte[42]);
-
-        System.out.println("Update: " + bestand3);
         service.update(bestand3);
-
-        System.out.println("Update: " + bestand3);
     }
 
     @Test

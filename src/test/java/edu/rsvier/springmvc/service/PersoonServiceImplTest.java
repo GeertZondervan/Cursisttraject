@@ -48,11 +48,8 @@ public class PersoonServiceImplTest {
     @Transactional
     public void testCreate() {
         Persoon persoon2 = PojoGenerator.getPersoon();
-        System.out.println(persoon);
-        System.out.println(persoon2);
         service.create(persoon2);
         Persoon result = service.read(persoon2.getId());
-        System.out.println(result);
         assertNotNull("persoon, must not be null", persoon2);
         assertNotNull("Result, must not be null", result);
         assertTrue("id, must be positive", result.getId() >= 0);
@@ -72,7 +69,6 @@ public class PersoonServiceImplTest {
     @Transactional
     public void testRead() {
         Persoon result = service.read(persoon.getId());
-        System.out.println(result);
         assertNotNull("persoon, must not be null", persoon);
         assertNotNull("Result, must not be null", result);
         assertTrue("id, must be positive", result.getId() >= 0);
@@ -96,11 +92,9 @@ public class PersoonServiceImplTest {
         persoon2.setVoornaam("Jimmy");
         persoon2.setAchternaam("Choo");
         persoon2.setPersoonsrollen(new HashSet<Persoonsrol>());
-        
+       
         service.update(persoon2);
-
         int id = persoon.getId();
-
         Persoon result = service.read(id);
 
         assertNotNull("Result, must not be null", result);
@@ -121,10 +115,7 @@ public class PersoonServiceImplTest {
         persoon3.setAchternaam("Woo");
         persoon3.setPersoonsrollen(new HashSet<Persoonsrol>());
 
-        System.out.println("Update: " + persoon3);
         service.update(persoon3);
-
-        System.out.println("Update: " + persoon3);
     }
 
     @Test
