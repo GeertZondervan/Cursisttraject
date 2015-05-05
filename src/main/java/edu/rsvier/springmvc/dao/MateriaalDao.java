@@ -16,5 +16,5 @@ public interface MateriaalDao {
     List<Materiaal> getAll();
     
     List<Materiaal> read(String titel);
-    
+    void flushSession();
 }

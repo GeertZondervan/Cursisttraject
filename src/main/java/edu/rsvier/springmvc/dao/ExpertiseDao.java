@@ -16,4 +16,6 @@ public interface ExpertiseDao {
     void delete(Expertise expertise);
 
     List<Expertise> getAll();
+    
+    void flushSession();
 }

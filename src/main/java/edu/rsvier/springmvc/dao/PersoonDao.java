@@ -16,4 +16,5 @@ public interface PersoonDao {
     void delete(Persoon persoon);
 
     List<Persoon> getAll();
+    void flushSession();
 }

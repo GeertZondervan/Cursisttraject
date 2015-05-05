@@ -48,4 +48,8 @@ public class TrajectServiceImpl implements TrajectService {
         return dao.getAll();
     }
     
+    public void flushSession() {
+        dao.flushSession();
+    }
+    
 }

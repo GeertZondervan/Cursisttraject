@@ -45,5 +45,9 @@ public class PersoonServiceImpl implements PersoonService {
     public List<Persoon> read(String voornaam, String achternaam) {
         return dao.read(voornaam, achternaam);
     }
+    
+    public void flushSession() {
+        dao.flushSession();
+    }
 
 }

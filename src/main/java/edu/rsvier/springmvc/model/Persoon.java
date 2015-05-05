@@ -60,18 +60,32 @@ public class Persoon implements java.io.Serializable {
     public void setPersoonsrollen(Set<Persoonsrol> persoonsrollen) {
         this.persoonsrollen = persoonsrollen;
     }
-    
+
     @Override
-    public boolean equals(Object anderPersoon) {
-        if (anderPersoon instanceof Persoon) {
-            if (getId() == ((Persoon)anderPersoon).getId() && getVoornaam() == ((Persoon)anderPersoon).getVoornaam()
-                    && getPersoonsrollen() == ((Persoon)anderPersoon).getPersoonsrollen()) {
-                return true;
-            }
-            
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
         }
-        return false;
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Persoon other = (Persoon) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        if ((this.voornaam == null) ? (other.voornaam != null) : !this.voornaam.equals(other.voornaam)) {
+            return false;
+        }
+        if ((this.achternaam == null) ? (other.achternaam != null) : !this.achternaam.equals(other.achternaam)) {
+            return false;
+        }
+        if (this.persoonsrollen != other.persoonsrollen && (this.persoonsrollen == null || !this.persoonsrollen.equals(other.persoonsrollen))) {
+            return false;
+        }
+        return true;
     }
+   
+    
     
     public String toString(){
         return ("Persoon: " + voornaam + ", " + achternaam);

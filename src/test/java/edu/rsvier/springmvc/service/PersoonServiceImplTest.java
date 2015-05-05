@@ -94,29 +94,14 @@ public class PersoonServiceImplTest {
         persoon2.setPersoonsrollen(new HashSet<Persoonsrol>());
        
         service.update(persoon2);
+        service.flushSession();
         int id = persoon.getId();
         Persoon result = service.read(id);
 
         assertNotNull("Result, must not be null", result);
-        
+        assertEquals("result & persoon2, all fields must be equal", persoon2, result);
     }
 
-    
-    //Wiemer: Zou foutmelding moeten geven, maar werkt gek genoeg.
-    @Test
-    @Transactional
-    public void testUpdateNotFound() {
-
-        //expectedEx.expect(IllegalArgumentException.class);
-        //expectedEx.expectMessage("Cannot update, persoon not found");
-        Persoon persoon3 = new Persoon();
-
-        persoon3.setVoornaam("Jimmy");
-        persoon3.setAchternaam("Woo");
-        persoon3.setPersoonsrollen(new HashSet<Persoonsrol>());
-
-        service.update(persoon3);
-    }
 
     @Test
     @Transactional

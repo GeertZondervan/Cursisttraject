@@ -55,4 +55,8 @@ public class ModuleServiceImpl implements ModuleService {
         return dao.read(omschrijving);
        
     }
+    
+    public void flushSession() {
+        dao.flushSession();
+    }
 }

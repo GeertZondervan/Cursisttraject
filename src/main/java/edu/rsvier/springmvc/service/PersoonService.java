@@ -17,4 +17,6 @@ public interface PersoonService {
     void delete(Persoon persoon);
    
     Persoon read(int id);
+    
+    public void flushSession();
 }

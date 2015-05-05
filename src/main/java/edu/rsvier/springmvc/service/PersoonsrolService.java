@@ -1,11 +1,10 @@
-
 package edu.rsvier.springmvc.service;
 
 import edu.rsvier.springmvc.model.Persoonsrol;
 import edu.rsvier.springmvc.model.PersoonsrolId;
 
 public interface PersoonsrolService {
-    
+
     void create(Persoonsrol persoonsrol) throws IllegalArgumentException;
 
     void update(Persoonsrol persoonsrol);
@@ -14,4 +13,5 @@ public interface PersoonsrolService {
 
     void delete(Persoonsrol persoonsrol);
 
+    public void flushSession();
 }

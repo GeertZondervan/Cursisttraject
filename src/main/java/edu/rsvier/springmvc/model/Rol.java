@@ -61,18 +61,26 @@ public class Rol implements java.io.Serializable {
     }
 
     @Override
-    public boolean equals(Object rol2) {
-        if (!(rol2 instanceof Rol)) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        if (this.getId() == (((Rol) rol2).getId())
-                && this.getNaam().equals(((Rol) rol2).getNaam())
-                && this.getPersoonsrollen().equals(((Rol) rol2).getPersoonsrollen())) {
-            return true;
-        } else {
+        if (getClass() != obj.getClass()) {
             return false;
         }
-
+        final Rol other = (Rol) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        if ((this.naam == null) ? (other.naam != null) : !this.naam.equals(other.naam)) {
+            return false;
+        }
+        if (this.persoonsrollen != other.persoonsrollen && (this.persoonsrollen == null || !this.persoonsrollen.equals(other.persoonsrollen))) {
+            return false;
+        }
+        return true;
     }
+
+    
 
 }

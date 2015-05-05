@@ -9,6 +9,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Rule;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -27,6 +29,10 @@ public class TrajectServiceImplTest {
     private TrajectService service;
     private Traject traject;
     private Traject traject2;
+    
+    
+     @Rule
+    public ExpectedException expectedEx = ExpectedException.none();
   
     @Before
     public void setUp() {
@@ -69,9 +75,10 @@ public class TrajectServiceImplTest {
         Traject result = (Traject)service.read(id);
         result.setNaam("Java Dev2");
         service.update(result);
-        
+        service.flushSession();
         traject = service.read(id);
-        
+        System.out.println(traject);
+        System.out.println(result);
         assertNotNull("result must not be null", traject);
         
         assertEquals("traject, all fields must be equal", traject, result);
@@ -120,11 +127,14 @@ public class TrajectServiceImplTest {
     @Test
     @Transactional
     public void testDelete() {
+        expectedEx.expect(NullPointerException.class);
+        expectedEx.expectMessage("Traject not found");
+        
         int id = traject.getId();
         service.delete(traject);
         
         Traject result = service.read(id);
-        assertNull("Result is null, object has been deleted", result);
+        
         
     }
 

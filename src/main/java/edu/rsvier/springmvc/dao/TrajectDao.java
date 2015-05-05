@@ -17,4 +17,6 @@ public interface TrajectDao {
     void delete(Traject traject);
 
     List<Traject> getAll();
+    
+    void flushSession();
 }

@@ -4,6 +4,8 @@ import edu.rsvier.springmvc.configuration.AppConfig;
 import edu.rsvier.springmvc.configuration.AppInitializer;
 import edu.rsvier.springmvc.configuration.HibernateConfiguration;
 import edu.rsvier.springmvc.model.Expertise;
+import edu.rsvier.springmvc.model.Module;
+import edu.rsvier.springmvc.model.Traject;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,6 +29,12 @@ public class ExpertiseServiceImplTest {
     @Autowired
     private ExpertiseService service;
 
+    @Autowired
+    private TrajectService trajectService;
+
+    @Autowired
+    private ModuleService moduleService;
+
     private Expertise expertise;
 
     @Rule
@@ -34,7 +42,15 @@ public class ExpertiseServiceImplTest {
 
     @Before
     public void setUp() {
-        expertise = PojoGenerator.getExpertise();
+        Traject traject = PojoGenerator.getTraject();
+
+        trajectService.create(traject);
+
+        Module module = PojoGenerator.getModule(traject);
+
+        moduleService.create(module);
+
+        expertise = PojoGenerator.getExpertise(module);
         service.create(expertise);
     }
 
@@ -45,7 +61,13 @@ public class ExpertiseServiceImplTest {
     @Test
     @Transactional
     public void testCreate() {
-        Expertise expertise2 = PojoGenerator.getExpertise();
+        Traject traject2 = PojoGenerator.getTraject();
+        trajectService.create(traject2);
+
+        Module module2 = PojoGenerator.getModule(traject2);
+        moduleService.create(module2);
+
+        Expertise expertise2 = PojoGenerator.getExpertise(module2);
         service.create(expertise2);
         Expertise result = service.read(expertise2.getId());
         assertNotNull("expertise, must not be null", expertise2);
@@ -85,18 +107,18 @@ public class ExpertiseServiceImplTest {
     @Test
     @Transactional
     public void testUpdate() {
-        Expertise expertise2 = service.read(expertise.getId());
-      
-        service.update(expertise2);
         int id = expertise.getId();
-
+        Expertise expertise2 = service.read(id);
+        expertise2.setNaam("JQuery testen");
+        service.update(expertise2);
+        service.flushSession();
         Expertise result = service.read(id);
-
-        assertNotNull("Result, must not be null", result);
+        System.out.println(expertise2);
+        System.out.println(result);
         
+        assertEquals("result & expertise, all fields must be equal", expertise2, result);
     }
 
-    
     //Wiemer: Zou foutmelding moeten geven, maar werkt gek genoeg.
 //    @Test
 //    @Transactional
@@ -111,7 +133,6 @@ public class ExpertiseServiceImplTest {
 //        service.update(expertise3);
 //
 //    }
-
     @Test
     @Transactional
     public void testDelete() {

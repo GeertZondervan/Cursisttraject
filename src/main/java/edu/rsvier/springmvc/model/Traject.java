@@ -94,19 +94,37 @@ public class Traject implements java.io.Serializable {
     public String toString() {
         return ("Traject: "  + this.getNaam() + " : " + this.getOmschrijving() + " " + this.getStartdatum() +  " " + this.getSluitingsdatum());
     }
-    
+
+
     @Override
-    public boolean equals(Object traject2) {
-        if(!(traject2 instanceof Traject))
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
-        if(this.getId() == (((Traject)traject2).getId()) 
-            && this.getNaam().equals(((Traject)traject2).getNaam())
-            && this.getStartdatum().equals(((Traject)traject2).getStartdatum())
-            && this.getOmschrijving().equals(((Traject)traject2).getOmschrijving()))
-            return true;
-        else
+        }
+        if (getClass() != obj.getClass()) {
             return false;
-        
+        }
+        final Traject other = (Traject) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        if ((this.naam == null) ? (other.naam != null) : !this.naam.equals(other.naam)) {
+            return false;
+        }
+        if ((this.omschrijving == null) ? (other.omschrijving != null) : !this.omschrijving.equals(other.omschrijving)) {
+            return false;
+        }
+        if (this.startdatum != other.startdatum && (this.startdatum == null || !this.startdatum.equals(other.startdatum))) {
+            return false;
+        }
+        if (this.sluitingsdatum != other.sluitingsdatum && (this.sluitingsdatum == null || !this.sluitingsdatum.equals(other.sluitingsdatum))) {
+            return false;
+        }
+        if (this.modules != other.modules && (this.modules == null || !this.modules.equals(other.modules))) {
+            return false;
+        }
+        return true;
     }
+    
 
 }

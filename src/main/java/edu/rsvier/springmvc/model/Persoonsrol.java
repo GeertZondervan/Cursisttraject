@@ -50,7 +50,7 @@ public class Persoonsrol implements java.io.Serializable {
         this.persoon = persoon;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "rol_id", nullable = false, insertable = false, updatable = false)
     public Rol getRol() {
         return this.rol;
@@ -77,6 +77,36 @@ public class Persoonsrol implements java.io.Serializable {
 
     public void setToetsResultaten(Set<ToetsResultaat> toetsResultaten) {
         this.toetsResultaten = toetsResultaten;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Persoonsrol other = (Persoonsrol) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        if (this.persoon != other.persoon && (this.persoon == null || !this.persoon.equals(other.persoon))) {
+            return false;
+        }
+        if (this.rol != other.rol && (this.rol == null || !this.rol.equals(other.rol))) {
+            return false;
+        }
+
+        if (this.toetsResultaten != other.toetsResultaten && (this.toetsResultaten == null || !this.toetsResultaten.equals(other.toetsResultaten))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Persoonsrol{" + "id=" + id + ", persoon=" + persoon + ", rol=" + rol + ", einddatum=" + einddatum + '}';
     }
 
 }

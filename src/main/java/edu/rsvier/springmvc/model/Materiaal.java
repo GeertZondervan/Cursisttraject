@@ -105,4 +105,42 @@ public class Materiaal implements java.io.Serializable {
         this.isbn10 = isbn10;
     }
 
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Materiaal other = (Materiaal) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        if (this.bestand != other.bestand && (this.bestand == null || !this.bestand.equals(other.bestand))) {
+            return false;
+        }
+        if ((this.titel == null) ? (other.titel != null) : !this.titel.equals(other.titel)) {
+            return false;
+        }
+        if ((this.auteur == null) ? (other.auteur != null) : !this.auteur.equals(other.auteur)) {
+            return false;
+        }
+        if ((this.omschrijving == null) ? (other.omschrijving != null) : !this.omschrijving.equals(other.omschrijving)) {
+            return false;
+        }
+        if ((this.url == null) ? (other.url != null) : !this.url.equals(other.url)) {
+            return false;
+        }
+        if (this.isbn13 != other.isbn13 && (this.isbn13 == null || !this.isbn13.equals(other.isbn13))) {
+            return false;
+        }
+        if (this.isbn10 != other.isbn10 && (this.isbn10 == null || !this.isbn10.equals(other.isbn10))) {
+            return false;
+        }
+        return true;
+    }
+
+
 }

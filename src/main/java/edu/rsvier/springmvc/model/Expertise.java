@@ -1,6 +1,7 @@
 package edu.rsvier.springmvc.model;
 // Generated 29-apr-2015 14:52:58 by Hibernate Tools 4.3.1
 
+import java.util.Arrays;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -64,4 +65,31 @@ public class Expertise implements java.io.Serializable {
         this.omschrijving = omschrijving;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Expertise other = (Expertise) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+       
+        if ((this.naam == null) ? (other.naam != null) : !this.naam.equals(other.naam)) {
+            return false;
+        }
+        if ((this.omschrijving == null) ? (other.omschrijving != null) : !this.omschrijving.equals(other.omschrijving)) {
+            return false;
+        }
+        return true;
+    }
+
+    
+    
+    public String toString() {
+        return("Expertise: " + getNaam() + ", " + getOmschrijving() + ", " + getModule() + ", " + getId());
+    }
 }

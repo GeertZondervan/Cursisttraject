@@ -46,4 +46,9 @@ public class ExpertiseServiceImpl implements ExpertiseService {
         return dao.read(naam);
     }
 
+    public void flushSession() {
+        dao.flushSession();
+    }
+    
+    
 }

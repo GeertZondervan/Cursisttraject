@@ -88,4 +88,39 @@ public class Module implements java.io.Serializable {
         this.toetsen = toetsen;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Module other = (Module) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        if (this.traject != other.traject && (this.traject == null || !this.traject.equals(other.traject))) {
+            return false;
+        }
+        if ((this.omschrijving == null) ? (other.omschrijving != null) : !this.omschrijving.equals(other.omschrijving)) {
+            return false;
+        }
+        if (this.lengteInWeken != other.lengteInWeken && (this.lengteInWeken == null || !this.lengteInWeken.equals(other.lengteInWeken))) {
+            return false;
+        }
+        if (this.expertises != other.expertises && (this.expertises == null || !this.expertises.equals(other.expertises))) {
+            return false;
+        }
+        if (this.toetsen != other.toetsen && (this.toetsen == null || !this.toetsen.equals(other.toetsen))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Module{" + "id=" + id + ", traject=" + traject + ", omschrijving=" + omschrijving + ", lengteInWeken=" + lengteInWeken + '}';
+    }
+
 }

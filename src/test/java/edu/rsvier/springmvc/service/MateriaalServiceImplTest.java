@@ -95,24 +95,9 @@ public class MateriaalServiceImplTest {
         Materiaal result = service.read(id);
 
         assertNotNull("Result, must not be null", result);
-        
+        assertEquals("result & materiaal2, all fields must be equal", materiaal2, result);
     }
 
-    
-    //Wiemer: Zou foutmelding moeten geven, maar werkt gek genoeg.
-    @Test
-    @Transactional
-    public void testUpdateNotFound() {
-
-        //expectedEx.expect(IllegalArgumentException.class);
-        //expectedEx.expectMessage("Cannot update, materiaal not found");
-        Materiaal materiaal3 = new Materiaal();
-
-        materiaal3.setTitel("Javaboek 2");
-
-        service.update(materiaal3);
-
-    }
 
     @Test
     @Transactional

@@ -70,13 +70,29 @@ public class Bestand implements java.io.Serializable {
     }
 
     @Override
-    public boolean equals(Object anderBestand) {
-        if (anderBestand instanceof Bestand) {
-            if (getId() == ((Bestand) anderBestand).getId() && Arrays.equals(getBestand(), ((Bestand) anderBestand).getBestand())) {
-                return true;
-            }
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
         }
-        return false;
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Bestand other = (Bestand) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Arrays.equals(this.bestand, other.bestand)) {
+            return false;
+        }
+        if (this.materialen != other.materialen && (this.materialen == null || !this.materialen.equals(other.materialen))) {
+            return false;
+        }
+        if (this.toetsen != other.toetsen && (this.toetsen == null || !this.toetsen.equals(other.toetsen))) {
+            return false;
+        }
+        return true;
     }
+
+
 
 }

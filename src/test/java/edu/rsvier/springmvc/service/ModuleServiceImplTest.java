@@ -99,26 +99,15 @@ public class ModuleServiceImplTest {
         module2.setOmschrijving("Module 2");
         service.update(module2);
         int id = module.getId();
+         service.flushSession();
         Module result = service.read(id);
+       
 
         assertNotNull("Result, must not be null", result);
-        assertTrue("Modulelengte, must be 5", result.getOmschrijving() == "Module 2");
+        assertTrue("Modulenaam, must be module 2", result.getOmschrijving().equals("Module 2"));
     }
 
-    
-    //Wiemer: Zou foutmelding moeten geven, maar werkt gek genoeg.
-    @Test
-    @Transactional
-    public void testUpdateNotFound() {
-
-        //expectedEx.expect(IllegalArgumentException.class);
-        //expectedEx.expectMessage("Cannot update, module not found");
-        Module module3 = new Module();
-        module3.setTraject(traject);
-        module3.setOmschrijving("Module 1");
-
-        service.update(module3);
-    }
+   
 
     @Test
     @Transactional

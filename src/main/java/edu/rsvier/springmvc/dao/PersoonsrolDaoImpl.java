@@ -13,7 +13,7 @@ public class PersoonsrolDaoImpl extends GenericDaoImpl<Persoonsrol> implements P
     }
 
     public Persoonsrol read(PersoonsrolId id) {
-        String sql = "SELECT p FROM Persoonsrol p WHERE p.persoon_id = :persoon_id AND p.rol_id = :rol_id AND p.begindatum = :begindatum";
+        String sql = "SELECT p FROM Persoonsrol p WHERE persoon_id = :persoon_id AND rol_id = :rol_id AND begindatum = :begindatum";
         Query query = getSession().createQuery(sql).setParameter("persoon_id", id.getPersoonId()).setParameter("rol_id", id.getRolId())
                 .setParameter("begindatum", id.getBegindatum());
         if (query.list().isEmpty()) {

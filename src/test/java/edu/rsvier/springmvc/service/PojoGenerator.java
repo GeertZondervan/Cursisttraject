@@ -23,11 +23,12 @@ public class PojoGenerator {
         return bestand;
     }
 
-    static Expertise getExpertise() {
+    static Expertise getExpertise(Module module) {
         i += 1;
         Expertise expertise = new Expertise();
-        expertise.setNaam("Bermbommen bouwen" + i);
-        expertise.setOmschrijving("The art of making and baking bermbombs" + i);
+        expertise.setModule(module);
+        expertise.setNaam("Bierbommen bouwen" + i);
+        expertise.setOmschrijving("The art of making and baking beerbombs" + i);
         return expertise;
     }
 
@@ -35,6 +36,10 @@ public class PojoGenerator {
         i += 1;
         Materiaal materiaal = new Materiaal();
         materiaal.setTitel("Javaboek " + i);
+        materiaal.setAuteur("Jenkov jonguh");
+        
+        materiaal.setOmschrijving("Jenkov is een demigod!");
+        
         return materiaal;
     }
 
@@ -97,6 +102,7 @@ public class PojoGenerator {
         i+=1;
         ToetsResultaat toetsResultaat = new ToetsResultaat();
         toetsResultaat.setToets(toets);
+        toetsResultaat.setPersoonsrol(persoonsrol);
         toetsResultaat.setId(getToetsResultaatId(persoonsrol.getId(), toets));
         toetsResultaat.setResultaat(5.5f);
         toetsResultaat.setDatum(calendar.getTime());
@@ -121,7 +127,7 @@ public class PojoGenerator {
         Traject traject = new Traject();
         traject.setNaam("Basistraject");
         traject.setOmschrijving("Opleiding tot Java Developer" + i);
-        traject.setStartdatum(new Date());
+        traject.setStartdatum(calendar.getTime());
         return traject;
     }
 }

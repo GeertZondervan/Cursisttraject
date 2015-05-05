@@ -11,6 +11,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Rule;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -24,6 +26,9 @@ import org.springframework.transaction.annotation.Transactional;
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 @WebAppConfiguration
 public class ToetsServiceImplTest {
+    
+     @Rule
+    public ExpectedException expectedEx = ExpectedException.none();
     
     @Autowired
     private ToetsService service;
@@ -111,6 +116,8 @@ public class ToetsServiceImplTest {
     @Test
     @Transactional
     public void testDelete() {
+        expectedEx.expect(NullPointerException.class);
+        expectedEx.expectMessage("Toets not found");
         int id = toets.getId();
         service.delete(toets);
         

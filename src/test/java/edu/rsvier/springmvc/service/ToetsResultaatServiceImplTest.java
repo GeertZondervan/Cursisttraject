@@ -18,7 +18,9 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -50,6 +52,9 @@ public class ToetsResultaatServiceImplTest {
     private ToetsResultaat toetsResultaat;
     private ToetsResultaat toetsResultaat2;
     private ToetsResultaatId toetsResultaatId;
+    
+    @Rule
+    public ExpectedException expectedEx = ExpectedException.none();
 
     @Before
     public void setUp() {
@@ -135,6 +140,8 @@ public class ToetsResultaatServiceImplTest {
     @Test
     @Transactional
     public void testDelete() {
+        expectedEx.expect(NullPointerException.class);
+        expectedEx.expectMessage("ToetsResultaat not found");
         ToetsResultaatId toetsResultaatId = toetsResultaat.getId();
         service.delete(toetsResultaat);
 

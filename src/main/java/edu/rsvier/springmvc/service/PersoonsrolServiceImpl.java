@@ -1,4 +1,3 @@
-
 package edu.rsvier.springmvc.service;
 
 import edu.rsvier.springmvc.dao.PersoonsrolDao;
@@ -11,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service("persoonsrolService")
 @Transactional
 public class PersoonsrolServiceImpl implements PersoonsrolService {
+
     @Autowired
     private PersoonsrolDao dao;
 
@@ -23,7 +23,7 @@ public class PersoonsrolServiceImpl implements PersoonsrolService {
 
     public Persoonsrol read(PersoonsrolId id) throws NullPointerException {
         Persoonsrol persoonsrol = dao.read(id);
-        if (persoonsrol == null ) {
+        if (persoonsrol == null) {
             throw new NullPointerException("Persoonsrol not found");
         }
 
@@ -31,14 +31,15 @@ public class PersoonsrolServiceImpl implements PersoonsrolService {
     }
 
     public void update(Persoonsrol persoonsrol) {
-       dao.update(persoonsrol);
+        dao.update(persoonsrol);
     }
-
-   
 
     public void delete(Persoonsrol persoonsrol) {
         dao.delete(persoonsrol);
     }
 
-    
+    public void flushSession() {
+        dao.flushSession();
+    }
+
 }

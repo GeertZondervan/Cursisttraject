@@ -17,4 +17,6 @@ public interface ExpertiseService {
     void delete(Expertise expertise);
    
     Expertise read(int id);
+    
+    public void flushSession();
 }

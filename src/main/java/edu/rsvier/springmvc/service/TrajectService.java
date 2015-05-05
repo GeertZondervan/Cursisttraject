@@ -24,4 +24,8 @@ public interface TrajectService {
     void delete(Traject traject);
 
     List<Traject> getAll();
+    
+    public void flushSession();
+    
+    
 }

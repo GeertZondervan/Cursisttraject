@@ -44,8 +44,8 @@ public class GenericDaoImpl<T extends Serializable> implements IGenericDao<T> {
     }
 
     public void update(T entity) {
-//        getSession().flush();
-        getSession().update(entity);
+        getSession().flush();
+        
     }
 
     public void delete(T entity) {

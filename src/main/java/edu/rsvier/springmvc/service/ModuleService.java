@@ -16,4 +16,6 @@ public interface ModuleService {
     void delete(Module module);
    
     Module read(int id);
+    
+    public void flushSession();
 }

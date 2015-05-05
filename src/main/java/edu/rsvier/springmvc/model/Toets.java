@@ -119,4 +119,46 @@ public class Toets implements java.io.Serializable {
         this.toetsResultaten = toetsResultaten;
     }
 
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Toets other = (Toets) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        if (this.bestand != other.bestand && (this.bestand == null || !this.bestand.equals(other.bestand))) {
+            return false;
+        }
+        if (this.module != other.module && (this.module == null || !this.module.equals(other.module))) {
+            return false;
+        }
+        if ((this.naam == null) ? (other.naam != null) : !this.naam.equals(other.naam)) {
+            return false;
+        }
+        if ((this.stof == null) ? (other.stof != null) : !this.stof.equals(other.stof)) {
+            return false;
+        }
+        if ((this.status == null) ? (other.status != null) : !this.status.equals(other.status)) {
+            return false;
+        }
+        if ((this.omschrijving == null) ? (other.omschrijving != null) : !this.omschrijving.equals(other.omschrijving)) {
+            return false;
+        }
+        if (this.minimumResultaat != other.minimumResultaat && (this.minimumResultaat == null || !this.minimumResultaat.equals(other.minimumResultaat))) {
+            return false;
+        }
+        if (this.toetsResultaten != other.toetsResultaten && (this.toetsResultaten == null || !this.toetsResultaten.equals(other.toetsResultaten))) {
+            return false;
+        }
+        return true;
+    }
+    
+    
+
 }

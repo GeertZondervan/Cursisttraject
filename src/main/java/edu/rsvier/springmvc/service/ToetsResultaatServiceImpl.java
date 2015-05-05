@@ -17,7 +17,7 @@ public class ToetsResultaatServiceImpl implements ToetsResultaatService {
     private ToetsResultaatDao dao;
     
     public void create(ToetsResultaat toetsResultaat) throws IllegalArgumentException {
-        if (toetsResultaat.getToets() == null || toetsResultaat.getDatum() == null || toetsResultaat.getPersoonsrol() == null) {
+        if (toetsResultaat.getToets() == null || toetsResultaat.getPersoonsrol() == null) {
             throw new IllegalArgumentException("ToetsResultaat not complete");
         }
         dao.create(toetsResultaat);
