@@ -98,10 +98,11 @@ public class ToetsResultaat implements java.io.Serializable {
         this.resultaat = resultaat;
     }
 
-     @Override
+    @Override
     public String toString() {
-        return ("ToetsResultaat: " + this.getResultaat());
+        return "ToetsResultaat{" + "id=" + id + ", persoonsrol=" + persoonsrol + ", toets=" + toets + ", datum=" + datum + ", resultaat=" + resultaat + '}';
     }
+
 
 
     @Override

@@ -27,7 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
 @WebAppConfiguration
 public class ToetsServiceImplTest {
     
-     @Rule
+    @Rule
     public ExpectedException expectedEx = ExpectedException.none();
     
     @Autowired
@@ -58,50 +58,39 @@ public class ToetsServiceImplTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of create method, of class ToetsServiceImpl.
-     */
     @Test
     @Transactional
     public void testCreate() {
         service.create(toets2);
-        
-        Toets result = (Toets)service.read(toets2.getId());
-        int toetsId = result.getId();
+        System.out.println(toets2);
+        service.flushSession();
+        Toets result = service.read(toets2.getId());
+        System.out.println(result);
         
         assertNotNull("toets must not be null", toets2);
         assertNotNull("result must not be null", result);
-        
         assertEquals("toets, all fields must be equal", toets2, result);
     }
 
-    /**
-     * Test of update method, of class ToetsServiceImpl.
-     */
     @Test
     @Transactional
     public void testUpdate() {
         int id = toets.getId();
-        
         Toets result = (Toets)service.read(id);
         result.setNaam("Java MYSQL toets");
         service.update(result);
-        
-        toets = service.read(id);
-        
+        service.flushSession();
+       
+        toets = service.read(id);  
         assertNotNull("result must not be null", toets);
-        
-        assertEquals("toets, all fields must be equal", toets, result);
+        assertTrue("New Naam must be Java MYSQL toets", result.getNaam().equals("Java MYSQL toets"));
     }
 
-    /**
-     * Test of read method, of class ToetsServiceImpl.
-     */
     @Test
     @Transactional
     public void testRead_int() {
+        service.flushSession();
         Toets result = (Toets)service.read(toets.getId());
-        int toetsId = result.getId();
         
         assertNotNull("toets must not be null", toets);
         assertNotNull("result must not be null", result);
@@ -109,10 +98,6 @@ public class ToetsServiceImplTest {
         assertEquals("toets, all fields must be equal", toets, result);
     }
 
-    
-    /**
-     * Test of delete method, of class ToetsServiceImpl.
-     */
     @Test
     @Transactional
     public void testDelete() {
@@ -120,28 +105,20 @@ public class ToetsServiceImplTest {
         expectedEx.expectMessage("Toets not found");
         int id = toets.getId();
         service.delete(toets);
-        
+        service.flushSession();
         Toets result = service.read(id);
-        assertNull("Result is null, object has been deleted", result);
-        
+        assertNull("Result is null, object has been deleted", result);  
     }
 
-    /**
-     * Test of getAll method, of class ToetsServiceImpl.
-     */
     @Test
     @Transactional
     public void testGetAll() {
         service.create(toets2);
-        
+        service.flushSession();
         List<Toets> resultList = service.getAll();
         assertNotNull("resultList must not be null", resultList);
         
         assertTrue("toets must be in the resultList", resultList.contains(toets)); 
         assertTrue("toets2 must be in the resultList", resultList.contains(toets2)); 
-        
-        
-       
-    }
-    
+    } 
 }

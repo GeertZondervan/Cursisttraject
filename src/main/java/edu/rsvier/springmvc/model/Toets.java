@@ -158,6 +158,11 @@ public class Toets implements java.io.Serializable {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Toets{" + "id=" + id + ", bestand=" + bestand + ", module=" + module + ", naam=" + naam + ", stof=" + stof + ", status=" + status + ", omschrijving=" + omschrijving + ", minimumResultaat=" + minimumResultaat + ", toetsResultaten=" + toetsResultaten + '}';
+    }
     
     
 
