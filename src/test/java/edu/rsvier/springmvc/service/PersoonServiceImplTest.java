@@ -49,6 +49,7 @@ public class PersoonServiceImplTest {
     public void testCreate() {
         Persoon persoon2 = PojoGenerator.getPersoon();
         service.create(persoon2);
+        service.flushSession();
         Persoon result = service.read(persoon2.getId());
         assertNotNull("persoon, must not be null", persoon2);
         assertNotNull("Result, must not be null", result);
@@ -68,6 +69,7 @@ public class PersoonServiceImplTest {
     @Test
     @Transactional
     public void testRead() {
+        service.flushSession();
         Persoon result = service.read(persoon.getId());
         assertNotNull("persoon, must not be null", persoon);
         assertNotNull("Result, must not be null", result);
@@ -83,7 +85,6 @@ public class PersoonServiceImplTest {
         Persoon result = service.read(0);
     }
 
-    // Wiemer: Leroy/Timo/iemand anders vragen hoe we de Hibernate cache kunnen omzeilen. TestUpdate werkt nu ook zonder update aan te roepen.
     @Test
     @Transactional
     public void testUpdate() {
@@ -95,13 +96,13 @@ public class PersoonServiceImplTest {
        
         service.update(persoon2);
         service.flushSession();
-        int id = persoon.getId();
-        Persoon result = service.read(id);
+        Persoon result = service.read(persoon.getId());
 
         assertNotNull("Result, must not be null", result);
         assertEquals("result & persoon2, all fields must be equal", persoon2, result);
+        assertTrue("Voornaam + Achternaam, must be Jimmy Choo", 
+                result.getVoornaam().equals("Jimmy") && result.getAchternaam().equals("Choo"));
     }
-
 
     @Test
     @Transactional
@@ -111,6 +112,7 @@ public class PersoonServiceImplTest {
 
         service.create(persoon);
         service.delete(persoon);
+        service.flushSession();
         int id = persoon.getId();
         Persoon result = service.read(id);
     }
