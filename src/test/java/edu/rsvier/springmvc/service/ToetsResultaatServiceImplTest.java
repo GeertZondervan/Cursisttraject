@@ -96,55 +96,55 @@ public class ToetsResultaatServiceImplTest {
         assertNotNull("result must not be null", result);
         assertEquals("toetsResultaat, all fields must be equal", toetsResultaat, result);
     }
-//
-//    @Test
-//    @Transactional
-//    public void testUpdate() {
-//        ToetsResultaatId toetsResultaatId = toetsResultaat.getId();
-//        ToetsResultaat result = (ToetsResultaat) service.read(toetsResultaatId);
-//        result.setResultaat(10f);
-//        service.update(result);
-//        service.flushSession();
-//
-//        toetsResultaat = service.read(toetsResultaatId);
-//
-//        assertNotNull("result must not be null", toetsResultaat);
-//        assertTrue("New Resultaat must be 10f", toetsResultaat.getResultaat() == (10.0));
-//    }
 
-//    @Test
-//    @Transactional
-//    public void testRead_id() {
-//        service.create(toetsResultaat);
-//        service.flushSession();
-//
-//        ToetsResultaat result = (ToetsResultaat) service.read(toetsResultaat.getId());
-//        
-//        assertNotNull("toetsResultaat must not be null", toetsResultaat);
-//        assertNotNull("result must not be null", result);
-//        assertEquals("toetsResultaat, all fields must be equal", toetsResultaat, result);
-//    }
+    @Test
+    @Transactional
+    public void testUpdate() {
+        ToetsResultaatId toetsResultaatId = toetsResultaat.getId();
+        ToetsResultaat result = (ToetsResultaat) service.read(toetsResultaatId);
+        result.setResultaat(10f);
+        service.update(result);
+        service.flushSession();
 
-//    @Test
-//    @Transactional
-//    public void testDelete() {
-//        expectedEx.expect(NullPointerException.class);
-//        expectedEx.expectMessage("ToetsResultaat not found");
-//        ToetsResultaatId toetsResultaatId = toetsResultaat.getId();
-//        service.delete(toetsResultaat);
-//
-//        ToetsResultaat result = service.read(toetsResultaatId);
-//        assertNull("Result is null, object has been deleted", result);
-//
-//    }
-//
-//    @Test
-//    @Transactional
-//    public void testGetAll() {
-//        List<ToetsResultaat> resultList = service.getAll();
-//        assertNotNull("resultList must not be null", resultList);
-//        assertTrue("toetsResultaat must be in the resultList", resultList.contains(toetsResultaat));
-//        //assertTrue("toetsResultaat2 must be in the resultList", resultList.contains(toetsResultaat2));
-//    }
+        toetsResultaat = service.read(toetsResultaatId);
+
+        assertNotNull("result must not be null", toetsResultaat);
+        assertTrue("New Resultaat must be 10f", toetsResultaat.getResultaat() == (10.0));
+    }
+
+    @Test
+    @Transactional
+    public void testRead_id() {
+        service.create(toetsResultaat);
+        service.flushSession();
+
+        ToetsResultaat result = (ToetsResultaat) service.read(toetsResultaat.getId());
+        
+        assertNotNull("toetsResultaat must not be null", toetsResultaat);
+        assertNotNull("result must not be null", result);
+        assertEquals("toetsResultaat, all fields must be equal", toetsResultaat, result);
+    }
+
+    @Test
+    @Transactional
+    public void testDelete() {
+        expectedEx.expect(NullPointerException.class);
+        expectedEx.expectMessage("ToetsResultaat not found");
+        ToetsResultaatId toetsResultaatId = toetsResultaat.getId();
+        service.delete(toetsResultaat);
+
+        ToetsResultaat result = service.read(toetsResultaatId);
+        assertNull("Result is null, object has been deleted", result);
+
+    }
+
+    @Test
+    @Transactional
+    public void testGetAll() {
+        List<ToetsResultaat> resultList = service.getAll();
+        assertNotNull("resultList must not be null", resultList);
+        assertTrue("toetsResultaat must be in the resultList", resultList.contains(toetsResultaat));
+        //assertTrue("toetsResultaat2 must be in the resultList", resultList.contains(toetsResultaat2));
+    }
 
 }
