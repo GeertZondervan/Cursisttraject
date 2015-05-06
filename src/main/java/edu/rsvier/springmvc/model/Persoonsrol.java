@@ -106,7 +106,7 @@ public class Persoonsrol implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "Persoonsrol{" + "id=" + id + ", persoon=" + persoon + ", rol=" + rol + ", einddatum=" + einddatum + '}';
+        return "Persoonsrol{" + "id=" + id + ", persoon=" + persoon + ", rol=" + rol + ", einddatum=" + einddatum + ", toetsResultaten=" + toetsResultaten + '}';
     }
 
 }

@@ -34,10 +34,8 @@ public class ModuleServiceImpl implements ModuleService {
 
         return module;
     }
-    
 
-
-    public void update(Module module) {       
+    public void update(Module module) {
         dao.update(module);
         dao.flushSession();
     }
@@ -51,11 +49,11 @@ public class ModuleServiceImpl implements ModuleService {
     }
 
     public List<Module> read(String omschrijving) {
-         dao.flushSession();
+        dao.flushSession();
         return dao.read(omschrijving);
-       
+
     }
-    
+
     public void flushSession() {
         dao.flushSession();
     }

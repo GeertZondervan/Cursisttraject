@@ -18,5 +18,5 @@ public interface PersoonService {
    
     Persoon read(int id);
     
-    public void flushSession();
+    void flushSession();
 }

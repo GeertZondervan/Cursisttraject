@@ -1,7 +1,6 @@
 package edu.rsvier.springmvc.dao;
 
 import edu.rsvier.springmvc.model.Toets;
-import edu.rsvier.springmvc.model.Toets;
 import java.util.List;
 
 public interface ToetsDao {
@@ -15,5 +14,6 @@ public interface ToetsDao {
     void delete(Toets toets);
 
     List<Toets> getAll();
+    
     void flushSession();
 }

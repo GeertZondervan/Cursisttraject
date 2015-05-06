@@ -17,5 +17,5 @@ public interface ModuleService {
    
     Module read(int id);
     
-    public void flushSession();
+    void flushSession();
 }

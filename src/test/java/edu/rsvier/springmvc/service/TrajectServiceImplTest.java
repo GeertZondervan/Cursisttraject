@@ -47,14 +47,11 @@ public class TrajectServiceImplTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of create method, of class TrajectServiceImpl.
-     */
     @Test
     @Transactional
     public void testCreate() {
         service.create(traject2);
-        
+        service.flushSession();
         Traject result = (Traject)service.read(traject2.getId());
                 
         assertNotNull("traject must not be null", traject2);
@@ -63,9 +60,6 @@ public class TrajectServiceImplTest {
         assertEquals("traject, all fields must be equal", traject2, result);
     }
 
-    /**
-     * Test of update method, of class TrajectServiceImpl.
-     */
     @Test
     @Transactional
     public void testUpdate() {
@@ -77,32 +71,22 @@ public class TrajectServiceImplTest {
         service.update(result);
         service.flushSession();
         traject = service.read(id);
-        System.out.println(traject);
-        System.out.println(result);
         assertNotNull("result must not be null", traject);
-        
         assertEquals("traject, all fields must be equal", traject, result);
     }
 
-    /**
-     * Test of read method, of class TrajectServiceImpl.
-     */
     @Test
     @Transactional
     public void testRead_int() {
         service.create(traject);
+        service.flushSession();
         
-        Traject result = (Traject)service.read(traject.getId());
-                
+        Traject result = (Traject)service.read(traject.getId()); 
         assertNotNull("traject must not be null", traject);
         assertNotNull("result must not be null", result);
-        
         assertEquals("traject, all fields must be equal", traject, result);
     }
 
-    /**
-     * Test of read method, of class TrajectServiceImpl.
-     */
     @Test
     @Transactional
     public void testRead_String() {
@@ -110,9 +94,8 @@ public class TrajectServiceImplTest {
         
         Traject traject3 = PojoGenerator.getTraject();
         service.create(traject3);
-        
+        service.flushSession();
         List<Traject> lijst = service.read("Basistraject");
-        
         
         assertNotNull("Lijst, is not null", lijst);
         assertTrue("lijst contains traject", lijst.contains(traject));
@@ -121,9 +104,6 @@ public class TrajectServiceImplTest {
         
     }
 
-    /**
-     * Test of delete method, of class TrajectServiceImpl.
-     */
     @Test
     @Transactional
     public void testDelete() {
@@ -132,20 +112,16 @@ public class TrajectServiceImplTest {
         
         int id = traject.getId();
         service.delete(traject);
-        
+        service.flushSession();
         Traject result = service.read(id);
-        
-        
+ 
     }
 
-    /**
-     * Test of getAll method, of class TrajectServiceImpl.
-     */
     @Test
     @Transactional
     public void testGetAll() {
         service.create(traject2);
-        
+        service.flushSession();
         List<Traject> resultList = service.getAll();
         assertNotNull("resultList must not be null", resultList);
         

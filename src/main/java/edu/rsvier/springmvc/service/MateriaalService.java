@@ -16,4 +16,6 @@ public interface MateriaalService {
     void delete(Materiaal materiaal);
    
     Materiaal read(int id);
+    
+    void flushSession();
 }

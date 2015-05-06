@@ -1,10 +1,7 @@
 
 package edu.rsvier.springmvc.dao;
 
-import edu.rsvier.springmvc.model.Persoonsrol;
 import edu.rsvier.springmvc.model.ToetsResultaat;
-import edu.rsvier.springmvc.model.ToetsResultaat;
-import edu.rsvier.springmvc.model.ToetsResultaatId;
 import edu.rsvier.springmvc.model.ToetsResultaatId;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;

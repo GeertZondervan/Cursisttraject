@@ -46,59 +46,43 @@ public class RolServiceImplTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of create method, of class RolServiceImpl.
-     */
     @Test
     @Transactional
     public void testCreate() {
         service.create(rol2);
-        
+        service.flushSession();
         Rol result = (Rol)service.read(rol2.getId());
-                
+             
         assertNotNull("rol must not be null", rol2);
         assertNotNull("result must not be null", result);
-        
         assertEquals("rol, all fields must be equal", rol2, result);
     }
 
-    /**
-     * Test of update method, of class RolServiceImpl.
-     */
     @Test
     @Transactional
     public void testUpdate() {
-        int id = rol.getId();
+        rol.setNaam("Java Dev2");
+        service.update(rol);
+        service.flushSession();
         
-        Rol result = (Rol)service.read(id);
-        result.setNaam("Java Dev2");
-        service.update(result);
-        
-        rol = service.read(id);
-        
+        Rol result = (Rol)service.read(rol.getId());
+               
         assertNotNull("result must not be null", rol);
-        
         assertEquals("rol, all fields must be equal", rol, result);
+        assertTrue("New Naam, must be Java Dev2", result.getNaam().equals("Java Dev2"));
     }
 
-    /**
-     * Test of read method, of class RolServiceImpl.
-     */
     @Test
     @Transactional
     public void testRead_int() {
+        service.flushSession();
         Rol result = (Rol)service.read(rol.getId());
                 
         assertNotNull("rol must not be null", rol);
         assertNotNull("result must not be null", result);
-        
         assertEquals("rol, all fields must be equal", rol, result);
     }
 
-
-    /**
-     * Test of delete method, of class RolServiceImpl.
-     */
     @Test
     @Transactional
     public void testDelete() {
@@ -106,28 +90,21 @@ public class RolServiceImplTest {
         expectedEx.expectMessage("Rol not found");
         int id = rol.getId();
         service.delete(rol);
-        
+        service.flushSession();
         Rol result = service.read(id);
         assertNull("Result is null, object has been deleted", result);
         
     }
 
-    /**
-     * Test of getAll method, of class RolServiceImpl.
-     */
     @Test
     @Transactional
     public void testGetAll() {
         service.create(rol2);
-        
+        service.flushSession();
         List<Rol> resultList = service.getAll();
         assertNotNull("resultList must not be null", resultList);
-        
         assertTrue("rol must be in the resultList", resultList.contains(rol)); 
-        assertTrue("rol2 must be in the resultList", resultList.contains(rol2)); 
-        
-        
-       
+        assertTrue("rol2 must be in the resultList", resultList.contains(rol2));   
     }
     
 }

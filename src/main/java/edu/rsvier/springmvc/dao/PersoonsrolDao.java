@@ -12,6 +12,7 @@ public interface PersoonsrolDao {
     Persoonsrol read(PersoonsrolId id);
 
     void delete(Persoonsrol persoonsrol);
+    
     void flushSession();
 
 }

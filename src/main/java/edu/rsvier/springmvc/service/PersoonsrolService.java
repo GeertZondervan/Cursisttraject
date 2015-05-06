@@ -13,5 +13,5 @@ public interface PersoonsrolService {
 
     void delete(Persoonsrol persoonsrol);
 
-    public void flushSession();
+    void flushSession();
 }

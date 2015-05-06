@@ -69,6 +69,7 @@ public class ExpertiseServiceImplTest {
 
         Expertise expertise2 = PojoGenerator.getExpertise(module2);
         service.create(expertise2);
+        service.flushSession();
         Expertise result = service.read(expertise2.getId());
         assertNotNull("expertise, must not be null", expertise2);
         assertNotNull("Result, must not be null", result);
@@ -88,6 +89,7 @@ public class ExpertiseServiceImplTest {
     @Test
     @Transactional
     public void testRead() {
+        service.flushSession();
         Expertise result = service.read(expertise.getId());
         assertNotNull("expertise, must not be null", expertise);
         assertNotNull("Result, must not be null", result);
@@ -103,7 +105,6 @@ public class ExpertiseServiceImplTest {
         Expertise result = service.read(0);
     }
 
-    // Wiemer: Leroy/Timo/iemand anders vragen hoe we de Hibernate cache kunnen omzeilen. TestUpdate werkt nu ook zonder update aan te roepen.
     @Test
     @Transactional
     public void testUpdate() {
@@ -113,26 +114,10 @@ public class ExpertiseServiceImplTest {
         service.update(expertise2);
         service.flushSession();
         Expertise result = service.read(id);
-        System.out.println(expertise2);
-        System.out.println(result);
         
         assertEquals("result & expertise, all fields must be equal", expertise2, result);
     }
 
-    //Wiemer: Zou foutmelding moeten geven, maar werkt gek genoeg.
-//    @Test
-//    @Transactional
-//    public void testUpdateNotFound() {
-//
-//        //expectedEx.expect(IllegalArgumentException.class);
-//        //expectedEx.expectMessage("Cannot update, expertise not found");
-//        Expertise expertise3 = new Expertise();
-//
-//        expertise3.setNaam("");
-//
-//        service.update(expertise3);
-//
-//    }
     @Test
     @Transactional
     public void testDelete() {

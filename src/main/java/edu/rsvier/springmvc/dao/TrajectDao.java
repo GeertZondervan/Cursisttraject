@@ -1,7 +1,6 @@
 package edu.rsvier.springmvc.dao;
 
 import edu.rsvier.springmvc.model.Traject;
-import edu.rsvier.springmvc.model.Traject;
 import java.util.List;
 
 public interface TrajectDao {

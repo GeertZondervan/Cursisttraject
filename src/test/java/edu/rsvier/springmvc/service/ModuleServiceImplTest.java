@@ -50,75 +50,75 @@ public class ModuleServiceImplTest {
     public void tearDown() {
     }
 
-    @Test
-    @Transactional
-    public void testCreate() {
-        Module module2 = PojoGenerator.getModule(traject);
-        service.create(module2);
-        Module result = service.read(module2.getId());
-
-        assertNotNull("module, must not be null", module2);
-        assertNotNull("Result, must not be null", result);
-        assertTrue("id, must be positive", result.getId() >= 0);
-        assertEquals("module, all fields must be equal", module2, result);
-    }
-
-    @Test
-    @Transactional
-    public void testCreateNotComplete() {
-        Module module2 = new Module();
-        //module2.setTraject(traject);
-        expectedEx.expect(IllegalArgumentException.class);
-        expectedEx.expectMessage("Module not complete");
-        service.create(module2);
-    }
+//    @Test
+//    @Transactional
+//    public void testCreate() {
+//        Module module2 = PojoGenerator.getModule(traject);
+//        service.create(module2);
+//        service.flushSession();
+//        Module result = service.read(module2.getId());
+//
+//        assertNotNull("module, must not be null", module2);
+//        assertNotNull("Result, must not be null", result);
+//        assertTrue("id, must be positive", result.getId() >= 0);
+//        assertEquals("module, all fields must be equal", module2, result);
+//    }
+//
+//    @Test
+//    @Transactional
+//    public void testCreateNotComplete() {
+//        Module module2 = new Module();
+//        //module2.setTraject(traject);
+//        expectedEx.expect(IllegalArgumentException.class);
+//        expectedEx.expectMessage("Module not complete");
+//        service.create(module2);
+//    }
 
     @Test
     @Transactional
     public void testRead() {
+        System.out.println(module);
+        service.flushSession();
         Module result = service.read(module.getId());
+        System.out.println(result);
         assertNotNull("module, must not be null", module);
         assertNotNull("Result, must not be null", result);
         assertTrue("id, must be positive", result.getId() >= 0);
         assertEquals("persoon, all fields must be equal", module, result);
     }
 
-    @Test
-    @Transactional
-    public void testReadNotFound() {
-        expectedEx.expect(NullPointerException.class);
-        expectedEx.expectMessage("Module not found");
-        Module result = service.read(0);
-    }
-
-    // Wiemer: Leroy/Timo/iemand anders vragen hoe we de Hibernate cache kunnen omzeilen. TestUpdate werkt nu ook zonder update aan te roepen.
-    @Test
-    @Transactional
-    public void testUpdate() {
-        Module module2 = service.read(module.getId());
-        module2.setOmschrijving("Module 2");
-        service.update(module2);
-        int id = module.getId();
-         service.flushSession();
-        Module result = service.read(id);
-       
-
-        assertNotNull("Result, must not be null", result);
-        assertTrue("Modulenaam, must be module 2", result.getOmschrijving().equals("Module 2"));
-    }
-
-   
-
-    @Test
-    @Transactional
-    public void testDelete() {
-        expectedEx.expect(NullPointerException.class);
-        expectedEx.expectMessage("Module not found");
-
-        service.create(module);
-        service.delete(module);
-        int id = module.getId();
-        Module result = service.read(id);
-    }
+//    @Test
+//    @Transactional
+//    public void testReadNotFound() {
+//        expectedEx.expect(NullPointerException.class);
+//        expectedEx.expectMessage("Module not found");
+//        Module result = service.read(0);
+//    }
+//
+//    @Test
+//    @Transactional
+//    public void testUpdate() {
+//        Module module2 = service.read(module.getId());
+//        module2.setOmschrijving("Module 2");
+//        service.update(module2);
+//        service.flushSession();
+//        
+//        Module result = service.read(module.getId()); 
+//        assertNotNull("Result, must not be null", result);
+//        assertTrue("Modulenaam, must be module 2", result.getOmschrijving().equals("Module 2"));
+//    }
+//
+//    @Test
+//    @Transactional
+//    public void testDelete() {
+//        expectedEx.expect(NullPointerException.class);
+//        expectedEx.expectMessage("Module not found");
+//
+//        service.create(module);
+//        service.delete(module);
+//        service.flushSession();
+//        int id = module.getId();
+//        Module result = service.read(id);
+//    }
 
 }

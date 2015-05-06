@@ -83,32 +83,18 @@ public class BestandServiceImplTest {
         Bestand result = service.read(0);
     }
 
-    // Shun: hij doet ut niet!
-//    @Test
-//    @Transactional
-//    public void testUpdate() { 
-//        Bestand bestand2 = service.read(bestand.getId());
-//        bestand2.setBestand(new byte[15]);
-//        service.update(bestand2);
-//        service.flushSession();
-//
-//        Bestand result = service.read(bestand2.getId());
-//        System.out.println(result.getBestand().length);
-//        assertNotNull("Result, must not be null", result);
-//        assertTrue("Bestandlengte, must be 5", result.getBestand().length == 15);
-//    }
+    @Test
+    @Transactional
+    public void testUpdate() { 
+        Bestand bestand2 = service.read(bestand.getId());
+        bestand2.setBestand(new byte[15]);
+        service.update(bestand2);
+        service.flushSession();
 
-//    @Test
-//    @Transactional
-//    public void testUpdateNotFound() {
-//
-//        expectedEx.expect(IllegalArgumentException.class);
-//        expectedEx.expectMessage("Cannot update, bestand not found");
-//        Bestand bestand3 = new Bestand();
-//
-//        bestand3.setBestand(new byte[42]);
-//        service.update(bestand3);
-//    }
+        Bestand result = service.read(bestand2.getId());
+        assertNotNull("Result, must not be null", result);
+        assertTrue("Bestandlengte, must be 5", result.getBestand().length == 15);
+    }
 
     @Test
     @Transactional
@@ -118,6 +104,7 @@ public class BestandServiceImplTest {
 
         service.create(bestand);
         service.delete(bestand);
+        service.flushSession();
         int id = bestand.getId();
         Bestand result = service.read(id);
     }
