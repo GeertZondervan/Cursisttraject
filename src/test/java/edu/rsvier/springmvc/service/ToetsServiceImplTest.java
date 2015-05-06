@@ -91,7 +91,6 @@ public class ToetsServiceImplTest {
     public void testRead_int() {
         service.flushSession();
         Toets result = (Toets)service.read(toets.getId());
-        
         assertNotNull("toets must not be null", toets);
         assertNotNull("result must not be null", result);
         

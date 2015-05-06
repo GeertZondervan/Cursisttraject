@@ -130,9 +130,10 @@ public class Toets implements java.io.Serializable {
         if (this.bestand != other.bestand && (this.bestand == null || !this.bestand.equals(other.bestand))) {
             return false;
         }
-        if (this.module != other.module && (this.module == null || !this.module.equals(other.module))) {
-            return false;
-        }
+
+//        if (this.module != other.module && (this.module == null || !this.module.equals(other.module))) {
+//            return false;
+//        }
         if ((this.naam == null) ? (other.naam != null) : !this.naam.equals(other.naam)) {
             return false;
         }
