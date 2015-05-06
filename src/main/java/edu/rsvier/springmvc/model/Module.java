@@ -96,9 +96,11 @@ public class Module implements java.io.Serializable {
         if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
             return false;
         }
-        if (this.traject != other.traject && (this.traject == null || !this.traject.equals(other.traject))) {
-            return false;
-        }
+        System.out.println("/////" + this.getTraject());
+        System.out.println("/////" + other.getTraject());
+//        if (this.traject != other.traject && (this.traject == null || !this.traject.equals(other.traject))) {
+//            return false;
+//        }
         if ((this.omschrijving == null) ? (other.omschrijving != null) : !this.omschrijving.equals(other.omschrijving)) {
             return false;
         }
