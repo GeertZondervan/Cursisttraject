@@ -1,4 +1,3 @@
-
 package edu.rsvier.springmvc.service;
 
 import edu.rsvier.springmvc.dao.RolDao;
@@ -12,20 +11,20 @@ import org.springframework.transaction.annotation.Transactional;
 @Service("rolService")
 @Transactional
 public class RolServiceImpl implements RolService {
+
     @Autowired
     private RolDao dao;
 
-    public void create(Rol rol) throws IllegalArgumentException  {
-       if (rol.getNaam() == null) {
+    public void create(Rol rol) throws IllegalArgumentException {
+        if (rol.getNaam() == null) {
             throw new IllegalArgumentException("Rol not complete");
         }
         dao.create(rol);
     }
-    
-    
-    public Rol read(int id)  throws NullPointerException {
-       Rol rol = dao.read(id);
-        if (rol ==  null) {
+
+    public Rol read(int id) throws NullPointerException {
+        Rol rol = dao.read(id);
+        if (rol == null) {
             throw new NullPointerException("Rol not found");
         }
         return rol;
@@ -35,17 +34,16 @@ public class RolServiceImpl implements RolService {
         dao.update(rol);
     }
 
-
     public void delete(Rol rol) {
-       dao.delete(rol);
+        dao.delete(rol);
     }
 
     public List<Rol> getAll() {
         return dao.getAll();
     }
-    
-        public void flushSession() {
+
+    public void flushSession() {
         dao.flushSession();
     }
-    
+
 }

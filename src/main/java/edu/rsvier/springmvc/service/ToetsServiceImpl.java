@@ -1,4 +1,3 @@
-
 package edu.rsvier.springmvc.service;
 
 import edu.rsvier.springmvc.dao.ToetsDao;
@@ -10,22 +9,21 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service("toetsService")
 @Transactional
-public class ToetsServiceImpl implements ToetsService{
+public class ToetsServiceImpl implements ToetsService {
 
     @Autowired
     private ToetsDao dao;
-    
-    public void create(Toets toets) throws IllegalArgumentException  {
-       if (toets.getNaam() == null) {
+
+    public void create(Toets toets) throws IllegalArgumentException {
+        if (toets.getNaam() == null) {
             throw new IllegalArgumentException("Toets not complete");
         }
         dao.create(toets);
     }
-    
-    
-    public Toets read(int id)  throws NullPointerException {
-       Toets toets = dao.read(id);
-        if (toets ==  null) {
+
+    public Toets read(int id) throws NullPointerException {
+        Toets toets = dao.read(id);
+        if (toets == null) {
             throw new NullPointerException("Toets not found");
         }
         return toets;
@@ -36,13 +34,14 @@ public class ToetsServiceImpl implements ToetsService{
     }
 
     public void delete(Toets toets) {
-       dao.delete(toets);
+        dao.delete(toets);
     }
 
     public List<Toets> getAll() {
-      return dao.getAll();
+        return dao.getAll();
     }
+
     public void flushSession() {
         dao.flushSession();
-    }    
+    }
 }

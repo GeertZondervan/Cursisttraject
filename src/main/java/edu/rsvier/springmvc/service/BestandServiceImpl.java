@@ -14,7 +14,6 @@ public class BestandServiceImpl implements BestandService {
     @Autowired
     private BestandDao dao;
 
-
     public void create(Bestand bestand) throws IllegalArgumentException {
         if (bestand.getBestand() == null) {
             throw new IllegalArgumentException("Bestand not complete");
@@ -24,7 +23,7 @@ public class BestandServiceImpl implements BestandService {
 
     public Bestand read(int id) throws NullPointerException {
         Bestand bestand = dao.read(id);
-        if (bestand == null ) {
+        if (bestand == null) {
             throw new NullPointerException("Bestand not found");
         }
 
@@ -42,7 +41,7 @@ public class BestandServiceImpl implements BestandService {
     public List<Bestand> getAll() {
         return dao.getAll();
     }
-    
+
     public void flushSession() {
         dao.flushSession();
     }

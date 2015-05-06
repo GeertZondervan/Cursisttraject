@@ -49,6 +49,5 @@ public class ExpertiseServiceImpl implements ExpertiseService {
     public void flushSession() {
         dao.flushSession();
     }
-    
-    
+
 }

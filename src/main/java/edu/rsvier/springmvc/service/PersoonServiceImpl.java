@@ -24,7 +24,7 @@ public class PersoonServiceImpl implements PersoonService {
 
     public Persoon read(int id) throws NullPointerException {
         Persoon persoon = dao.read(id);
-        if (persoon ==  null) {
+        if (persoon == null) {
             throw new NullPointerException("Persoon not found");
         }
         return persoon;
@@ -45,7 +45,7 @@ public class PersoonServiceImpl implements PersoonService {
     public List<Persoon> read(String voornaam, String achternaam) {
         return dao.read(voornaam, achternaam);
     }
-    
+
     public void flushSession() {
         dao.flushSession();
     }
