@@ -65,17 +65,17 @@ public class Persoon implements java.io.Serializable {
         if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
+//        if (getClass() != obj.getClass()) {
+//            return false;
+//        }
         final Persoon other = (Persoon) obj;
-        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+        if (this.id != other.getId() && (this.id == null || !this.id.equals(other.getId()))) {
             return false;
         }
-        if ((this.voornaam == null) ? (other.voornaam != null) : !this.voornaam.equals(other.voornaam)) {
+        if ((this.voornaam == null) ? (other.getVoornaam() != null) : !this.voornaam.equals(other.getVoornaam())) {
             return false;
         }
-        if ((this.achternaam == null) ? (other.achternaam != null) : !this.achternaam.equals(other.achternaam)) {
+        if ((this.achternaam == null) ? (other.getAchternaam() != null) : !this.achternaam.equals(other.getAchternaam())) {
             return false;
         }
         if (this.persoonsrollen != other.persoonsrollen && (this.persoonsrollen == null || !this.persoonsrollen.equals(other.persoonsrollen))) {

@@ -59,17 +59,17 @@ public class PersoonsrolServiceImplTest {
     public void tearDown() {
     }
 
-//    @Test
-//    @Transactional
-//    public void testCreate() {
-//        service.create(persoonsrol2);
-//        service.flushSession();
-//        Persoonsrol result = (Persoonsrol) service.read(persoonsrol2.getId());
-//
-//        assertNotNull("persoonsrol must not be null", persoonsrol2);
-//        assertNotNull("result must not be null", result);
-//        assertEquals("persoonsrol, all fields must be equal", persoonsrol2, result);
-//    }
+    @Test
+    @Transactional
+    public void testCreate() {
+        service.create(persoonsrol2);
+        service.flushSession();
+        Persoonsrol result = (Persoonsrol) service.read(persoonsrol2.getId());
+
+        assertNotNull("persoonsrol must not be null", persoonsrol2);
+        assertNotNull("result must not be null", result);
+        assertEquals("persoonsrol, all fields must be equal", persoonsrol2, result);
+    }
 
     @Test
     @Transactional
@@ -91,18 +91,16 @@ public class PersoonsrolServiceImplTest {
         assertTrue("New Rol, must be Trainee", result.getRol().getNaam().equals("Trainee"));
     }
 
-//    @Test
-//    @Transactional
-//    public void testRead_int() {
-//        System.out.println(persoonsrol);
-//        PersoonsrolId id = persoonsrol.getId();
-//        service.flushSession();
-//        Persoonsrol result = (Persoonsrol) service.read(id);
-//        System.out.println(result);
-//        assertNotNull("persoonsrol must not be null", persoonsrol);
-//        assertNotNull("result must not be null", result);
-//        assertEquals("persoonsrol, all fields must be equal", persoonsrol, result);
-//    }
+    @Test
+    @Transactional
+    public void testRead_int() {
+        PersoonsrolId id = persoonsrol.getId();
+        service.flushSession();
+        Persoonsrol result = (Persoonsrol) service.read(id);
+        assertNotNull("persoonsrol must not be null", persoonsrol);
+        assertNotNull("result must not be null", result);
+        assertEquals("persoonsrol, all fields must be equal", persoonsrol, result);
+    }
 
     @Test
     @Transactional
