@@ -19,7 +19,7 @@ public class GenericDaoImpl<T extends Serializable> implements IGenericDao<T> {
     }
     
     public void flushSession(){
-        //getSession().flush();
+        getSession().flush();
         getSession().clear();
     }
 
@@ -44,7 +44,7 @@ public class GenericDaoImpl<T extends Serializable> implements IGenericDao<T> {
     }
 
     public void update(T entity) {
-        getSession().flush();
+        getSession().update(entity);
         
     }
 

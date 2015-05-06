@@ -44,4 +44,8 @@ public class RolServiceImpl implements RolService {
         return dao.getAll();
     }
     
+        public void flushSession() {
+        dao.flushSession();
+    }
+    
 }

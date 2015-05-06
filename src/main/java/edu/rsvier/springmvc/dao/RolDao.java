@@ -14,5 +14,6 @@ public interface RolDao {
     void delete(Rol rol);
 
     List<Rol> getAll();
+    
     void flushSession();
 }

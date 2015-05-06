@@ -25,7 +25,7 @@ public interface TrajectService {
 
     List<Traject> getAll();
     
-    public void flushSession();
+    void flushSession();
     
     
 }

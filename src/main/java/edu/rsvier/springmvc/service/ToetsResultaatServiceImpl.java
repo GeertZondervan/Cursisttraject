@@ -45,6 +45,8 @@ public class ToetsResultaatServiceImpl implements ToetsResultaatService {
     public List<ToetsResultaat> getAll() {
         return dao.getAll();
     }
-    
+    public void flushSession() {
+        dao.flushSession();
+    }    
     
 }

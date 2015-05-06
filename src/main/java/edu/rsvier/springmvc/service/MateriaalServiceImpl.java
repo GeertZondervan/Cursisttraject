@@ -45,4 +45,8 @@ public class MateriaalServiceImpl implements MateriaalService {
     public List<Materiaal> read(String titel) {
         return dao.read(titel);
     }
+    
+    public void flushSession() {
+        dao.flushSession();
+    }
 }

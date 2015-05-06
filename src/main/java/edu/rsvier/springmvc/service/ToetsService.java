@@ -15,4 +15,6 @@ public interface ToetsService {
     void delete(Toets toets);
 
     List<Toets> getAll();
+    
+    void flushSession();
 }

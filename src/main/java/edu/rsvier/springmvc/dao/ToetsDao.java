@@ -15,5 +15,6 @@ public interface ToetsDao {
     void delete(Toets toets);
 
     List<Toets> getAll();
+    
     void flushSession();
 }
