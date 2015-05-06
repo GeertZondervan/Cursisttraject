@@ -109,5 +109,4 @@ public class Persoonsrol implements java.io.Serializable {
         return "Persoonsrol{" + "id=" + id + ", persoon=" + persoon + ", rol=" + rol + ", einddatum=" + einddatum + ", toetsResultaten=" + toetsResultaten + '}';
     }
 
-
 }

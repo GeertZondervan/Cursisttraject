@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name = "persoon", catalog = "cursisttraject_relatiebeheer")
 public class Persoon implements java.io.Serializable {
@@ -84,10 +83,8 @@ public class Persoon implements java.io.Serializable {
         }
         return true;
     }
-   
-    
-    
-    public String toString(){
+
+    public String toString() {
         return ("Persoon: " + voornaam + ", " + achternaam);
     }
 
