@@ -12,8 +12,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
 
 @Entity
 @Table(name = "traject", catalog = "cursisttraject_relatiebeheer"
