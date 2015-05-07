@@ -4,6 +4,10 @@ import edu.rsvier.springmvc.configuration.AppConfig;
 import edu.rsvier.springmvc.configuration.AppInitializer;
 import edu.rsvier.springmvc.configuration.HibernateConfiguration;
 import edu.rsvier.springmvc.model.Traject;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import org.junit.After;
 import org.junit.Before;
@@ -38,7 +42,12 @@ public class TrajectServiceImplTest {
     public void setUp() {
         traject = PojoGenerator.getTraject();
         service.create(traject);
-        System.out.println();
+        Date date = new Date(0);
+        Calendar greg = new GregorianCalendar(2010, 0, 10);
+        
+        date.setTime(greg.getTimeInMillis());
+        
+        System.out.println("Datum: " + date);
         traject2 = PojoGenerator.getTraject();
  
     }
