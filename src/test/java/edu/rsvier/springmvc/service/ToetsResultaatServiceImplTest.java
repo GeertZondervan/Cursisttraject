@@ -86,12 +86,8 @@ public class ToetsResultaatServiceImplTest {
     @Test
     @Transactional
     public void testCreate() {
-        System.out.println("///////" + toetsResultaat);
-                
         service.flushSession();
-        System.out.println("////////" + toetsResultaat.getId());
         ToetsResultaat result = service.read(toetsResultaat.getId());
-        System.out.println("///////" + result);
         assertNotNull("toetsResultaat must not be null", toetsResultaat);
         assertNotNull("result must not be null", result);
         assertEquals("toetsResultaat, all fields must be equal", toetsResultaat, result);

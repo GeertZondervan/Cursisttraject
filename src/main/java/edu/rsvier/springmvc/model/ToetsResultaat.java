@@ -111,12 +111,12 @@ public class ToetsResultaat implements java.io.Serializable {
         if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
             return false;
         }
-        if (this.persoonsrol != other.persoonsrol && (this.persoonsrol == null || !this.persoonsrol.equals(other.persoonsrol))) {
-            return false;
-        }
-        if (this.toets != other.toets && (this.toets == null || !this.toets.equals(other.toets))) {
-            return false;
-        }
+//        if (this.persoonsrol != other.persoonsrol && (this.persoonsrol == null || !this.persoonsrol.equals(other.persoonsrol))) {
+//            return false;
+//        }
+//        if (this.toets != other.toets && (this.toets == null || !this.toets.equals(other.toets))) {
+//            return false;
+//        }
         if (this.datum != other.datum && (this.datum == null || !this.datum.equals(other.datum))) {
             return false;
         }
