@@ -16,6 +16,19 @@ import javax.persistence.Table;
 
 public class Materiaal implements java.io.Serializable {
 
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 17 * hash + (this.bestand != null ? this.bestand.hashCode() : 0);
+        hash = 17 * hash + (this.titel != null ? this.titel.hashCode() : 0);
+        hash = 17 * hash + (this.auteur != null ? this.auteur.hashCode() : 0);
+        hash = 17 * hash + (this.omschrijving != null ? this.omschrijving.hashCode() : 0);
+        hash = 17 * hash + (this.url != null ? this.url.hashCode() : 0);
+        hash = 17 * hash + (this.isbn13 != null ? this.isbn13.hashCode() : 0);
+        hash = 17 * hash + (this.isbn10 != null ? this.isbn10.hashCode() : 0);
+        return hash;
+    }
+
     private Integer id;
     private Bestand bestand;
     private String titel;
@@ -106,13 +119,12 @@ public class Materiaal implements java.io.Serializable {
         if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (!(obj instanceof Materiaal)) {
+            System.out.println("niet de juiste class");
             return false;
         }
         final Materiaal other = (Materiaal) obj;
-        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
-            return false;
-        }
+
         if (this.bestand != other.bestand && (this.bestand == null || !this.bestand.equals(other.bestand))) {
             return false;
         }

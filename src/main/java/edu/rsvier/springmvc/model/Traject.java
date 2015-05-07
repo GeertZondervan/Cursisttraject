@@ -1,6 +1,6 @@
 package edu.rsvier.springmvc.model;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -57,9 +57,10 @@ public class Traject implements java.io.Serializable {
         this.omschrijving = omschrijving;
     }
 
-    @Temporal(TemporalType.DATE)
+   
     @Column(name = "startdatum", length = 10)
     public Date getStartdatum() {
+        
         return this.startdatum;
     }
 
@@ -67,7 +68,7 @@ public class Traject implements java.io.Serializable {
         this.startdatum = startdatum;
     }
 
-    @Temporal(TemporalType.DATE)
+    
     @Column(name = "sluitingsdatum", length = 10)
     public Date getSluitingsdatum() {
         return this.sluitingsdatum;
@@ -96,29 +97,37 @@ public class Traject implements java.io.Serializable {
         if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (!(obj instanceof Traject)) {
+            System.out.println("niet de juiste class");
             return false;
         }
         final Traject other = (Traject) obj;
-        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
-            return false;
-        }
+
         if ((this.naam == null) ? (other.naam != null) : !this.naam.equals(other.naam)) {
             return false;
         }
         if ((this.omschrijving == null) ? (other.omschrijving != null) : !this.omschrijving.equals(other.omschrijving)) {
             return false;
         }
-        if (this.startdatum != other.startdatum && (this.startdatum == null || !this.startdatum.equals(other.startdatum))) {
+        if (this.startdatum.toString() != other.startdatum.toString() && (this.startdatum.toString() == null || !this.startdatum.toString().equals(other.startdatum.toString()))) {
             return false;
         }
-        if (this.sluitingsdatum != other.sluitingsdatum && (this.sluitingsdatum == null || !this.sluitingsdatum.equals(other.sluitingsdatum))) {
-            return false;
-        }
+       
         if (this.modules != other.modules && (this.modules == null || !this.modules.equals(other.modules))) {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 47 * hash + (this.naam != null ? this.naam.hashCode() : 0);
+        hash = 47 * hash + (this.omschrijving != null ? this.omschrijving.hashCode() : 0);
+        hash = 47 * hash + (this.startdatum != null ? this.startdatum.hashCode() : 0);
+        hash = 47 * hash + (this.sluitingsdatum != null ? this.sluitingsdatum.hashCode() : 0);
+        hash = 47 * hash + (this.modules != null ? this.modules.hashCode() : 0);
+        return hash;
     }
 
 }

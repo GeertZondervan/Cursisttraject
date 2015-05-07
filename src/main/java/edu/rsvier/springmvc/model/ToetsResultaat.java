@@ -1,6 +1,6 @@
 package edu.rsvier.springmvc.model;
 
-import java.util.Date;
+import java.sql.Date;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.CascadeType;
@@ -75,7 +75,7 @@ public class ToetsResultaat implements java.io.Serializable {
         this.toets = toets;
     }
 
-    @Temporal(TemporalType.DATE)
+   
     @Column(name = "datum", nullable = false, length = 10)
     public Date getDatum() {
         return this.datum;
@@ -96,7 +96,7 @@ public class ToetsResultaat implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "ToetsResultaat{" + "id=" + id + ", persoonsrol=" + persoonsrol + ", toets=" + toets + ", datum=" + datum + ", resultaat=" + resultaat + '}';
+        return "ToetsResultaat" + ", persoon= " + id + this.getPersoonsrol().getPersoon();
     }
 
     @Override
@@ -104,19 +104,18 @@ public class ToetsResultaat implements java.io.Serializable {
         if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (!(obj instanceof ToetsResultaat)) {
+            System.out.println("niet de juiste class");
             return false;
         }
         final ToetsResultaat other = (ToetsResultaat) obj;
-        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+
+        if (this.persoonsrol.getId() != other.persoonsrol.getId() && (this.persoonsrol.getId() == null || !this.persoonsrol.getId().equals(other.persoonsrol.getId()))) {
             return false;
         }
-//        if (this.persoonsrol != other.persoonsrol && (this.persoonsrol == null || !this.persoonsrol.equals(other.persoonsrol))) {
-//            return false;
-//        }
-//        if (this.toets != other.toets && (this.toets == null || !this.toets.equals(other.toets))) {
-//            return false;
-//        }
+        if (this.toets.getId() != other.toets.getId() && (this.toets.getId() == null || !this.toets.getId().equals(other.toets.getId()))) {
+            return false;
+        }
         if (this.datum != other.datum && (this.datum == null || !this.datum.equals(other.datum))) {
             return false;
         }
@@ -124,6 +123,14 @@ public class ToetsResultaat implements java.io.Serializable {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 47 * hash + (this.datum != null ? this.datum.hashCode() : 0);
+        hash = 47 * hash + Float.floatToIntBits(this.resultaat);
+        return hash;
     }
 
 }

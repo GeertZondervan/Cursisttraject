@@ -70,13 +70,12 @@ public class Bestand implements java.io.Serializable {
         if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (!(obj instanceof Bestand)) {
+            System.out.println("niet de juiste class");
             return false;
         }
         final Bestand other = (Bestand) obj;
-        if (this.id != other.id) {
-            return false;
-        }
+
         if (!Arrays.equals(this.bestand, other.bestand)) {
             return false;
         }
@@ -87,6 +86,15 @@ public class Bestand implements java.io.Serializable {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 47 * hash + Arrays.hashCode(this.bestand);
+        hash = 47 * hash + (this.materialen != null ? this.materialen.hashCode() : 0);
+        hash = 47 * hash + (this.toetsen != null ? this.toetsen.hashCode() : 0);
+        return hash;
     }
 
 }

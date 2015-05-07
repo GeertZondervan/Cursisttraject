@@ -61,13 +61,12 @@ public class Rol implements java.io.Serializable {
         if (obj == null) {
             return false;
         }
-//        if (getClass() != obj.getClass()) {
-//            return false;
-//        }
-        final Rol other = (Rol) obj;
-        if (this.id != other.getId() && (this.id == null || !this.id.equals(other.getId()))) {
+        if (!(obj instanceof Rol)) {
+            System.out.println("niet de juiste class");
             return false;
         }
+        final Rol other = (Rol) obj;
+
         if ((this.naam == null) ? (other.getNaam() != null) : !this.naam.equals(other.getNaam())) {
             return false;
         }
@@ -76,6 +75,13 @@ public class Rol implements java.io.Serializable {
 //            return false;
 //        }
         return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 71 * hash + (this.naam != null ? this.naam.hashCode() : 0);
+        return hash;
     }
 
 }

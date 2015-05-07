@@ -4,7 +4,7 @@ import edu.rsvier.springmvc.configuration.AppConfig;
 import edu.rsvier.springmvc.configuration.AppInitializer;
 import edu.rsvier.springmvc.configuration.HibernateConfiguration;
 import edu.rsvier.springmvc.model.Traject;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import org.junit.After;
 import org.junit.Before;
@@ -33,7 +33,8 @@ public class TrajectDaoImplTest {
         traject = new Traject();
         traject.setNaam("Java Developer");
         traject.setOmschrijving("Opleiding tot Java Developer");
-        traject.setStartdatum(new Date());
+        traject.setStartdatum(new Date(123456789));
+        System.out.println(new Date(123456789));
     }
     
     @After
@@ -114,13 +115,13 @@ public class TrajectDaoImplTest {
         Traject traject2 = new Traject();
         traject2.setNaam("Java Developer");
         traject2.setOmschrijving("Opleiding tot Java Developer nieuwe versie");
-        traject2.setStartdatum(new Date());
+        traject2.setStartdatum(new Date(123456789));
         dao.create(traject2);
         
         Traject traject3 = new Traject();
         traject3.setNaam("Java Developer 3");
         traject3.setOmschrijving("Opleiding tot Java Developer nieuwe versie");
-        traject3.setStartdatum(new Date());
+        traject3.setStartdatum(new Date(123456788));
         dao.create(traject3);
         
         List<Traject> lijst = dao.read("Java Developer");

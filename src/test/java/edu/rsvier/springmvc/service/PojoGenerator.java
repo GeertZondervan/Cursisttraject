@@ -2,7 +2,7 @@ package edu.rsvier.springmvc.service;
 
 import edu.rsvier.springmvc.model.*;
 import java.util.Calendar;
-import java.util.Date;
+import java.sql.Date;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 
@@ -68,7 +68,7 @@ public class PojoGenerator {
         persoonsrolId.setRolId(rol.getId());
 
         
-        persoonsrolId.setBegindatum(calendar.getTime());
+        persoonsrolId.setBegindatum(new Date(123456789));
 
         Persoonsrol persoonsrol = new Persoonsrol();
         persoonsrol.setPersoon(persoon);
@@ -105,7 +105,7 @@ public class PojoGenerator {
         toetsResultaat.setPersoonsrol(persoonsrol);
         toetsResultaat.setId(getToetsResultaatId(persoonsrol.getId(), toets));
         toetsResultaat.setResultaat(5.5f);
-        toetsResultaat.setDatum(calendar.getTime());
+        toetsResultaat.setDatum(new Date(123456789));
         
         return toetsResultaat;
     }
@@ -114,7 +114,7 @@ public class PojoGenerator {
         i+=1;
         ToetsResultaatId toetsResultaatId = new ToetsResultaatId();
         toetsResultaatId.setToetsId(toets.getId());
-        toetsResultaatId.setPersoonsrolBegindatum(persoonsrolId.getBegindatum());
+        toetsResultaatId.setPersoonsrolBegindatum(new Date(123456789));
         toetsResultaatId.setPersoonsrolPersoonId(persoonsrolId.getPersoonId());
         toetsResultaatId.setPersoonsrolRolId(persoonsrolId.getRolId());
         
@@ -127,7 +127,7 @@ public class PojoGenerator {
         Traject traject = new Traject();
         traject.setNaam("Basistraject");
         traject.setOmschrijving("Opleiding tot Java Developer" + i);
-        traject.setStartdatum(calendar.getTime());
+        traject.setStartdatum(new Date(123456789));
         return traject;
     }
 }

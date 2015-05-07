@@ -38,7 +38,7 @@ public class TrajectServiceImplTest {
     public void setUp() {
         traject = PojoGenerator.getTraject();
         service.create(traject);
-        
+        System.out.println();
         traject2 = PojoGenerator.getTraject();
  
     }
@@ -56,7 +56,6 @@ public class TrajectServiceImplTest {
                 
         assertNotNull("traject must not be null", traject2);
         assertNotNull("result must not be null", result);
-        
         assertEquals("traject, all fields must be equal", traject2, result);
     }
 

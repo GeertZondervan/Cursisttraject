@@ -61,17 +61,32 @@ public class Persoon implements java.io.Serializable {
     }
 
     @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 53 * hash + (this.voornaam != null ? this.voornaam.hashCode() : 0);
+        hash = 53 * hash + (this.achternaam != null ? this.achternaam.hashCode() : 0);
+        hash = 53 * hash + (this.persoonsrollen != null ? this.persoonsrollen.hashCode() : 0);
+        return hash;
+    }
+    
+    
+
+    @Override
     public boolean equals(Object obj) {
+        
+        
         if (obj == null) {
             return false;
         }
-//        if (getClass() != obj.getClass()) {
-//            return false;
-//        }
-        final Persoon other = (Persoon) obj;
-        if (this.id != other.getId() && (this.id == null || !this.id.equals(other.getId()))) {
+        if (!(obj instanceof Persoon)) {
+            System.out.println("niet de juiste class");
             return false;
         }
+        final Persoon other = (Persoon) obj;
+//        if (this.id != other.getId() && (this.id == null || !this.id.equals(other.getId()))) {
+//            return false;
+//        }
+
         if ((this.voornaam == null) ? (other.getVoornaam() != null) : !this.voornaam.equals(other.getVoornaam())) {
             return false;
         }

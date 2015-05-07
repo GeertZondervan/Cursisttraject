@@ -120,13 +120,12 @@ public class Toets implements java.io.Serializable {
         if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (!(obj instanceof Toets)) {
+            System.out.println("niet de juiste class");
             return false;
         }
         final Toets other = (Toets) obj;
-        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
-            return false;
-        }
+
         if (this.bestand != other.bestand && (this.bestand == null || !this.bestand.equals(other.bestand))) {
             return false;
         }
@@ -153,6 +152,19 @@ public class Toets implements java.io.Serializable {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 37 * hash + (this.bestand != null ? this.bestand.hashCode() : 0);
+        hash = 37 * hash + (this.naam != null ? this.naam.hashCode() : 0);
+        hash = 37 * hash + (this.stof != null ? this.stof.hashCode() : 0);
+        hash = 37 * hash + (this.status != null ? this.status.hashCode() : 0);
+        hash = 37 * hash + (this.omschrijving != null ? this.omschrijving.hashCode() : 0);
+        hash = 37 * hash + (this.minimumResultaat != null ? this.minimumResultaat.hashCode() : 0);
+        hash = 37 * hash + (this.toetsResultaten != null ? this.toetsResultaten.hashCode() : 0);
+        return hash;
     }
 
     @Override

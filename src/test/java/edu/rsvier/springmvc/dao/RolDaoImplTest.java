@@ -6,7 +6,7 @@ import edu.rsvier.springmvc.configuration.HibernateConfiguration;
 import edu.rsvier.springmvc.model.Persoon;
 import edu.rsvier.springmvc.model.Persoonsrol;
 import edu.rsvier.springmvc.model.Rol;
-import java.util.Date;
+import java.sql.Date;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -41,7 +41,7 @@ public class RolDaoImplTest {
         Persoonsrol persoonsRol = new Persoonsrol();
         persoonsRol.setPersoon(persoon);
         persoonsRol.setRol(rol);
-        persoonsRol.setEinddatum(new Date());
+        persoonsRol.setEinddatum(new Date(123456789));
 
         rol.getPersoonsrollen().add(persoonsRol);
 
