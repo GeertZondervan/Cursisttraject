@@ -1,6 +1,6 @@
 package edu.rsvier.springmvc.model;
 
-import java.util.Date;
+import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
@@ -66,6 +66,7 @@ public class ToetsResultaatId implements java.io.Serializable {
             return false;
         }
         if (!(other instanceof ToetsResultaatId)) {
+            System.out.println("niet de juiste class");
             return false;
         }
         ToetsResultaatId castOther = (ToetsResultaatId) other;

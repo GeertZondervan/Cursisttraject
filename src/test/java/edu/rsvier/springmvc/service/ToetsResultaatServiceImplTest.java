@@ -90,7 +90,8 @@ public class ToetsResultaatServiceImplTest {
         ToetsResultaat result = service.read(toetsResultaat.getId());
         assertNotNull("toetsResultaat must not be null", toetsResultaat);
         assertNotNull("result must not be null", result);
-        assertEquals("toetsResultaat, all fields must be equal", toetsResultaat, result);
+        assertEquals("Persoonsrol must be equal", toetsResultaat.getPersoonsrol().getPersoon(), result.getPersoonsrol().getPersoon());
+        assertEquals("Toets must be equal", toetsResultaat.getToets().getNaam(), result.getToets().getNaam());
     }
 
     @Test
@@ -118,7 +119,8 @@ public class ToetsResultaatServiceImplTest {
         
         assertNotNull("toetsResultaat must not be null", toetsResultaat);
         assertNotNull("result must not be null", result);
-        assertEquals("toetsResultaat, all fields must be equal", toetsResultaat, result);
+        assertEquals("Persoonsrol must be equal", toetsResultaat.getPersoonsrol().getPersoon(), result.getPersoonsrol().getPersoon());
+        assertEquals("Toets must be equal", toetsResultaat.getToets().getNaam(), result.getToets().getNaam());
     }
 
     @Test

@@ -1,6 +1,6 @@
 package edu.rsvier.springmvc.model;
 
-import java.util.Date;
+import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
@@ -55,6 +55,7 @@ public class PersoonsrolId implements java.io.Serializable {
             return false;
         }
         if (!(other instanceof PersoonsrolId)) {
+            System.out.println("niet de juiste class");
             return false;
         }
         PersoonsrolId castOther = (PersoonsrolId) other;

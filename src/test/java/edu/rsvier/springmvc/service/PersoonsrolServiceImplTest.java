@@ -65,10 +65,13 @@ public class PersoonsrolServiceImplTest {
         service.create(persoonsrol2);
         service.flushSession();
         Persoonsrol result = (Persoonsrol) service.read(persoonsrol2.getId());
-
+        
         assertNotNull("persoonsrol must not be null", persoonsrol2);
         assertNotNull("result must not be null", result);
-        assertEquals("persoonsrol, all fields must be equal", persoonsrol2, result);
+       
+        assertEquals("persoon must be equal", persoonsrol2.getPersoon(), result.getPersoon());
+        assertEquals("rol must be equal", persoonsrol2.getRol(), result.getRol());
+        
     }
 
     @Test

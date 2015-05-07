@@ -1,6 +1,6 @@
 package edu.rsvier.springmvc.model;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.AttributeOverride;
@@ -14,8 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
 
 @Entity
 @Table(name = "persoonsrol", catalog = "cursisttraject_relatiebeheer")
@@ -60,7 +59,7 @@ public class Persoonsrol implements java.io.Serializable {
         this.rol = rol;
     }
 
-    @Temporal(TemporalType.DATE)
+    
     @Column(name = "einddatum", length = 10)
     public Date getEinddatum() {
         return this.einddatum;
@@ -84,13 +83,12 @@ public class Persoonsrol implements java.io.Serializable {
         if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (!(obj instanceof Persoonsrol)) {
+            System.out.println("niet de juiste class");
             return false;
         }
         final Persoonsrol other = (Persoonsrol) obj;
-        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
-            return false;
-        }
+
         if (this.persoon != other.persoon && (this.persoon == null || !this.persoon.equals(other.persoon))) {
             return false;
         }
@@ -102,6 +100,15 @@ public class Persoonsrol implements java.io.Serializable {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 11 * hash + (this.persoon != null ? this.persoon.hashCode() : 0);
+        hash = 11 * hash + (this.rol != null ? this.rol.hashCode() : 0);
+        hash = 11 * hash + (this.toetsResultaten != null ? this.toetsResultaten.hashCode() : 0);
+        return hash;
     }
 
     @Override

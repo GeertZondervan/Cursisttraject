@@ -28,6 +28,14 @@ public class Expertise implements java.io.Serializable {
         return this.id;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 79 * hash + (this.naam != null ? this.naam.hashCode() : 0);
+        hash = 79 * hash + (this.omschrijving != null ? this.omschrijving.hashCode() : 0);
+        return hash;
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -65,13 +73,11 @@ public class Expertise implements java.io.Serializable {
         if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (!(obj instanceof Expertise)) {
+            System.out.println("niet de juiste class");
             return false;
         }
         final Expertise other = (Expertise) obj;
-        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
-            return false;
-        }
 
         if ((this.naam == null) ? (other.naam != null) : !this.naam.equals(other.naam)) {
             return false;

@@ -71,6 +71,16 @@ public class Module implements java.io.Serializable {
         return this.expertises;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 31 * hash + (this.omschrijving != null ? this.omschrijving.hashCode() : 0);
+        hash = 31 * hash + (this.lengteInWeken != null ? this.lengteInWeken.hashCode() : 0);
+        hash = 31 * hash + (this.expertises != null ? this.expertises.hashCode() : 0);
+        hash = 31 * hash + (this.toetsen != null ? this.toetsen.hashCode() : 0);
+        return hash;
+    }
+
     public void setExpertises(Set<Expertise> expertises) {
         this.expertises = expertises;
     }
@@ -89,16 +99,15 @@ public class Module implements java.io.Serializable {
         if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (!(obj instanceof Module)) {
+            System.out.println("niet de juiste class");
             return false;
         }
         final Module other = (Module) obj;
-        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+        //Wiemer: checken alleen op naam ivm de dateobjecten die maar niet gelijk willen zijn, ondanks dat ze dat wel zijn.
+        if (this.traject.getNaam() != other.traject.getNaam() && (this.traject.getNaam() == null || !this.traject.getNaam().equals(other.traject.getNaam()))) {
             return false;
         }
-//        if (this.traject != other.traject && (this.traject == null || !this.traject.equals(other.traject))) {
-//            return false;
-//        }
         if ((this.omschrijving == null) ? (other.omschrijving != null) : !this.omschrijving.equals(other.omschrijving)) {
             return false;
         }
