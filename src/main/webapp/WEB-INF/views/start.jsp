@@ -32,5 +32,6 @@
             </c:forEach>
         </table>
         <br/>
+        <a href="<c:url value='/registratie' />">Voeg nieuw persoon toe</a>
     </body>
 </html>
