@@ -6,7 +6,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <link rel="stylesheet" type="text/css" <c:url value="/resources/css/main.css" />>
-        <title>Startpagina</title>
+        <title>Personenlijst</title>
 
         <style>
             tr:first-child{
@@ -19,7 +19,7 @@
 
 
     <body>
-        <h2>Lijst van personen</h2>	
+        <h2>Personenlijst</h2>	
         <table>
             <tr>
                 <td>voornaam</td><td>achternaam</td>
@@ -28,10 +28,13 @@
                 <tr>
                     <td>${persoon.voornaam}</td>
                     <td>${persoon.achternaam}</td>
+                    <td><a href="<c:url value='/update-${persoon.id} ' />">Wijzig</a></td>
+                    <td><a href="<c:url value='/delete-${persoon.id} ' />">Verwijder</a></td>
+                    <td><a href="<c:url value='/resultaten-${persoon.id} ' />">Resultaten</a></td>
                 </tr>
             </c:forEach>
         </table>
         <br/>
-        <a href="<c:url value='/registratie' />">Voeg nieuw persoon toe</a>
+        <a href="<c:url value='/nieuwpersoon' />">Voeg nieuw persoon toe</a>
     </body>
 </html>

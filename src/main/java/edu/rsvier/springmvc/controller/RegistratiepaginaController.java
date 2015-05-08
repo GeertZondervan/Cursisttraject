@@ -16,18 +16,20 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-/**
- *
- * @author Wiemer
- */
 @Controller
-@RequestMapping(value = {"/registratie"})
 public class RegistratiepaginaController {
 
     @Autowired
     PersoonService service;
+    
+    @RequestMapping(value = {"/nieuwpersoon"}, method = RequestMethod.GET)
+    public String newPersoon(Persoon persoon, ModelMap model) {
 
-    @RequestMapping( method = RequestMethod.POST)
+        model.addAttribute("persoon", persoon);
+        return "registratie";
+    }
+
+    @RequestMapping(value="/nieuwpersoon", method = RequestMethod.POST)
 
     public String savePersoon(@Valid Persoon persoon, BindingResult result,
             ModelMap model) {
@@ -37,8 +39,9 @@ public class RegistratiepaginaController {
         }
         
         service.create(persoon);
-        model.addAttribute("persoon", persoon);
-        return "/list";
+        model.addAttribute("succes", "Persoon " + persoon.getVoornaam() + " "
+                + persoon.getAchternaam() + " staat geregistreerd");
+        return "persoonregistratiesucces";
     }
 
 }

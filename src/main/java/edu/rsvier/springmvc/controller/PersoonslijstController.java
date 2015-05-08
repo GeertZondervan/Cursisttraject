@@ -9,17 +9,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import edu.rsvier.springmvc.model.Persoon;
+import edu.rsvier.springmvc.model.ToetsResultaat;
 
 import edu.rsvier.springmvc.service.PersoonService;
+import edu.rsvier.springmvc.service.ToetsResultaatService;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping({"/", "/list"})
 public class PersoonslijstController {
 
     @Autowired
     PersoonService service;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @Autowired
+    ToetsResultaatService resultaatService;
+
+    @RequestMapping(value = {"/", "list"}, method = RequestMethod.GET)
     public String listPersonen(ModelMap model) {
 
         List<Persoon> personen = service.getAll();
@@ -27,12 +33,38 @@ public class PersoonslijstController {
         return "start";
     }
 
-    @RequestMapping(value = {"/registratie"}, method = RequestMethod.GET)
-    public String newPersoon(Persoon persoon, ModelMap model) {
-
-        model.addAttribute("persoon", persoon);
-        return "registratie";
-    }
+//    @RequestMapping(value = {"/resultaten-{id}"}, method = RequestMethod.GET)
+//    public String resultatenPersoonGet(@PathVariable int id, Persoon persoon, ModelMap model) {
+//        persoon = service.read(id);
+//        model.addAttribute("persoon", persoon);
+//        ToetsResultaat resultaat = persoon.getPersoonsrollen().
+//        List<ToetsResultaat> resultaten = persoon.getPersoonsrollen().get(0).get;
+//        model.addAttribute("resultaten", resultaten);
+//        Resultaat resultaat = new Resultaat();
+//        model.addAttribute("resultaat", resultaat);
+//        return "resultatenpagina";
+//    }
+//
+//    @RequestMapping(value = {"/resultaten-{id}"}, method = RequestMethod.POST, params = "verwijder")
+//    public String verwijderResultaat(@RequestParam(value = "verwijder") int resultaatId, Persoon persoon, ModelMap model) {
+//        System.out.println("Methode is gekoppeld" + resultaatId);
+//        resultaatService.deleteResultaat(resultaatService.read(resultaatId));
+//        return resultatenPersoonGet(persoon.getId(), persoon, model);
+//    }
+//
+//    @RequestMapping(value = {"/resultaten-{id}"}, method = RequestMethod.POST, params = "voegtoe")
+//    public String voegToeResultaat(@RequestParam(value = "voegtoe") int id, Resultaat resultaat, Persoon persoon, ModelMap model) {
+//        System.out.println("Persoon gekoppeld aan resultaat: " + id);
+//        System.out.println(persoon);
+//        persoon = service.read(id);
+//        persoon.getResultaten().add(resultaat);
+//        System.out.println(resultaat);
+//        resultaat.setPersoon(persoon);
+//        resultaatService.createResultaat(resultaat);
+//        service.updatePersoon(persoon);
+//
+//        return resultatenPersoonGet(persoon.getId(), persoon, model);
+//    }
 
 //    /*
 //     * This method will provide the medium to add a new employee.
@@ -116,39 +148,4 @@ public class PersoonslijstController {
 //    /*
 //     * This method will delete an employee by it's SSN value.
 //     */
-//    
-//
-//    @RequestMapping(value = {"/resultaten-{id}"}, method = RequestMethod.POST, params = "verwijder")
-//    public String verwijderResultaat(@RequestParam(value = "verwijder") int resultaatId, Persoon persoon, ModelMap model) {
-//        System.out.println("Methode is gekoppeld" + resultaatId);
-//        resultaatService.deleteResultaat(resultaatService.read(resultaatId));
-//        return resultatenPersoonGet(persoon.getId(), persoon, model);
-//    }
-//    
-//       @RequestMapping(value = {"/resultaten-{id}"}, method = RequestMethod.POST, params = "voegtoe")
-//    public String voegToeResultaat(@RequestParam(value = "voegtoe") int id, Resultaat resultaat, Persoon persoon, ModelMap model) {
-//        System.out.println("Persoon gekoppeld aan resultaat: " + id);
-//        System.out.println(persoon);
-//        persoon = service.read(id);
-//        persoon.getResultaten().add(resultaat);
-//        System.out.println(resultaat);
-//        resultaat.setPersoon(persoon);
-//        resultaatService.createResultaat(resultaat);
-//        service.updatePersoon(persoon);
-//        
-//        
-//        return resultatenPersoonGet(persoon.getId(), persoon, model);
-//    }
-//    
-//
-//    @RequestMapping(value = {"/resultaten-{id}"}, method = RequestMethod.GET)
-//    public String resultatenPersoonGet(@PathVariable int id, Persoon persoon, ModelMap model) {
-//        persoon = service.read(id);
-//        model.addAttribute("persoon", persoon);
-//        List<Resultaat> resultaten = persoon.getResultaten();
-//        model.addAttribute("resultaten", resultaten);
-//        Resultaat resultaat = new Resultaat();
-//        model.addAttribute("resultaat", resultaat);
-//        return "resultatenpagina";
-//    }
 }
