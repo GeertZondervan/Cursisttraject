@@ -7,7 +7,7 @@
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-        <title>Nieuwe persoon toevoegen</title>
+        <title>Nieuwe rol toevoegen</title>
 
         <style>
 
@@ -20,21 +20,17 @@
 
     <body>
 
-        <h2>Registratiepagina</h2>
+        <h2>Nieuwe rol toevoegen</h2>
 
-        <form:form method="POST" modelAttribute="persoon">
+        <form:form method="POST" modelAttribute="rol">
             <table>
                 
                 <tr>
-                    <td><label for="voornaam">Voornaam: </label> </td>
-                    <td><form:input path="voornaam" id="voornaam"/></td>
-                    <td><form:errors path="voornaam" cssClass="error"/></td>
+                    <td><label for="naam">Naam: </label> </td>
+                    <td><form:input path="naam" id="naam"/></td>
+                    <td><form:errors path="naam" cssClass="error"/></td>
                 </tr>
-                <tr>
-                    <td><label for="achternaam">Achternaam: </label> </td>
-                    <td><form:input path="achternaam" id="achternaam"/></td>
-                    <td><form:errors path="achternaam" cssClass="error"/></td>
-                </tr>
+                
                 <tr>
                     <td colspan="3"><input type="submit" value="Register"/></td>
                 </tr>
