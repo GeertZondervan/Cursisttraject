@@ -11,8 +11,17 @@
         <style>
             tr:first-child{
                 font-weight: bold;
-                background-color: #C6C9C4;
+                background-color:mediumaquamarine;
             }
+            tr{
+                
+            }
+            td{
+                padding:5px;
+                border-bottom: 1px solid mediumaquamarine;
+                
+            }
+            
         </style>
 
     </head>
@@ -22,15 +31,15 @@
         <h2>Personenlijst</h2>	
         <table>
             <tr>
-                <td>voornaam</td><td>achternaam</td>
+                <td>Voornaam</td><td>Achternaam</td>
             </tr>
             <c:forEach items="${personen}" var="persoon">
                 <tr>
                     <td>${persoon.voornaam}</td>
                     <td>${persoon.achternaam}</td>
-                    <td><a href="<c:url value='/update-${persoon.id} ' />">Wijzig</a></td>
-                    <td><a href="<c:url value='/delete-${persoon.id} ' />">Verwijder</a></td>
-                    <td><a href="<c:url value='/resultaten-${persoon.id} ' />">Resultaten</a></td>
+                    <td><input type="submit" onclick="location.href='update-${persoon.id} '" name="wijzig" class="button" value="Wijzig" /></td>
+                    <td><input type="submit" onclick="location.href='delete-${persoon.id} '" name="verwijder" class="button" value="Verwijder" /></td>
+                   
                 </tr>
             </c:forEach>
         </table>

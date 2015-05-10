@@ -13,35 +13,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class RegistratiepaginaController {
+public class WijzigpaginaController {
 
     @Autowired
     PersoonService service;
     
-    @RequestMapping(value = {"/nieuwpersoon"}, method = RequestMethod.GET)
-    public String newPersoon(Persoon persoon, ModelMap model) {
-
+    @RequestMapping(value = {"/update-{persoonid}"}, method = RequestMethod.GET)
+    public String getPersoon(@PathVariable int persoonid, Persoon persoon, ModelMap model) {
+        persoon = service.read(persoonid);
         model.addAttribute("persoon", persoon);
-        return "registratie";
+        return "wijzig";
     }
-
-    @RequestMapping(value="/nieuwpersoon", method = RequestMethod.POST)
-
-    public String savePersoon(@Valid Persoon persoon, BindingResult result,
-            ModelMap model) {
-
-        if (result.hasErrors()) {
-            return "registratie";
-        }
+    
+    @RequestMapping(value = {"/update-{persoonid}"}, method = RequestMethod.POST)
+    public String wijzigPersoonPost(@PathVariable int persoonid, Persoon persoon, ModelMap model) {
+        Persoon persoonRead = service.read(persoonid);
+        persoonRead = persoon;
+        persoonRead.setId(persoonid);
+        service.update(persoon);
         
-        service.create(persoon);
-        model.addAttribute("succes", persoon.getVoornaam() + " "
-                + persoon.getAchternaam() + " staat geregistreerd");
+         model.addAttribute("succes", persoon.getVoornaam() + " "
+                + persoon.getAchternaam() + " is gewijzigd");
         return "bevestigingspagina";
     }
+    
 
 }
+
