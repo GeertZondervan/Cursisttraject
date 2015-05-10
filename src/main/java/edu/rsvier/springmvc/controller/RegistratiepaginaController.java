@@ -39,9 +39,9 @@ public class RegistratiepaginaController {
         }
         
         service.create(persoon);
-        model.addAttribute("succes", persoon.getVoornaam() + " "
+        model.addAttribute("succes", "Persoon " + persoon.getVoornaam() + " "
                 + persoon.getAchternaam() + " staat geregistreerd");
-        return "bevestigingspagina";
+        return "persoonregistratiesucces";
     }
 
 }

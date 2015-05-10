@@ -32,7 +32,6 @@ public class PersoonslijstController {
         model.addAttribute("personen", personen);
         return "start";
     }
-  
 
 //    @RequestMapping(value = {"/resultaten-{id}"}, method = RequestMethod.GET)
 //    public String resultatenPersoonGet(@PathVariable int id, Persoon persoon, ModelMap model) {
