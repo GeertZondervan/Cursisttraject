@@ -13,35 +13,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class RegistratiepaginaController {
+public class VerwijderpaginaController {
 
     @Autowired
     PersoonService service;
     
-    @RequestMapping(value = {"/nieuwpersoon"}, method = RequestMethod.GET)
-    public String newPersoon(Persoon persoon, ModelMap model) {
-
+    @RequestMapping(value = {"/delete-{persoonid}"}, method = RequestMethod.GET)
+    public String deletePersoonGet(@PathVariable int persoonid, Persoon persoon, ModelMap model) {
+        persoon = service.read(persoonid);
         model.addAttribute("persoon", persoon);
-        return "registratie";
+        return "verwijder";
     }
-
-    @RequestMapping(value="/nieuwpersoon", method = RequestMethod.POST)
-
-    public String savePersoon(@Valid Persoon persoon, BindingResult result,
-            ModelMap model) {
-
-        if (result.hasErrors()) {
-            return "registratie";
-        }
-        
-        service.create(persoon);
-        model.addAttribute("succes", persoon.getVoornaam() + " "
-                + persoon.getAchternaam() + " staat geregistreerd");
+    
+    @RequestMapping(value = {"/delete-{persoonid}"}, method = RequestMethod.POST)
+    public String deletePersoonPost(@PathVariable int persoonid, Persoon persoon, ModelMap model) {
+        service.delete(service.read(persoonid));
+         model.addAttribute("succes", "Deze persoon is succesvol verwijderd");
         return "bevestigingspagina";
     }
+    
 
 }
+
