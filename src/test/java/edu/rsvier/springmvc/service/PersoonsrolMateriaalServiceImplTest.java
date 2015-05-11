@@ -81,7 +81,17 @@ public class PersoonsrolMateriaalServiceImplTest {
 
     @Test
     public void testUpdate() {
+        service.create(hasMat);
+        PersoonsrolHasMateriaalId id = hasMat.getId();
+        service.flushSession();
+        PersoonsrolHasMateriaal result = service.read(id);
+        result.setCursistBezit('N');
+        service.update(result);
+        service.flushSession();
         
+        hasMat = service.read(id);
+        assertNotNull("result must not be null", hasMat);
+        assertTrue("New CursistBezit must be N", hasMat.getCursistBezit() == ('N')); 
     }
 
     @Test
