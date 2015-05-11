@@ -2,14 +2,13 @@ package edu.rsvier.springmvc.dao;
 
 import edu.rsvier.springmvc.model.PersoonsrolHasMateriaal;
 import edu.rsvier.springmvc.model.PersoonsrolHasMateriaalId;
-import edu.rsvier.springmvc.model.ToetsResultaat;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository("persoonsrolHasMateriaalDao")
-public class PersoonsrolMateriaalDaoImpl extends GenericDaoImpl<PersoonsrolHasMateriaal> implements PersoonsrolMateriaalDao {
+public class PersoonsrolHasMateriaalDaoImpl extends GenericDaoImpl<PersoonsrolHasMateriaal> implements PersoonsrolHasMateriaalDao {
 
-    public PersoonsrolMateriaalDaoImpl() {
+    public PersoonsrolHasMateriaalDaoImpl() {
         super(PersoonsrolHasMateriaal.class);
     }
 

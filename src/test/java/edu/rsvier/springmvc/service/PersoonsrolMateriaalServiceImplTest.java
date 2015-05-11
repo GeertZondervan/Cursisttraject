@@ -30,7 +30,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 public class PersoonsrolMateriaalServiceImplTest {
     
     @Autowired
-    private PersoonsrolMateriaalService service; 
+    private PersoonsrolHasMateriaalService service; 
     @Autowired
     private PersoonsrolService persoonsrolService;
     @Autowired 
@@ -91,9 +91,10 @@ public class PersoonsrolMateriaalServiceImplTest {
         PersoonsrolHasMateriaalId id = hasMat.getId();
         service.flushSession();
         PersoonsrolHasMateriaal result = service.read(id);
+        System.out.println("/////" + result);
         assertNotNull("result must not be null", result);
-        System.out.println("/////" + hasMat.getPersoonsrol());
-        System.out.println("/////" + result.getPersoonsrol());
+        System.out.println("/////" + hasMat.getPersoonsrol().getPersoon());
+        
 //        assertEquals("Persoonsrol must be equal", hasMat.getPersoonsrol(), result.getPersoonsrol());
 //        assertEquals("Materiaal must be equal", hasMat.getMateriaal(), result.getMateriaal());
     }

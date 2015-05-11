@@ -1,6 +1,6 @@
 package edu.rsvier.springmvc.service;
 
-import edu.rsvier.springmvc.dao.PersoonsrolMateriaalDao;
+import edu.rsvier.springmvc.dao.PersoonsrolHasMateriaalDao;
 import edu.rsvier.springmvc.model.PersoonsrolHasMateriaal;
 import edu.rsvier.springmvc.model.PersoonsrolHasMateriaalId;
 import java.util.List;
@@ -10,10 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service("persoonsrolMateriaalService")
 @Transactional
-public class PersoonsrolMateriaalServiceImpl implements PersoonsrolMateriaalService {
+public class PersoonsrolHasMateriaalServiceImpl implements PersoonsrolHasMateriaalService {
 
     @Autowired
-    private PersoonsrolMateriaalDao dao;
+    private PersoonsrolHasMateriaalDao dao;
 
     public void create(PersoonsrolHasMateriaal hasMat) throws IllegalArgumentException {
         if (hasMat.getMateriaal() == null || hasMat.getPersoonsrol() == null) {

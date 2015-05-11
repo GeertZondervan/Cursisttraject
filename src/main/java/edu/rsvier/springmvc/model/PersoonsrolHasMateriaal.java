@@ -69,7 +69,7 @@ public class PersoonsrolHasMateriaal implements java.io.Serializable {
     
     @Override
     public String toString() {
-        return "PersoonsrolHasMateriaal" + ", persoon= " + id + this.getPersoonsrol().getPersoon();
+        return "PersoonsrolHasMateriaal" + ", persoon= " + id + this.getPersoonsrol();
     }
 
 }

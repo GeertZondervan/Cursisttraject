@@ -5,7 +5,7 @@ import edu.rsvier.springmvc.model.PersoonsrolHasMateriaalId;
 import java.util.List;
 
 
-public interface PersoonsrolMateriaalService {
+public interface PersoonsrolHasMateriaalService {
     void create(PersoonsrolHasMateriaal hasMat) throws IllegalArgumentException;
 
     void update(PersoonsrolHasMateriaal hasMat);

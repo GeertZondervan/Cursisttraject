@@ -4,7 +4,7 @@ import edu.rsvier.springmvc.model.PersoonsrolHasMateriaal;
 import edu.rsvier.springmvc.model.PersoonsrolHasMateriaalId;
 import java.util.List;
 
-public interface PersoonsrolMateriaalDao {
+public interface PersoonsrolHasMateriaalDao {
 
     void create(PersoonsrolHasMateriaal hasMat);
 
