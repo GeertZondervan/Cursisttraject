@@ -111,13 +111,13 @@ public class PersoonsrolMateriaalServiceImplTest {
     @Transactional
     public void testDelete() {
         service.create(hasMat);
-//        expectedEx.expect(NullPointerException.class);
-//        expectedEx.expectMessage("PersoonsrolHasMateriaal not found");
+        expectedEx.expect(NullPointerException.class);
+        expectedEx.expectMessage("PersoonsrolHasMateriaal not found");
         
         PersoonsrolHasMateriaalId id = hasMat.getId();
         service.delete(hasMat);
 
-//        PersoonsrolHasMateriaal result = service.read(id);
+        PersoonsrolHasMateriaal result = service.read(id);
 //        assertNull("Result is null, object has been deleted", result);
     }
 
