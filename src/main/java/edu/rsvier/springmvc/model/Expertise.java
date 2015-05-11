@@ -1,5 +1,8 @@
 package edu.rsvier.springmvc.model;
 
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -7,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -19,6 +24,7 @@ public class Expertise implements java.io.Serializable {
     private Module module;
     private String naam;
     private String omschrijving;
+    private Set<Persoon> personen = new HashSet<Persoon>(0);
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -66,6 +72,20 @@ public class Expertise implements java.io.Serializable {
 
     public void setOmschrijving(String omschrijving) {
         this.omschrijving = omschrijving;
+    }
+    
+    @ManyToMany(fetch = FetchType.LAZY,  cascade = {CascadeType.ALL}) 
+    @JoinTable(
+            name = "persoon_has_expertise",
+            joinColumns = @JoinColumn(name = "expertise_id"),
+            inverseJoinColumns = @JoinColumn(name = "persoon_id")
+    )
+    public Set<Persoon> getPersonen() {
+        return personen;
+    }
+
+    public void setPersonen(Set<Persoon> personen) {
+        this.personen = personen;
     }
 
     @Override

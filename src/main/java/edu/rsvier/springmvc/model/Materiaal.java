@@ -1,5 +1,7 @@
 package edu.rsvier.springmvc.model;
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -16,18 +20,7 @@ import javax.persistence.Table;
 
 public class Materiaal implements java.io.Serializable {
 
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 17 * hash + (this.bestand != null ? this.bestand.hashCode() : 0);
-        hash = 17 * hash + (this.titel != null ? this.titel.hashCode() : 0);
-        hash = 17 * hash + (this.auteur != null ? this.auteur.hashCode() : 0);
-        hash = 17 * hash + (this.omschrijving != null ? this.omschrijving.hashCode() : 0);
-        hash = 17 * hash + (this.url != null ? this.url.hashCode() : 0);
-        hash = 17 * hash + (this.isbn13 != null ? this.isbn13.hashCode() : 0);
-        hash = 17 * hash + (this.isbn10 != null ? this.isbn10.hashCode() : 0);
-        return hash;
-    }
+ 
 
     private Integer id;
     private Bestand bestand;
@@ -37,6 +30,7 @@ public class Materiaal implements java.io.Serializable {
     private String url;
     private Integer isbn13;
     private Integer isbn10;
+    private Set<Module> modules = new HashSet<Module>(0);
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -114,6 +108,21 @@ public class Materiaal implements java.io.Serializable {
         this.isbn10 = isbn10;
     }
 
+    @ManyToMany(fetch = FetchType.LAZY,  cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "materiaal_has_module",
+            joinColumns = @JoinColumn(name = "materiaal_id"),
+            inverseJoinColumns = @JoinColumn(name = "module_id")
+    )
+    public Set<Module> getModules() {
+        return modules;
+    }
+
+    public void setModules(Set<Module> modules) {
+        this.modules = modules;
+    }
+    
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -148,5 +157,16 @@ public class Materiaal implements java.io.Serializable {
         }
         return true;
     }
-
+   @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 17 * hash + (this.bestand != null ? this.bestand.hashCode() : 0);
+        hash = 17 * hash + (this.titel != null ? this.titel.hashCode() : 0);
+        hash = 17 * hash + (this.auteur != null ? this.auteur.hashCode() : 0);
+        hash = 17 * hash + (this.omschrijving != null ? this.omschrijving.hashCode() : 0);
+        hash = 17 * hash + (this.url != null ? this.url.hashCode() : 0);
+        hash = 17 * hash + (this.isbn13 != null ? this.isbn13.hashCode() : 0);
+        hash = 17 * hash + (this.isbn10 != null ? this.isbn10.hashCode() : 0);
+        return hash;
+    }
 }

@@ -3,8 +3,11 @@ package edu.rsvier.springmvc.service;
 import edu.rsvier.springmvc.configuration.AppConfig;
 import edu.rsvier.springmvc.configuration.AppInitializer;
 import edu.rsvier.springmvc.configuration.HibernateConfiguration;
+import edu.rsvier.springmvc.model.Expertise;
+import edu.rsvier.springmvc.model.Module;
 import edu.rsvier.springmvc.model.Persoon;
 import edu.rsvier.springmvc.model.Persoonsrol;
+import edu.rsvier.springmvc.model.Traject;
 import java.util.HashSet;
 import org.junit.After;
 import org.junit.Before;
@@ -29,6 +32,15 @@ public class PersoonServiceImplTest {
     @Autowired
     private PersoonService service;
 
+    @Autowired
+    private TrajectService trajectService;
+
+    @Autowired
+    private ModuleService moduleService;
+
+    @Autowired
+    private ExpertiseService expertiseService;
+
     private Persoon persoon;
 
     @Rule
@@ -37,6 +49,13 @@ public class PersoonServiceImplTest {
     @Before
     public void setUp() {
         persoon = PojoGenerator.getPersoon();
+        Traject traject = PojoGenerator.getTraject();
+        trajectService.create(traject);
+        Module module = PojoGenerator.getModule(traject);
+        moduleService.create(module);
+        Expertise expertise = PojoGenerator.getExpertise(module);
+        expertiseService.create(expertise);
+        persoon.getExpertises().add(expertise);
         service.create(persoon);
     }
 
@@ -93,14 +112,14 @@ public class PersoonServiceImplTest {
         persoon2.setVoornaam("Jimmy");
         persoon2.setAchternaam("Choo");
         persoon2.setPersoonsrollen(new HashSet<Persoonsrol>());
-       
+
         service.update(persoon2);
         service.flushSession();
         Persoon result = service.read(persoon.getId());
 
         assertNotNull("Result, must not be null", result);
         assertEquals("result & persoon2, all fields must be equal", persoon2, result);
-        assertTrue("Voornaam + Achternaam, must be Jimmy Choo", 
+        assertTrue("Voornaam + Achternaam, must be Jimmy Choo",
                 result.getVoornaam().equals("Jimmy") && result.getAchternaam().equals("Choo"));
     }
 

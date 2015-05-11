@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.sql.Date;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -54,10 +55,11 @@ public class PojoGenerator {
     static Persoon getPersoon() {
         i += 1;
         Persoon persoon = new Persoon();
-      
+        
         persoon.setVoornaam("Henk " + i);
         persoon.setAchternaam("De Tank" + i);
         persoon.setPersoonsrollen(new HashSet<Persoonsrol>());
+        persoon.setExpertises(new HashSet<Expertise>());
         return persoon;
     }
 

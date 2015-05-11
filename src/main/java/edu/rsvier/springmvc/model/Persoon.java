@@ -9,6 +9,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -20,6 +23,7 @@ public class Persoon implements java.io.Serializable {
     private String voornaam;
     private String achternaam;
     private Set<Persoonsrol> persoonsrollen = new HashSet<Persoonsrol>(0);
+    private Set<Expertise> expertises = new HashSet<Expertise>(0);
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -60,6 +64,20 @@ public class Persoon implements java.io.Serializable {
         this.persoonsrollen = persoonsrollen;
     }
 
+    @ManyToMany(fetch = FetchType.LAZY,  cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "persoon_has_expertise",
+            joinColumns = @JoinColumn(name = "persoon_id"),
+            inverseJoinColumns = @JoinColumn(name = "expertise_id")
+    )
+    public Set<Expertise> getExpertises() {
+        return expertises;
+    }
+
+    public void setExpertises(Set<Expertise> expertises) {
+        this.expertises = expertises;
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
@@ -68,13 +86,10 @@ public class Persoon implements java.io.Serializable {
         hash = 53 * hash + (this.persoonsrollen != null ? this.persoonsrollen.hashCode() : 0);
         return hash;
     }
-    
-    
 
     @Override
     public boolean equals(Object obj) {
-        
-        
+
         if (obj == null) {
             return false;
         }

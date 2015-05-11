@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -25,6 +27,7 @@ public class Module implements java.io.Serializable {
     private Integer lengteInWeken;
     private Set<Expertise> expertises = new HashSet<Expertise>(0);
     private Set<Toets> toetsen = new HashSet<Toets>(0);
+    private Set<Materiaal> materialen = new HashSet<Materiaal>(0);
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -93,6 +96,21 @@ public class Module implements java.io.Serializable {
     public void setToetsen(Set<Toets> toetsen) {
         this.toetsen = toetsen;
     }
+
+    @ManyToMany(fetch = FetchType.LAZY,  cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "materiaal_has_module",
+            joinColumns = @JoinColumn(name = "module_id"),
+            inverseJoinColumns = @JoinColumn(name = "materiaal_id")
+    )
+    public Set<Materiaal> getMaterialen() {
+        return materialen;
+    }
+
+    public void setMaterialen(Set<Materiaal> materialen) {
+        this.materialen = materialen;
+    }
+    
 
     @Override
     public boolean equals(Object obj) {
