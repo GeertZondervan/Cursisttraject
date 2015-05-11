@@ -5,7 +5,6 @@ import java.util.Calendar;
 import java.sql.Date;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
-import java.util.Set;
 
 /**
  *
@@ -112,7 +111,7 @@ public class PojoGenerator {
         return toetsResultaat;
     }
     
-    static ToetsResultaatId getToetsResultaatId(PersoonsrolId persoonsrolId, Toets toets){
+        static ToetsResultaatId getToetsResultaatId(PersoonsrolId persoonsrolId, Toets toets){
         i+=1;
         ToetsResultaatId toetsResultaatId = new ToetsResultaatId();
         toetsResultaatId.setToetsId(toets.getId());
@@ -122,6 +121,29 @@ public class PojoGenerator {
         
         return toetsResultaatId;
     }
+    
+    static PersoonsrolHasMateriaal getPersoonsrolHasMateriaal(Materiaal materiaal, Persoonsrol persoonsrol) {
+        i+=1;
+        PersoonsrolHasMateriaal hasMat = new PersoonsrolHasMateriaal();
+        hasMat.setPersoonsrol(persoonsrol);
+        hasMat.setMateriaal(materiaal);
+        hasMat.setCursistBezit('Y');
+        hasMat.setId(getPersoonsrolHasMateriaalId(persoonsrol.getId(), materiaal));
+        
+        return hasMat;
+    }
+    
+    static PersoonsrolHasMateriaalId getPersoonsrolHasMateriaalId(PersoonsrolId persoonsrolId, Materiaal materiaal) {
+        i+=1;
+        PersoonsrolHasMateriaalId id = new PersoonsrolHasMateriaalId();
+        id.setPersoonsrolPersoonId(persoonsrolId.getPersoonId());
+        id.setPersoonsrolRolId(persoonsrolId.getRolId());
+        id.setPersoonsrolBegindatum(persoonsrolId.getBegindatum());
+        id.setMateriaalId(materiaal.getId());
+        
+        return id;
+    }
+
    
 
     static Traject getTraject() {

@@ -12,16 +12,6 @@ public class PersoonsrolHasMateriaalId implements java.io.Serializable {
     private Date persoonsrolBegindatum;
     private int materiaalId;
 
-    public PersoonsrolHasMateriaalId() {
-    }
-
-    public PersoonsrolHasMateriaalId(int persoonsrolPersoonId, int persoonsrolRolId, Date persoonsrolBegindatum, int materiaalId) {
-        this.persoonsrolPersoonId = persoonsrolPersoonId;
-        this.persoonsrolRolId = persoonsrolRolId;
-        this.persoonsrolBegindatum = persoonsrolBegindatum;
-        this.materiaalId = materiaalId;
-    }
-
     @Column(name = "persoonsrol_persoon_id", nullable = false)
     public int getPersoonsrolPersoonId() {
         return this.persoonsrolPersoonId;
