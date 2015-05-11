@@ -78,6 +78,52 @@ public class PojoGenerator {
 
         return persoonsrol;
     }
+    
+     static PersoonsrolHasMateriaal getPersoonsrolHasMateriaal(Materiaal materiaal, Persoonsrol persoonsrol) {
+        i+=1;
+        PersoonsrolHasMateriaal hasMat = new PersoonsrolHasMateriaal();
+        hasMat.setPersoonsrol(persoonsrol);
+        hasMat.setMateriaal(materiaal);
+        hasMat.setCursistBezit('Y');
+        hasMat.setId(getPersoonsrolHasMateriaalId(persoonsrol.getId(), materiaal));
+        
+        return hasMat;
+    }
+    
+    static PersoonsrolHasMateriaalId getPersoonsrolHasMateriaalId(PersoonsrolId persoonsrolId, Materiaal materiaal) {
+        i+=1;
+        PersoonsrolHasMateriaalId id = new PersoonsrolHasMateriaalId();
+        id.setPersoonsrolPersoonId(persoonsrolId.getPersoonId());
+        id.setPersoonsrolRolId(persoonsrolId.getRolId());
+        id.setPersoonsrolBegindatum(persoonsrolId.getBegindatum());
+        id.setMateriaalId(materiaal.getId());
+        
+        return id;
+    }
+    
+    static PersoonsrolHasTraject getPersoonsrolHasTraject(Traject traject, Persoonsrol persoonsrol){
+        i+=1;
+        PersoonsrolHasTraject hasTraject = new PersoonsrolHasTraject();
+        hasTraject.setPersoonsrol(persoonsrol);
+        hasTraject.setTraject(traject);
+        hasTraject.setBegindatum(new Date(123456789));
+        hasTraject.setSuccesvolAfgerond('Y');
+        hasTraject.setId(getPersoonsrolHasTrajectId(persoonsrol.getId(), traject));
+        
+        return hasTraject;
+    
+    }
+    
+    static PersoonsrolHasTrajectId getPersoonsrolHasTrajectId(PersoonsrolId persoonsrolId, Traject traject){
+        i+=1;
+        PersoonsrolHasTrajectId id = new PersoonsrolHasTrajectId();
+        id.setPersoonsrolPersoonId(persoonsrolId.getPersoonId());
+        id.setPersoonsrolRolId(persoonsrolId.getRolId());
+        id.setPersoonsrolBegindatum(persoonsrolId.getBegindatum());
+        id.setTrajectId(traject.getId());
+        
+        return id;
+    }
 
     static Rol getRol() {
         i += 1;
@@ -121,31 +167,7 @@ public class PojoGenerator {
         
         return toetsResultaatId;
     }
-    
-    static PersoonsrolHasMateriaal getPersoonsrolHasMateriaal(Materiaal materiaal, Persoonsrol persoonsrol) {
-        i+=1;
-        PersoonsrolHasMateriaal hasMat = new PersoonsrolHasMateriaal();
-        hasMat.setPersoonsrol(persoonsrol);
-        hasMat.setMateriaal(materiaal);
-        hasMat.setCursistBezit('Y');
-        hasMat.setId(getPersoonsrolHasMateriaalId(persoonsrol.getId(), materiaal));
-        
-        return hasMat;
-    }
-    
-    static PersoonsrolHasMateriaalId getPersoonsrolHasMateriaalId(PersoonsrolId persoonsrolId, Materiaal materiaal) {
-        i+=1;
-        PersoonsrolHasMateriaalId id = new PersoonsrolHasMateriaalId();
-        id.setPersoonsrolPersoonId(persoonsrolId.getPersoonId());
-        id.setPersoonsrolRolId(persoonsrolId.getRolId());
-        id.setPersoonsrolBegindatum(persoonsrolId.getBegindatum());
-        id.setMateriaalId(materiaal.getId());
-        
-        return id;
-    }
-
-   
-
+ 
     static Traject getTraject() {
         i += 1;
         Traject traject = new Traject();

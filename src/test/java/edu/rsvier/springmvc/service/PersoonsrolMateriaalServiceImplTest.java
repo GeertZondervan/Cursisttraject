@@ -9,8 +9,6 @@ import edu.rsvier.springmvc.model.Persoonsrol;
 import edu.rsvier.springmvc.model.PersoonsrolHasMateriaal;
 import edu.rsvier.springmvc.model.PersoonsrolHasMateriaalId;
 import edu.rsvier.springmvc.model.Rol;
-import edu.rsvier.springmvc.model.ToetsResultaat;
-import edu.rsvier.springmvc.model.ToetsResultaatId;
 import java.util.List;
 import org.junit.After;
 import org.junit.Before;
@@ -37,11 +35,11 @@ public class PersoonsrolMateriaalServiceImplTest {
     @Autowired
     private PersoonsrolService persoonsrolService;
     @Autowired 
-    MateriaalService materiaalService;
+    private MateriaalService materiaalService;
     @Autowired
-    PersoonService persoonService;     
+    private PersoonService persoonService;     
     @Autowired
-    RolService rolService;   
+    private RolService rolService;   
     private PersoonsrolHasMateriaal hasMat;
     
     @Rule
@@ -80,6 +78,7 @@ public class PersoonsrolMateriaalServiceImplTest {
     }
 
     @Test
+    @Transactional
     public void testUpdate() {
         service.create(hasMat);
         PersoonsrolHasMateriaalId id = hasMat.getId();
@@ -118,7 +117,7 @@ public class PersoonsrolMateriaalServiceImplTest {
         service.delete(hasMat);
 
         PersoonsrolHasMateriaal result = service.read(id);
-//        assertNull("Result is null, object has been deleted", result);
+        assertNull("Result is null, object has been deleted", result);
     }
 
     @Test
@@ -130,6 +129,6 @@ public class PersoonsrolMateriaalServiceImplTest {
         assertNotNull("resultList must not be null", resultList);
         PersoonsrolHasMateriaal result = resultList.get(resultList.size()-1);
         assertEquals("result and hasMat must be equal", hasMat.getId().getMateriaalId(), result.getId().getMateriaalId());
-       // assertTrue("hasMat must be in the resultList", resultList.contains(hasMat));
+        //assertTrue("hasMat must be in the resultList", resultList.contains(hasMat));
     }   
 }

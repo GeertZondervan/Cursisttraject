@@ -30,7 +30,7 @@ public class PersoonsrolHasTrajectServiceImpl implements PersoonsrolHasTrajectSe
     public PersoonsrolHasTraject read(PersoonsrolHasTrajectId id) throws NullPointerException {
        PersoonsrolHasTraject persoonTraject = dao.read(id);
         if (persoonTraject == null) {
-            throw new NullPointerException("ToetsResultaat not found");
+            throw new NullPointerException("PersoonsrolHasTraject not found");
         }
 
         return persoonTraject;

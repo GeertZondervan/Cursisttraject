@@ -57,7 +57,6 @@ public class PersoonsrolHasTraject implements java.io.Serializable {
         this.id = id;
     }
 
-    @Temporal(TemporalType.DATE)
     @Column(name = "begindatum", nullable = false, length = 10)
     public Date getBegindatum() {
         return this.begindatum;
@@ -67,7 +66,6 @@ public class PersoonsrolHasTraject implements java.io.Serializable {
         this.begindatum = begindatum;
     }
 
-    @Temporal(TemporalType.DATE)
     @Column(name = "einddatum", length = 10)
     public Date getEinddatum() {
         return this.einddatum;

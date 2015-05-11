@@ -12,15 +12,7 @@ public class PersoonsrolHasTrajectId implements java.io.Serializable {
     private Date persoonsrolBegindatum;
     private int trajectId;
 
-    public PersoonsrolHasTrajectId() {
-    }
 
-    public PersoonsrolHasTrajectId(int persoonsrolPersoonId, int persoonsrolRolId, Date persoonsrolBegindatum, int trajectId) {
-        this.persoonsrolPersoonId = persoonsrolPersoonId;
-        this.persoonsrolRolId = persoonsrolRolId;
-        this.persoonsrolBegindatum = persoonsrolBegindatum;
-        this.trajectId = trajectId;
-    }
 
     @Column(name = "persoonsrol_persoon_id", nullable = false)
     public int getPersoonsrolPersoonId() {
