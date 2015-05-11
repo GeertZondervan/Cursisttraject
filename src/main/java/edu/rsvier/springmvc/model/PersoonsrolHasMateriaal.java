@@ -2,6 +2,7 @@ package edu.rsvier.springmvc.model;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -19,18 +20,6 @@ public class PersoonsrolHasMateriaal implements java.io.Serializable {
     private Persoonsrol persoonsrol;
     private Materiaal materiaal;
     private Character cursistBezit;
-
-    public PersoonsrolHasMateriaal() {
-    }
-
-    public PersoonsrolHasMateriaal(PersoonsrolHasMateriaalId id) {
-        this.id = id;
-    }
-
-    public PersoonsrolHasMateriaal(PersoonsrolHasMateriaalId id, Character cursistBezit) {
-        this.id = id;
-        this.cursistBezit = cursistBezit;
-    }
 
     @EmbeddedId
     @AttributeOverrides({
@@ -59,8 +48,10 @@ public class PersoonsrolHasMateriaal implements java.io.Serializable {
         this.persoonsrol = persoonsrol;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "materiaal_id", nullable = false, insertable = false, updatable = false)
     public Materiaal getMateriaal() {
-        return materiaal;
+        return this.materiaal;
     }
 
     public void setMateriaal(Materiaal materiaal) {
@@ -74,6 +65,11 @@ public class PersoonsrolHasMateriaal implements java.io.Serializable {
 
     public void setCursistBezit(Character cursistBezit) {
         this.cursistBezit = cursistBezit;
+    }
+    
+    @Override
+    public String toString() {
+        return "PersoonsrolHasMateriaal" + ", persoon= " + id + this.getPersoonsrol().getPersoon();
     }
 
 }
