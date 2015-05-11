@@ -13,14 +13,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "materiaal", catalog = "cursisttraject_relatiebeheer")
 
 public class Materiaal implements java.io.Serializable {
-
- 
 
     private Integer id;
     private Bestand bestand;
@@ -31,6 +30,7 @@ public class Materiaal implements java.io.Serializable {
     private Integer isbn13;
     private Integer isbn10;
     private Set<Module> modules = new HashSet<Module>(0);
+    private Set<PersoonsrolHasMateriaal> heeftPersoonsrollen = new HashSet<PersoonsrolHasMateriaal>(0);
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -108,7 +108,7 @@ public class Materiaal implements java.io.Serializable {
         this.isbn10 = isbn10;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY,  cascade = {CascadeType.ALL})
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @JoinTable(
             name = "materiaal_has_module",
             joinColumns = @JoinColumn(name = "materiaal_id"),
@@ -121,7 +121,15 @@ public class Materiaal implements java.io.Serializable {
     public void setModules(Set<Module> modules) {
         this.modules = modules;
     }
-    
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "materiaal", cascade = {CascadeType.ALL})
+    public Set<PersoonsrolHasMateriaal> getHeeftPersoonsrollen() {
+        return heeftPersoonsrollen;
+    }
+
+    public void setHeeftPersoonsrollen(Set<PersoonsrolHasMateriaal> heeftPersoonsrollen) {
+        this.heeftPersoonsrollen = heeftPersoonsrollen;
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -157,7 +165,8 @@ public class Materiaal implements java.io.Serializable {
         }
         return true;
     }
-   @Override
+
+    @Override
     public int hashCode() {
         int hash = 3;
         hash = 17 * hash + (this.bestand != null ? this.bestand.hashCode() : 0);

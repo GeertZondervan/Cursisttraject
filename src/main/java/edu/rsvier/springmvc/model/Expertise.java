@@ -16,8 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "expertise", catalog = "cursisttraject_relatiebeheer"
-)
+@Table(name = "expertise", catalog = "cursisttraject_relatiebeheer")
 public class Expertise implements java.io.Serializable {
 
     private Integer id;
@@ -73,8 +72,8 @@ public class Expertise implements java.io.Serializable {
     public void setOmschrijving(String omschrijving) {
         this.omschrijving = omschrijving;
     }
-    
-    @ManyToMany(fetch = FetchType.LAZY,  cascade = {CascadeType.ALL}) 
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @JoinTable(
             name = "persoon_has_expertise",
             joinColumns = @JoinColumn(name = "expertise_id"),

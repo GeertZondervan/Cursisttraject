@@ -14,8 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "bestand", catalog = "cursisttraject_relatiebeheer"
-)
+@Table(name = "bestand", catalog = "cursisttraject_relatiebeheer")
 public class Bestand implements java.io.Serializable {
 
     private int id;

@@ -64,7 +64,7 @@ public class Persoon implements java.io.Serializable {
         this.persoonsrollen = persoonsrollen;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY,  cascade = {CascadeType.ALL})
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @JoinTable(
             name = "persoon_has_expertise",
             joinColumns = @JoinColumn(name = "persoon_id"),

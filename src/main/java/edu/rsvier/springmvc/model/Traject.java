@@ -12,12 +12,9 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "traject", catalog = "cursisttraject_relatiebeheer"
-)
+@Table(name = "traject", catalog = "cursisttraject_relatiebeheer")
 public class Traject implements java.io.Serializable {
 
     private Integer id;
@@ -26,6 +23,7 @@ public class Traject implements java.io.Serializable {
     private Date startdatum;
     private Date sluitingsdatum;
     private Set<Module> modules = new HashSet<Module>(0);
+    private Set<PersoonsrolHasTraject> heeftPersoonsrollen = new HashSet<PersoonsrolHasTraject>(0);
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -57,10 +55,9 @@ public class Traject implements java.io.Serializable {
         this.omschrijving = omschrijving;
     }
 
-   
     @Column(name = "startdatum", length = 10)
     public Date getStartdatum() {
-        
+
         return this.startdatum;
     }
 
@@ -68,7 +65,6 @@ public class Traject implements java.io.Serializable {
         this.startdatum = startdatum;
     }
 
-    
     @Column(name = "sluitingsdatum", length = 10)
     public Date getSluitingsdatum() {
         return this.sluitingsdatum;
@@ -92,6 +88,15 @@ public class Traject implements java.io.Serializable {
         return ("Traject: " + this.getNaam() + " : " + this.getOmschrijving() + " " + this.getStartdatum() + " " + this.getSluitingsdatum());
     }
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "traject", cascade = {CascadeType.ALL})
+    public Set<PersoonsrolHasTraject> getHeeftPersoonsrollen() {
+        return heeftPersoonsrollen;
+    }
+
+    public void setHeeftPersoonsrollen(Set<PersoonsrolHasTraject> heeftPersoonsrollen) {
+        this.heeftPersoonsrollen = heeftPersoonsrollen;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -112,7 +117,7 @@ public class Traject implements java.io.Serializable {
         if (this.startdatum.toString() != other.startdatum.toString() && (this.startdatum.toString() == null || !this.startdatum.toString().equals(other.startdatum.toString()))) {
             return false;
         }
-       
+
         if (this.modules != other.modules && (this.modules == null || !this.modules.equals(other.modules))) {
             return false;
         }

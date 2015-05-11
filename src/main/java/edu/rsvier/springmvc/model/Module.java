@@ -17,8 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "module", catalog = "cursisttraject_relatiebeheer"
-)
+@Table(name = "module", catalog = "cursisttraject_relatiebeheer")
 public class Module implements java.io.Serializable {
 
     private Integer id;
@@ -97,7 +96,7 @@ public class Module implements java.io.Serializable {
         this.toetsen = toetsen;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY,  cascade = {CascadeType.ALL})
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @JoinTable(
             name = "materiaal_has_module",
             joinColumns = @JoinColumn(name = "module_id"),
@@ -110,7 +109,6 @@ public class Module implements java.io.Serializable {
     public void setMaterialen(Set<Materiaal> materialen) {
         this.materialen = materialen;
     }
-    
 
     @Override
     public boolean equals(Object obj) {

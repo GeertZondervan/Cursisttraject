@@ -12,12 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "toets_resultaat", catalog = "cursisttraject_relatiebeheer"
-)
+@Table(name = "toets_resultaat", catalog = "cursisttraject_relatiebeheer")
 public class ToetsResultaat implements java.io.Serializable {
 
     private ToetsResultaatId id;
@@ -75,7 +72,6 @@ public class ToetsResultaat implements java.io.Serializable {
         this.toets = toets;
     }
 
-   
     @Column(name = "datum", nullable = false, length = 10)
     public Date getDatum() {
         return this.datum;

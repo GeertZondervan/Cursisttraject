@@ -15,7 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name = "persoonsrol", catalog = "cursisttraject_relatiebeheer")
 public class Persoonsrol implements java.io.Serializable {
@@ -25,6 +24,8 @@ public class Persoonsrol implements java.io.Serializable {
     private Rol rol;
     private Date einddatum;
     private Set<ToetsResultaat> toetsResultaten = new HashSet<ToetsResultaat>(0);
+    private Set<PersoonsrolHasMateriaal> heeftMateriaal = new HashSet<PersoonsrolHasMateriaal>(0);
+    private Set<PersoonsrolHasTraject> heeftTrajecten = new HashSet<PersoonsrolHasTraject>(0);
 
     @EmbeddedId
     @AttributeOverrides({
@@ -59,7 +60,6 @@ public class Persoonsrol implements java.io.Serializable {
         this.rol = rol;
     }
 
-    
     @Column(name = "einddatum", length = 10)
     public Date getEinddatum() {
         return this.einddatum;
@@ -76,6 +76,24 @@ public class Persoonsrol implements java.io.Serializable {
 
     public void setToetsResultaten(Set<ToetsResultaat> toetsResultaten) {
         this.toetsResultaten = toetsResultaten;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "persoonsrol", cascade = {CascadeType.ALL})
+    public Set<PersoonsrolHasMateriaal> getHeeftMateriaal() {
+        return heeftMateriaal;
+    }
+
+    public void setHeeftMateriaal(Set<PersoonsrolHasMateriaal> heeftMateriaal) {
+        this.heeftMateriaal = heeftMateriaal;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "persoonsrol", cascade = {CascadeType.ALL})
+    public Set<PersoonsrolHasTraject> getHeeftTrajecten() {
+        return heeftTrajecten;
+    }
+
+    public void setHeeftTrajecten(Set<PersoonsrolHasTraject> heeftTrajecten) {
+        this.heeftTrajecten = heeftTrajecten;
     }
 
     @Override
