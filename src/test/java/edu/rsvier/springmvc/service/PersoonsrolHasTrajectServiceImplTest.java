@@ -83,7 +83,8 @@ public class PersoonsrolHasTrajectServiceImplTest {
         assertEquals("4 must be equal", hasTraject.getPersoonsrol().getPersoon(), result.getPersoonsrol().getPersoon());
         assertEquals("5 must be equal", hasTraject.getPersoonsrol().getRol(), result.getPersoonsrol().getRol());
         assertEquals("6 must be equal", hasTraject.getPersoonsrol().getToetsResultaten(), result.getPersoonsrol().getToetsResultaten());
-        
+       //assertEquals("7 must be equal", hasTraject.getBegindatum(), result.getBegindatum());
+        assertEquals("8 must be equal", hasTraject.getSuccesvolAfgerond(), result.getSuccesvolAfgerond());
         
         //assertEquals("Traject must be equal", hasTraject.getTraject(), result.getTraject());
         assertEquals("TrajectId must be equal", hasTraject.getTraject().getId(), result.getTraject().getId());
