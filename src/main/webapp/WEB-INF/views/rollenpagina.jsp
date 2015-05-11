@@ -38,7 +38,7 @@
                     <td>${rol.naam}</td>
                     
                     <td><input type="submit" onclick="location.href='updaterol-${rol.id} '" name="wijzig" class="button" value="Wijzig" /></td>
-                    
+                    <td><input type="submit" onclick="location.href='deleterol-${rol.id} '" name="verwijder" class="button" value="Verwijder" /></td>
                    
                 </tr>
             </c:forEach>
