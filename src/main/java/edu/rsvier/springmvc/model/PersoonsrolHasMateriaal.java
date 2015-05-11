@@ -35,7 +35,7 @@ public class PersoonsrolHasMateriaal implements java.io.Serializable {
         this.id = id;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumns({
         @JoinColumn(name = "persoonsrol_persoon_id", referencedColumnName = "persoon_id", nullable = false, insertable = false, updatable = false),
         @JoinColumn(name = "persoonsrol_rol_id", referencedColumnName = "rol_id", nullable = false, insertable = false, updatable = false),
@@ -48,7 +48,7 @@ public class PersoonsrolHasMateriaal implements java.io.Serializable {
         this.persoonsrol = persoonsrol;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "materiaal_id", nullable = false, insertable = false, updatable = false)
     public Materiaal getMateriaal() {
         return this.materiaal;
@@ -67,9 +67,9 @@ public class PersoonsrolHasMateriaal implements java.io.Serializable {
         this.cursistBezit = cursistBezit;
     }
     
-    @Override
-    public String toString() {
-        return "PersoonsrolHasMateriaal" + ", persoon= " + id + this.getPersoonsrol();
-    }
+//    @Override
+//    public String toString() {
+//        return "PersoonsrolHasMateriaal" + ", persoon= " + id + this.getPersoonsrol();
+//    }
 
 }
