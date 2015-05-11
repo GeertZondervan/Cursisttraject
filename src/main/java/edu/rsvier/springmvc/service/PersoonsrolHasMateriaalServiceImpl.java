@@ -29,9 +29,8 @@ public class PersoonsrolHasMateriaalServiceImpl implements PersoonsrolHasMateria
     public PersoonsrolHasMateriaal read(PersoonsrolHasMateriaalId id) throws NullPointerException {
         PersoonsrolHasMateriaal perMat = dao.read(id);
         if (perMat == null) {
-            throw new NullPointerException("ToetsResultaat not found");
+            throw new NullPointerException("PersoonsrolHasMateriaal not found");
         }
-
         return perMat;
     }
 

@@ -9,6 +9,8 @@ import edu.rsvier.springmvc.model.Persoonsrol;
 import edu.rsvier.springmvc.model.PersoonsrolHasMateriaal;
 import edu.rsvier.springmvc.model.PersoonsrolHasMateriaalId;
 import edu.rsvier.springmvc.model.Rol;
+import edu.rsvier.springmvc.model.ToetsResultaat;
+import edu.rsvier.springmvc.model.ToetsResultaatId;
 import java.util.List;
 import org.junit.After;
 import org.junit.Before;
@@ -22,6 +24,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {AppInitializer.class, AppConfig.class, HibernateConfiguration.class})
@@ -59,51 +62,74 @@ public class PersoonsrolMateriaalServiceImplTest {
         materiaalService.create(materiaal);
         
         hasMat = PojoGenerator.getPersoonsrolHasMateriaal(materiaal, persoonsrol);
-
     }
     
     @After
     public void tearDown() {
     }
 
-//    @Test
-//    public void testCreate() {
-//        service.flushSession();
-//        PersoonsrolHasMateriaal result = service.read(hasMat.getId());
-//        assertNotNull("result must not be null", result);
-//        assertEquals("Persoonsrol must be equal", hasMat.getPersoonsrol(), result.getPersoonsrol());
-//        assertEquals("Materiaal must be equal", hasMat.getMateriaal(), result.getMateriaal());
-//    }
-
-//    @Test
-//    public void testUpdate() {
-//        System.out.println("update");
-//        PersoonsrolHasMateriaal hasMat = null;
-//        PersoonsrolMateriaalServiceImpl instance = new PersoonsrolMateriaalServiceImpl();
-//        instance.update(hasMat);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    @Test
+    @Transactional
+    public void testCreate() {
+        service.create(hasMat);
+        service.flushSession();
+        PersoonsrolHasMateriaal result = service.read(hasMat.getId());
+        assertNotNull("result must not be null", result);
+        assertEquals("Persoonsrol must be equal", hasMat.getPersoonsrol(), result.getPersoonsrol());
+        assertEquals("Materiaal must be equal", hasMat.getMateriaal(), result.getMateriaal());
+    }
 
     @Test
+    public void testUpdate() {
+        service.create(hasMat);
+        PersoonsrolHasMateriaalId id = hasMat.getId();
+        service.flushSession();
+        PersoonsrolHasMateriaal result = service.read(id);
+        result.setCursistBezit('N');
+        service.update(result);
+        service.flushSession();
+        
+        hasMat = service.read(id);
+        assertNotNull("result must not be null", hasMat);
+        assertTrue("New CursistBezit must be N", hasMat.getCursistBezit() == ('N')); 
+    }
+
+    @Test
+    @Transactional
     public void testRead() {
         service.create(hasMat);
         PersoonsrolHasMateriaalId id = hasMat.getId();
         service.flushSession();
         PersoonsrolHasMateriaal result = service.read(id);
-        System.out.println("/////" + result);
         assertNotNull("result must not be null", result);
-        System.out.println("/////" + hasMat.getPersoonsrol().getPersoon());
         
-//        assertEquals("Persoonsrol must be equal", hasMat.getPersoonsrol(), result.getPersoonsrol());
-//        assertEquals("Materiaal must be equal", hasMat.getMateriaal(), result.getMateriaal());
+        assertEquals("Persoonsrol must be equal", hasMat.getPersoonsrol(), result.getPersoonsrol());
+        assertEquals("Materiaal must be equal", hasMat.getMateriaal(), result.getMateriaal());
     }
 
-//    @Test
-//    public void testDelete() {
-//    }
-//
-//    @Test
-//    public void testGetAll() {
-//    }   
+    @Test
+    @Transactional
+    public void testDelete() {
+        service.create(hasMat);
+        expectedEx.expect(NullPointerException.class);
+        expectedEx.expectMessage("PersoonsrolHasMateriaal not found");
+        
+        PersoonsrolHasMateriaalId id = hasMat.getId();
+        service.delete(hasMat);
+
+        PersoonsrolHasMateriaal result = service.read(id);
+//        assertNull("Result is null, object has been deleted", result);
+    }
+
+    @Test
+    @Transactional
+    public void testGetAll() {
+        service.create(hasMat);
+        service.flushSession();
+        List<PersoonsrolHasMateriaal> resultList = service.getAll();
+        assertNotNull("resultList must not be null", resultList);
+        PersoonsrolHasMateriaal result = resultList.get(resultList.size()-1);
+        assertEquals("result and hasMat must be equal", hasMat.getId().getMateriaalId(), result.getId().getMateriaalId());
+       // assertTrue("hasMat must be in the resultList", resultList.contains(hasMat));
+    }   
 }
