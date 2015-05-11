@@ -1,6 +1,6 @@
 package edu.rsvier.springmvc.model;
 
-import java.util.Date;
+import java.sql.Date;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.CascadeType;
