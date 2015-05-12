@@ -67,12 +67,6 @@ public class PersoonsrolHasMateriaal implements java.io.Serializable {
         this.cursistBezit = cursistBezit;
     }
     
-    
-//    @Override
-//    public String toString() {
-//        return "PersoonsrolHasMateriaal" + ", persoon= " + id + this.getPersoonsrol();
-//    }
-
     @Override
     public int hashCode() {
         int hash = 7;

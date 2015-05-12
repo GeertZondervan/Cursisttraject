@@ -73,16 +73,6 @@ public class Module implements java.io.Serializable {
         return this.expertises;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 31 * hash + (this.omschrijving != null ? this.omschrijving.hashCode() : 0);
-        hash = 31 * hash + (this.lengteInWeken != null ? this.lengteInWeken.hashCode() : 0);
-        hash = 31 * hash + (this.expertises != null ? this.expertises.hashCode() : 0);
-        hash = 31 * hash + (this.toetsen != null ? this.toetsen.hashCode() : 0);
-        return hash;
-    }
-
     public void setExpertises(Set<Expertise> expertises) {
         this.expertises = expertises;
     }
@@ -120,7 +110,7 @@ public class Module implements java.io.Serializable {
             return false;
         }
         final Module other = (Module) obj;
-        //Wiemer: checken alleen op naam ivm de dateobjecten die maar niet gelijk willen zijn, ondanks dat ze dat wel zijn.
+        //Wiemer: checken alleen op traject.naam ivm de dateobjecten die maar niet gelijk willen zijn, ondanks dat ze dat wel zijn. problemen met het vergelijken van embedded objects
         if (this.traject.getNaam() != other.traject.getNaam() && (this.traject.getNaam() == null || !this.traject.getNaam().equals(other.traject.getNaam()))) {
             return false;
         }
@@ -137,6 +127,17 @@ public class Module implements java.io.Serializable {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 31 * hash + (this.traject.getNaam() != null ? this.traject.getNaam().hashCode() : 0);
+        hash = 31 * hash + (this.omschrijving != null ? this.omschrijving.hashCode() : 0);
+        hash = 31 * hash + (this.lengteInWeken != null ? this.lengteInWeken.hashCode() : 0);
+        hash = 31 * hash + (this.expertises != null ? this.expertises.hashCode() : 0);
+        hash = 31 * hash + (this.toetsen != null ? this.toetsen.hashCode() : 0);
+        return hash;
     }
 
     @Override

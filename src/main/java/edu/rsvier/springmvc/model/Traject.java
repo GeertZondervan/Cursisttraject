@@ -1,6 +1,5 @@
 package edu.rsvier.springmvc.model;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -67,7 +66,7 @@ public class Traject implements java.io.Serializable {
     public void setStartdatum(LocalDate startdatum) {
         this.startdatum = startdatum;
     }
-    
+
     @Convert(converter = LocalDatePersistenceConverter.class)
     @Column(name = "sluitingsdatum", length = 10)
     public LocalDate getSluitingsdatum() {
@@ -118,13 +117,13 @@ public class Traject implements java.io.Serializable {
         if ((this.omschrijving == null) ? (other.omschrijving != null) : !this.omschrijving.equals(other.omschrijving)) {
             return false;
         }
-        if (this.startdatum.toString() != other.startdatum.toString() && (this.startdatum.toString() == null || !this.startdatum.toString().equals(other.startdatum.toString()))) {
+        if (this.startdatum != other.startdatum && (this.startdatum == null || !this.startdatum.equals(other.startdatum))) {
             return false;
         }
 
-//        if (this.modules != other.modules && (this.modules == null || !this.modules.equals(other.modules))) {
-//            return false;
-  //      }
+        if (this.modules != other.modules && (this.modules == null || !this.modules.equals(other.modules))) {
+            return false;
+        }
         return true;
     }
 
@@ -135,7 +134,7 @@ public class Traject implements java.io.Serializable {
         hash = 47 * hash + (this.omschrijving != null ? this.omschrijving.hashCode() : 0);
         hash = 47 * hash + (this.startdatum != null ? this.startdatum.hashCode() : 0);
         hash = 47 * hash + (this.sluitingsdatum != null ? this.sluitingsdatum.hashCode() : 0);
-//        hash = 47 * hash + (this.modules != null ? this.modules.hashCode() : 0);
+        hash = 47 * hash + (this.modules != null ? this.modules.hashCode() : 0);
         return hash;
     }
 

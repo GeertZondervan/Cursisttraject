@@ -98,9 +98,6 @@ public class Persoon implements java.io.Serializable {
             return false;
         }
         final Persoon other = (Persoon) obj;
-//        if (this.id != other.getId() && (this.id == null || !this.id.equals(other.getId()))) {
-//            return false;
-//        }
 
         if ((this.voornaam == null) ? (other.getVoornaam() != null) : !this.voornaam.equals(other.getVoornaam())) {
             return false;

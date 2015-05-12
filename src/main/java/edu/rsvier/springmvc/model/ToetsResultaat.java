@@ -127,6 +127,8 @@ public class ToetsResultaat implements java.io.Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
+        hash = 47 * hash + (this.persoonsrol.getId() != null ? this.persoonsrol.getId().hashCode() : 0);
+        hash = 47 * hash + (this.toets.getId() != null ? this.toets.getId().hashCode() : 0);
         hash = 47 * hash + (this.datum != null ? this.datum.hashCode() : 0);
         hash = 47 * hash + Float.floatToIntBits(this.resultaat);
         return hash;

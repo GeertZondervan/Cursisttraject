@@ -95,5 +95,4 @@ public class Bestand implements java.io.Serializable {
         hash = 47 * hash + (this.toetsen != null ? this.toetsen.hashCode() : 0);
         return hash;
     }
-
 }

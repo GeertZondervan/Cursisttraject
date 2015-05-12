@@ -33,13 +33,7 @@ public class Expertise implements java.io.Serializable {
         return this.id;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 79 * hash + (this.naam != null ? this.naam.hashCode() : 0);
-        hash = 79 * hash + (this.omschrijving != null ? this.omschrijving.hashCode() : 0);
-        return hash;
-    }
+    
 
     public void setId(Integer id) {
         this.id = id;
@@ -101,10 +95,23 @@ public class Expertise implements java.io.Serializable {
         if ((this.naam == null) ? (other.naam != null) : !this.naam.equals(other.naam)) {
             return false;
         }
+        
+        if((this.module.getOmschrijving() == null) ? (other.module.getOmschrijving() == null) : !this.module.getOmschrijving().equals(other.module.getOmschrijving())) 
+            return false;       
+        
         if ((this.omschrijving == null) ? (other.omschrijving != null) : !this.omschrijving.equals(other.omschrijving)) {
             return false;
         }
         return true;
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 79 * hash + (this.naam != null ? this.naam.hashCode() : 0);
+        hash = 79 * hash + (this.module.getOmschrijving() != null ? this.module.getOmschrijving().hashCode() : 0);
+        hash = 79 * hash + (this.omschrijving != null ? this.omschrijving.hashCode() : 0);
+        return hash;
     }
 
     public String toString() {

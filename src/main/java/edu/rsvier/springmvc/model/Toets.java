@@ -15,8 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "toets", catalog = "cursisttraject_relatiebeheer"
-)
+@Table(name = "toets", catalog = "cursisttraject_relatiebeheer")
 public class Toets implements java.io.Serializable {
 
     private Integer id;
@@ -130,9 +129,9 @@ public class Toets implements java.io.Serializable {
             return false;
         }
 
-//        if (this.module != other.module && (this.module == null || !this.module.equals(other.module))) {
-//            return false;
-//        }
+        if (this.module.getOmschrijving() != other.module.getOmschrijving() && (this.module.getOmschrijving() == null || !this.module.getOmschrijving().equals(other.module.getOmschrijving()))) {
+            return false;
+        }
         if ((this.naam == null) ? (other.naam != null) : !this.naam.equals(other.naam)) {
             return false;
         }
@@ -158,6 +157,7 @@ public class Toets implements java.io.Serializable {
     public int hashCode() {
         int hash = 3;
         hash = 37 * hash + (this.bestand != null ? this.bestand.hashCode() : 0);
+        hash = 37 * hash + (this.module.getOmschrijving() != null ? this.module.getOmschrijving().hashCode() : 0);
         hash = 37 * hash + (this.naam != null ? this.naam.hashCode() : 0);
         hash = 37 * hash + (this.stof != null ? this.stof.hashCode() : 0);
         hash = 37 * hash + (this.status != null ? this.status.hashCode() : 0);
