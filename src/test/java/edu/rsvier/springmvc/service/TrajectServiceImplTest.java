@@ -4,10 +4,6 @@ import edu.rsvier.springmvc.configuration.AppConfig;
 import edu.rsvier.springmvc.configuration.AppInitializer;
 import edu.rsvier.springmvc.configuration.HibernateConfiguration;
 import edu.rsvier.springmvc.model.Traject;
-import java.sql.Date;
-import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 import org.junit.After;
 import org.junit.Before;
@@ -33,23 +29,15 @@ public class TrajectServiceImplTest {
     private TrajectService service;
     private Traject traject;
     private Traject traject2;
-    
-    
-     @Rule
+
+    @Rule
     public ExpectedException expectedEx = ExpectedException.none();
   
     @Before
     public void setUp() {
         traject = PojoGenerator.getTraject();
         service.create(traject);
-        Date date = new Date(0);
-        Calendar greg = new GregorianCalendar(2010, 0, 10);
-        
-        date.setTime(greg.getTimeInMillis());
-        
-        System.out.println("Datum: " + date);
         traject2 = PojoGenerator.getTraject();
- 
     }
     
     @After
@@ -71,10 +59,9 @@ public class TrajectServiceImplTest {
     @Test
     @Transactional
     public void testUpdate() {
-        
         int id = traject.getId();
         
-        Traject result = (Traject)service.read(id);
+        Traject result = service.read(id);
         result.setNaam("Java Dev2");
         service.update(result);
         service.flushSession();
@@ -89,7 +76,7 @@ public class TrajectServiceImplTest {
         service.create(traject);
         service.flushSession();
         
-        Traject result = (Traject)service.read(traject.getId()); 
+        Traject result = service.read(traject.getId()); 
         assertNotNull("traject must not be null", traject);
         assertNotNull("result must not be null", result);
         assertEquals("traject, all fields must be equal", traject, result);
