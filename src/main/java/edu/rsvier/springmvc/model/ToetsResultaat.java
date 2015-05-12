@@ -1,10 +1,12 @@
 package edu.rsvier.springmvc.model;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,13 +22,13 @@ public class ToetsResultaat implements java.io.Serializable {
     private ToetsResultaatId id;
     private Persoonsrol persoonsrol;
     private Toets toets;
-    private Date datum;
+    private LocalDate datum;
     private float resultaat;
 
     public ToetsResultaat() {
     }
 
-    public ToetsResultaat(ToetsResultaatId id, Persoonsrol persoonsrol, Toets toets, Date datum, float resultaat) {
+    public ToetsResultaat(ToetsResultaatId id, Persoonsrol persoonsrol, Toets toets, LocalDate datum, float resultaat) {
         this.id = id;
         this.persoonsrol = persoonsrol;
         this.toets = toets;
@@ -72,12 +74,13 @@ public class ToetsResultaat implements java.io.Serializable {
         this.toets = toets;
     }
 
+    @Convert(converter = LocalDatePersistenceConverter.class)
     @Column(name = "datum", nullable = false, length = 10)
-    public Date getDatum() {
+    public LocalDate getDatum() {
         return this.datum;
     }
 
-    public void setDatum(Date datum) {
+    public void setDatum(LocalDate datum) {
         this.datum = datum;
     }
 

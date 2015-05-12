@@ -1,7 +1,9 @@
 package edu.rsvier.springmvc.model;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Embeddable;
 
 @Embeddable
@@ -9,13 +11,13 @@ public class ToetsResultaatId implements java.io.Serializable {
 
     private int persoonsrolPersoonId;
     private int persoonsrolRolId;
-    private Date persoonsrolBegindatum;
+    private LocalDate persoonsrolBegindatum;
     private int toetsId;
 
     public ToetsResultaatId() {
     }
 
-    public ToetsResultaatId(int persoonsrolPersoonId, int persoonsrolRolId, Date persoonsrolBegindatum, int toetsId) {
+    public ToetsResultaatId(int persoonsrolPersoonId, int persoonsrolRolId, LocalDate persoonsrolBegindatum, int toetsId) {
         this.persoonsrolPersoonId = persoonsrolPersoonId;
         this.persoonsrolRolId = persoonsrolRolId;
         this.persoonsrolBegindatum = persoonsrolBegindatum;
@@ -40,12 +42,13 @@ public class ToetsResultaatId implements java.io.Serializable {
         this.persoonsrolRolId = persoonsrolRolId;
     }
 
+    @Convert(converter = LocalDatePersistenceConverter.class)
     @Column(name = "persoonsrol_begindatum", nullable = false, length = 10)
-    public Date getPersoonsrolBegindatum() {
+    public LocalDate getPersoonsrolBegindatum() {
         return this.persoonsrolBegindatum;
     }
 
-    public void setPersoonsrolBegindatum(Date persoonsrolBegindatum) {
+    public void setPersoonsrolBegindatum(LocalDate persoonsrolBegindatum) {
         this.persoonsrolBegindatum = persoonsrolBegindatum;
     }
 

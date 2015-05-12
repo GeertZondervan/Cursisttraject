@@ -1,18 +1,19 @@
 package edu.rsvier.springmvc.service;
 
 import edu.rsvier.springmvc.model.*;
-import java.util.Calendar;
 import java.sql.Date;
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
+
 import java.util.HashSet;
+
 
 /**
  *
  * @author Wiemer, Shun, Geert
  */
 public class PojoGenerator {
-    static Calendar calendar = new GregorianCalendar(2015, 05, 02);
-
+    static LocalDate date = LocalDate.now();
+    
     static int i;
 
     static Bestand getBestand() {
@@ -69,7 +70,7 @@ public class PojoGenerator {
         persoonsrolId.setRolId(rol.getId());
 
         
-        persoonsrolId.setBegindatum(new Date(123456789));
+        persoonsrolId.setBegindatum(date);
 
         Persoonsrol persoonsrol = new Persoonsrol();
         persoonsrol.setPersoon(persoon);
@@ -95,7 +96,7 @@ public class PojoGenerator {
         PersoonsrolHasMateriaalId id = new PersoonsrolHasMateriaalId();
         id.setPersoonsrolPersoonId(persoonsrolId.getPersoonId());
         id.setPersoonsrolRolId(persoonsrolId.getRolId());
-        id.setPersoonsrolBegindatum(persoonsrolId.getBegindatum());
+        id.setPersoonsrolBegindatum(date);
         id.setMateriaalId(materiaal.getId());
         
         return id;
@@ -106,7 +107,7 @@ public class PojoGenerator {
         PersoonsrolHasTraject hasTraject = new PersoonsrolHasTraject();
         hasTraject.setPersoonsrol(persoonsrol);
         hasTraject.setTraject(traject);
-        hasTraject.setBegindatum(new Date(123456789));
+        hasTraject.setBegindatum(date);
         hasTraject.setSuccesvolAfgerond('Y');
         hasTraject.setId(getPersoonsrolHasTrajectId(persoonsrol.getId(), traject));
         
@@ -152,7 +153,7 @@ public class PojoGenerator {
         toetsResultaat.setPersoonsrol(persoonsrol);
         toetsResultaat.setId(getToetsResultaatId(persoonsrol.getId(), toets));
         toetsResultaat.setResultaat(5.5f);
-        toetsResultaat.setDatum(new Date(123456789));
+        toetsResultaat.setDatum(date);
         
         return toetsResultaat;
     }
@@ -161,7 +162,7 @@ public class PojoGenerator {
         i+=1;
         ToetsResultaatId toetsResultaatId = new ToetsResultaatId();
         toetsResultaatId.setToetsId(toets.getId());
-        toetsResultaatId.setPersoonsrolBegindatum(new Date(123456789));
+        toetsResultaatId.setPersoonsrolBegindatum(date);
         toetsResultaatId.setPersoonsrolPersoonId(persoonsrolId.getPersoonId());
         toetsResultaatId.setPersoonsrolRolId(persoonsrolId.getRolId());
         
@@ -173,7 +174,7 @@ public class PojoGenerator {
         Traject traject = new Traject();
         traject.setNaam("Basistraject");
         traject.setOmschrijving("Opleiding tot Java Developer" + i);
-        traject.setStartdatum(new Date(123456789));
+        traject.setStartdatum(date);
         return traject;
     }
 }

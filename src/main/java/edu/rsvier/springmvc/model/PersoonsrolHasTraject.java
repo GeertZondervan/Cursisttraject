@@ -1,10 +1,12 @@
 package edu.rsvier.springmvc.model;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,8 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
 
 @Entity
 @Table(name = "persoonsrol_has_traject", catalog = "cursisttraject_relatiebeheer"
@@ -21,8 +22,8 @@ import javax.persistence.TemporalType;
 public class PersoonsrolHasTraject implements java.io.Serializable {
 
     private PersoonsrolHasTrajectId id;
-    private Date begindatum;
-    private Date einddatum;
+    private LocalDate begindatum;
+    private LocalDate einddatum;
     private Character succesvolAfgerond;
     private Persoonsrol persoonsrol;
     private Traject traject;
@@ -30,12 +31,12 @@ public class PersoonsrolHasTraject implements java.io.Serializable {
     public PersoonsrolHasTraject() {
     }
 
-    public PersoonsrolHasTraject(PersoonsrolHasTrajectId id, Date begindatum) {
+    public PersoonsrolHasTraject(PersoonsrolHasTrajectId id, LocalDate begindatum) {
         this.id = id;
         this.begindatum = begindatum;
     }
 
-    public PersoonsrolHasTraject(PersoonsrolHasTrajectId id, Date begindatum, Date einddatum, Character succesvolAfgerond) {
+    public PersoonsrolHasTraject(PersoonsrolHasTrajectId id, LocalDate begindatum, LocalDate einddatum, Character succesvolAfgerond) {
         this.id = id;
         this.begindatum = begindatum;
         this.einddatum = einddatum;
@@ -57,21 +58,23 @@ public class PersoonsrolHasTraject implements java.io.Serializable {
         this.id = id;
     }
 
+    @Convert(converter = LocalDatePersistenceConverter.class)
     @Column(name = "begindatum", nullable = false, length = 10)
-    public Date getBegindatum() {
+    public LocalDate getBegindatum() {
         return this.begindatum;
     }
 
-    public void setBegindatum(Date begindatum) {
+    public void setBegindatum(LocalDate begindatum) {
         this.begindatum = begindatum;
     }
 
+    @Convert(converter = LocalDatePersistenceConverter.class)
     @Column(name = "einddatum", length = 10)
-    public Date getEinddatum() {
+    public LocalDate getEinddatum() {
         return this.einddatum;
     }
 
-    public void setEinddatum(Date einddatum) {
+    public void setEinddatum(LocalDate einddatum) {
         this.einddatum = einddatum;
     }
 
@@ -106,5 +109,45 @@ public class PersoonsrolHasTraject implements java.io.Serializable {
     public void setTraject(Traject traject) {
         this.traject = traject;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + (this.begindatum != null ? this.begindatum.hashCode() : 0);
+        hash = 97 * hash + (this.einddatum != null ? this.einddatum.hashCode() : 0);
+        hash = 97 * hash + (this.succesvolAfgerond != null ? this.succesvolAfgerond.hashCode() : 0);
+//        hash = 97 * hash + (this.persoonsrol != null ? this.persoonsrol.hashCode() : 0);
+//        hash = 97 * hash + (this.traject != null ? this.traject.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof PersoonsrolHasTraject)) {
+            return false;
+        }
+        final PersoonsrolHasTraject other = (PersoonsrolHasTraject) obj;
+        
+        if (!(this.begindatum.isEqual(other.begindatum))) {
+            return false;
+        }
+        if (!(this.einddatum.isEqual(other.begindatum))) {
+            return false;
+        }
+        if (this.succesvolAfgerond != other.succesvolAfgerond && (this.succesvolAfgerond == null || !this.succesvolAfgerond.equals(other.succesvolAfgerond))) {
+            return false;
+        }
+//        if (this.persoonsrol != other.persoonsrol && (this.persoonsrol == null || !this.persoonsrol.equals(other.persoonsrol))) {
+//            return false;
+//        }
+//        if (this.traject != other.traject && (this.traject == null || !this.traject.equals(other.traject))) {
+//            return false;
+//        }
+        return true;
+    }
+    
 
 }

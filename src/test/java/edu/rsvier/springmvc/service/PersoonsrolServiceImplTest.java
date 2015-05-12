@@ -70,8 +70,22 @@ public class PersoonsrolServiceImplTest {
         assertNotNull("result must not be null", result);
        
         assertEquals("persoon must be equal", persoonsrol2.getPersoon(), result.getPersoon());
-        assertEquals("rol must be equal", persoonsrol2.getRol(), result.getRol());
+        assertEquals("rol must be equal", persoonsrol2.getRol(), result.getRol());     
+    }
+    
+    @Test
+    @Transactional
+    public void testRead_int() {
+        PersoonsrolId id = persoonsrol.getId();
+        service.flushSession();
+        Persoonsrol result = (Persoonsrol) service.read(id);
         
+        assertNotNull("persoonsrol must not be null", persoonsrol);
+        assertNotNull("result must not be null", result);
+       
+        assertEquals("persoon must be equal", persoonsrol.getPersoon(), result.getPersoon());
+        assertEquals("rol must be equal", persoonsrol.getRol(), result.getRol());
+
     }
 
     @Test
@@ -92,17 +106,6 @@ public class PersoonsrolServiceImplTest {
         System.out.println(persoonsrol3);
         assertNotNull("result must not be null", persoonsrol3);
         assertTrue("New Rol, must be Trainee", result.getRol().getNaam().equals("Trainee"));
-    }
-
-    @Test
-    @Transactional
-    public void testRead_int() {
-        PersoonsrolId id = persoonsrol.getId();
-        service.flushSession();
-        Persoonsrol result = (Persoonsrol) service.read(id);
-        assertNotNull("persoonsrol must not be null", persoonsrol);
-        assertNotNull("result must not be null", result);
-        assertEquals("persoonsrol, all fields must be equal", persoonsrol, result);
     }
 
     @Test
