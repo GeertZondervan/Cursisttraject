@@ -6,6 +6,7 @@ import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,8 +22,8 @@ import javax.persistence.Table;
 public class PersoonsrolHasTraject implements java.io.Serializable {
 
     private PersoonsrolHasTrajectId id;
-    private Date begindatum;
-    private Date einddatum;
+    private LocalDate begindatum;
+    private LocalDate einddatum;
     private Character succesvolAfgerond;
     private Persoonsrol persoonsrol;
     private Traject traject;
@@ -30,12 +31,12 @@ public class PersoonsrolHasTraject implements java.io.Serializable {
     public PersoonsrolHasTraject() {
     }
 
-    public PersoonsrolHasTraject(PersoonsrolHasTrajectId id, Date begindatum) {
+    public PersoonsrolHasTraject(PersoonsrolHasTrajectId id, LocalDate begindatum) {
         this.id = id;
         this.begindatum = begindatum;
     }
 
-    public PersoonsrolHasTraject(PersoonsrolHasTrajectId id, Date begindatum, Date einddatum, Character succesvolAfgerond) {
+    public PersoonsrolHasTraject(PersoonsrolHasTrajectId id, LocalDate begindatum, LocalDate einddatum, Character succesvolAfgerond) {
         this.id = id;
         this.begindatum = begindatum;
         this.einddatum = einddatum;
@@ -57,21 +58,23 @@ public class PersoonsrolHasTraject implements java.io.Serializable {
         this.id = id;
     }
 
+    @Convert(converter = LocalDatePersistenceConverter.class)
     @Column(name = "begindatum", nullable = false, length = 10)
-    public Date getBegindatum() {
+    public LocalDate getBegindatum() {
         return this.begindatum;
     }
 
-    public void setBegindatum(Date begindatum) {
+    public void setBegindatum(LocalDate begindatum) {
         this.begindatum = begindatum;
     }
 
+    @Convert(converter = LocalDatePersistenceConverter.class)
     @Column(name = "einddatum", length = 10)
-    public Date getEinddatum() {
+    public LocalDate getEinddatum() {
         return this.einddatum;
     }
 
-    public void setEinddatum(Date einddatum) {
+    public void setEinddatum(LocalDate einddatum) {
         this.einddatum = einddatum;
     }
 
@@ -127,14 +130,13 @@ public class PersoonsrolHasTraject implements java.io.Serializable {
             return false;
         }
         final PersoonsrolHasTraject other = (PersoonsrolHasTraject) obj;
-        LocalDate date1 = this.begindatum.toLocalDate();
-        LocalDate date2 = other.begindatum.toLocalDate();
-        if (!(date1.isEqual(date2))) {
+        
+        if (!(this.begindatum.isEqual(other.begindatum))) {
             return false;
         }
-//        if (this.einddatum != other.einddatum && (this.einddatum == null || !this.einddatum.equals(other.einddatum))) {
-//            return false;
-//        }
+        if (!(this.einddatum.isEqual(other.begindatum))) {
+            return false;
+        }
         if (this.succesvolAfgerond != other.succesvolAfgerond && (this.succesvolAfgerond == null || !this.succesvolAfgerond.equals(other.succesvolAfgerond))) {
             return false;
         }

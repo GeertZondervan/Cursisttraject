@@ -1,10 +1,12 @@
 package edu.rsvier.springmvc.model;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,8 +22,8 @@ public class Traject implements java.io.Serializable {
     private Integer id;
     private String naam;
     private String omschrijving;
-    private Date startdatum;
-    private Date sluitingsdatum;
+    private LocalDate startdatum;
+    private LocalDate sluitingsdatum;
     private Set<Module> modules = new HashSet<Module>(0);
     private Set<PersoonsrolHasTraject> heeftPersoonsrollen = new HashSet<PersoonsrolHasTraject>(0);
 
@@ -55,22 +57,24 @@ public class Traject implements java.io.Serializable {
         this.omschrijving = omschrijving;
     }
 
+    @Convert(converter = LocalDatePersistenceConverter.class)
     @Column(name = "startdatum", length = 10)
-    public Date getStartdatum() {
+    public LocalDate getStartdatum() {
 
         return this.startdatum;
     }
 
-    public void setStartdatum(Date startdatum) {
+    public void setStartdatum(LocalDate startdatum) {
         this.startdatum = startdatum;
     }
-
+    
+    @Convert(converter = LocalDatePersistenceConverter.class)
     @Column(name = "sluitingsdatum", length = 10)
-    public Date getSluitingsdatum() {
+    public LocalDate getSluitingsdatum() {
         return this.sluitingsdatum;
     }
 
-    public void setSluitingsdatum(Date sluitingsdatum) {
+    public void setSluitingsdatum(LocalDate sluitingsdatum) {
         this.sluitingsdatum = sluitingsdatum;
     }
 

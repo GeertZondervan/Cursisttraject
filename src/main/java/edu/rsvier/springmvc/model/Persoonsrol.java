@@ -1,12 +1,14 @@
 package edu.rsvier.springmvc.model;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,7 +24,7 @@ public class Persoonsrol implements java.io.Serializable {
     private PersoonsrolId id;
     private Persoon persoon;
     private Rol rol;
-    private Date einddatum;
+    private LocalDate einddatum;
     private Set<ToetsResultaat> toetsResultaten = new HashSet<ToetsResultaat>(0);
     private Set<PersoonsrolHasMateriaal> heeftMateriaal = new HashSet<PersoonsrolHasMateriaal>(0);
     private Set<PersoonsrolHasTraject> heeftTrajecten = new HashSet<PersoonsrolHasTraject>(0);
@@ -60,12 +62,13 @@ public class Persoonsrol implements java.io.Serializable {
         this.rol = rol;
     }
 
+    @Convert(converter = LocalDatePersistenceConverter.class)
     @Column(name = "einddatum", length = 10)
-    public Date getEinddatum() {
+    public LocalDate getEinddatum() {
         return this.einddatum;
     }
 
-    public void setEinddatum(Date einddatum) {
+    public void setEinddatum(LocalDate einddatum) {
         this.einddatum = einddatum;
     }
 
@@ -113,6 +116,8 @@ public class Persoonsrol implements java.io.Serializable {
         if (this.rol != other.rol && (this.rol == null || !this.rol.equals(other.rol))) {
             return false;
         }
+        if(!(this.einddatum.isEqual(other.einddatum)))
+            return false;
 
         if (this.toetsResultaten != other.toetsResultaten && (this.toetsResultaten == null || !this.toetsResultaten.equals(other.toetsResultaten))) {
             return false;
@@ -126,6 +131,7 @@ public class Persoonsrol implements java.io.Serializable {
         hash = 11 * hash + (this.persoon != null ? this.persoon.hashCode() : 0);
         hash = 11 * hash + (this.rol != null ? this.rol.hashCode() : 0);
         hash = 11 * hash + (this.toetsResultaten != null ? this.toetsResultaten.hashCode() : 0);
+        hash = 11 * hash + (this.einddatum != null ? this.einddatum.hashCode() : 0);
         return hash;
     }
 
