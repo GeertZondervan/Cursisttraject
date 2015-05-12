@@ -17,7 +17,7 @@ public class PersoonsrolHasMateriaalDaoImpl extends GenericDaoImpl<PersoonsrolHa
                 + " AND persoonsrol_rol_id = :rol_id AND persoonsrol_begindatum = :begindatum"
                 + " AND materiaal_id = :materiaal_id";
         Query query = getSession().createQuery(sql).setParameter("persoon_id", id.getPersoonsrolPersoonId()).setParameter("rol_id", id.getPersoonsrolRolId())
-                .setParameter("begindatum", id.getPersoonsrolBegindatum()).setParameter("materiaal_id", id.getMateriaalId());
+                .setParameter("begindatum", java.sql.Date.valueOf(id.getPersoonsrolBegindatum())).setParameter("materiaal_id", id.getMateriaalId());
         if (query.list().isEmpty()) {
             return null;
         }

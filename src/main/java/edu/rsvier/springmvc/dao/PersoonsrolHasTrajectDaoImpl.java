@@ -17,7 +17,7 @@ public class PersoonsrolHasTrajectDaoImpl extends GenericDaoImpl<PersoonsrolHasT
                 + " AND persoonsrol_rol_id = :rol_id AND persoonsrol_begindatum = :begindatum"
                 + " AND traject_id = :traject_id";
           Query query = getSession().createQuery(sql).setParameter("persoon_id", id.getPersoonsrolPersoonId()).setParameter("rol_id", id.getPersoonsrolRolId())
-                .setParameter("begindatum", id.getPersoonsrolBegindatum()).setParameter("traject_id", id.getTrajectId());
+                .setParameter("begindatum", java.sql.Date.valueOf(id.getPersoonsrolBegindatum())).setParameter("traject_id", id.getTrajectId());
         if (query.list().isEmpty()) {
             return null;
         }
