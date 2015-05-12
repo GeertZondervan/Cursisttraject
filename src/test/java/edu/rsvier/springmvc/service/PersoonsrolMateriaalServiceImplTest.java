@@ -75,6 +75,8 @@ public class PersoonsrolMateriaalServiceImplTest {
         assertNotNull("result must not be null", result);
         assertEquals("Persoonsrol must be equal", hasMat.getPersoonsrol(), result.getPersoonsrol());
         assertEquals("Materiaal must be equal", hasMat.getMateriaal(), result.getMateriaal());
+        assertEquals("All fields must be equal", hasMat, result);
+        
     }
 
     @Test
@@ -104,6 +106,7 @@ public class PersoonsrolMateriaalServiceImplTest {
         
         assertEquals("Persoonsrol must be equal", hasMat.getPersoonsrol(), result.getPersoonsrol());
         assertEquals("Materiaal must be equal", hasMat.getMateriaal(), result.getMateriaal());
+        assertEquals("All fields must be equal", hasMat, result);
     }
 
     @Test

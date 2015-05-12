@@ -67,9 +67,40 @@ public class PersoonsrolHasMateriaal implements java.io.Serializable {
         this.cursistBezit = cursistBezit;
     }
     
+    
 //    @Override
 //    public String toString() {
 //        return "PersoonsrolHasMateriaal" + ", persoon= " + id + this.getPersoonsrol();
 //    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 79 * hash + (this.persoonsrol != null ? this.persoonsrol.hashCode() : 0);
+        hash = 79 * hash + (this.materiaal != null ? this.materiaal.hashCode() : 0);
+        hash = 79 * hash + (this.cursistBezit != null ? this.cursistBezit.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof PersoonsrolHasMateriaal)) {
+            return false;
+        }
+        final PersoonsrolHasMateriaal other = (PersoonsrolHasMateriaal) obj;
+        if (this.persoonsrol != other.persoonsrol && (this.persoonsrol == null || !this.persoonsrol.equals(other.persoonsrol))) {
+            return false;
+        }
+        if (this.materiaal != other.materiaal && (this.materiaal == null || !this.materiaal.equals(other.materiaal))) {
+            return false;
+        }
+        if (this.cursistBezit != other.cursistBezit && (this.cursistBezit == null || !this.cursistBezit.equals(other.cursistBezit))) {
+            return false;
+        }
+        return true;
+    }
 
 }
