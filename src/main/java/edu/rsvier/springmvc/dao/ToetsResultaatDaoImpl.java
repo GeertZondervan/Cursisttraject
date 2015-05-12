@@ -19,7 +19,7 @@ public class ToetsResultaatDaoImpl extends GenericDaoImpl<ToetsResultaat> implem
                 + " AND persoonsrol_rol_id = :rol_id AND persoonsrol_begindatum = :begindatum"
                 + " AND toets_id = :toets_id";
         Query query = getSession().createQuery(sql).setParameter("persoon_id", id.getPersoonsrolPersoonId()).setParameter("rol_id", id.getPersoonsrolRolId())
-                .setParameter("begindatum", id.getPersoonsrolBegindatum()).setParameter("toets_id", id.getToetsId());
+                .setParameter("begindatum", java.sql.Date.valueOf(id.getPersoonsrolBegindatum())).setParameter("toets_id", id.getToetsId());
         if (query.list().isEmpty()) {
             return null;
         }
