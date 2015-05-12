@@ -109,7 +109,6 @@ public class TrajectServiceImplTest {
         assertTrue("lijst contains traject", lijst.contains(traject));
         assertTrue("lijst contains traject2", lijst.contains(traject2));
         assertTrue("lijst contains traject3", lijst.contains(traject3));
-        
     }
 
     @Test
@@ -122,7 +121,6 @@ public class TrajectServiceImplTest {
         service.delete(traject);
         service.flushSession();
         Traject result = service.read(id);
- 
     }
 
     @Test
@@ -135,9 +133,6 @@ public class TrajectServiceImplTest {
         
         assertTrue("traject must be in the resultList", resultList.contains(traject)); 
         assertTrue("traject2 must be in the resultList", resultList.contains(traject2)); 
-        
-        
-       
     }
     
 }

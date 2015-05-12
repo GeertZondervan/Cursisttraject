@@ -85,7 +85,7 @@ public class PersoonsrolHasMateriaal implements java.io.Serializable {
             return false;
         }
         final PersoonsrolHasMateriaal other = (PersoonsrolHasMateriaal) obj;
-        if (this.persoonsrol != other.persoonsrol && (this.persoonsrol == null || !this.persoonsrol.equals(other.persoonsrol))) {
+        if (this.persoonsrol.getPersoon() != other.persoonsrol.getPersoon()  && (this.persoonsrol.getPersoon()  == null || !this.persoonsrol.getPersoon() .equals(other.persoonsrol.getPersoon()))) {
             return false;
         }
         if (this.materiaal != other.materiaal && (this.materiaal == null || !this.materiaal.equals(other.materiaal))) {

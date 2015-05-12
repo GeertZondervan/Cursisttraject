@@ -69,7 +69,8 @@ public class PersoonsrolServiceImplTest {
         assertNotNull("persoonsrol must not be null", persoonsrol2);
         assertNotNull("result must not be null", result);
         assertEquals("persoon must be equal", persoonsrol2.getPersoon(), result.getPersoon());
-        assertEquals("rol must be equal", persoonsrol2.getRol(), result.getRol());     
+        assertEquals("rol must be equal", persoonsrol2.getRol(), result.getRol());   
+        assertEquals("alles moet equal zijn", persoonsrol2, result);
     }
     
     @Test
@@ -84,7 +85,7 @@ public class PersoonsrolServiceImplTest {
        
         assertEquals("persoon must be equal", persoonsrol.getPersoon(), result.getPersoon());
         assertEquals("rol must be equal", persoonsrol.getRol(), result.getRol());
-
+        assertEquals("alles moet equal zijn", persoonsrol, result);
     }
 
     @Test

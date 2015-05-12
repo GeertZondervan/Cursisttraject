@@ -115,7 +115,7 @@ public class Persoonsrol implements java.io.Serializable {
         if (this.rol != other.rol && (this.rol == null || !this.rol.equals(other.rol))) {
             return false;
         }
-        if(!(this.einddatum.isEqual(other.einddatum)))
+        if (this.einddatum == null ? (other.einddatum != null) : !(this.einddatum.isEqual(other.einddatum)))
             return false;
 
         if (this.toetsResultaten != other.toetsResultaten && (this.toetsResultaten == null || !this.toetsResultaten.equals(other.toetsResultaten))) {

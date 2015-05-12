@@ -116,8 +116,8 @@ public class PersoonsrolHasTraject implements java.io.Serializable {
         hash = 97 * hash + (this.begindatum != null ? this.begindatum.hashCode() : 0);
         hash = 97 * hash + (this.einddatum != null ? this.einddatum.hashCode() : 0);
         hash = 97 * hash + (this.succesvolAfgerond != null ? this.succesvolAfgerond.hashCode() : 0);
-//        hash = 97 * hash + (this.persoonsrol != null ? this.persoonsrol.hashCode() : 0);
-//        hash = 97 * hash + (this.traject != null ? this.traject.hashCode() : 0);
+        hash = 97 * hash + (this.persoonsrol.getPersoon() != null ? this.persoonsrol.getPersoon().hashCode() : 0);
+        hash = 97 * hash + (this.traject.getOmschrijving() != null ? this.traject.getOmschrijving().hashCode() : 0);
         return hash;
     }
 
@@ -131,21 +131,21 @@ public class PersoonsrolHasTraject implements java.io.Serializable {
         }
         final PersoonsrolHasTraject other = (PersoonsrolHasTraject) obj;
         
-        if (!(this.begindatum.isEqual(other.begindatum))) {
+        if (this.begindatum == null ? (other.begindatum != null) : !(this.begindatum.isEqual(other.begindatum))) {
             return false;
         }
-        if (!(this.einddatum.isEqual(other.begindatum))) {
+        if (this.einddatum == null ? (other.einddatum != null) : !(this.einddatum.isEqual(other.einddatum))) {
             return false;
         }
         if (this.succesvolAfgerond != other.succesvolAfgerond && (this.succesvolAfgerond == null || !this.succesvolAfgerond.equals(other.succesvolAfgerond))) {
             return false;
         }
-//        if (this.persoonsrol != other.persoonsrol && (this.persoonsrol == null || !this.persoonsrol.equals(other.persoonsrol))) {
-//            return false;
-//        }
-//        if (this.traject != other.traject && (this.traject == null || !this.traject.equals(other.traject))) {
-//            return false;
-//        }
+        if (this.persoonsrol.getPersoon() != other.persoonsrol.getPersoon() && (this.persoonsrol.getPersoon() == null || !this.persoonsrol.getPersoon().equals(other.persoonsrol.getPersoon()))) {
+            return false;
+        }
+        if (this.traject.getOmschrijving() != other.traject.getOmschrijving() && (this.traject.getOmschrijving() == null || !this.traject.getOmschrijving().equals(other.traject.getOmschrijving()))) {
+            return false;
+        }
         return true;
     }
     
