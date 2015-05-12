@@ -1,6 +1,7 @@
 package edu.rsvier.springmvc.model;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.CascadeType;
@@ -12,8 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
 
 @Entity
 @Table(name = "persoonsrol_has_traject", catalog = "cursisttraject_relatiebeheer"
@@ -106,5 +106,46 @@ public class PersoonsrolHasTraject implements java.io.Serializable {
     public void setTraject(Traject traject) {
         this.traject = traject;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + (this.begindatum != null ? this.begindatum.hashCode() : 0);
+        hash = 97 * hash + (this.einddatum != null ? this.einddatum.hashCode() : 0);
+        hash = 97 * hash + (this.succesvolAfgerond != null ? this.succesvolAfgerond.hashCode() : 0);
+//        hash = 97 * hash + (this.persoonsrol != null ? this.persoonsrol.hashCode() : 0);
+//        hash = 97 * hash + (this.traject != null ? this.traject.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof PersoonsrolHasTraject)) {
+            return false;
+        }
+        final PersoonsrolHasTraject other = (PersoonsrolHasTraject) obj;
+        LocalDate date1 = this.begindatum.toLocalDate();
+        LocalDate date2 = other.begindatum.toLocalDate();
+        if (!(date1.isEqual(date2))) {
+            return false;
+        }
+//        if (this.einddatum != other.einddatum && (this.einddatum == null || !this.einddatum.equals(other.einddatum))) {
+//            return false;
+//        }
+        if (this.succesvolAfgerond != other.succesvolAfgerond && (this.succesvolAfgerond == null || !this.succesvolAfgerond.equals(other.succesvolAfgerond))) {
+            return false;
+        }
+//        if (this.persoonsrol != other.persoonsrol && (this.persoonsrol == null || !this.persoonsrol.equals(other.persoonsrol))) {
+//            return false;
+//        }
+//        if (this.traject != other.traject && (this.traject == null || !this.traject.equals(other.traject))) {
+//            return false;
+//        }
+        return true;
+    }
+    
 
 }
