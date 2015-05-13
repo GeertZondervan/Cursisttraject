@@ -100,6 +100,7 @@ public class Persoonsrol implements java.io.Serializable {
 
     @Override
     public boolean equals(Object obj) {
+        System.out.println("equals aangeroepen");
         if (obj == null) {
             return false;
         }
@@ -108,19 +109,23 @@ public class Persoonsrol implements java.io.Serializable {
             return false;
         }
         final Persoonsrol other = (Persoonsrol) obj;
-
-        if (this.persoon != other.persoon && (this.persoon == null || !this.persoon.equals(other.persoon))) {
-            return false;
-        }
+//      Wiemer: deze geeft false negatives!
+//        if (this.persoon != other.persoon && (this.persoon == null || !this.persoon.equals(other.persoon))) {
+//            System.out.println("equals aangeroepen, persoon");
+//            return false;
+//        }
         if (this.rol != other.rol && (this.rol == null || !this.rol.equals(other.rol))) {
+            System.out.println("equals aangeroepen, rol");
             return false;
         }
-        if (this.einddatum == null ? (other.einddatum != null) : !(this.einddatum.isEqual(other.einddatum)))
+        if (this.einddatum == null ? (other.einddatum != null) : !(this.einddatum.isEqual(other.einddatum))){
+            System.out.println("equals aangeroepen, einddatum");
             return false;
-
+        }
         if (this.toetsResultaten != other.toetsResultaten && (this.toetsResultaten == null || !this.toetsResultaten.equals(other.toetsResultaten))) {
             return false;
         }
+         System.out.println("equals aangeroepen, true");
         return true;
     }
 

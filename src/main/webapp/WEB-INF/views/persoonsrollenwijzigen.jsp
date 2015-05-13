@@ -27,6 +27,7 @@
             <table>
                 <tr>
                     <td><label for="persoon.voornaam">Voornaam: </label> </td>
+                    
                     <td><form:input path="persoon.voornaam" id="persoon.voornaam"/></td>
                     <td><form:errors path="persoon.voornaam" cssClass="error"/></td>
                 </tr>

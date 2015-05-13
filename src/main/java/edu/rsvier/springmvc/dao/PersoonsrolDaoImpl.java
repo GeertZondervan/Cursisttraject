@@ -22,4 +22,16 @@ public class PersoonsrolDaoImpl extends GenericDaoImpl<Persoonsrol> implements P
         }
         return (Persoonsrol) query.list().get(0);
     }
+
+    public Persoonsrol read(int persoonId, int rolId) {
+        String sql = "SELECT p FROM Persoonsrol p WHERE persoon_id = :persoon_id AND rol_id = :rol_id";
+        Query query = getSession().createQuery(sql).setParameter("persoon_id", persoonId).setParameter("rol_id", rolId);
+        
+        if (query.list().isEmpty()) {
+            return null;
+        }
+        return (Persoonsrol) query.list().get(0);
+    }
+    
+    
 }

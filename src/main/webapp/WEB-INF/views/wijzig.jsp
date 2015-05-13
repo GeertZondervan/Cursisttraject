@@ -39,6 +39,19 @@
                 <tr>
                     <td colspan="3"><input type="submit" value="Update"/></td>
                 </tr>
+                <tr><td><br/><td></tr>
+                <tr><td>Rollen:</td></tr>
+                <c:forEach items="${persoon.persoonsrollen}" var="persoonsrol" >
+
+                    <tr>
+                        <td>${persoonsrol.rol.naam}</td>
+                        <td>Begindatum:  ${persoonsrol.id.begindatum}</td>
+                        <td><button id="verwijder" name="verwijder" value="${persoonsrol.rol.id}" >Verwijder </button>
+                    </tr>
+                </c:forEach>
+                
+
+                
             </table>
         </form:form>
         <a href="<c:url value='${persoon.id}-persoonsrollen ' />">Voeg nieuwe rol toe</a>

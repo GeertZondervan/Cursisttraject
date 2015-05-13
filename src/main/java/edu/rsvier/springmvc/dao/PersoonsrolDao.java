@@ -15,4 +15,6 @@ public interface PersoonsrolDao {
     
     void flushSession();
 
+    public Persoonsrol read(int persoonId, int rolId);
+
 }

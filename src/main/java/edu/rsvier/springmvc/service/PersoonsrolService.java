@@ -14,4 +14,6 @@ public interface PersoonsrolService {
     void delete(Persoonsrol persoonsrol);
 
     void flushSession();
+    
+    Persoonsrol read(int persoonId, int rolId) throws NullPointerException;
 }

@@ -82,7 +82,7 @@ public class PersoonsrollenWijzigController {
         
          model.addAttribute("succes", persoon.getVoornaam() + " "
                 + persoon.getAchternaam() + " is gewijzigd");
-        return "bevestigingspagina";
+        return "redirect: /update-{persoonid}";
     }
     
    

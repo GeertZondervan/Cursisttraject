@@ -42,4 +42,10 @@ public class PersoonsrolServiceImpl implements PersoonsrolService {
         dao.flushSession();
     }
 
+    public Persoonsrol read(int persoonId, int rolId) throws NullPointerException {
+        Persoonsrol persoonsrol = dao.read(persoonId, rolId);
+        System.out.println(persoonsrol);
+        return persoonsrol;
+    }
+
 }
