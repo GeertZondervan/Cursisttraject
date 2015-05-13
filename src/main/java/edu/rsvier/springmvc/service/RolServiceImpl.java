@@ -46,4 +46,9 @@ public class RolServiceImpl implements RolService {
         dao.flushSession();
     }
 
+    public Rol read(String naam) throws NullPointerException {
+        return dao.read(naam).get(0);
+    }
+    
+
 }

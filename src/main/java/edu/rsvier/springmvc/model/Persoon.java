@@ -1,6 +1,8 @@
 package edu.rsvier.springmvc.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,6 +16,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.springframework.transaction.annotation.Transactional;
 
 @Entity
 @Table(name = "persoon", catalog = "cursisttraject_relatiebeheer")
@@ -24,6 +27,7 @@ public class Persoon implements java.io.Serializable {
     private String achternaam;
     private Set<Persoonsrol> persoonsrollen = new HashSet<Persoonsrol>(0);
     private Set<Expertise> expertises = new HashSet<Expertise>(0);
+    private Set<String> rolNamen = new HashSet<String>();
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -55,7 +59,7 @@ public class Persoon implements java.io.Serializable {
         this.achternaam = achternaam;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "persoon", cascade = {CascadeType.ALL})
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "persoon", cascade = {CascadeType.ALL})
     public Set<Persoonsrol> getPersoonsrollen() {
         return this.persoonsrollen;
     }
@@ -83,7 +87,7 @@ public class Persoon implements java.io.Serializable {
         int hash = 3;
         hash = 53 * hash + (this.voornaam != null ? this.voornaam.hashCode() : 0);
         hash = 53 * hash + (this.achternaam != null ? this.achternaam.hashCode() : 0);
-        hash = 53 * hash + (this.persoonsrollen != null ? this.persoonsrollen.hashCode() : 0);
+        //hash = 53 * hash + (this.persoonsrollen != null ? this.persoonsrollen.hashCode() : 0);
         return hash;
     }
 
@@ -114,5 +118,9 @@ public class Persoon implements java.io.Serializable {
     public String toString() {
         return ("Persoon: " + voornaam + ", " + achternaam);
     }
+
+    
+    
+
 
 }

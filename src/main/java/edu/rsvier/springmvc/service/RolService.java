@@ -16,4 +16,6 @@ public interface RolService {
     List<Rol> getAll();
     
     void flushSession();
+    
+    Rol read(String naam) throws NullPointerException;
 }

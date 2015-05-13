@@ -17,7 +17,7 @@ public class PersoonsrolHasTrajectServiceImpl implements PersoonsrolHasTrajectSe
     private PersoonsrolHasTrajectDao dao;
 
     public void create(PersoonsrolHasTraject hasTraject) throws IllegalArgumentException {
-        if(hasTraject.getBegindatum() == null || hasTraject.getPersoonsrol() == null || hasTraject.getTraject() == null){
+        if( hasTraject.getPersoonsrol() == null || hasTraject.getTraject() == null){
             throw new IllegalArgumentException("PersoonsrolHasTraject not complete");
         }
         dao.create(hasTraject);

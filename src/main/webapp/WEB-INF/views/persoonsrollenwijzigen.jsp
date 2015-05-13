@@ -20,31 +20,32 @@
 
     <body>
 
-        <h2>Persoonsgegevens wijzigen</h2>
+        <h2>Persoonsrollen ${persoon.voornaam} ${persoon.achternaam}</h2>
 
-
-        <form:form method="POST" modelAttribute="persoon">
+        <form:form method="POST" modelAttribute="persoonroldata">
 
             <table>
                 <tr>
-                    <td><label for="voornaam">Voornaam: </label> </td>
-                    <td><form:input path="voornaam" id="voornaam"/></td>
-                    <td><form:errors path="voornaam" cssClass="error"/></td>
+                    <td><label for="persoon.voornaam">Voornaam: </label> </td>
+                    <td><form:input path="persoon.voornaam" id="persoon.voornaam"/></td>
+                    <td><form:errors path="persoon.voornaam" cssClass="error"/></td>
                 </tr>
-                <tr>
-                    <td><label for="achternaam">Achternaam: </label> </td>
-                    <td><form:input path="achternaam" id="achternaam"/></td>
-                    <td><form:errors path="achternaam" cssClass="error"/></td>
-                </tr>
+                <td>Rollen:</td><td> <form:checkboxes items="${rolnamen}" path="persoonsrolnamen" /></td>
+                
                 <tr>
                     <td colspan="3"><input type="submit" value="Update"/></td>
                 </tr>
             </table>
         </form:form>
-        <a href="<c:url value='${persoon.id}-persoonsrollen ' />">Voeg nieuwe rol toe</a>
+
+        <br/>
+
+
+        
+
 
         <br/>
         <br/>
         Go back to <a href="<c:url value='/list' />">List of All Employees</a>
-    </body>
+</body>
 </html>

@@ -15,7 +15,7 @@ public class TrajectServiceImpl implements TrajectService {
     private TrajectDao dao;
 
     public void create(Traject traject) throws IllegalArgumentException {
-        if (traject.getNaam() == null || traject.getStartdatum() == null) {
+        if (traject.getNaam() == null ) {
             throw new IllegalArgumentException("Traject not complete");
         }
         dao.create(traject);

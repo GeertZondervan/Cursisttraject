@@ -16,4 +16,6 @@ public interface RolDao {
     List<Rol> getAll();
     
     void flushSession();
+
+    public List<Rol> read(String naam);
 }
