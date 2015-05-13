@@ -8,10 +8,12 @@ package edu.rsvier.springmvc.controller;
 import edu.rsvier.springmvc.model.Persoon;
 import edu.rsvier.springmvc.model.PersoonRolPaginaData;
 import edu.rsvier.springmvc.model.Persoonsrol;
+import edu.rsvier.springmvc.model.PersoonsrolId;
 import edu.rsvier.springmvc.model.Rol;
 import edu.rsvier.springmvc.service.PersoonService;
 import edu.rsvier.springmvc.service.PersoonsrolService;
 import edu.rsvier.springmvc.service.RolService;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -54,10 +56,29 @@ public class PersoonsrollenWijzigController {
     @RequestMapping(value = {"{persoonid}-persoonsrollen"}, method = RequestMethod.POST)
     public String wijzigPersoonPost(@PathVariable int persoonid, PersoonRolPaginaData persoonRolData, ModelMap model) {
         Persoon persoon = service.read(persoonid);
-        
+        System.out.println(persoon.getPersoonsrollen());
         
         List<String> rollenDezePersoon = persoonRolData.getPersoonsrolnamen();
         System.out.println(rollenDezePersoon);
+        
+        for(String rolNaam:rollenDezePersoon){
+            Rol rol = rolService.read(rolNaam);
+            Persoonsrol persoonsrol = new Persoonsrol();
+            persoonsrol.setPersoon(persoon);
+            persoonsrol.setRol(rol);
+            
+            if(!persoon.getPersoonsrollen().contains(persoonsrol)){
+                PersoonsrolId persoonsrolId = new PersoonsrolId();
+                persoonsrolId.setPersoonId(persoonid);
+                persoonsrolId.setRolId(rol.getId());
+                persoonsrolId.setBegindatum(LocalDate.now());
+                persoonsrol.setId(persoonsrolId);
+                persoonsrolService.create(persoonsrol);
+
+                persoon.getPersoonsrollen().add(persoonsrol);
+            }
+            service.update(persoon);
+        }
         
          model.addAttribute("succes", persoon.getVoornaam() + " "
                 + persoon.getAchternaam() + " is gewijzigd");

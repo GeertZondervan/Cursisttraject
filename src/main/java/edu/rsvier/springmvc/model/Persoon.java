@@ -59,7 +59,7 @@ public class Persoon implements java.io.Serializable {
         this.achternaam = achternaam;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "persoon", cascade = {CascadeType.ALL})
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "persoon", cascade = {CascadeType.ALL})
     public Set<Persoonsrol> getPersoonsrollen() {
         return this.persoonsrollen;
     }
@@ -87,7 +87,7 @@ public class Persoon implements java.io.Serializable {
         int hash = 3;
         hash = 53 * hash + (this.voornaam != null ? this.voornaam.hashCode() : 0);
         hash = 53 * hash + (this.achternaam != null ? this.achternaam.hashCode() : 0);
-        hash = 53 * hash + (this.persoonsrollen != null ? this.persoonsrollen.hashCode() : 0);
+        //hash = 53 * hash + (this.persoonsrollen != null ? this.persoonsrollen.hashCode() : 0);
         return hash;
     }
 
@@ -116,7 +116,7 @@ public class Persoon implements java.io.Serializable {
     }
 
     public String toString() {
-        return ("Persoon: " + voornaam + ", " + achternaam + " " + persoonsrollen);
+        return ("Persoon: " + voornaam + ", " + achternaam);
     }
 
     
