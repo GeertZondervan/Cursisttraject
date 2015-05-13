@@ -53,7 +53,7 @@ public class Rol implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return ("Rol: " + this.getNaam());
+        return (this.getNaam());
     }
 
     @Override

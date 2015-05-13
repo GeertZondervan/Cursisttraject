@@ -20,19 +20,17 @@
 
     <body>
 
-        <h2>Persoonsrollen ${persoon.voornaam} ${persoon.achternaam}</h2>
+        <h2>Persoonsrol toevoegen voor ${persoon.voornaam} ${persoon.achternaam}</h2>
 
-        <form:form method="POST" modelAttribute="persoonroldata">
+        <form:form method="POST" modelAttribute="persoonsrol">
 
             <table>
                 <tr>
-                    <td><label for="persoon.voornaam">Voornaam: </label> </td>
-                    
-                    <td><form:input path="persoon.voornaam" id="persoon.voornaam"/></td>
-                    <td><form:errors path="persoon.voornaam" cssClass="error"/></td>
+                    <td>Rol:</td><td><form:select items="${rollen}" path="rol" /></td>
                 </tr>
-                <td>Rollen:</td><td> <form:checkboxes items="${rolnamen}" path="persoonsrolnamen" /></td>
-                
+                <tr>
+                    <td>Begindatum</td><td><form:input path="id.begindatum" id="id.begindatum"/></td>
+                </tr>
                 <tr>
                     <td colspan="3"><input type="submit" value="Update"/></td>
                 </tr>

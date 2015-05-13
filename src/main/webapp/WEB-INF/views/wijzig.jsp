@@ -14,6 +14,11 @@
             .error {
                 color: #ff0000;
             }
+
+            tr:first-child{
+                font-weight: bold;
+                background-color:mediumaquamarine;
+            }
         </style>
 
     </head>
@@ -23,9 +28,10 @@
         <h2>Persoonsgegevens wijzigen</h2>
 
 
-        <form:form method="POST" modelAttribute="persoon">
-
+        <form:form modelAttribute="persoon">
+            <h2>Personalia</h2>
             <table>
+                <tr></tr>
                 <tr>
                     <td><label for="voornaam">Voornaam: </label> </td>
                     <td><form:input path="voornaam" id="voornaam"/></td>
@@ -40,24 +46,44 @@
                     <td colspan="3"><input type="submit" value="Update"/></td>
                 </tr>
                 <tr><td><br/><td></tr>
-                <tr><td>Rollen:</td></tr>
+                <tr><td><h2>Persoonsrollen</h2></td></tr>
+
+            </table>
+            <table>
+                <tr>
+                    <td>Naam</td><td>Begindatum</td>
+                </tr>
                 <c:forEach items="${persoon.persoonsrollen}" var="persoonsrol" >
 
                     <tr>
                         <td>${persoonsrol.rol.naam}</td>
-                        <td>Begindatum:  ${persoonsrol.id.begindatum}</td>
-                        <td><button id="verwijder" name="verwijder" value="${persoonsrol.rol.id}" >Verwijder </button>
+                        <td>${persoonsrol.id.begindatum}</td>
+                        <td><button id="verwijder" name="verwijderpersoonsrol" value="${persoonsrol.rol.id}" >Verwijder </button>
                     </tr>
                 </c:forEach>
-                
+                <tr><td><a href="<c:url value='${persoon.id}-persoonsroltoevoegen ' />">Voeg nieuwe persoonsrol toe</a></td></tr>
+                <tr><td><br/><td></tr>
+               </table> 
+                <h2>Expertises</h2>
+            
+            <table>
+                <c:forEach items="${persoon.expertises}" var="expertise" >
+                    <td>Naam</td><td>Omschrijving</td>
+                    <tr>
+                        <td>${expertise.naam}</td>
+                        <td>${expertise.omschrijving}</td>
 
-                
+                        <td><button id="verwijder" name="verwijderexpertise" value="${expertise.id}" >Verwijder </button>
+                    </tr>
+                </c:forEach>
+
+
             </table>
         </form:form>
-        <a href="<c:url value='${persoon.id}-persoonsrollen ' />">Voeg nieuwe rol toe</a>
+
 
         <br/>
         <br/>
-        Go back to <a href="<c:url value='/list' />">List of All Employees</a>
+        Terug naar de <a href="<c:url value='/list' />">persoonslijst</a>
     </body>
 </html>

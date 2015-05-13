@@ -37,48 +37,24 @@ public class PersoonsrollenWijzigController {
     @Autowired
     PersoonsrolService persoonsrolService;
     
-    @RequestMapping(value = {"{persoonid}-persoonsrollen"}, method = RequestMethod.GET)
-    public String getPersoon(@PathVariable int persoonid, PersoonRolPaginaData persoonRolData, ModelMap model) {
+    @RequestMapping(value = {"{persoonid}-persoonsroltoevoegen"}, method = RequestMethod.GET)
+    public String getPersoon(@PathVariable int persoonid, ModelMap model) {
         Persoon persoon = service.read(persoonid);
+        Persoonsrol persoonsrol = new Persoonsrol();
+        persoonsrol.setPersoon(persoon);
         List<Rol>rollen = rolService.getAll();
-        List<String>rolnamen = new ArrayList<String>();
-        for(Rol rol: rollen){
-            rolnamen.add(rol.getNaam());
-        }
-        persoonRolData.setPersoon(persoon);
-        model.addAttribute("rolnamen", rolnamen);
-        model.addAttribute("persoonroldata", persoonRolData);
-        
-       
-        return "persoonsrollenwijzigen";
+        model.addAttribute("rollen", rollen);
+        model.addAttribute("persoonsrol", persoonsrol);
+        model.addAttribute("persoon", persoon);
+        return "persoonsroltoevoegen";
     }
     
-    @RequestMapping(value = {"{persoonid}-persoonsrollen"}, method = RequestMethod.POST)
-    public String wijzigPersoonPost(@PathVariable int persoonid, PersoonRolPaginaData persoonRolData, ModelMap model) {
+    @RequestMapping(value = {"{persoonid}-persoonsroltoevoegen"}, method = RequestMethod.POST)
+    public String wijzigPersoonPost(@PathVariable int persoonid, LocalDate beginDatum, Persoonsrol persoonsrol, ModelMap model) {
         Persoon persoon = service.read(persoonid);
         System.out.println(persoon.getPersoonsrollen());
         
-        List<String> rollenDezePersoon = persoonRolData.getPersoonsrolnamen();
-        System.out.println(rollenDezePersoon);
         
-        for(String rolNaam:rollenDezePersoon){
-            Rol rol = rolService.read(rolNaam);
-            Persoonsrol persoonsrol = new Persoonsrol();
-            persoonsrol.setPersoon(persoon);
-            persoonsrol.setRol(rol);
-            
-            if(!persoon.getPersoonsrollen().contains(persoonsrol)){
-                PersoonsrolId persoonsrolId = new PersoonsrolId();
-                persoonsrolId.setPersoonId(persoonid);
-                persoonsrolId.setRolId(rol.getId());
-                persoonsrolId.setBegindatum(LocalDate.now());
-                persoonsrol.setId(persoonsrolId);
-                persoonsrolService.create(persoonsrol);
-
-                persoon.getPersoonsrollen().add(persoonsrol);
-            }
-            service.update(persoon);
-        }
         
          model.addAttribute("succes", persoon.getVoornaam() + " "
                 + persoon.getAchternaam() + " is gewijzigd");

@@ -109,7 +109,7 @@ public class Expertise implements java.io.Serializable {
     public int hashCode() {
         int hash = 5;
         hash = 79 * hash + (this.naam != null ? this.naam.hashCode() : 0);
-        hash = 79 * hash + (this.module.getOmschrijving() != null ? this.module.getOmschrijving().hashCode() : 0);
+        //hash = 79 * hash + (this.module.getOmschrijving() != null ? this.module.getOmschrijving().hashCode() : 0);
         hash = 79 * hash + (this.omschrijving != null ? this.omschrijving.hashCode() : 0);
         return hash;
     }

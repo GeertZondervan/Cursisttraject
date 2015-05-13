@@ -57,8 +57,8 @@ public class WijzigpaginaController {
         return "bevestigingspagina";
     }
 
-    @RequestMapping(value = {"/update-{persoonid}"}, method = RequestMethod.POST, params = "verwijder")
-    public String verwijderPersoonsrol(@PathVariable int persoonid, @RequestParam(value = "verwijder") int rolId, ModelMap model) {
+    @RequestMapping(value = {"/update-{persoonid}"}, method = RequestMethod.POST, params = "verwijderpersoonsrol")
+    public String verwijderPersoonsrol(@PathVariable int persoonid, @RequestParam(value = "verwijderpersoonsrol") int rolId, ModelMap model) {
 
         Persoon persoon = service.read(persoonid);
         System.out.println("ID: " + persoon.getId());
@@ -75,7 +75,7 @@ public class WijzigpaginaController {
         persoonsrolService.delete(persoonsrol);
         service.update(persoon);
 
-        return "bevestigingspagina";
+        return getPersoon(persoonid, persoon, model);
     }
 
 }
