@@ -28,9 +28,7 @@
                 <tr>
                     <td>Rol:</td><td><form:select items="${rollen}" path="rol" /></td>
                 </tr>
-                <tr>
-                    <td>Begindatum</td><td><form:input path="id.begindatum" id="id.begindatum"/></td>
-                </tr>
+                
                 <tr>
                     <td colspan="3"><input type="submit" value="Update"/></td>
                 </tr>
