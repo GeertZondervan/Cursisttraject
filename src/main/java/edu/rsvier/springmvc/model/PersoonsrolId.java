@@ -12,6 +12,7 @@ public class PersoonsrolId implements java.io.Serializable {
     private int persoonId;
     private int rolId;
     private LocalDate begindatum;
+    
 
     public PersoonsrolId() {
     }
@@ -76,5 +77,7 @@ public class PersoonsrolId implements java.io.Serializable {
         result = 37 * result + (getBegindatum() == null ? 0 : this.getBegindatum().hashCode());
         return result;
     }
+
+    
 
 }

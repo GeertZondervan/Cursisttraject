@@ -50,7 +50,7 @@ public class PersoonsrollenWijzigController {
     }
     
     @RequestMapping(value = {"{persoonid}-persoonsroltoevoegen"}, method = RequestMethod.POST)
-    public String wijzigPersoonPost(@PathVariable int persoonid, LocalDate beginDatum, Persoonsrol persoonsrol, ModelMap model) {
+    public String wijzigPersoonPost(@PathVariable int persoonid, Persoonsrol persoonsrol, ModelMap model) {
         Persoon persoon = service.read(persoonid);
         System.out.println(persoon.getPersoonsrollen());
         

@@ -77,7 +77,7 @@ public class Traject implements java.io.Serializable {
         this.sluitingsdatum = sluitingsdatum;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "traject", cascade = {CascadeType.ALL})
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "traject", cascade = {CascadeType.ALL})
     public Set<Module> getModules() {
         return this.modules;
     }
