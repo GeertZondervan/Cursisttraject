@@ -1,3 +1,7 @@
 /target/
 /application.properties
 .idea/
+.project
+.classpath
+.settings
+.springbeans
