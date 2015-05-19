@@ -109,7 +109,7 @@ public class PersoonslijstController {
         return "registratie";
     }
 
-    @RequestMapping(value="nieuwpersoon", method = RequestMethod.POST)
+    @RequestMapping(value={"nieuwpersoon"}, method = RequestMethod.POST)
 
     public String savePersoon(@Valid Persoon persoon, BindingResult result,
             ModelMap model) {
