@@ -37,13 +37,13 @@
                 <tr>
                     <td>${persoon.voornaam}</td>
                     <td>${persoon.achternaam}</td>
-                    <td><input type="submit" onclick="location.href='update-${persoon.id} '" name="wijzig" class="button" value="Wijzig" /></td>
-                    <td><input type="submit" onclick="location.href='delete-${persoon.id} '" name="verwijder" class="button" value="Verwijder" /></td>
+                    <td><input type="submit" onclick="location.href='personen/update-${persoon.id} '" name="wijzig" class="button" value="Wijzig" /></td>
+                    <td><input type="submit" onclick="location.href='personen/delete-${persoon.id} '" name="verwijder" class="button" value="Verwijder" /></td>
                    
                 </tr>
             </c:forEach>
         </table>
         <br/>
-        <a href="<c:url value='/nieuwpersoon' />">Voeg nieuw persoon toe</a>
+        <a href="<c:url value='/personen/nieuwpersoon' />">Voeg nieuw persoon toe</a>
     </body>
 </html>
