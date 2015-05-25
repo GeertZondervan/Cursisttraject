@@ -7,19 +7,9 @@
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css">
         <title>Updatenwijzigingenformkut</title>
 
-        <style>
-
-            .error {
-                color: #ff0000;
-            }
-
-            tr:first-child{
-                font-weight: bold;
-                background-color:mediumaquamarine;
-            }
-        </style>
 
     </head>
 
@@ -29,9 +19,9 @@
 
 
         <form:form modelAttribute="persoon">
-            <h2>Personalia</h2>
-            <table>
-                <tr></tr>
+            
+            <table class="wijzig">
+                <tr><td><h3>Personalia</h3></td></tr>
                 <tr>
                     <td><label for="voornaam">Voornaam: </label> </td>
                     <td><form:input path="voornaam" id="voornaam"/></td>
@@ -45,17 +35,19 @@
                 <tr>
                     <td colspan="3"><input type="submit" value="Update"/></td>
                 </tr>
-                <tr><td><br/><td></tr>
-                <tr><td><h2>Persoonsrollen</h2></td></tr>
+                
+                
 
-            </table>
-            <table>
-                <tr>
+            </table >
+            <table class="wijzig">
+                <tr><td><h3>Persoonsrollen</h3></td></tr>
+                <tr class="tabelheader">
                     <td>Naam</td><td>Begindatum</td>
                 </tr>
                 <c:forEach items="${persoon.persoonsrollen}" var="persoonsrol" >
 
                     <tr>
+                        
                         <td>${persoonsrol.rol.naam}</td>
                         <td>${persoonsrol.id.begindatum}</td>
                         <td><button id="verwijder" name="verwijderpersoonsrol" value="${persoonsrol.rol.id}" >Verwijder </button>
@@ -64,11 +56,13 @@
                 <tr><td><a href="<c:url value='${persoon.id}-persoonsroltoevoegen ' />">Voeg nieuwe persoonsrol toe</a></td></tr>
                 <tr><td><br/><td></tr>
                </table> 
-                <h2>Expertises</h2>
+               
             
-            <table>
+            <table class="wijzig">
+                <tr><td><h3>Expertises</h3></td></tr>
+                <tr class="tabelheader"><td>Naam</td><td>Omschrijving</td></tr>
                 <c:forEach items="${persoon.expertises}" var="expertise" >
-                    <td>Naam</td><td>Omschrijving</td>
+                    
                     <tr>
                         <td>${expertise.naam}</td>
                         <td>${expertise.omschrijving}</td>

@@ -1,0 +1,61 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 25-mei-2015, 16:41:00
+    Author     : Wiemer
+*/
+
+body{
+    font-family: tahoma;
+    font-size:12px;
+    padding: auto;
+    margin:20px;
+}
+
+table{   
+    margin:10px;
+}
+
+.wijzig{
+    width:700px;
+    padding: 10px;
+    border-radius: 10px;
+    border:2px dashed darkcyan;
+}
+
+.wijzig h3{
+    font-size: 20px;
+    color: darkcyan;
+}
+
+.tabelheader{
+    font-weight:bold;
+    color: darkcyan;
+   
+}
+
+.error {
+    color: #ff0000;
+}
+
+tr{
+    
+}
+
+td{
+    padding: 5px;
+    
+}
+
+.element:hover{
+    background-color:lightblue;
+}
+
+
+h2{
+    color: darkcyan;
+    font-size:24px;
+}

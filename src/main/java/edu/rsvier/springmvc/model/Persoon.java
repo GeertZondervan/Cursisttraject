@@ -16,6 +16,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 import org.springframework.transaction.annotation.Transactional;
 
 @Entity
@@ -23,7 +24,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class Persoon implements java.io.Serializable {
 
     private Integer id;
+    
+    @Size(min = 2, max = 45)
     private String voornaam;
+    
+     @Size(min = 2, max = 45)
     private String achternaam;
     private Set<Persoonsrol> persoonsrollen = new HashSet<Persoonsrol>(0);
     private Set<Expertise> expertises = new HashSet<Expertise>(0);
@@ -40,7 +45,8 @@ public class Persoon implements java.io.Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-
+    
+    
     @Column(name = "voornaam", nullable = false, length = 45)
     public String getVoornaam() {
         return this.voornaam;

@@ -45,7 +45,7 @@ public class PersoonslijstController {
         model.addAttribute("personen", personen);
         return "personenlijst";
     }
-    
+
     @RequestMapping(value = {"update-{persoonid}"}, method = RequestMethod.GET)
     public String getPersoon(@PathVariable int persoonid, Persoon persoon, ModelMap model) {
         persoon = service.read(persoonid);
@@ -56,15 +56,26 @@ public class PersoonslijstController {
     }
 
     @RequestMapping(value = {"update-{persoonid}"}, method = RequestMethod.POST)
-    public String wijzigPersoonPost(@PathVariable int persoonid, Persoon persoon, ModelMap model) {
-        Persoon persoonRead = service.read(persoonid);
-        persoonRead = persoon;
-        persoonRead.setId(persoonid);
-        service.update(persoon);
+    public String wijzigPersoonPost(@PathVariable int persoonid, @Valid Persoon persoon, BindingResult result, ModelMap model) {
+        System.out.println(result);
 
-        model.addAttribute("succes", persoon.getVoornaam() + " "
-                + persoon.getAchternaam() + " is gewijzigd");
-        return "bevestigingspagina";
+        if (result.hasErrors()) {
+            System.out.println("errorrrrr");
+            persoon.setPersoonsrollen(service.read(persoonid).getPersoonsrollen());
+            persoon.setExpertises(service.read(persoonid).getExpertises());
+            model.addAttribute("persoon", persoon);
+            return "wijzig";
+        } else {
+
+            Persoon persoonRead = service.read(persoonid);
+            persoonRead = persoon;
+            persoonRead.setId(persoonid);
+            service.update(persoon);
+
+            model.addAttribute("succes", persoon.getVoornaam() + " "
+                    + persoon.getAchternaam() + " is gewijzigd");
+            return "bevestigingspagina";
+        }
     }
 
     @RequestMapping(value = {"update-{persoonid}"}, method = RequestMethod.POST, params = "verwijderpersoonsrol")
@@ -72,7 +83,7 @@ public class PersoonslijstController {
 
         Persoon persoon = service.read(persoonid);
         System.out.println("ID: " + persoon.getId());
-        
+
         Persoonsrol persoonsrol = persoonsrolService.read(persoonid, rolId);
         PersoonsrolId persoonsrolId = persoonsrol.getId();
         System.out.println("Persoonsrolid: " + persoonsrolId);
@@ -85,23 +96,23 @@ public class PersoonslijstController {
         persoonsrolService.delete(persoonsrol);
         service.update(persoon);
 
-        return getPersoon(persoonid, persoon, model);
+        return "wijzig";
     }
-    
+
     @RequestMapping(value = {"delete-{persoonid}"}, method = RequestMethod.GET)
     public String deletePersoonGet(@PathVariable int persoonid, Persoon persoon, ModelMap model) {
         persoon = service.read(persoonid);
         model.addAttribute("persoon", persoon);
         return "verwijder";
     }
-    
+
     @RequestMapping(value = {"delete-{persoonid}"}, method = RequestMethod.POST)
     public String deletePersoonPost(@PathVariable int persoonid, Persoon persoon, ModelMap model) {
         service.delete(service.read(persoonid));
-         model.addAttribute("succes", "Deze persoon is succesvol verwijderd");
+        model.addAttribute("succes", "Deze persoon is succesvol verwijderd");
         return "bevestigingspagina";
     }
-    
+
     @RequestMapping(value = {"nieuwpersoon"}, method = RequestMethod.GET)
     public String newPersoon(Persoon persoon, ModelMap model) {
 
@@ -109,7 +120,7 @@ public class PersoonslijstController {
         return "registratie";
     }
 
-    @RequestMapping(value={"nieuwpersoon"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"nieuwpersoon"}, method = RequestMethod.POST)
 
     public String savePersoon(@Valid Persoon persoon, BindingResult result,
             ModelMap model) {
@@ -117,13 +128,12 @@ public class PersoonslijstController {
         if (result.hasErrors()) {
             return "registratie";
         }
-        
+
         service.create(persoon);
         model.addAttribute("succes", persoon.getVoornaam() + " "
                 + persoon.getAchternaam() + " staat geregistreerd");
         return "bevestigingspagina";
     }
-  
 
 //    @RequestMapping(value = {"/resultaten-{id}"}, method = RequestMethod.GET)
 //    public String resultatenPersoonGet(@PathVariable int id, Persoon persoon, ModelMap model) {
@@ -157,7 +167,6 @@ public class PersoonslijstController {
 //
 //        return resultatenPersoonGet(persoon.getId(), persoon, model);
 //    }
-
 //    /*
 //     * This method will provide the medium to add a new employee.
 //     */
