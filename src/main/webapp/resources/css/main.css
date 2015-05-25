@@ -50,8 +50,13 @@ td{
     
 }
 
+.element{
+    border-radius: 10px;
+}
+
 .element:hover{
     background-color:lightblue;
+    
 }
 
 

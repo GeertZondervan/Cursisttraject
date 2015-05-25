@@ -36,6 +36,16 @@
                     <td><form:input path="omschrijving" id="omschrijving"/></td>
                     <td><form:errors path="omschrijving" cssClass="error"/></td>
                 </tr>
+                <tr>
+                    <td><label for="startdatum">Startdatum: </label> </td>
+                    <td><form:input type = "localDate" path="startdatum" id="startdatum"/></td>
+                    <td><form:errors path="startdatum" cssClass="error"/></td>
+                </tr>
+                 <tr>
+                    <td><label for="sluitingsdatum">Einddatum: </label> </td>
+                    <td><form:input type = "localDate" path="sluitingsdatum" id="sluitingsdatum"/></td>
+                    <td><form:errors path="sluitingsdatum" cssClass="error"/></td>
+                </tr>
 
                 <tr>
                     <td colspan="3"><input type="submit" value="Update"/></td>

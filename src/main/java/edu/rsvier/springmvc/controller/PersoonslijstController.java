@@ -17,7 +17,9 @@ import edu.rsvier.springmvc.service.PersoonService;
 import edu.rsvier.springmvc.service.PersoonsrolService;
 import edu.rsvier.springmvc.service.RolService;
 import edu.rsvier.springmvc.service.ToetsResultaatService;
+import java.time.format.DateTimeFormatter;
 import javax.validation.Valid;
+import org.joda.time.LocalDate;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -50,6 +52,9 @@ public class PersoonslijstController {
     public String getPersoon(@PathVariable int persoonid, Persoon persoon, ModelMap model) {
         persoon = service.read(persoonid);
         List<Rol> rollen = rolService.getAll();
+        LocalDate date = LocalDate.parse("2012-04-17");
+        System.out.println(date.getDayOfYear());
+        System.out.println(date);
         model.addAttribute("persoon", persoon);
         model.addAttribute("rollen", rollen);
         return "wijzig";

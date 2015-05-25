@@ -46,7 +46,7 @@
                 </tr>
                 <c:forEach items="${persoon.persoonsrollen}" var="persoonsrol" >
 
-                    <tr>
+                    <tr class="element">
                         
                         <td>${persoonsrol.rol.naam}</td>
                         <td>${persoonsrol.id.begindatum}</td>

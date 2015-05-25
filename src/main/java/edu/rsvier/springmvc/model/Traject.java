@@ -13,6 +13,8 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 @Table(name = "traject", catalog = "cursisttraject_relatiebeheer")
@@ -21,8 +23,14 @@ public class Traject implements java.io.Serializable {
     private Integer id;
     private String naam;
     private String omschrijving;
+    
+    @DateTimeFormat(iso = ISO.DATE, pattern="dd-MM-yyyy")
     private LocalDate startdatum;
+    
+    @DateTimeFormat(iso = ISO.DATE, pattern="dd-MM-yyyy")
     private LocalDate sluitingsdatum;
+    
+    
     private Set<Module> modules = new HashSet<Module>(0);
     private Set<PersoonsrolHasTraject> heeftPersoonsrollen = new HashSet<PersoonsrolHasTraject>(0);
 

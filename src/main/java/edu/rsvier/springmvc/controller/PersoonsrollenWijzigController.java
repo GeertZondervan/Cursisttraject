@@ -6,18 +6,12 @@
 package edu.rsvier.springmvc.controller;
 
 import edu.rsvier.springmvc.model.Persoon;
-import edu.rsvier.springmvc.model.PersoonRolPaginaData;
 import edu.rsvier.springmvc.model.Persoonsrol;
-import edu.rsvier.springmvc.model.PersoonsrolId;
 import edu.rsvier.springmvc.model.Rol;
 import edu.rsvier.springmvc.service.PersoonService;
 import edu.rsvier.springmvc.service.PersoonsrolService;
 import edu.rsvier.springmvc.service.RolService;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -53,9 +47,6 @@ public class PersoonsrollenWijzigController {
     public String wijzigPersoonPost(@PathVariable int persoonid, Persoonsrol persoonsrol, ModelMap model) {
         Persoon persoon = service.read(persoonid);
         System.out.println(persoon.getPersoonsrollen());
-        
-        
-        
          model.addAttribute("succes", persoon.getVoornaam() + " "
                 + persoon.getAchternaam() + " is gewijzigd");
         return "redirect: /update-{persoonid}";
