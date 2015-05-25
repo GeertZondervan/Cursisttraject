@@ -15,6 +15,15 @@ body{
     margin:20px;
 }
 
+.hoofdmenubutton{
+    padding:10px;
+    width:200px;
+}
+
+.hoofdmenubutton:hover{
+    font-weight: bold;
+}
+
 table{   
     margin:10px;
 }

@@ -52,9 +52,6 @@ public class PersoonslijstController {
     public String getPersoon(@PathVariable int persoonid, Persoon persoon, ModelMap model) {
         persoon = service.read(persoonid);
         List<Rol> rollen = rolService.getAll();
-        LocalDate date = LocalDate.parse("2012-04-17");
-        System.out.println(date.getDayOfYear());
-        System.out.println(date);
         model.addAttribute("persoon", persoon);
         model.addAttribute("rollen", rollen);
         return "wijzig";
@@ -62,10 +59,7 @@ public class PersoonslijstController {
 
     @RequestMapping(value = {"update-{persoonid}"}, method = RequestMethod.POST)
     public String wijzigPersoonPost(@PathVariable int persoonid, @Valid Persoon persoon, BindingResult result, ModelMap model) {
-        System.out.println(result);
-
         if (result.hasErrors()) {
-            System.out.println("errorrrrr");
             persoon.setPersoonsrollen(service.read(persoonid).getPersoonsrollen());
             persoon.setExpertises(service.read(persoonid).getExpertises());
             model.addAttribute("persoon", persoon);

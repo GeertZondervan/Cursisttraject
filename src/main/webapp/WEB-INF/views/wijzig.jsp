@@ -42,7 +42,7 @@
             <table class="wijzig">
                 <tr><td><h3>Persoonsrollen</h3></td></tr>
                 <tr class="tabelheader">
-                    <td>Naam</td><td>Begindatum</td>
+                    <td>Naam</td><td>Begindatum</td><td>Einddatum</td>
                 </tr>
                 <c:forEach items="${persoon.persoonsrollen}" var="persoonsrol" >
 
@@ -50,7 +50,8 @@
                         
                         <td>${persoonsrol.rol.naam}</td>
                         <td>${persoonsrol.id.begindatum}</td>
-                        <td><button id="verwijder" name="verwijderpersoonsrol" value="${persoonsrol.rol.id}" >Verwijder </button>
+                        <td>${persoonsrol.einddatum}</td>
+                        <td><button id="verwijder" name="verwijderpersoonsrol" value="${persoonsrol.rol.id}" >Verwijder </button></td>
                     </tr>
                 </c:forEach>
                 <tr><td><a href="<c:url value='${persoon.id}-persoonsroltoevoegen ' />">Voeg nieuwe persoonsrol toe</a></td></tr>

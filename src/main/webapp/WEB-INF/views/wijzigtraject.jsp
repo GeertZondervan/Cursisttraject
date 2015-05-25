@@ -7,6 +7,7 @@
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css">
         <title>Traject wijzigen</title>
 
         <style>
@@ -41,7 +42,7 @@
                     <td><form:input type = "localDate" path="startdatum" id="startdatum"/></td>
                     <td><form:errors path="startdatum" cssClass="error"/></td>
                 </tr>
-                 <tr>
+                <tr>
                     <td><label for="sluitingsdatum">Einddatum: </label> </td>
                     <td><form:input type = "localDate" path="sluitingsdatum" id="sluitingsdatum"/></td>
                     <td><form:errors path="sluitingsdatum" cssClass="error"/></td>
@@ -51,16 +52,16 @@
                     <td colspan="3"><input type="submit" value="Update"/></td>
                 </tr>
             </table>
-            <h2>Modules in dit traject</h2>
+            <h3>Modules in dit traject</h3>
             <table>
                 <tr><td>Omschrijving</td><td>Lengte in weken</td></tr>
                 <c:forEach items="${traject.modules}" var="module" >
 
-                    <tr>
+                    <tr class="element">
 
                         <td>${module.omschrijving}</td>
                         <td>${module.lengteInWeken}</td>
-
+                        <td><button id="verwijdermodule" name="verwijdermodule" value="${module.id}"  >Verwijder </button></td>
                     </tr>
                 </c:forEach>
             </table>

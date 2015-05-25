@@ -20,16 +20,16 @@
                 <td>id</td><td>Voornaam</td><td>Achternaam</td>
             </tr>
             <c:forEach items="${personen}" var="persoon">
-                <tr class="element">
+                <tr  class="element" >
                     <td>${persoon.id}</td>
                     <td>${persoon.voornaam}</td>
                     <td>${persoon.achternaam}</td>
-                    <td><input type="submit" onclick="location.href='${pageContext.request.contextPath}/personen/update-${persoon.id} '" name="wijzig" class="button" value="Wijzig" /></td>
+                    <td><input type="submit" onclick="location.href='${pageContext.request.contextPath}/personen/update-${persoon.id} '" name="wijzig" class="button" value="Details" /></td>
                     <td><input type="submit" onclick="location.href='${pageContext.request.contextPath}/personen/delete-${persoon.id} '" name="verwijder" class="button" value="Verwijder" /></td>
                    
                 </tr>
             </c:forEach>
-                <tr><td colspan="10"><a href="<c:url value='/nieuwpersoon' />">Voeg nieuw persoon toe</a></td></tr>
+                <tr><td colspan="10"><a href="<c:url value='/personen/nieuwpersoon' />">Voeg nieuw persoon toe</a></td></tr>
         </table>
         <br/>
         
