@@ -35,6 +35,10 @@ table{
     border:2px dashed darkcyan;
 }
 
+input{
+    font-size:12px;
+}
+
 .wijzig h3{
     font-size: 20px;
     color: darkcyan;

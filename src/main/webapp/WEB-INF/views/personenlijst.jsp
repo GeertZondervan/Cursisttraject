@@ -17,13 +17,14 @@
         <h2>Personenlijst</h2>	
         <table class="list">
             <tr class="tabelheader">
-                <td>id</td><td>Voornaam</td><td>Achternaam</td>
+                <td>Voornaam</td><td>Achternaam</td><td>Aantal rollen</td>
             </tr>
             <c:forEach items="${personen}" var="persoon">
                 <tr  class="element" >
-                    <td>${persoon.id}</td>
+                    
                     <td>${persoon.voornaam}</td>
                     <td>${persoon.achternaam}</td>
+                    <td>${persoon.persoonsrollen.size()}</td>
                     <td><input type="submit" onclick="location.href='${pageContext.request.contextPath}/personen/update-${persoon.id} '" name="wijzig" class="button" value="Details" /></td>
                     <td><input type="submit" onclick="location.href='${pageContext.request.contextPath}/personen/delete-${persoon.id} '" name="verwijder" class="button" value="Verwijder" /></td>
                    
