@@ -24,8 +24,8 @@
                     <td>${persoon.id}</td>
                     <td>${persoon.voornaam}</td>
                     <td>${persoon.achternaam}</td>
-                    <td><input type="submit" onclick="location.href='update-${persoon.id} '" name="wijzig" class="button" value="Wijzig" /></td>
-                    <td><input type="submit" onclick="location.href='delete-${persoon.id} '" name="verwijder" class="button" value="Verwijder" /></td>
+                    <td><input type="submit" onclick="location.href='${pageContext.request.contextPath}/personen/update-${persoon.id} '" name="wijzig" class="button" value="Wijzig" /></td>
+                    <td><input type="submit" onclick="location.href='${pageContext.request.contextPath}/personen/delete-${persoon.id} '" name="verwijder" class="button" value="Verwijder" /></td>
                    
                 </tr>
             </c:forEach>
