@@ -1,31 +1,32 @@
-package edu.rsvier.springmvc.controller;
-
-import edu.rsvier.springmvc.model.Persoon;
-import edu.rsvier.springmvc.model.Persoonsrol;
-import edu.rsvier.springmvc.model.Rol;
-import edu.rsvier.springmvc.service.PersoonService;
-import edu.rsvier.springmvc.service.PersoonsrolService;
-import edu.rsvier.springmvc.service.RolService;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
-@Controller
-public class PersoonsrollenWijzigController {
-
-    @Autowired
-    PersoonService service;
-    
-    @Autowired
-    RolService rolService;
-    
-    @Autowired
-    PersoonsrolService persoonsrolService;
-    
+//package edu.rsvier.springmvc.controller;
+//
+//import edu.rsvier.springmvc.model.Persoon;
+//import edu.rsvier.springmvc.model.Persoonsrol;
+//import edu.rsvier.springmvc.model.Rol;
+//import edu.rsvier.springmvc.service.PersoonService;
+//import edu.rsvier.springmvc.service.PersoonsrolService;
+//import edu.rsvier.springmvc.service.RolService;
+//import java.util.List;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.stereotype.Controller;
+//import org.springframework.ui.ModelMap;
+//import org.springframework.web.bind.annotation.PathVariable;
+//import org.springframework.web.bind.annotation.RequestMapping;
+//import org.springframework.web.bind.annotation.RequestMethod;
+//import org.springframework.web.bind.annotation.RequestParam;
+//
+//@Controller
+//public class PersoonsrollenWijzigController {
+//
+//    @Autowired
+//    PersoonService service;
+//    
+//    @Autowired
+//    RolService rolService;
+//    
+//    @Autowired
+//    PersoonsrolService persoonsrolService;
+//    
 //    @RequestMapping(value = {"{persoonid}-persoonsroltoevoegen"}, method = RequestMethod.GET)
 //    public String getPersoon(@PathVariable int persoonid, ModelMap model) {
 //        Persoon persoon = service.read(persoonid);
@@ -39,7 +40,7 @@ public class PersoonsrollenWijzigController {
 //    }
 //    
 //    @RequestMapping(value = {"{persoonid}-persoonsroltoevoegen"}, method = RequestMethod.POST)
-//    public String wijzigPersoonPost(@PathVariable int persoonid, Persoonsrol persoonsrol, ModelMap model) {
+//    public String wijzigPersoonPost(@PathVariable int persoonid, @RequestParam(value = "nieuwepersoonsrol") int rolId, Persoonsrol persoonsrol, ModelMap model) {
 //        Persoon persoon = service.read(persoonid);
 //        System.out.println(persoon.getPersoonsrollen());
 //         model.addAttribute("succes", persoon.getVoornaam() + " "
@@ -47,9 +48,9 @@ public class PersoonsrollenWijzigController {
 //        return "redirect: /update-{persoonid}";
 //    }
 //    
-   
-    
-    
-
-}
-
+//   
+//    
+//    
+//
+//}
+//

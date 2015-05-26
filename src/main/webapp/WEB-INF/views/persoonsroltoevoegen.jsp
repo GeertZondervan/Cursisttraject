@@ -22,29 +22,28 @@
 
         <h2>Persoonsrol toevoegen voor ${persoon.voornaam} ${persoon.achternaam}</h2>
 
-        <form:form method="POST" modelAttribute="persoonsrol">
-
+        <form:form modelAttribute="persoon">
             <table>
-                <tr>
-                    <td>Rol:</td><td><form:select items="${rollen}" path="rol" /></td>
+            <c:forEach items="${rollen}" var="rol">
+                <tr  class="element" >
+                    <td>${rol.id}</td>
+                    <td>${rol.naam}</td>
+                   
+                    <td><button type="submit" name="nieuwepersoonsrol" value="${rol.id}">Voeg toe </button></td>
                 </tr>
-                
-                <tr>
-                    <td colspan="3"><input type="submit"  value="Update"/></td>
-<!--                    onclick="location.href='${pageContext.request.contextPath}/personen/${persoon.id}-persoonsroltoevoegen '" 
-                                           class="button" name ="update"-->
-                </tr>
+            </c:forEach>
+               
             </table>
         </form:form>
 
         <br/>
 
 
-        
+
 
 
         <br/>
         <br/>
         Go back to <a href="<c:url value='/personen/' />">List of All Employees</a>
-</body>
+    </body>
 </html>

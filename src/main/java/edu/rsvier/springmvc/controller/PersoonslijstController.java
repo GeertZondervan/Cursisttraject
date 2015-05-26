@@ -14,6 +14,7 @@ import edu.rsvier.springmvc.service.PersoonService;
 import edu.rsvier.springmvc.service.PersoonsrolService;
 import edu.rsvier.springmvc.service.RolService;
 import edu.rsvier.springmvc.service.ToetsResultaatService;
+import java.time.LocalDate;
 import javax.validation.Valid;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -139,13 +140,23 @@ public class PersoonslijstController {
         return "persoonsroltoevoegen";
     }
 
-    @RequestMapping(value = {"{persoonid}-persoonsroltoevoegen"}, method = RequestMethod.POST)
-    public String persoonsRolToevoegenPost(@PathVariable int persoonid, Persoonsrol persoonsrol, ModelMap model) {
-     Persoon persoon = service.read(persoonid);
-        System.out.println(persoon.getPersoonsrollen());
-         model.addAttribute("succes", persoon.getVoornaam() + " "
-                + persoon.getAchternaam() + " is gewijzigd");
-        return "redirect: /update-{persoonid}";
+    @RequestMapping(value = {"{persoonid}-persoonsroltoevoegen"}, method = RequestMethod.POST, params = "nieuwepersoonsrol")
+    public String persoonsRolToevoegenPost(@PathVariable int persoonId, @RequestParam(value = "nieuwepersoonsrol") int rolId, @Valid Persoon persoon, BindingResult result, ModelMap model) {
+//        persoon = service.read(persoonId);
+//        Persoonsrol persoonsrol = new Persoonsrol();
+//        persoonsrol.setPersoon(persoon);
+//        persoonsrol.getId().setPersoonId(persoonId);
+//        persoonsrol.getId().setRolId(rolId);
+//        persoonsrol.setRol(rolService.read(rolId));
+//        persoonsrol.getId().setBegindatum(LocalDate.now());
+//        
+//        persoon.getPersoonsrollen().add(new Persoonsrol());
+//        service.update(persoon);
+//        
+//        System.out.println(rolId);
+//        System.out.println(persoon);
+        
+        return "wijzig";
     }
 
 //    @RequestMapping(value = {"/resultaten-{id}"}, method = RequestMethod.GET)
