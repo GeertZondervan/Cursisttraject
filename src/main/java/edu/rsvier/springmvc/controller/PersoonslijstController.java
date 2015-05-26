@@ -1,25 +1,20 @@
 package edu.rsvier.springmvc.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import edu.rsvier.springmvc.model.Persoon;
 import edu.rsvier.springmvc.model.Persoonsrol;
 import edu.rsvier.springmvc.model.PersoonsrolId;
 import edu.rsvier.springmvc.model.Rol;
-
 import edu.rsvier.springmvc.service.PersoonService;
 import edu.rsvier.springmvc.service.PersoonsrolService;
 import edu.rsvier.springmvc.service.RolService;
 import edu.rsvier.springmvc.service.ToetsResultaatService;
-import java.time.format.DateTimeFormatter;
 import javax.validation.Valid;
-import org.joda.time.LocalDate;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,7 +37,6 @@ public class PersoonslijstController {
 
     @RequestMapping(value = {"", "lijst"}, method = RequestMethod.GET)
     public String listPersonen(ModelMap model) {
-
         List<Persoon> personen = service.getAll();
         model.addAttribute("personen", personen);
         return "personenlijst";
@@ -120,7 +114,6 @@ public class PersoonslijstController {
     }
 
     @RequestMapping(value = {"nieuwpersoon"}, method = RequestMethod.POST)
-
     public String savePersoon(@Valid Persoon persoon, BindingResult result,
             ModelMap model) {
 
@@ -132,6 +125,27 @@ public class PersoonslijstController {
         model.addAttribute("succes", persoon.getVoornaam() + " "
                 + persoon.getAchternaam() + " staat geregistreerd");
         return "bevestigingspagina";
+    }
+
+    @RequestMapping(value = {"{persoonid}-persoonsroltoevoegen"}, method = RequestMethod.GET)
+    public String persoonsRolToevoegenGet(@PathVariable int persoonid, ModelMap model) {
+        Persoon persoon = service.read(persoonid);
+        Persoonsrol persoonsrol = new Persoonsrol();
+        persoonsrol.setPersoon(persoon);
+        List<Rol> rollen = rolService.getAll();
+        model.addAttribute("rollen", rollen);
+        model.addAttribute("persoonsrol", persoonsrol);
+        model.addAttribute("persoon", persoon);
+        return "persoonsroltoevoegen";
+    }
+
+    @RequestMapping(value = {"{persoonid}-persoonsroltoevoegen"}, method = RequestMethod.POST)
+    public String persoonsRolToevoegenPost(@PathVariable int persoonid, Persoonsrol persoonsrol, ModelMap model) {
+     Persoon persoon = service.read(persoonid);
+        System.out.println(persoon.getPersoonsrollen());
+         model.addAttribute("succes", persoon.getVoornaam() + " "
+                + persoon.getAchternaam() + " is gewijzigd");
+        return "redirect: /update-{persoonid}";
     }
 
 //    @RequestMapping(value = {"/resultaten-{id}"}, method = RequestMethod.GET)

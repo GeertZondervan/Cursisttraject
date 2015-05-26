@@ -8,7 +8,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css">
-        <title>Updatenwijzigingenformkut</title>
+        <title>Updatenwijzigingenform</title>
 
 
     </head>
@@ -54,7 +54,7 @@
                         <td><button id="verwijder" name="verwijderpersoonsrol" value="${persoonsrol.rol.id}" >Verwijder </button></td>
                     </tr>
                 </c:forEach>
-                <tr><td><a href="<c:url value='${persoon.id}-persoonsroltoevoegen ' />">Voeg nieuwe persoonsrol toe</a></td></tr>
+                <tr><td><a href="<c:url value='/personen/${persoon.id}-persoonsroltoevoegen ' />">Voeg nieuwe persoonsrol toe</a></td></tr>
                 <tr><td><br/><td></tr>
                </table> 
                

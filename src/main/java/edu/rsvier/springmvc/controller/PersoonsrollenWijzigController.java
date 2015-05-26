@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.rsvier.springmvc.controller;
 
 import edu.rsvier.springmvc.model.Persoon;
@@ -31,27 +26,27 @@ public class PersoonsrollenWijzigController {
     @Autowired
     PersoonsrolService persoonsrolService;
     
-    @RequestMapping(value = {"{persoonid}-persoonsroltoevoegen"}, method = RequestMethod.GET)
-    public String getPersoon(@PathVariable int persoonid, ModelMap model) {
-        Persoon persoon = service.read(persoonid);
-        Persoonsrol persoonsrol = new Persoonsrol();
-        persoonsrol.setPersoon(persoon);
-        List<Rol>rollen = rolService.getAll();
-        model.addAttribute("rollen", rollen);
-        model.addAttribute("persoonsrol", persoonsrol);
-        model.addAttribute("persoon", persoon);
-        return "persoonsroltoevoegen";
-    }
-    
-    @RequestMapping(value = {"{persoonid}-persoonsroltoevoegen"}, method = RequestMethod.POST)
-    public String wijzigPersoonPost(@PathVariable int persoonid, Persoonsrol persoonsrol, ModelMap model) {
-        Persoon persoon = service.read(persoonid);
-        System.out.println(persoon.getPersoonsrollen());
-         model.addAttribute("succes", persoon.getVoornaam() + " "
-                + persoon.getAchternaam() + " is gewijzigd");
-        return "redirect: /update-{persoonid}";
-    }
-    
+//    @RequestMapping(value = {"{persoonid}-persoonsroltoevoegen"}, method = RequestMethod.GET)
+//    public String getPersoon(@PathVariable int persoonid, ModelMap model) {
+//        Persoon persoon = service.read(persoonid);
+//        Persoonsrol persoonsrol = new Persoonsrol();
+//        persoonsrol.setPersoon(persoon);
+//        List<Rol>rollen = rolService.getAll();
+//        model.addAttribute("rollen", rollen);
+//        model.addAttribute("persoonsrol", persoonsrol);
+//        model.addAttribute("persoon", persoon);
+//        return "persoonsroltoevoegen";
+//    }
+//    
+//    @RequestMapping(value = {"{persoonid}-persoonsroltoevoegen"}, method = RequestMethod.POST)
+//    public String wijzigPersoonPost(@PathVariable int persoonid, Persoonsrol persoonsrol, ModelMap model) {
+//        Persoon persoon = service.read(persoonid);
+//        System.out.println(persoon.getPersoonsrollen());
+//         model.addAttribute("succes", persoon.getVoornaam() + " "
+//                + persoon.getAchternaam() + " is gewijzigd");
+//        return "redirect: /update-{persoonid}";
+//    }
+//    
    
     
     

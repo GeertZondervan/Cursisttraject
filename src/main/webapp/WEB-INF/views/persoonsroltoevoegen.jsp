@@ -7,7 +7,7 @@
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-        <title>Updatenwijzigingenformkut</title>
+        <title>Updatenwijzigingenform</title>
 
         <style>
 
@@ -30,7 +30,9 @@
                 </tr>
                 
                 <tr>
-                    <td colspan="3"><input type="submit" value="Update"/></td>
+                    <td colspan="3"><input type="submit"  value="Update"/></td>
+<!--                    onclick="location.href='${pageContext.request.contextPath}/personen/${persoon.id}-persoonsroltoevoegen '" 
+                                           class="button" name ="update"-->
                 </tr>
             </table>
         </form:form>
@@ -43,6 +45,6 @@
 
         <br/>
         <br/>
-        Go back to <a href="<c:url value='/list' />">List of All Employees</a>
+        Go back to <a href="<c:url value='/personen/' />">List of All Employees</a>
 </body>
 </html>
