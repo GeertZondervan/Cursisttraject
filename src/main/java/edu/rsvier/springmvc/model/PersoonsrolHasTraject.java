@@ -1,6 +1,5 @@
 package edu.rsvier.springmvc.model;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -14,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
@@ -22,7 +22,9 @@ import javax.persistence.Table;
 public class PersoonsrolHasTraject implements java.io.Serializable {
 
     private PersoonsrolHasTrajectId id;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern="dd-MM-yyyy")
     private LocalDate begindatum;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern="dd-MM-yyyy")
     private LocalDate einddatum;
     private Character succesvolAfgerond;
     private Persoonsrol persoonsrol;
@@ -44,7 +46,6 @@ public class PersoonsrolHasTraject implements java.io.Serializable {
     }
 
     @EmbeddedId
-
     @AttributeOverrides({
         @AttributeOverride(name = "persoonsrolPersoonId", column = @Column(name = "persoonsrol_persoon_id", nullable = false)),
         @AttributeOverride(name = "persoonsrolRolId", column = @Column(name = "persoonsrol_rol_id", nullable = false)),

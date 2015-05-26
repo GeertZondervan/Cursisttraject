@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "persoonsrol", catalog = "cursisttraject_relatiebeheer")
@@ -23,6 +24,7 @@ public class Persoonsrol implements java.io.Serializable {
     private PersoonsrolId id;
     private Persoon persoon;
     private Rol rol;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern="dd-MM-yyyy")
     private LocalDate einddatum;
     private Set<ToetsResultaat> toetsResultaten = new HashSet<ToetsResultaat>(0);
     private Set<PersoonsrolHasMateriaal> heeftMateriaal = new HashSet<PersoonsrolHasMateriaal>(0);

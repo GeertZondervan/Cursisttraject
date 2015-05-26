@@ -1,8 +1,6 @@
 package edu.rsvier.springmvc.model;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,18 +15,15 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
-import org.springframework.transaction.annotation.Transactional;
 
 @Entity
 @Table(name = "persoon", catalog = "cursisttraject_relatiebeheer")
 public class Persoon implements java.io.Serializable {
 
-    private Integer id;
-    
+    private Integer id; 
     @Size(min = 2, max = 45)
     private String voornaam;
-    
-     @Size(min = 2, max = 45)
+    @Size(min = 2, max = 45)
     private String achternaam;
     private Set<Persoonsrol> persoonsrollen = new HashSet<Persoonsrol>(0);
     private Set<Expertise> expertises = new HashSet<Expertise>(0);
@@ -36,7 +31,6 @@ public class Persoon implements java.io.Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-
     @Column(name = "id", unique = true, nullable = false)
     public Integer getId() {
         return this.id;

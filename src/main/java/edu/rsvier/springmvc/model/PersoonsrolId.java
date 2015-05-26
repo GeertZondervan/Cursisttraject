@@ -1,16 +1,17 @@
 package edu.rsvier.springmvc.model;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Embeddable;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Embeddable
 public class PersoonsrolId implements java.io.Serializable {
 
     private int persoonId;
     private int rolId;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern="dd-MM-yyyy")
     private LocalDate begindatum;
     
 

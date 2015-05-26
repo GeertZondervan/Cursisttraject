@@ -30,13 +30,11 @@ public class Traject implements java.io.Serializable {
     @DateTimeFormat(iso = ISO.DATE, pattern="dd-MM-yyyy")
     private LocalDate sluitingsdatum;
     
-    
     private Set<Module> modules = new HashSet<Module>(0);
     private Set<PersoonsrolHasTraject> heeftPersoonsrollen = new HashSet<PersoonsrolHasTraject>(0);
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-
     @Column(name = "id", unique = true, nullable = false)
     public Integer getId() {
         return this.id;
