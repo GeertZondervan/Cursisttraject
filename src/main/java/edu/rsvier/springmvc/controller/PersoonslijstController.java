@@ -141,20 +141,29 @@ public class PersoonslijstController {
     }
 
     @RequestMapping(value = {"{persoonid}-persoonsroltoevoegen"}, method = RequestMethod.POST, params = "nieuwepersoonsrol")
-    public String persoonsRolToevoegenPost(@PathVariable int persoonId, @RequestParam(value = "nieuwepersoonsrol") int rolId, @Valid Persoon persoon, BindingResult result, ModelMap model) {
-//        persoon = service.read(persoonId);
-//        Persoonsrol persoonsrol = new Persoonsrol();
-//        persoonsrol.setPersoon(persoon);
-//        persoonsrol.getId().setPersoonId(persoonId);
-//        persoonsrol.getId().setRolId(rolId);
-//        persoonsrol.setRol(rolService.read(rolId));
-//        persoonsrol.getId().setBegindatum(LocalDate.now());
-//        
-//        persoon.getPersoonsrollen().add(new Persoonsrol());
-//        service.update(persoon);
-//        
-//        System.out.println(rolId);
-//        System.out.println(persoon);
+    public String persoonsRolToevoegenPost(@PathVariable int persoonid, @RequestParam(value = "nieuwepersoonsrol") int rolId, @Valid Persoon persoon, BindingResult result, ModelMap model) {
+        System.out.println(rolId);
+        System.out.println(persoonid);
+        System.out.println(persoon);
+        
+        PersoonsrolId persoonsrolId = new PersoonsrolId();
+        persoonsrolId.setPersoonId(persoonid);
+        persoonsrolId.setRolId(rolId);
+        persoonsrolId.setBegindatum(LocalDate.now());
+        
+        
+        persoon = service.read(persoonid);
+        Persoonsrol persoonsrol = new Persoonsrol();
+        persoonsrol.setPersoon(persoon);
+        persoonsrol.setRol(rolService.read(rolId));
+        persoonsrol.setId(persoonsrolId);
+        persoonsrolService.create(persoonsrol);
+        
+        persoon.getPersoonsrollen().add(persoonsrol);
+        service.update(persoon);
+        
+        
+        
         
         return "wijzig";
     }

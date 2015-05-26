@@ -79,6 +79,6 @@
 
         <br/>
         <br/>
-        Terug naar de <a href="<c:url value='/list' />">persoonslijst</a>
+        Terug naar de <a href="<c:url value='/' />">persoonslijst</a>
     </body>
 </html>
