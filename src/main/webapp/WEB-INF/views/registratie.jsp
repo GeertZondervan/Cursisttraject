@@ -7,6 +7,7 @@
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css">
         <title>Nieuwe persoon toevoegen</title>
 
         <style>
@@ -42,6 +43,6 @@
         </form:form>
         <br/>
         <br/>
-        Go back to <a href="<c:url value='/list' />">Lijst van personen</a>
+        Go back to <a href="<c:url value='/personen/' />">Lijst van personen</a>
     </body>
 </html>
