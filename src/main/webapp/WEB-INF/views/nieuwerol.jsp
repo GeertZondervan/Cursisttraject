@@ -39,6 +39,6 @@
         </form:form>
         <br/>
         <br/>
-        Go back to <a href="<c:url value='/personen/' />">Lijst van personen</a>
+        Go back to <a href="<c:url value='/rollen/' />">Terug naar rollenlijst</a>
     </body>
 </html>

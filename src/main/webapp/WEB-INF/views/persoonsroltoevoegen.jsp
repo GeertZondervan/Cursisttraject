@@ -45,6 +45,6 @@
 
         <br/>
         <br/>
-        Go back to <a href="<c:url value='/personen/' />">List of All Employees</a>
+        Go back to <a href="<c:url value='/personen/' />">Terug naar personenlijst</a>
     </body>
 </html>

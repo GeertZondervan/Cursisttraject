@@ -37,13 +37,14 @@
                 <tr>
                     <td>${traject.naam}</td>
                     <td>${traject.omschrijving}</td>
-                    <td><input type="submit" onclick="location.href='updatetraject-${traject.id} '" name="wijzig" class="button" value="Wijzig" /></td>
+                    <td><input type="submit" onclick="location.href='${pageContext.request.contextPath}/trajecten/updatetraject-${traject.id} '" name="wijzig" class="button" value="Wijzig" /></td>
                     
                    
                 </tr>
             </c:forEach>
         </table>
         <br/>
-        <a href="<c:url value='/nieuwtraject' />">Voeg nieuw traject toe</a>
+        <a href="<c:url value='/trajecten/nieuwtraject' />">Voeg nieuw traject toe</a><p>
+           <a href="<c:url value='/home' />">Home</a>
     </body>
 </html>

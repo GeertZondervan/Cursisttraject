@@ -37,13 +37,14 @@
                 <tr>
                     <td>${rol.naam}</td>
                     
-                    <td><input type="submit" onclick="location.href='updaterol-${rol.id} '" name="wijzig" class="button" value="Wijzig" /></td>
-                    <td><input type="submit" onclick="location.href='deleterol-${rol.id} '" name="verwijder" class="button" value="Verwijder" /></td>
+                    <td><input type="submit" onclick="location.href='${pageContext.request.contextPath}/rollen/updaterol-${rol.id} '" name="wijzig" class="button" value="Wijzig" /></td>
+                    <td><input type="submit" onclick="location.href='${pageContext.request.contextPath}/rollen/deleterol-${rol.id} '" name="verwijder" class="button" value="Verwijder" /></td>
                    
                 </tr>
             </c:forEach>
         </table>
         <br/>
-        <a href="<c:url value='/nieuwerol' />">Voeg nieuwe rol toe</a>
+        <a href="<c:url value='/rollen/nieuwerol' />">Voeg nieuwe rol toe</a><p>
+    <a href="<c:url value='/home' />">Home</a>
     </body>
 </html>
