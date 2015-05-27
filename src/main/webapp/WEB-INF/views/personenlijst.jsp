@@ -31,6 +31,7 @@
                 </tr>
             </c:forEach>
                 <tr><td colspan="10"><a href="<c:url value='/personen/nieuwpersoon' />">Voeg nieuw persoon toe</a></td></tr>
+                <tr><td colspan="10"><a href="<c:url value='/home' />">Home</a></td></tr>
         </table>
         <br/>
         

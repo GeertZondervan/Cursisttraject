@@ -29,7 +29,7 @@
                 <tr  class="element" >
                     <td>${rol.id}</td>
                     <td>${rol.naam}</td>
-                   
+                                      
                     <td><button type="submit" name="nieuwepersoonsrol" value="${rol.id}">Voeg toe </button></td>
                 </tr>
             </c:forEach>

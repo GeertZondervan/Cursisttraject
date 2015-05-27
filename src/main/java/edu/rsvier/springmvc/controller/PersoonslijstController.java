@@ -162,10 +162,16 @@ public class PersoonslijstController {
         persoon.getPersoonsrollen().add(persoonsrol);
         service.update(persoon);
         
-        
+        model.addAttribute("persoon", persoon);
         
         
         return "wijzig";
+    }
+    
+    @RequestMapping(value = {"{persoonid}-persoonsrolwijzigen"}, method = RequestMethod.GET, params = "wijzigrpersoonsrol")
+    public String wijzigPersoonsrolGet(@PathVariable int persoonid, @RequestParam(value = "wijzigrpersoonsrol") int rolId, @Valid Persoon persoon, BindingResult result, ModelMap model){
+        System.out.println("Geert is cool");
+        return "home";
     }
 
 //    @RequestMapping(value = {"/resultaten-{id}"}, method = RequestMethod.GET)

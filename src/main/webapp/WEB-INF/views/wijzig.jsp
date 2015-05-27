@@ -51,6 +51,8 @@
                         <td>${persoonsrol.rol.naam}</td>
                         <td>${persoonsrol.id.begindatum}</td>
                         <td>${persoonsrol.einddatum}</td>
+                        <td><button id="wijzigpersoonsrol" name="wijzigrpersoonsrol" value="${persoonsrol.rol.id}" >Wijzig data </button></td>
+                    
                         <td><button id="verwijder" name="verwijderpersoonsrol" value="${persoonsrol.rol.id}" >Verwijder </button></td>
                     </tr>
                 </c:forEach>
