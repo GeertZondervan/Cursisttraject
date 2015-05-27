@@ -41,7 +41,7 @@ public class Rol implements java.io.Serializable {
         this.naam = naam;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "rol", cascade = {CascadeType.ALL})
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "rol", cascade = {CascadeType.ALL})
     public Set<Persoonsrol> getPersoonsrollen() {
         return this.persoonsrollen;
     }
