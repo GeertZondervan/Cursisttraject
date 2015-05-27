@@ -8,7 +8,7 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css">
         <title>Rollenlijst</title>
 
-        <style>
+<!--        <style>
             tr:first-child{
                 font-weight: bold;
                 background-color:mediumaquamarine;
@@ -22,16 +22,17 @@
                 
             }
             
-        </style>
+        </style>-->
 
     </head>
 
 
     <body>
-        <h2>Rollenlijst</h2>	
+        <h2>Trajecten Overzicht</h2>	
         <table>
-            <tr>
-                <td>Naam</td>
+            <tr class="tabelheader">
+                <td>Traject naam</td>
+                <td>Omschrijving</td>
             </tr>
             <c:forEach items="${trajecten}" var="traject">
                 <tr>
