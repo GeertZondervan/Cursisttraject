@@ -67,7 +67,7 @@ public class Module implements java.io.Serializable {
         this.lengteInWeken = lengteInWeken;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "module", cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST})
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "module", cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST})
     public Set<Expertise> getExpertises() {
         return this.expertises;
     }

@@ -8,21 +8,7 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css">
         <title>Rollenlijst</title>
 
-        <style>
-            tr:first-child{
-                font-weight: bold;
-                background-color:mediumaquamarine;
-            }
-            tr{
-                
-            }
-            td{
-                padding:5px;
-                border-bottom: 1px solid mediumaquamarine;
-                
-            }
-            
-        </style>
+
 
     </head>
 
@@ -30,8 +16,8 @@
     <body>
         <h2>Rollenlijst</h2>	
         <table>
-            <tr>
-                <td>Naam</td>
+            <tr class="tabelheader">
+                <td>Rol</td>
             </tr>
             <c:forEach items="${rollen}" var="rol">
                 <tr>

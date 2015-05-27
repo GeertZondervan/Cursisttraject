@@ -52,7 +52,7 @@
                     <td colspan="3"><input type="submit" value="Update"/></td>
                 </tr>
             </table>
-            <h3>Modules in dit traject</h3>
+            <h2>Modules in dit traject</h2>
             <table>
                 <tr><td>Omschrijving</td><td>Lengte in weken</td></tr>
                 <c:forEach items="${traject.modules}" var="module" >

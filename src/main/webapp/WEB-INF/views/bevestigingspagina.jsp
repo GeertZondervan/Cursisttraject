@@ -17,7 +17,9 @@
         <br/>
         <br/>
         <a href="<c:url value='/rollen' />">Ga terug naar de rollenlijst</a>
-
+        <br/>
+        <br/>
+        <a href="<c:url value='/home' />">Home</a>
     </body>
 
 </html>
