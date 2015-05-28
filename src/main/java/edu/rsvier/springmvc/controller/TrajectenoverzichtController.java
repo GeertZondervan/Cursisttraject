@@ -63,7 +63,7 @@ public class TrajectenoverzichtController {
     @RequestMapping(value = {"delete-{trajectId}"}, method = RequestMethod.POST)
     public String deleteTrajectPost(@PathVariable int trajectId, Traject traject, ModelMap model) {
         trajectService.delete(trajectService.read(trajectId));
-        model.addAttribute("succes", "Dit traject is succesvol verwijderd");
+        model.addAttribute("succes", "Dit traject is succesvol verwijderd uit de database");
         return "bevestigingspagina";
     }
 
