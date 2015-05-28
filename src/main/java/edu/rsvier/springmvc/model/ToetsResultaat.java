@@ -51,7 +51,7 @@ public class ToetsResultaat implements java.io.Serializable {
         this.id = id;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumns({
         @JoinColumn(name = "persoonsrol_persoon_id", referencedColumnName = "persoon_id", nullable = false, insertable = false, updatable = false),
         @JoinColumn(name = "persoonsrol_rol_id", referencedColumnName = "rol_id", nullable = false, insertable = false, updatable = false),
@@ -64,7 +64,7 @@ public class ToetsResultaat implements java.io.Serializable {
         this.persoonsrol = persoonsrol;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "toets_id", nullable = false, insertable = false, updatable = false)
     public Toets getToets() {
         return this.toets;
@@ -95,7 +95,7 @@ public class ToetsResultaat implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "ToetsResultaat" + ", persoon= " + id + this.getPersoonsrol().getPersoon();
+        return "ToetsResultaat" + id;
     }
 
     @Override

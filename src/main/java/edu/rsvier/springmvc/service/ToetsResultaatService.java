@@ -1,6 +1,7 @@
 
 package edu.rsvier.springmvc.service;
 
+import edu.rsvier.springmvc.model.Toets;
 import edu.rsvier.springmvc.model.ToetsResultaat;
 import edu.rsvier.springmvc.model.ToetsResultaatId;
 import java.util.List;
@@ -17,4 +18,6 @@ public interface ToetsResultaatService {
     List<ToetsResultaat> getAll();
     
     void flushSession();
+    
+    List<ToetsResultaat> getForToets(Toets toets);
 }

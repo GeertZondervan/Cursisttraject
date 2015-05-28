@@ -43,7 +43,7 @@ public class Persoonsrol implements java.io.Serializable {
         this.id = id;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "persoon_id", nullable = false, insertable = false, updatable = false)
     public Persoon getPersoon() {
         return this.persoon;
@@ -53,7 +53,7 @@ public class Persoonsrol implements java.io.Serializable {
         this.persoon = persoon;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "rol_id", nullable = false, insertable = false, updatable = false)
     public Rol getRol() {
         return this.rol;

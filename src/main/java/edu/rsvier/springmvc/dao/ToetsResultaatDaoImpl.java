@@ -1,10 +1,13 @@
 
 package edu.rsvier.springmvc.dao;
 
+import edu.rsvier.springmvc.model.Toets;
 import edu.rsvier.springmvc.model.ToetsResultaat;
 import edu.rsvier.springmvc.model.ToetsResultaatId;
+import java.util.List;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository("toetsResultaatDao")
 
@@ -36,5 +39,15 @@ public class ToetsResultaatDaoImpl extends GenericDaoImpl<ToetsResultaat> implem
 //        }
 //        return (ToetsResultaat) query.list().get(0);
 //    }
+
+    
+    public List<ToetsResultaat> getForToets(Toets toets) {
+        String sql = "SELECT r FROM ToetsResultaat r WHERE toets_id = :toets_id";
+        Query query = getSession().createQuery(sql).setParameter("toets_id", toets.getId());
+        if (query.list().isEmpty()) {
+            return null;
+        }
+        return query.list();
+    }
     
 }
