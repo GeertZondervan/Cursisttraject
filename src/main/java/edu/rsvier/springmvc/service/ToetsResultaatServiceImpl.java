@@ -1,6 +1,7 @@
 package edu.rsvier.springmvc.service;
 
 import edu.rsvier.springmvc.dao.ToetsResultaatDao;
+import edu.rsvier.springmvc.model.Toets;
 import edu.rsvier.springmvc.model.ToetsResultaat;
 import edu.rsvier.springmvc.model.ToetsResultaatId;
 import java.util.List;
@@ -45,6 +46,12 @@ public class ToetsResultaatServiceImpl implements ToetsResultaatService {
 
     public void flushSession() {
         dao.flushSession();
+    }
+
+   
+    public List<ToetsResultaat> getForToets(Toets toets) {
+        return(dao.getForToets(toets));
+        
     }
 
 }

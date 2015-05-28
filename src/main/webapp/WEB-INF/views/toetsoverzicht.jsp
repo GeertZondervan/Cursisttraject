@@ -36,7 +36,7 @@
                     <td>${toets.minimumResultaat}</td>
                     <td><input type="submit" onclick="location.href = '${pageContext.request.contextPath}/toetsen/update-toets-${toets.id} '" name="wijzig" class="button" value="Wijzig" /></td>
                     <td><input type="submit" onclick="location.href = '${pageContext.request.contextPath}/toetsen/delete-toets-${toets.id} '" name="verwijder" class="button" value="Verwijder" /></td>
-
+                    <td><input type="submit" onclick="location.href = '${pageContext.request.contextPath}/toetsen/toets-resultaten-${toets.id}'" name="getresultaten" class="button" value="Resultaten" /></td>
                 </tr>
             </c:forEach>
         </table>

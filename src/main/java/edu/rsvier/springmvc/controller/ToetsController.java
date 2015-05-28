@@ -8,8 +8,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import edu.rsvier.springmvc.model.Toets;
+import edu.rsvier.springmvc.model.ToetsResultaat;
 import edu.rsvier.springmvc.service.ModuleService;
+import edu.rsvier.springmvc.service.ToetsResultaatService;
 import edu.rsvier.springmvc.service.ToetsService;
+import java.util.Set;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
@@ -21,6 +24,9 @@ public class ToetsController {
     
     @Autowired
     ModuleService moduleService;
+    
+    @Autowired
+    ToetsResultaatService toetsResultaatService;
 
 
     @RequestMapping(value = {"", "/toetslijst"}, method = RequestMethod.GET)
@@ -39,6 +45,18 @@ public class ToetsController {
         model.addAttribute("toets", toets);
 
         return "nieuwetoets";
+    }
+    
+    @RequestMapping(value = {"/toets-resultaten-{toetsId}"}, method = RequestMethod.GET)
+    public String toetsResultatenGet(@PathVariable int toetsId, Toets toets, ModelMap model) {
+        toets = toetsService.read(toetsId);
+       
+        model.addAttribute("toets", toets);
+        System.out.println(toets.getToetsResultaten());
+        
+       
+       
+        return "toetsresultatenoverzicht";
     }
 
     @RequestMapping(value = {"/nieuwetoets"}, method = RequestMethod.POST)
