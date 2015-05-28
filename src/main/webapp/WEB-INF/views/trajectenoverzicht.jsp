@@ -6,23 +6,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css">
-        <title>Rollenlijst</title>
+        <title>Trajecten overzicht</title>
 
-<!--        <style>
-            tr:first-child{
-                font-weight: bold;
-                background-color:mediumaquamarine;
-            }
-            tr{
-                
-            }
-            td{
-                padding:5px;
-                border-bottom: 1px solid mediumaquamarine;
-                
-            }
-            
-        </style>-->
 
     </head>
 
@@ -33,13 +18,17 @@
             <tr class="tabelheader">
                 <td>Traject naam</td>
                 <td>Omschrijving</td>
+                <td>Startdatum</td>
+                <td>Einddatum</td>
             </tr>
             <c:forEach items="${trajecten}" var="traject">
                 <tr>
                     <td>${traject.naam}</td>
                     <td>${traject.omschrijving}</td>
+                    <td>${traject.startdatum}</td>
+                    <td>${traject.sluitingsdatum}</td>
                     <td><input type="submit" onclick="location.href='${pageContext.request.contextPath}/trajecten/updatetraject-${traject.id} '" name="wijzig" class="button" value="Wijzig" /></td>
-                    
+                    <td><input type="submit" onclick="location.href='${pageContext.request.contextPath}/trajecten/delete-${traject.id} '" name="verwijder" class="button" value="Verwijder" /></td>
                    
                 </tr>
             </c:forEach>
