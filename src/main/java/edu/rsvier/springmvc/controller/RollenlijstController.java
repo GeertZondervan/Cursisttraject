@@ -53,7 +53,7 @@ public class RollenlijstController {
     @RequestMapping(value = {"/deleterol-{rolId}"}, method = RequestMethod.POST)
     public String deleteRolPost(@PathVariable int rolId, Rol rol, ModelMap model) {
         rolService.delete(rolService.read(rolId));
-         model.addAttribute("succes", "Deze rol is succesvol verwijderd");
+         model.addAttribute("succes", "Deze rol is succesvol verwijderd uit de database");
         return "bevestigingspagina";
     }
     

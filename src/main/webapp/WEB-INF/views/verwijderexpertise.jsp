@@ -8,7 +8,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css">
-        <title>Traject Verwijderen</title>
+        <title>Expertise verwijderen</title>
 
         <style>
 
@@ -21,20 +21,21 @@
 
     <body>
 
-        <h2>U staat op het punt het volgende traject te verwijderen:</h2>
+        <h2>U staat op het punt de volgende expertise te verwijderen:</h2>
 
 
-        <form:form method="POST" modelAttribute="traject">
+        <form:form method="POST" modelAttribute="expertise">
             <table>
                 <tr>
                     <td><label for="naam">Naam: </label> </td>
-                    <td>${traject.naam}</td><
+                    <td>${expertise.naam}</td>
+
 
                 </tr>
                 <tr>
                     <td><label for="omschrijving">Omschrijving: </label></td>
-                    <td>${traject.omschrijving}</td>
-                    <td><form:errors path="naam" cssClass="error"/></td>
+                    <td>${expertise.omschrijving}</td>
+                    <td><form:errors path="omschrijving" cssClass="error"/></td>
                 </tr>
                 <tr>
                     <td colspan="3"><input type="submit" value="Bevestig"/></td>
@@ -46,6 +47,6 @@
 
         <br/>
         <br/>
-        <a href="<c:url value='/rollen' />">Ga terug naar het trajecten overzicht</a>
+        <a href="<c:url value='/expertises' />">Ga terug naar het expertise overzicht</a>
     </body>
 </html>

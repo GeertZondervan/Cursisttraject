@@ -45,8 +45,8 @@
                     <td><form:input type = "localDate" path="sluitingsdatum" id="sluitingsdatum"/></td>
                     <td><form:errors path="sluitingsdatum" cssClass="error"/></td>
                 </tr>
-
-                <tr>
+                
+                               <tr>
                     <td colspan="3"><input type="submit" value="Register"/></td>
                 </tr>
             </table>
