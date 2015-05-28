@@ -7,11 +7,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css">
         <title>Toets overzicht</title>
-
-
     </head>
-
-
     <body>
         <h2>Toets Overzicht voor toets ${toets.naam} in module ${toets.module}</h2>	
         <table>
@@ -31,7 +27,7 @@
                     <td>${toetsresultaat.persoonsrol.rol.naam}</td>
                     <td>${toetsresultaat.resultaat}</td>
                     <td>${toetsresultaat.toets.minimumResultaat}</td>
-                   <td>${toetsresultaat.datum}</td>
+                    <td>${toetsresultaat.datum}</td>
                 </tr>
             </c:forEach>
         </table>
