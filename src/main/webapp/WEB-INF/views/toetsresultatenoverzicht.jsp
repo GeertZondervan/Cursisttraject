@@ -7,6 +7,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css">
         <title>Toets overzicht</title>
+        
     </head>
     <body>
         <h2>Toets Overzicht voor toets ${toets.naam} in module ${toets.module}</h2>	
@@ -32,7 +33,8 @@
             </c:forEach>
         </table>
         <br/>
-        <a href="<c:url value='/toetsen/nieuwetoets' />">Voeg nieuwe toets toe</a><p>
+        <input type="button" value="Nieuw toetsresultaat" onclick="window.open('${pageContext.request.contextPath}/toetsen/${toets.id}/nieuwtoetsresultaat','Nieuw toetsresultaat', 'width=600,height=425,scrollbars=no,toolbar=no,location=no'); return false" />
+        <a href="${pageContext.request.contextPath}/toetsen/${toets.id}/nieuwtoetsresultaat" onclick="window.open('${pageContext.request.contextPath}/toetsen','Nieuw toetsresultaat', 'width=600,height=425,scrollbars=no,toolbar=no,location=no'); return false">Voeg nieuw toetsresultaat toe</a>
             <a href="<c:url value='/home' />">Home</a>
     </body>
 </html>
