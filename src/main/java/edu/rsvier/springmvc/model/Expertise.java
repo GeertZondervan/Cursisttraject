@@ -44,6 +44,7 @@ public class Expertise implements java.io.Serializable {
         return this.module;
     }
 
+
     public void setModule(Module module) {
         this.module = module;
     }
@@ -95,8 +96,8 @@ public class Expertise implements java.io.Serializable {
             return false;
         }
         
-        if((this.module.getOmschrijving() == null) ? (other.module.getOmschrijving() == null) : !this.module.getOmschrijving().equals(other.module.getOmschrijving())) 
-            return false;       
+//        if((this.module.getOmschrijving() == null) ? (other.module.getOmschrijving() == null) : !this.module.getOmschrijving().equals(other.module.getOmschrijving())) 
+//            return false;       
         
         if ((this.omschrijving == null) ? (other.omschrijving != null) : !this.omschrijving.equals(other.omschrijving)) {
             return false;

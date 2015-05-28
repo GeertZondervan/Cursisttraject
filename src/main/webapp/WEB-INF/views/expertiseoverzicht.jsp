@@ -29,7 +29,7 @@
                 <tr>
                     <td>${expertise.naam}</td>
                     <td>${expertise.omschrijving}</td>
-                    <td>${expertise.module.naam}</td>
+                    <td>${expertise.module.omschrijving}</td>
                     
                     <td><input type="submit" onclick="location.href='${pageContext.request.contextPath}/expertises/update-expertise-${expertise.id} '" name="wijzig" class="button" value="Wijzig" /></td>
                     <td><input type="submit" onclick="location.href='${pageContext.request.contextPath}/expertises/delete-expertise-${expertise.id} '" name="verwijder" class="button" value="Verwijder" /></td>
