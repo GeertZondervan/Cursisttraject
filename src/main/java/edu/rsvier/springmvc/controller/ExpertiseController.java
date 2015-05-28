@@ -9,12 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import edu.rsvier.springmvc.model.Expertise;
 import edu.rsvier.springmvc.model.Module;
-import edu.rsvier.springmvc.model.Rol;
 import edu.rsvier.springmvc.service.ExpertiseService;
 import edu.rsvier.springmvc.service.ModuleService;
-import java.util.ArrayList;
-import javax.validation.ConstraintViolationException;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
@@ -28,7 +24,7 @@ public class ExpertiseController {
     ModuleService moduleService;
 
     @RequestMapping(value = {"", "/expertiselijst"}, method = RequestMethod.GET)
-    public String listPersonen(ModelMap model) {
+    public String listExpertises(ModelMap model) {
 
         List<Expertise> expertises = expertiseService.getAll();
 
@@ -39,7 +35,6 @@ public class ExpertiseController {
     @RequestMapping(value = {"/nieuwe-expertise"}, method = RequestMethod.GET)
     public String nieuweExpertiseGet(Expertise expertise, ModelMap model) {
         List<Module> modules = moduleService.getAll();
-        System.out.println(modules);
         model.addAttribute("modules", modules);
         model.addAttribute("expertise", expertise);
 
@@ -49,10 +44,9 @@ public class ExpertiseController {
     @RequestMapping(value = {"/nieuwe-expertise"}, method = RequestMethod.POST)
     public String nieuweExpertisePost(Expertise expertise, ModelMap model) {
         System.out.println(expertise);
-        try{
-        System.out.println(expertise.getModule().getId());
-        }
-        catch(Exception ex){
+        try {
+            System.out.println(expertise.getModule().getId());
+        } catch (Exception ex) {
             expertise.setModule(null);
         }
         expertiseService.create(expertise);
@@ -61,25 +55,25 @@ public class ExpertiseController {
         model.addAttribute("succes", "De expertise " + expertise.getNaam() + " is toegevoegd");
         return "bevestigingspagina";
     }
-//    
-//    @RequestMapping(value = {"/deleterol-{rolId}"}, method = RequestMethod.GET)
-//    public String deleteRolGet(@PathVariable int rolId, Rol rol, ModelMap model) {
-//        rol = rolService.read(rolId);
-//        model.addAttribute("rol", rol);
-//        return "verwijderrol";
-//    }
-//    
-//    @RequestMapping(value = {"/deleterol-{rolId}"}, method = RequestMethod.POST)
-//    public String deleteRolPost(@PathVariable int rolId, Rol rol, ModelMap model) {
-//        rolService.delete(rolService.read(rolId));
-//         model.addAttribute("succes", "Deze rol is succesvol verwijderd");
-//        return "bevestigingspagina";
-//    }
-//    
-//   
+
+    @RequestMapping(value = {"/delete-expertise-{expertiseId}"}, method = RequestMethod.GET)
+    public String deleteExpertiseGet(@PathVariable int expertiseId, Expertise expertise, ModelMap model) {
+        expertise = expertiseService.read(expertiseId);
+        model.addAttribute("expertise", expertise);
+        return "verwijderexpertise";
+    }
+
+    @RequestMapping(value = {"/delete-expertise-{expertiseId}"}, method = RequestMethod.POST)
+    public String deleteExpertisePost(@PathVariable int expertiseId, Expertise expertise, ModelMap model) {
+        expertiseService.delete(expertiseService.read(expertiseId));
+        model.addAttribute("succes", "Deze expertise is succesvol verwijderd uit de database");
+        return "bevestigingspagina";
+    }
 
     @RequestMapping(value = {"/update-expertise-{expertiseId}"}, method = RequestMethod.GET)
     public String wijzigExpertiseGet(@PathVariable int expertiseId, Expertise expertise, ModelMap model) {
+        List<Module> modules = moduleService.getAll();
+        model.addAttribute("modules", modules);
         expertise = expertiseService.read(expertiseId);
         model.addAttribute("expertise", expertise);
         return "wijzigexpertise";
@@ -95,6 +89,5 @@ public class ExpertiseController {
         model.addAttribute("succes", "De Expertise " + expertise.getOmschrijving() + " is gewijzigd");
         return "bevestigingspagina";
     }
-//    
 
 }

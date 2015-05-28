@@ -16,5 +16,6 @@
         <p><input type="submit" onclick="location.href='${pageContext.request.contextPath}/rollen/'" class="hoofdmenubutton" value="Rollenbeheer" /></p>
         <p><input type="submit" onclick="location.href='${pageContext.request.contextPath}/trajecten/'" class="hoofdmenubutton" value="Trajectenbeheer" /></p>
         <p><input type="submit" onclick="location.href='${pageContext.request.contextPath}/expertises/'" class="hoofdmenubutton" value="Expertisebeheer" /></p>
+        <p><input type="submit" onclick="location.href='${pageContext.request.contextPath}/toetsen/'" class="hoofdmenubutton" value="Toetsbeheer" /></p>
     </body>
 </html>
