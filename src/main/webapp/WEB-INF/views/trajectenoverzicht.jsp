@@ -24,7 +24,7 @@
             <c:forEach items="${trajecten}" var="traject">
                 <tr>
                     <td>${traject.naam}</td>
-                    <td>${traject.omschrijving}</td>
+                    <td>${traject.omschrijving}" </td>
                     <td>${traject.startdatum}</td>
                     <td>${traject.sluitingsdatum}</td>
                     <td><input type="submit" onclick="location.href='${pageContext.request.contextPath}/trajecten/updatetraject-${traject.id} '" name="wijzig" class="button" value="Wijzig" /></td>

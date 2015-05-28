@@ -18,6 +18,8 @@ public class ExpertiseServiceImpl implements ExpertiseService {
         if (expertise.getNaam() == null) {
             throw new IllegalArgumentException("Expertise not complete");
         }
+        
+        
         dao.create(expertise);
     }
 

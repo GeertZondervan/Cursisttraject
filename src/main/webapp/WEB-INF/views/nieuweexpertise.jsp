@@ -47,8 +47,7 @@
 
                 <tr><td>Module: </td>
                     <td>
-                        <form:select path="module.id">  
-                            <form:option value="0">Geen module</form:option>
+                        <form:select path="module.id">                           
                             <form:options items="${modules}" itemValue="id" itemLabel="omschrijving" />  
                         </form:select>  
 
