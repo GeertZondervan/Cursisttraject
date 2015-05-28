@@ -19,7 +19,7 @@
 
 
         <form:form modelAttribute="persoon">
-            
+
             <table class="wijzig">
                 <tr><td><h3>Personalia</h3></td></tr>
                 <tr>
@@ -35,48 +35,49 @@
                 <tr>
                     <td colspan="3"><input type="submit" value="Update"/></td>
                 </tr>
-                
-                
+
+
 
             </table >
-            <table class="wijzig">
-                <tr><td><h3>Persoonsrollen</h3></td></tr>
-                <tr class="tabelheader">
-                    <td>Naam</td><td>Begindatum</td><td>Einddatum</td>
-                </tr>
-                <c:forEach items="${persoon.persoonsrollen}" var="persoonsrol" >
-
-                    <tr class="element">
-                        
-                        <td>${persoonsrol.rol.naam}</td>
-                        <td>${persoonsrol.id.begindatum}</td>
-                        <td>${persoonsrol.einddatum}</td>
-                        <td><button id="wijzigpersoonsrol" name="wijzigrpersoonsrol" value="${persoonsrol.rol.id}" >Wijzig data </button></td>
-                    
-                        <td><button id="verwijder" name="verwijderpersoonsrol" value="${persoonsrol.rol.id}" >Verwijder </button></td>
-                    </tr>
-                </c:forEach>
-                <tr><td><a href="<c:url value='/personen/${persoon.id}-persoonsroltoevoegen ' />">Voeg nieuwe persoonsrol toe</a></td></tr>
-                <tr><td><br/><td></tr>
-               </table> 
-               
-            
-            <table class="wijzig">
-                <tr><td><h3>Expertises</h3></td></tr>
-                <tr class="tabelheader"><td>Naam</td><td>Omschrijving</td></tr>
-                <c:forEach items="${persoon.expertises}" var="expertise" >
-                    
-                    <tr>
-                        <td>${expertise.naam}</td>
-                        <td>${expertise.omschrijving}</td>
-
-                        <td><button id="verwijder" name="verwijderexpertise" value="${expertise.id}" >Verwijder </button>
-                    </tr>
-                </c:forEach>
-
-
-            </table>
         </form:form>
+        <table class="wijzig">
+            <tr><td><h3>Persoonsrollen</h3></td></tr>
+            <tr class="tabelheader">
+                <td>Naam</td><td>Begindatum</td><td>Einddatum</td>
+            </tr>
+            <c:forEach items="${persoon.persoonsrollen}" var="persoonsrol" >
+
+                <tr class="element">
+
+                    <td>${persoonsrol.rol.naam}</td>
+                    <td>${persoonsrol.id.begindatum}</td>
+                    <td>${persoonsrol.einddatum}</td>
+                    <td><button id="wijzigpersoonsrol" name="wijzigrpersoonsrol" value="${persoonsrol.rol.id}" >Wijzig data </button></td>
+
+                    <td><button id="verwijder" name="verwijderpersoonsrol" value="${persoonsrol.rol.id}" >Verwijder </button></td>
+                </tr>
+            </c:forEach>
+            <tr><td><a href="<c:url value='/personen/${persoon.id}-persoonsroltoevoegen ' />">Voeg nieuwe persoonsrol toe</a></td></tr>
+            <tr><td><br/><td></tr>
+        </table> 
+
+
+        <table class="wijzig">
+            <tr><td><h3>Expertises</h3></td></tr>
+            <tr class="tabelheader"><td>Naam</td><td>Omschrijving</td></tr>
+            <c:forEach items="${persoon.expertises}" var="expertise" >
+
+                <tr>
+                    <td>${expertise.naam}</td>
+                    <td>${expertise.omschrijving}</td>
+
+                    <td><button id="verwijder" name="verwijderexpertise" value="${expertise.id}" >Verwijder </button>
+                </tr>
+            </c:forEach>
+
+
+        </table>
+
 
 
         <br/>
