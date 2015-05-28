@@ -43,24 +43,25 @@
                     <td><form:input path="omschrijving" id="omschrijving"/></td>
                     <td><form:errors path="omschrijving" cssClass="error"/></td>
                 </tr>
-              <tr>
+                <tr>
 
-                <!--<ul>-->  
-                    <%--<form:select path="module">--%>  
-                        <%--<form:option value="-" label="--Select module">--%>  
-                            <%--<form:options items="${modules.omschrijving}"/>--%>  
-                        <%--</form:option></form:select>--%>  
-                    <!--</ul>-->  
-                <!--</td>-->  
-            <!--</tr>--> 
+                <tr><td>Module: </td>
+                    <td>
+                        <form:select path="module.id">  
+                            <form:option value="0">Geen module</form:option>
+                            <form:options items="${modules}" itemValue="id" itemLabel="omschrijving" />  
+                        </form:select>  
 
-            <tr>
-                <td colspan="3"><input type="submit" value="Register"/></td>
-            </tr>
-        </table>
-</form:form>
-<br/>
-<br/>
-Go back to <a href="<c:url value='/expertises/' />">Terug naar expertise overzicht</a>
-</body>
+                    </td>  
+                </tr> 
+
+                <tr>
+                    <td colspan="3"><input type="submit" value="Register"/></td>
+                </tr>
+            </table>
+        </form:form>
+        <br/>
+        <br/>
+        Go back to <a href="<c:url value='/expertises/' />">Terug naar expertise overzicht</a>
+    </body>
 </html>
