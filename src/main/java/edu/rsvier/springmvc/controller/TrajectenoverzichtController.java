@@ -1,5 +1,6 @@
 package edu.rsvier.springmvc.controller;
 
+import edu.rsvier.springmvc.model.Module;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,6 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import edu.rsvier.springmvc.model.Traject;
+import edu.rsvier.springmvc.service.ModuleService;
 import edu.rsvier.springmvc.service.TrajectService;
 import javax.validation.Valid;
 import org.springframework.validation.BindingResult;
@@ -20,6 +22,9 @@ public class TrajectenoverzichtController {
     @Autowired
     TrajectService trajectService;
 
+    @Autowired
+    ModuleService moduleService;
+    
     @RequestMapping(value = {"", "/trajectenlijst"}, method = RequestMethod.GET)
     public String listPersonen(ModelMap model) {
 
@@ -73,8 +78,10 @@ public class TrajectenoverzichtController {
 
     @RequestMapping(value = {"nieuwtraject"}, method = RequestMethod.GET)
     public String nieuwTrajectGet(Traject traject, ModelMap model) {
-
+        
+          
         model.addAttribute("traject", traject);
+      
         return "nieuwtraject";
     }
 
@@ -85,7 +92,7 @@ public class TrajectenoverzichtController {
         if (result.hasErrors()) {
             return "nieuwtraject";
         }
-
+   
         trajectService.create(traject);
         model.addAttribute("succes", traject.getNaam() + ": "
                 + traject.getOmschrijving()+ " staat geregistreerd");

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 @RequestMapping("/expertises")
-public class ExpertiseController {
+public class ToetsController {
 
     @Autowired
     ExpertiseService expertiseService;
