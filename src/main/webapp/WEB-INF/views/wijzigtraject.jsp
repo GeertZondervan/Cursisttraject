@@ -64,7 +64,7 @@
                         <td><button id="verwijdermodule" name="verwijdermodule" value="${module.id}"  >Verwijder </button></td>
                     </tr>
                 </c:forEach>
-                            <a href="${pageContext.request.contextPath}/trajecten/${traject.id}/nieuwemoduleintraject" onclick="window.open('${pageContext.request.contextPath}/trajecte/${traject.id}/nieuwemoduleintraject','Nieuwe Module', 'width=600,height=425,scrollbars=no,toolbar=no,location=no'); return false">Voeg nieuwe module toe</a>
+                            <a href="${pageContext.request.contextPath}/trajecten/${traject.id}/nieuwemoduleintraject" onclick="window.open('${pageContext.request.contextPath}/trajecten/${traject.id}/nieuwemoduleintraject','Nieuwe Module', 'width=600,height=425,scrollbars=no,toolbar=no,location=no'); return false">Voeg nieuwe module toe</a>
             </table>
         </form:form>
 
