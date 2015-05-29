@@ -102,6 +102,7 @@ public class TrajectenoverzichtController {
     @RequestMapping(value = {"/{trajectId}/nieuwemoduleintraject"}, method = RequestMethod.GET)
     public String nieuweModuleGet(@PathVariable int trajectId, Module module, ModelMap model) {
 
+    //   module = new Module();
         module.setTraject(trajectService.read(trajectId));
         model.addAttribute("module", module);
 
@@ -109,17 +110,17 @@ public class TrajectenoverzichtController {
     }
 
     @RequestMapping(value = {"/{trajectId}/nieuwemoduleintraject"}, method = RequestMethod.POST)
-    public String nieuwModulePost(@PathVariable int trajectId, @Valid Module module, BindingResult result, ModelMap model) {
+    public String nieuweModulePost(@PathVariable int trajectId, @Valid Module module, BindingResult result, ModelMap model) {
         
         if (result.hasErrors()) {
-            return "nieuwtraject";
+            return "nieuwemoduleintraject";
         }
         Traject trajectRead = trajectService.read(trajectId);
-       // module.setTraject(trajectRead);
-        moduleService.create(module);
-        
         trajectRead.getModules().add(module);
-        trajectService.update(trajectRead);
+        module.setTraject(trajectRead);
+      // moduleService.create(module);
+       
+       trajectService.update(trajectRead);
      
         
         
