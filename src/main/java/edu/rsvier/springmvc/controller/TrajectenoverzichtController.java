@@ -92,10 +92,13 @@ public class TrajectenoverzichtController {
         if (result.hasErrors()) {
             return "nieuwtraject";
         }
-   
+        
+        
+        
         trajectService.create(traject);
+        int trajectId = traject.getId();
         model.addAttribute("succes", traject.getNaam() + ": "
-                + traject.getOmschrijving()+ " staat geregistreerd");
+                + traject.getOmschrijving()+ " staat geregistreerd." +  "<br><a href=\"http://localhost:8080/Cursisttraject4.0/trajecten/updatetraject-" + trajectId + "\"><b>Nu modules toevoegen aan traject: " + traject.getNaam() +  "</b></a>");
         return "bevestigingspagina";
     }
 
