@@ -53,5 +53,9 @@ public class ToetsResultaatServiceImpl implements ToetsResultaatService {
         return(dao.getForToets(toets));
         
     }
+    
+    public ToetsResultaat read(int persoonid, int toetsid){
+        return(dao.read(persoonid, toetsid));
+    }
 
 }

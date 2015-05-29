@@ -27,6 +27,11 @@
         <form:form method="POST" modelAttribute="toetsresultaat">
 
             <table>
+               <tr>
+                    <td><label for="id">Resultaat: </label> </td>
+                    <td><form:input path="id" id="id"/></td>
+                    <td><form:errors path="id" cssClass="error"/></td>
+                </tr>
                  <tr>
                     <td><label for="persoonsrol.persoon.volledigeNaam">Persoon: </label> </td>
                     <td>${toetsresultaat.persoonsrol.persoon.volledigeNaam}</td>

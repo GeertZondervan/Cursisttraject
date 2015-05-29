@@ -1,4 +1,3 @@
-
 package edu.rsvier.springmvc.service;
 
 import edu.rsvier.springmvc.model.Toets;
@@ -7,17 +6,20 @@ import edu.rsvier.springmvc.model.ToetsResultaatId;
 import java.util.List;
 
 public interface ToetsResultaatService {
+
     void create(ToetsResultaat toetsResultaat) throws IllegalArgumentException;
 
     void update(ToetsResultaat toetsResultaat);
 
-    ToetsResultaat read(ToetsResultaatId id)  throws NullPointerException;
+    ToetsResultaat read(ToetsResultaatId id) throws NullPointerException;
 
     void delete(ToetsResultaat toetsResultaat);
 
     List<ToetsResultaat> getAll();
-    
+
     void flushSession();
-    
+
     List<ToetsResultaat> getForToets(Toets toets);
+
+    public ToetsResultaat read(int persoonid, int toetsid);
 }

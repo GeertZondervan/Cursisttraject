@@ -96,7 +96,7 @@ public class ToetsResultaat implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "ToetsResultaat" + id;
+        return "ToetsResultaat" + resultaat;
     }
 
     @Override

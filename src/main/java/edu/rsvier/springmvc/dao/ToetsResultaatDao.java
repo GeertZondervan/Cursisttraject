@@ -14,6 +14,8 @@ public interface ToetsResultaatDao {
     void update(ToetsResultaat toetsResultaat);
 
     ToetsResultaat read(ToetsResultaatId id);
+    
+    ToetsResultaat read(int persoonid, int toetsid);
 
     void delete(ToetsResultaat toetsResultaat);
 
