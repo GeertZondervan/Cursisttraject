@@ -99,4 +99,21 @@ public class TrajectenoverzichtController {
         return "bevestigingspagina";
     }
 
+        @RequestMapping(value = {"/{trajectId}/nieuwemoduleintraject"}, method = RequestMethod.GET)
+    public String nieuweModuleGet(@PathVariable int trajectId, Module module, ModelMap model) {
+
+     
+        
+
+     
+
+        return "nieuwtoetsresultaat";
+    }
+    
+      @RequestMapping(value = {"/{trajectId}/nieuwemoduleintraject"}, method = RequestMethod.POST)
+    public String nieuwModulePost(@PathVariable int trajectId, Module module, ModelMap model) {
+
+     
+        return "bevestigingspagina";
+    }
 }

@@ -64,12 +64,15 @@
                         <td><button id="verwijdermodule" name="verwijdermodule" value="${module.id}"  >Verwijder </button></td>
                     </tr>
                 </c:forEach>
+                            <a href="${pageContext.request.contextPath}/trajecten/${traject.id}/nieuwemoduleintraject" onclick="window.open('${pageContext.request.contextPath}/trajecte/${traject.id}/nieuwemoduleintraject','Nieuwe Module', 'width=600,height=425,scrollbars=no,toolbar=no,location=no'); return false">Voeg nieuwe module toe</a>
             </table>
         </form:form>
 
 
         <br/>
         <br/>
+        <a href="<c:url value='/trajecten/' />">Terug naar traject overzicht</a><p>
+        <a href="<c:url value='/home/' />">Home</a>
 
     </body>
 </html>
