@@ -95,7 +95,7 @@ public class TrajectenoverzichtController {
    
         trajectService.create(traject);
         model.addAttribute("succes", traject.getNaam() + ": "
-                + traject.getOmschrijving()+ " staat geregistreerd");
+                + traject.getOmschrijving()+ " staat geregistreerd." +  "<br><a href=" + "<c:url value='/trajecten' />\"" + "><b>Nu modules toevoegen aan traject: " + traject.getNaam() +  "</b></a>");
         return "bevestigingspagina";
     }
 

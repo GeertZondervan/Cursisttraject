@@ -46,6 +46,6 @@
 
         <br/>
         <br/>
-        <a href="<c:url value='/rollen' />">Ga terug naar het trajecten overzicht</a>
+        <a href="<c:url value='/trajecten' />">Ga terug naar het trajecten overzicht</a>
     </body>
 </html>
