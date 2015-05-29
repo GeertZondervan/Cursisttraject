@@ -67,14 +67,14 @@ public class TrajectenoverzichtController {
         return "bevestigingspagina";
     }
 
-    @RequestMapping(value = {"/updatetraject-{trajectId}"}, method = RequestMethod.POST, params = "verwijdermodule")
-    public String verwijderModule(@PathVariable int trajectId, @RequestParam(value = "verwijdermodule") int moduleId, Traject traject, ModelMap model) {
-        System.out.println("Exterminate" + " " + moduleId);
-        traject.setModules(trajectService.read(trajectId).getModules());
-        model.addAttribute("traject", traject);
-
-        return "wijzigtraject";
-    }
+//    @RequestMapping(value = {"/updatetraject-{trajectId}"}, method = RequestMethod.POST, params = "verwijdermodule")
+//    public String verwijderModule(@PathVariable int trajectId, @RequestParam(value = "verwijdermodule") int moduleId, Traject traject, ModelMap model) {
+//        System.out.println("Exterminate" + " " + moduleId);
+//        traject.setModules(trajectService.read(trajectId).getModules());
+//        model.addAttribute("traject", traject);
+//
+//        return "wijzigtraject";
+//    }
 
     @RequestMapping(value = {"nieuwtraject"}, method = RequestMethod.GET)
     public String nieuwTrajectGet(Traject traject, ModelMap model) {
@@ -102,7 +102,7 @@ public class TrajectenoverzichtController {
     @RequestMapping(value = {"/{trajectId}/nieuwemoduleintraject"}, method = RequestMethod.GET)
     public String nieuweModuleGet(@PathVariable int trajectId, Module module, ModelMap model) {
 
-    //   module = new Module();
+        //   module = new Module();
         module.setTraject(trajectService.read(trajectId));
         model.addAttribute("module", module);
 
@@ -111,7 +111,7 @@ public class TrajectenoverzichtController {
 
     @RequestMapping(value = {"/{trajectId}/nieuwemoduleintraject"}, method = RequestMethod.POST)
     public String nieuweModulePost(@PathVariable int trajectId, @Valid Module module, BindingResult result, ModelMap model) {
-        
+
         if (result.hasErrors()) {
             return "nieuwemoduleintraject";
         }
@@ -119,14 +119,42 @@ public class TrajectenoverzichtController {
         trajectRead.getModules().add(module);
         module.setTraject(trajectRead);
       // moduleService.create(module);
-       
-       trajectService.update(trajectRead);
-     
-        
-        
-        
-        model.addAttribute("succes", module.getOmschrijving() + ": "  + "in " + module.getTraject().getNaam()+ " staat geregistreerd.");
+
+        trajectService.update(trajectRead);
+
+        model.addAttribute("succes", module.getOmschrijving() + ": " + "in " + module.getTraject().getNaam() + " staat geregistreerd.");
         return "bevestigingspagina";
-       
+
+    }
+
+    @RequestMapping(value = {"/updatetraject-{trajectId}"}, method = RequestMethod.POST, params = "verwijdermodule")
+    public String verwijderModule(@PathVariable int trajectId, @RequestParam(value = "verwijdermodule") int moduleId, ModelMap model) {
+        
+        Traject traject = trajectService.read(trajectId);
+        Module module = moduleService.read(moduleId);
+        System.out.println("ID: " + traject.getId());
+        
+        //if(traject.getModules().contains(module)){
+         traject.getModules().remove(module);
+        //}
+        //else{
+          //  System.out.println("module not found");
+        //}
+        trajectService.update(traject);
+        
+        
+       // Persoonsrol persoonsrol = persoonsrolService.read(persoonid, rolId);
+       // PersoonsrolId persoonsrolId = persoonsrol.getId();
+       // System.out.println("Persoonsrolid: " + persoonsrolId);
+//        if (persoon.getPersoonsrollen().contains(persoonsrol)) {
+//            persoon.getPersoonsrollen().remove(persoonsrol);
+//        } else {
+//            System.out.println("persoonsrol not found");
+//        }
+//
+//        persoonsrolService.delete(persoonsrol);
+//        service.update(persoon);
+
+        return "wijzigtraject";
     }
 }
