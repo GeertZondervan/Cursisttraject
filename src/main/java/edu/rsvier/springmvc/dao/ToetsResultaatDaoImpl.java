@@ -28,6 +28,8 @@ public class ToetsResultaatDaoImpl extends GenericDaoImpl<ToetsResultaat> implem
         }
         return (ToetsResultaat) query.list().get(0);
     }
+    
+    
 //    public ToetsResultaat read(ToetsResultaatId id) {
 //        String sql = "SELECT p FROM ToetsResultaat p WHERE p.persoonsrol_persoon_id = :persoon_id"
 //                + " AND p.persoonsrol_rol_id = :rol_id AND p.persoonsrol_begindatum = :begindatum"
@@ -48,6 +50,17 @@ public class ToetsResultaatDaoImpl extends GenericDaoImpl<ToetsResultaat> implem
             return null;
         }
         return query.list();
+    }
+
+    public ToetsResultaat read(int persoonid, int toetsid) {
+        String sql = "SELECT p FROM ToetsResultaat p WHERE persoonsrol_persoon_id = :persoon_id"
+               
+                + " AND toets_id = :toets_id";
+        Query query = getSession().createQuery(sql).setParameter("persoon_id", persoonid).setParameter("toets_id", toetsid);
+        if (query.list().isEmpty()) {
+            return null;
+        }
+        return (ToetsResultaat) query.list().get(0);
     }
     
 }
