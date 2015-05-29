@@ -24,7 +24,7 @@ public class TrajectenoverzichtController {
 
     @Autowired
     ModuleService moduleService;
-    
+
     @RequestMapping(value = {"", "/trajectenlijst"}, method = RequestMethod.GET)
     public String listPersonen(ModelMap model) {
 
@@ -78,10 +78,9 @@ public class TrajectenoverzichtController {
 
     @RequestMapping(value = {"nieuwtraject"}, method = RequestMethod.GET)
     public String nieuwTrajectGet(Traject traject, ModelMap model) {
-        
-          
+
         model.addAttribute("traject", traject);
-      
+
         return "nieuwtraject";
     }
 
@@ -92,31 +91,41 @@ public class TrajectenoverzichtController {
         if (result.hasErrors()) {
             return "nieuwtraject";
         }
-        
-        
-        
+
         trajectService.create(traject);
         int trajectId = traject.getId();
         model.addAttribute("succes", traject.getNaam() + ": "
-                + traject.getOmschrijving()+ " staat geregistreerd." +  "<br><a href=\"http://localhost:8080/Cursisttraject4.0/trajecten/updatetraject-" + trajectId + "\"><b>Nu modules toevoegen aan traject: " + traject.getNaam() +  "</b></a>");
+                + traject.getOmschrijving() + " staat geregistreerd." + "<br><a href=\"http://localhost:8080/Cursisttraject4.0/trajecten/updatetraject-" + trajectId + "\"><b>Nu modules toevoegen aan traject: " + traject.getNaam() + "</b></a>");
         return "bevestigingspagina";
     }
 
-        @RequestMapping(value = {"/{trajectId}/nieuwemoduleintraject"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/{trajectId}/nieuwemoduleintraject"}, method = RequestMethod.GET)
     public String nieuweModuleGet(@PathVariable int trajectId, Module module, ModelMap model) {
 
+        module.setTraject(trajectService.read(trajectId));
+        model.addAttribute("module", module);
+
+        return "nieuwemoduleintraject";
+    }
+
+    @RequestMapping(value = {"/{trajectId}/nieuwemoduleintraject"}, method = RequestMethod.POST)
+    public String nieuwModulePost(@PathVariable int trajectId, @Valid Module module, BindingResult result, ModelMap model) {
+        
+        if (result.hasErrors()) {
+            return "nieuwtraject";
+        }
+        Traject trajectRead = trajectService.read(trajectId);
+       // module.setTraject(trajectRead);
+        moduleService.create(module);
+        
+        trajectRead.getModules().add(module);
+        trajectService.update(trajectRead);
      
         
-
-     
-
-        return "nieuwtoetsresultaat";
-    }
-    
-      @RequestMapping(value = {"/{trajectId}/nieuwemoduleintraject"}, method = RequestMethod.POST)
-    public String nieuwModulePost(@PathVariable int trajectId, Module module, ModelMap model) {
-
-     
+        
+        
+        model.addAttribute("succes", module.getOmschrijving() + ": "  + "in " + module.getTraject().getNaam()+ " staat geregistreerd.");
         return "bevestigingspagina";
+       
     }
 }
