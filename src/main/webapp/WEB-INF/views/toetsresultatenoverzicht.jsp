@@ -29,6 +29,8 @@
                     <td>${toetsresultaat.resultaat}</td>
                     <td>${toetsresultaat.toets.minimumResultaat}</td>
                     <td>${toetsresultaat.datum}</td>
+                    <td><input type="submit" onclick="location.href = '${pageContext.request.contextPath}/toetsen/update-toetsresultaat-${toetsresultaat.toets.id}-${toetsresultaat.persoonsrol.persoon.id}'" name="wijzig" class="button" value="Wijzig" /></td>
+                    <td><input type="submit" onclick="location.href = '${pageContext.request.contextPath}/toetsen/delete-toetsresultaat-${toetsresultaat.toets.id}-${toetsresultaat.persoonsrol.persoon.id} '" name="verwijder" class="button" value="Verwijder" /></td>
                 </tr>
             </c:forEach>
         </table>

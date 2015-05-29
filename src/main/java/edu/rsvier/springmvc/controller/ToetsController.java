@@ -106,12 +106,12 @@ public class ToetsController {
 
         toetsResultaat.setToets(toetsService.read(toetsId));
         toetsResultaat.setPersoonsrol(persoonsrolService.read(toetsResultaat.getId().getPersoonsrolPersoonId(), rolService.read("Student").getId()));
-        
+
         //ToetsresultaatId setten:
         toetsResultaat.getId().setPersoonsrolBegindatum(toetsResultaat.getPersoonsrol().getId().getBegindatum());
         toetsResultaat.getId().setPersoonsrolRolId(toetsResultaat.getPersoonsrol().getId().getRolId());
         toetsResultaat.getId().setPersoonsrolPersoonId(toetsResultaat.getPersoonsrol().getId().getPersoonId());
-        
+
         toetsResultaat.getId().setToetsId(toetsId);
         toetsResultaatService.create(toetsResultaat);
 
@@ -159,6 +159,25 @@ public class ToetsController {
         toets = toetsService.read(toetsId);
         model.addAttribute("toets", toets);
         return "wijzigtoets";
+    }
+
+    @RequestMapping(value = {"/update-toetsresultaat-{toetsId}-{persoonId}"}, method = RequestMethod.GET)
+    public String wijzigToetsresultaatGet(@PathVariable int toetsId, @PathVariable int persoonId, ToetsResultaat toetsResultaat, ModelMap model) {
+        Persoonsrol persoonsrol;
+        persoonsrol = persoonsrolService.read(persoonId, rolService.read("Student").getId());
+        System.out.println(persoonsrol);
+        
+        ToetsResultaatId toetsResultaatId = new ToetsResultaatId();
+        toetsResultaatId.setPersoonsrolBegindatum(persoonsrol.getId().getBegindatum());
+        toetsResultaatId.setPersoonsrolPersoonId(persoonsrol.getId().getPersoonId());
+        toetsResultaatId.setPersoonsrolRolId(persoonsrol.getId().getRolId());
+        toetsResultaatId.setToetsId(toetsId);
+        System.out.println("Resultaat: " +toetsResultaatId);
+                
+        toetsResultaat = toetsResultaatService.read(toetsResultaatId);
+        model.addAttribute("toetsresultaat", toetsResultaat);
+        
+        return "wijzigtoetsresultaat";
     }
 
     @RequestMapping(value = {"/update-toets-{toetsId}"}, method = RequestMethod.POST)
