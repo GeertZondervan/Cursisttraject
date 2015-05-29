@@ -9,6 +9,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 <html>
 
     <head>
@@ -27,55 +28,39 @@
 
     <body>
 
-        <h2>Nieuwe toets toevoegen</h2>
+        <h2>Nieuw toetsresultaat toevoegen voor ${toetsresultaat.toets.naam}</h2>
+        Let op! Alleen mogelijk indien gekozen persoon de rol student heeft
 
-        <form:form method="POST" modelAttribute="toets">
+        <form:form method="POST" modelAttribute="toetsresultaat">
             <table>
-                <tr><td>Module: </td>
+                <tr><td>Persoon: </td>
                     <td>
-                        <form:select path="module.id">  
-                            <form:option value="0">Geen module</form:option>
-                            <form:options items="${modules}" itemValue="id" itemLabel="omschrijving" />  
+                        <form:select path="id.persoonsrolPersoonId">      
+                            <form:options items="${personen}" itemValue="id" itemLabel="volledigeNaam"/>  
                         </form:select>  
 
                     </td>  
+
                 </tr> 
-                <tr>
-                    <td><label for="naam">Naam: </label> </td>
-                    <td><form:input path="naam" id="naam"/></td>
-                    <td><form:errors path="naam" cssClass="error"/></td>
-                </tr>
-                <tr>
-                    <td><label for="stof">Stof: </label> </td>
-                    <td><form:input path="stof" id="omschrijving"/></td>
-                    <td><form:errors path="stof" cssClass="error"/></td>
-                </tr>
-                <tr>
-                    <td><label for="status">Status: </label> </td>
-                    <td><form:input path="status" id="omschrijving"/></td>
-                    <td><form:errors path="status" cssClass="error"/></td>
-                </tr>
-                <tr>
-                    <td><label for="omschrijving">Omschrijving: </label> </td>
-                    <td><form:input path="omschrijving" id="omschrijving"/></td>
-                    <td><form:errors path="omschrijving" cssClass="error"/></td>
-                </tr>
-                <tr>
-                    <td><label for="minimumResultaat">Minimum Resultaat: </label> </td>
-                    <td><form:input path="minimumResultaat" id="omschrijving"/></td>
-                    <td><form:errors path="minimumResultaat" cssClass="error"/></td>
-                </tr>
-                <tr>
-
 
 
                 <tr>
-                    <td colspan="3"><input type="submit" value="Register"/></td>
+                    <td><label for="datum">Datum: </label> </td>
+                    <td><form:input path="datum" id="datum" type="localDate"/></td>
+                    <td><form:errors path="datum" cssClass="error"/></td>
                 </tr>
-            </table>
-        </form:form>
-        <br/>
-        <br/>
-        Go back to <a href="<c:url value='/toetsen/' />">Terug naar toets overzicht</a>
-    </body>
+                <tr>
+                    <td><label for="resultaat">Resultaat: </label> </td>
+                    <td><form:input path="resultaat" type="float" id="resultaat" /></td>
+                    <td><form:errors path="resultaat" cssClass="error"/></td>
+                </tr>
+
+                <td colspan="3"><input type="submit" value="Register"/></td>
+            </tr>
+        </table>
+    </form:form>
+    <br/>
+    <br/>
+    Go back to <a href="<c:url value='/toetsen/' />">Terug naar toets overzicht</a>
+</body>
 </html>

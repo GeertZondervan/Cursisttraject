@@ -62,6 +62,9 @@ public class ToetsResultaat implements java.io.Serializable {
 
     public void setPersoonsrol(Persoonsrol persoonsrol) {
         this.persoonsrol = persoonsrol;
+        this.id.setPersoonsrolBegindatum(persoonsrol.getId().getBegindatum());
+        this.id.setPersoonsrolPersoonId(persoonsrol.getId().getPersoonId());
+        this.id.setPersoonsrolRolId(persoonsrol.getId().getRolId());
     }
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST})

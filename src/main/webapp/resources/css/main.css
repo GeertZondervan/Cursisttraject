@@ -22,25 +22,6 @@ body{
     width:200px;
 }
 
-
-.hoofdmenubutton:hover{
-    -webkit-animation: cssAnimation 2.3046s 1 ease;
-    -moz-animation: cssAnimation 2.3046s 1 ease;
-    -o-animation: cssAnimation 2.3046s 1 ease;
-}
-@-webkit-keyframes cssAnimation {
-    from { -webkit-transform: rotate(4deg) scale(1) skew(1deg) translate(10px); }
-    to { -webkit-transform: rotate(147deg) scale(1.028) skew(-38deg) translate(-300px); }
-}
-@-moz-keyframes cssAnimation {
-    from { -moz-transform: rotate(4deg) scale(1) skew(1deg) translate(10px); }
-    to { -moz-transform: rotate(147deg) scale(1.028) skew(-38deg) translate(-300px); }
-}
-@-o-keyframes cssAnimation {
-    from { -o-transform: rotate(4deg) scale(1) skew(1deg) translate(10px); }
-    to { -o-transform: rotate(147deg) scale(1.028) skew(-38deg) translate(-300px); }
-}
-
 table{   
     margin:10px;
     

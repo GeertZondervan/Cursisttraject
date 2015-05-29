@@ -1,6 +1,8 @@
 package edu.rsvier.springmvc.controller;
 
 import edu.rsvier.springmvc.model.Module;
+import edu.rsvier.springmvc.model.Persoon;
+import edu.rsvier.springmvc.model.Persoonsrol;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,10 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import edu.rsvier.springmvc.model.Toets;
 import edu.rsvier.springmvc.model.ToetsResultaat;
+import edu.rsvier.springmvc.model.ToetsResultaatId;
 import edu.rsvier.springmvc.service.ModuleService;
+import edu.rsvier.springmvc.service.PersoonService;
+import edu.rsvier.springmvc.service.PersoonsrolService;
+import edu.rsvier.springmvc.service.RolService;
 import edu.rsvier.springmvc.service.ToetsResultaatService;
 import edu.rsvier.springmvc.service.ToetsService;
-import java.util.Set;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
@@ -20,14 +27,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class ToetsController {
 
     @Autowired
+    PersoonService persoonService;
+
+    @Autowired
     ToetsService toetsService;
-    
+
     @Autowired
     ModuleService moduleService;
-    
+
     @Autowired
     ToetsResultaatService toetsResultaatService;
 
+    @Autowired
+    RolService rolService;
+
+    @Autowired
+    PersoonsrolService persoonsrolService;
 
     @RequestMapping(value = {"", "/toetslijst"}, method = RequestMethod.GET)
     public String listToetsen(ModelMap model) {
@@ -46,22 +61,71 @@ public class ToetsController {
 
         return "nieuwetoets";
     }
-    
+
+    @RequestMapping(value = {"/{toetsId}/nieuwtoetsresultaat"}, method = RequestMethod.GET)
+    public String nieuwToetsresultaatGet(@PathVariable int toetsId, ToetsResultaat toetsResultaat, ModelMap model) {
+
+        toetsResultaat = new ToetsResultaat();
+        toetsResultaat.setDatum(LocalDate.now());
+        toetsResultaat.setToets(toetsService.read(toetsId));
+
+        toetsResultaat.setId(new ToetsResultaatId());
+        toetsResultaat.getId().setPersoonsrolRolId(rolService.read("Student").getId());
+
+        Toets toets = toetsService.read(toetsId);
+        
+        // Lijst genereren voor dropdown op pagina met alleen personen die deze nog niet gemaakt hebben
+        List<Persoon>personenAlGemaakt= new ArrayList<Persoon>();
+        for(ToetsResultaat resultaat: toets.getToetsResultaten()){
+            personenAlGemaakt.add(resultaat.getPersoonsrol().getPersoon());
+        }
+        List<Persoon>personenNogNietGemaakt = persoonService.getAll();
+        personenNogNietGemaakt.removeAll(personenAlGemaakt);
+        
+        System.out.println(personenAlGemaakt);
+        
+         List<Persoon>studenten= new ArrayList<Persoon>();
+         for(Persoon persoon:personenNogNietGemaakt){
+             for(Persoonsrol persoonsrolInPersoon: persoon.getPersoonsrollen()){
+                 if (persoonsrolInPersoon.getRol().getNaam().equals("Student")){
+                     studenten.add(persoon);
+                 }
+             }
+         }
+         System.out.println("Studenten: "+studenten);
+         personenNogNietGemaakt.retainAll(studenten);
+        
+        model.addAttribute("rollen", rolService.getAll());
+        model.addAttribute("personen", personenNogNietGemaakt);
+        model.addAttribute("toetsresultaat", toetsResultaat);
+
+        return "nieuwtoetsresultaat";
+    }
+
+    @RequestMapping(value = {"/{toetsId}/nieuwtoetsresultaat"}, method = RequestMethod.POST)
+    public String nieuwToetsresultaatPost(@PathVariable int toetsId, ToetsResultaat toetsResultaat, ModelMap model) {
+
+        toetsResultaat.setToets(toetsService.read(toetsId));
+        toetsResultaat.setPersoonsrol(persoonsrolService.read(toetsResultaat.getId().getPersoonsrolPersoonId(), rolService.read("Student").getId()));
+        toetsResultaat.getId().setToetsId(toetsId);
+        toetsResultaatService.create(toetsResultaat);
+
+        return "bevestigingspagina";
+    }
+
     @RequestMapping(value = {"/toets-resultaten-{toetsId}"}, method = RequestMethod.GET)
     public String toetsResultatenGet(@PathVariable int toetsId, Toets toets, ModelMap model) {
         toets = toetsService.read(toetsId);
-       
+
         model.addAttribute("toets", toets);
         System.out.println(toets.getToetsResultaten());
-        
-       
-       
+
         return "toetsresultatenoverzicht";
     }
 
     @RequestMapping(value = {"/nieuwetoets"}, method = RequestMethod.POST)
     public String nieuweToetsPost(Toets toets, ModelMap model) {
-       
+
         toetsService.create(toets);
 
         model.addAttribute("toets", toets);

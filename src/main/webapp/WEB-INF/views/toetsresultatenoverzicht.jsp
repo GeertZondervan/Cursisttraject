@@ -10,7 +10,7 @@
         
     </head>
     <body>
-        <h2>Toets Overzicht voor toets ${toets.naam} in module ${toets.module}</h2>	
+        <h2>Toetsoverzicht voor toets ${toets.naam} in module ${toets.module}</h2>	
         <table>
             <tr class="tabelheader">
 
@@ -33,8 +33,8 @@
             </c:forEach>
         </table>
         <br/>
-        <input type="button" value="Nieuw toetsresultaat" onclick="window.open('${pageContext.request.contextPath}/','Nieuw toetsresultaat', 'width=auto,height=auto,scrollbars=no,toolbar=no,location=no'); return false" />
-        <a href="${pageContext.request.contextPath}/toetsen/${toets.id}/nieuwtoetsresultaat" onclick="window.open('${pageContext.request.contextPath}/toetsen','Nieuw toetsresultaat', 'width=600,height=425,scrollbars=no,toolbar=no,location=no'); return false">Voeg nieuw toetsresultaat toe</a>
+        
+        <a href="${pageContext.request.contextPath}/toetsen/${toets.id}/nieuwtoetsresultaat" onclick="window.open('${pageContext.request.contextPath}/toetsen/${toets.id}/nieuwtoetsresultaat','Nieuw toetsresultaat', 'width=600,height=425,scrollbars=no,toolbar=no,location=no'); return false">Voeg nieuw toetsresultaat toe</a>
             <a href="<c:url value='/home' />">Home</a>
     </body>
 </html>
