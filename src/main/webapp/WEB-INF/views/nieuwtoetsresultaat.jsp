@@ -36,7 +36,7 @@
                 <tr><td>Persoon: </td>
                     <td>
                         <form:select path="id.persoonsrolPersoonId">      
-                            <form:options items="${personen}" itemValue="id" itemLabel="voornaam"/>  
+                            <form:options items="${personen}" itemValue="id" itemLabel="volledigeNaam"/>  
                         </form:select>  
 
                     </td>  

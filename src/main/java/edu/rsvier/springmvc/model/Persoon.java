@@ -66,7 +66,10 @@ public class Persoon implements java.io.Serializable {
         
     }
     
-   
+   @Transient
+   public String getVolledigeNaam(){
+       return voornaam + " " + achternaam;
+   }
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "persoon", cascade = {CascadeType.ALL})
     public Set<Persoonsrol> getPersoonsrollen() {
