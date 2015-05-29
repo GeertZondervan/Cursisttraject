@@ -3,6 +3,7 @@ package edu.rsvier.springmvc.controller;
 import edu.rsvier.springmvc.model.Module;
 import edu.rsvier.springmvc.model.Persoon;
 import edu.rsvier.springmvc.model.Persoonsrol;
+import edu.rsvier.springmvc.model.PersoonsrolId;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -105,6 +106,12 @@ public class ToetsController {
 
         toetsResultaat.setToets(toetsService.read(toetsId));
         toetsResultaat.setPersoonsrol(persoonsrolService.read(toetsResultaat.getId().getPersoonsrolPersoonId(), rolService.read("Student").getId()));
+        
+        //ToetsresultaatId setten:
+        toetsResultaat.getId().setPersoonsrolBegindatum(toetsResultaat.getPersoonsrol().getId().getBegindatum());
+        toetsResultaat.getId().setPersoonsrolRolId(toetsResultaat.getPersoonsrol().getId().getRolId());
+        toetsResultaat.getId().setPersoonsrolPersoonId(toetsResultaat.getPersoonsrol().getId().getPersoonId());
+        
         toetsResultaat.getId().setToetsId(toetsId);
         toetsResultaatService.create(toetsResultaat);
 
