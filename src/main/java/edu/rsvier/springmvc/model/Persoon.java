@@ -14,6 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -26,7 +27,8 @@ public class Persoon implements java.io.Serializable {
     @Size(min = 2, max = 45)
     private String achternaam;
     
-    private String volledigeNaam;
+    
+   
     
     private Set<Persoonsrol> persoonsrollen = new HashSet<Persoonsrol>(0);
     private Set<Expertise> expertises = new HashSet<Expertise>(0);
@@ -51,7 +53,7 @@ public class Persoon implements java.io.Serializable {
 
     public void setVoornaam(String voornaam) {
         this.voornaam = voornaam;
-        this.volledigeNaam = voornaam + " " + achternaam;
+       
     }
 
     @Column(name = "achternaam", nullable = false, length = 45)
@@ -61,16 +63,10 @@ public class Persoon implements java.io.Serializable {
 
     public void setAchternaam(String achternaam) {
         this.achternaam = achternaam;
-        this.volledigeNaam = voornaam + " " + achternaam;
+        
     }
     
-    public String getVolledigeNaam(){
-        return(volledigeNaam);
-    }
-    
-    public void setVolledigeNaam(String volledigeNaam){
-        this.volledigeNaam = (this.voornaam + " " + this.achternaam);
-    }
+   
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "persoon", cascade = {CascadeType.ALL})
     public Set<Persoonsrol> getPersoonsrollen() {

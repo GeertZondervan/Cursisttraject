@@ -49,7 +49,9 @@ public class ToetsResultaatServiceImplTest {
     private PersoonService persoonService;
     @Autowired
     private RolService rolService;
-    private ToetsResultaat toetsResultaat;
+    
+   ToetsResultaat toetsResultaat;
+    
     
     @Rule
     public ExpectedException expectedEx = ExpectedException.none();
