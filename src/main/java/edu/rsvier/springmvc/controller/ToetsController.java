@@ -73,28 +73,26 @@ public class ToetsController {
         toetsResultaat.getId().setPersoonsrolRolId(rolService.read("Student").getId());
 
         Toets toets = toetsService.read(toetsId);
-        
+
         // Lijst genereren voor dropdown op pagina met alleen personen die deze nog niet gemaakt hebben
-        List<Persoon>personenAlGemaakt= new ArrayList<Persoon>();
-        for(ToetsResultaat resultaat: toets.getToetsResultaten()){
+        List<Persoon> personenAlGemaakt = new ArrayList<Persoon>();
+        for (ToetsResultaat resultaat : toets.getToetsResultaten()) {
             personenAlGemaakt.add(resultaat.getPersoonsrol().getPersoon());
         }
-        List<Persoon>personenNogNietGemaakt = persoonService.getAll();
+        List<Persoon> personenNogNietGemaakt = persoonService.getAll();
         personenNogNietGemaakt.removeAll(personenAlGemaakt);
-        
-        System.out.println(personenAlGemaakt);
-        
-         List<Persoon>studenten= new ArrayList<Persoon>();
-         for(Persoon persoon:personenNogNietGemaakt){
-             for(Persoonsrol persoonsrolInPersoon: persoon.getPersoonsrollen()){
-                 if (persoonsrolInPersoon.getRol().getNaam().equals("Student")){
-                     studenten.add(persoon);
-                 }
-             }
-         }
-         System.out.println("Studenten: "+studenten);
-         personenNogNietGemaakt.retainAll(studenten);
-        
+
+        // Verdere selectie: alleen personen met de rol student in de dropdown
+        List<Persoon> studenten = new ArrayList<Persoon>();
+        for (Persoon persoon : personenNogNietGemaakt) {
+            for (Persoonsrol persoonsrolInPersoon : persoon.getPersoonsrollen()) {
+                if (persoonsrolInPersoon.getRol().getNaam().equals("Student")) {
+                    studenten.add(persoon);
+                }
+            }
+        }
+        personenNogNietGemaakt.retainAll(studenten);
+
         model.addAttribute("rollen", rolService.getAll());
         model.addAttribute("personen", personenNogNietGemaakt);
         model.addAttribute("toetsresultaat", toetsResultaat);
