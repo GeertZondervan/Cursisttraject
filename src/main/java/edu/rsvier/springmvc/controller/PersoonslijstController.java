@@ -40,7 +40,7 @@ public class PersoonslijstController {
     public String listPersonen(ModelMap model) {
         List<Persoon> personen = service.getAll();
         model.addAttribute("personen", personen);
-        return "personenlijst";
+        return "Persoondomein/personenlijst";
     }
 
     @RequestMapping(value = {"update-{persoonid}"}, method = RequestMethod.GET)
@@ -49,7 +49,7 @@ public class PersoonslijstController {
         List<Rol> rollen = rolService.getAll();
         model.addAttribute("persoon", persoon);
         model.addAttribute("rollen", rollen);
-        return "wijzig";
+        return "Persoondomein/wijzig";
     }
 
     @RequestMapping(value = {"update-{persoonid}"}, method = RequestMethod.POST)
@@ -58,7 +58,7 @@ public class PersoonslijstController {
             persoon.setPersoonsrollen(service.read(persoonid).getPersoonsrollen());
             persoon.setExpertises(service.read(persoonid).getExpertises());
             model.addAttribute("persoon", persoon);
-            return "wijzig";
+            return "Persoondomein/wijzig";
         } else {
 
             Persoon persoonRead = service.read(persoonid);
@@ -68,7 +68,7 @@ public class PersoonslijstController {
 
             model.addAttribute("succes", persoon.getVoornaam() + " "
                     + persoon.getAchternaam() + " is gewijzigd");
-            return "bevestigingspagina";
+            return "Algemeen/bevestigingspagina";
         }
     }
 
@@ -90,28 +90,28 @@ public class PersoonslijstController {
         persoonsrolService.delete(persoonsrol);
         service.update(persoon);
 
-        return "wijzig";
+        return "Persoondomein/wijzig";
     }
 
     @RequestMapping(value = {"delete-{persoonid}"}, method = RequestMethod.GET)
     public String deletePersoonGet(@PathVariable int persoonid, Persoon persoon, ModelMap model) {
         persoon = service.read(persoonid);
         model.addAttribute("persoon", persoon);
-        return "verwijder";
+        return "Persoondomein/verwijder";
     }
 
     @RequestMapping(value = {"delete-{persoonid}"}, method = RequestMethod.POST)
     public String deletePersoonPost(@PathVariable int persoonid, Persoon persoon, ModelMap model) {
         service.delete(service.read(persoonid));
         model.addAttribute("succes", "Deze persoon is succesvol verwijderd");
-        return "bevestigingspagina";
+        return "Algemeen/bevestigingspagina";
     }
 
     @RequestMapping(value = {"nieuwpersoon"}, method = RequestMethod.GET)
     public String newPersoon(Persoon persoon, ModelMap model) {
 
         model.addAttribute("persoon", persoon);
-        return "registratie";
+        return "Persoondomein/registratie";
     }
 
     @RequestMapping(value = {"nieuwpersoon"}, method = RequestMethod.POST)
@@ -119,13 +119,13 @@ public class PersoonslijstController {
             ModelMap model) {
 
         if (result.hasErrors()) {
-            return "registratie";
+            return "Persoondomein/registratie";
         }
 
         service.create(persoon);
         model.addAttribute("succes", persoon.getVoornaam() + " "
                 + persoon.getAchternaam() + " staat geregistreerd");
-        return "bevestigingspagina";
+        return "Algemeen/bevestigingspagina";
     }
 
     @RequestMapping(value = {"{persoonid}-persoonsroltoevoegen"}, method = RequestMethod.GET)
@@ -137,7 +137,7 @@ public class PersoonslijstController {
         model.addAttribute("rollen", rollen);
         model.addAttribute("persoonsrol", persoonsrol);
         model.addAttribute("persoon", persoon);
-        return "persoonsroltoevoegen";
+        return "Persoondomein/persoonsroltoevoegen";
     }
 
     @RequestMapping(value = {"{persoonid}-persoonsroltoevoegen"}, method = RequestMethod.POST, params = "nieuwepersoonsrol")
@@ -165,13 +165,13 @@ public class PersoonslijstController {
         model.addAttribute("persoon", persoon);
         
         
-        return "wijzig";
+        return "Persoondomein/wijzig";
     }
     
     @RequestMapping(value = {"{persoonid}-persoonsrolwijzigen"}, method = RequestMethod.GET, params = "wijzigrpersoonsrol")
     public String wijzigPersoonsrolGet(@PathVariable int persoonid, @RequestParam(value = "wijzigrpersoonsrol") int rolId, @Valid Persoon persoon, BindingResult result, ModelMap model){
         System.out.println("Geert is cool");
-        return "home";
+        return "Algemeen/home";
     }
 
 //    @RequestMapping(value = {"/resultaten-{id}"}, method = RequestMethod.GET)

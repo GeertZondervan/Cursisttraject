@@ -11,14 +11,19 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "rol", catalog = "cursisttraject_relatiebeheer"
 )
 public class Rol implements java.io.Serializable {
 
+    
     private Integer id;
+    
+    @Size(min = 2, max = 15)
     private String naam;
+    
     private Set<Persoonsrol> persoonsrollen = new HashSet<Persoonsrol>(0);
 
     @Id

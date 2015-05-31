@@ -53,7 +53,7 @@ public class ToetsController {
         List<Toets> toetsen = toetsService.getAll();
         
         model.addAttribute("toetsen", toetsen);
-        return "toetsoverzicht";
+        return "Toetsdomein/toetsoverzicht";
     }
     
     @RequestMapping(value = {"/nieuwetoets"}, method = RequestMethod.GET)
@@ -62,7 +62,7 @@ public class ToetsController {
         model.addAttribute("modules", modules);
         model.addAttribute("toets", toets);
         
-        return "nieuwetoets";
+        return "Toetsdomein/nieuwetoets";
     }
     
     @RequestMapping(value = {"/{toetsId}/nieuwtoetsresultaat"}, method = RequestMethod.GET)
@@ -100,7 +100,7 @@ public class ToetsController {
         model.addAttribute("personen", personenNogNietGemaakt);
         model.addAttribute("toetsresultaat", toetsResultaat);
         
-        return "nieuwtoetsresultaat";
+        return "Toetsdomein/nieuwtoetsresultaat";
     }
     
     @RequestMapping(value = {"/{toetsId}/nieuwtoetsresultaat"}, method = RequestMethod.POST)
@@ -117,7 +117,7 @@ public class ToetsController {
         toetsResultaat.getId().setToetsId(toetsId);
         toetsResultaatService.create(toetsResultaat);
         
-        return "bevestigingspagina";
+        return "Algemeen/bevestigingspagina";
     }
     
     @RequestMapping(value = {"/toets-resultaten-{toetsId}"}, method = RequestMethod.GET)
@@ -127,7 +127,7 @@ public class ToetsController {
         model.addAttribute("toets", toets);
         System.out.println(toets.getToetsResultaten());
         
-        return "toetsresultatenoverzicht";
+        return "Toetsdomein/toetsresultatenoverzicht";
     }
     
     @RequestMapping(value = {"/nieuwetoets"}, method = RequestMethod.POST)
@@ -137,21 +137,21 @@ public class ToetsController {
         
         model.addAttribute("toets", toets);
         model.addAttribute("succes", "De toets " + toets.getNaam() + " is toegevoegd");
-        return "bevestigingspagina";
+        return "Algemeen/bevestigingspagina";
     }
     
     @RequestMapping(value = {"/delete-toets-{toetsId}"}, method = RequestMethod.GET)
     public String deleteToetsGet(@PathVariable int toetsId, Toets toets, ModelMap model) {
         toets = toetsService.read(toetsId);
         model.addAttribute("toets", toets);
-        return "verwijdertoets";
+        return "Toetsdomein/verwijdertoets";
     }
     
     @RequestMapping(value = {"/delete-toets-{toetsId}"}, method = RequestMethod.POST)
     public String deleteToetsPost(@PathVariable int toetsId, Toets toets, ModelMap model) {
         toetsService.delete(toetsService.read(toetsId));
         model.addAttribute("succes", "Deze toets is succesvol verwijderd uit de database");
-        return "bevestigingspagina";
+        return "Algemeen/bevestigingspagina";
     }
     
     @RequestMapping(value = {"/update-toets-{toetsId}"}, method = RequestMethod.GET)
@@ -160,13 +160,13 @@ public class ToetsController {
         model.addAttribute("modules", modules);
         toets = toetsService.read(toetsId);
         model.addAttribute("toets", toets);
-        return "wijzigtoets";
+        return "Toetsdomein/wijzigtoets";
     }
     
     @RequestMapping(value = {"/update-toetsresultaat-{toetsId}-{persoonId}"}, method = RequestMethod.GET)
     public String wijzigToetsresultaatGet(@PathVariable int toetsId, @PathVariable int persoonId, @ModelAttribute("toetsresultaat") ToetsResultaat toetsResultaat, BindingResult result, ModelMap model) {
-        Persoonsrol persoonsrol;
-        persoonsrol = persoonsrolService.read(persoonId, rolService.read("Student").getId());
+        
+        Persoonsrol persoonsrol = persoonsrolService.read(persoonId, rolService.read("Student").getId());
         System.out.println(persoonsrol);
         
         ToetsResultaatId toetsResultaatId = new ToetsResultaatId();
@@ -181,7 +181,7 @@ public class ToetsController {
         model.addAttribute("toetsresultaat", toetsResultaat);
         model.addAttribute("toetsresultaat.id", toetsResultaat.getId());
         
-        return "wijzigtoetsresultaat";
+        return "Toetsdomein/wijzigtoetsresultaat";
     }
     
     @RequestMapping(value = {"/update-toetsresultaat-{toetsId}-{persoonId}"}, method = RequestMethod.POST)
@@ -196,7 +196,7 @@ public class ToetsController {
         
         toetsResultaatService.update(toetsResultaatRead);
         
-        return "bevestigingspagina";
+        return "Algemeen/bevestigingspagina";
     }
     
     @RequestMapping(value = {"/update-toets-{toetsId}"}, method = RequestMethod.POST)
@@ -207,7 +207,8 @@ public class ToetsController {
         toetsService.update(toets);
         
         model.addAttribute("succes", "De toets " + toets.getNaam() + ": " + toets.getOmschrijving() + " is gewijzigd");
-        return "bevestigingspagina";
+        return "Algemeen/bevestigingspagina";
     }
+   
     
 }

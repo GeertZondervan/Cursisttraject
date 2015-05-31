@@ -12,6 +12,6 @@ public class HomeController {
     public String getHome( ) {
 
         
-        return "home";
+        return "Algemeen/home";
     }
 }

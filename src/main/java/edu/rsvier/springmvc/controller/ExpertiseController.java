@@ -29,7 +29,7 @@ public class ExpertiseController {
         List<Expertise> expertises = expertiseService.getAll();
 
         model.addAttribute("expertises", expertises);
-        return "expertiseoverzicht";
+        return "Expertisedomein/expertiseoverzicht";
     }
 
     @RequestMapping(value = {"/nieuwe-expertise"}, method = RequestMethod.GET)
@@ -38,7 +38,7 @@ public class ExpertiseController {
         model.addAttribute("modules", modules);
         model.addAttribute("expertise", expertise);
 
-        return "nieuweexpertise";
+        return "Expertisedomein/nieuweexpertise";
     }
 
     @RequestMapping(value = {"/nieuwe-expertise"}, method = RequestMethod.POST)
@@ -53,21 +53,21 @@ public class ExpertiseController {
 
         model.addAttribute("expertise", expertise);
         model.addAttribute("succes", "De expertise " + expertise.getNaam() + " is toegevoegd");
-        return "bevestigingspagina";
+        return "Algemeen/bevestigingspagina";
     }
 
     @RequestMapping(value = {"/delete-expertise-{expertiseId}"}, method = RequestMethod.GET)
     public String deleteExpertiseGet(@PathVariable int expertiseId, Expertise expertise, ModelMap model) {
         expertise = expertiseService.read(expertiseId);
         model.addAttribute("expertise", expertise);
-        return "verwijderexpertise";
+        return "Expertisedomein/verwijderexpertise";
     }
 
     @RequestMapping(value = {"/delete-expertise-{expertiseId}"}, method = RequestMethod.POST)
     public String deleteExpertisePost(@PathVariable int expertiseId, Expertise expertise, ModelMap model) {
         expertiseService.delete(expertiseService.read(expertiseId));
         model.addAttribute("succes", "Deze expertise is succesvol verwijderd uit de database");
-        return "bevestigingspagina";
+        return "Algemeen/bevestigingspagina";
     }
 
     @RequestMapping(value = {"/update-expertise-{expertiseId}"}, method = RequestMethod.GET)
@@ -76,7 +76,7 @@ public class ExpertiseController {
         model.addAttribute("modules", modules);
         expertise = expertiseService.read(expertiseId);
         model.addAttribute("expertise", expertise);
-        return "wijzigexpertise";
+        return "Expertisedomein/wijzigexpertise";
     }
 
     @RequestMapping(value = {"/update-expertise-{expertiseId}"}, method = RequestMethod.POST)
@@ -87,7 +87,7 @@ public class ExpertiseController {
         expertiseService.update(expertise);
 
         model.addAttribute("succes", "De Expertise " + expertise.getOmschrijving() + " is gewijzigd");
-        return "bevestigingspagina";
+        return "Algemeen/bevestigingspagina";
     }
 
 }

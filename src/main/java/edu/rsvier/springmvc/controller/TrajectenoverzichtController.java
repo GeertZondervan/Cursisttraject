@@ -30,14 +30,14 @@ public class TrajectenoverzichtController {
 
         List<Traject> trajecten = trajectService.getAll();
         model.addAttribute("trajecten", trajecten);
-        return "trajectenoverzicht";
+        return "Trajectdomein/trajectenoverzicht";
     }
 
     @RequestMapping(value = {"/updatetraject-{trajectId}"}, method = RequestMethod.GET)
     public String wijzigTrajectGet(@PathVariable int trajectId, Traject traject, ModelMap model) {
         traject = trajectService.read(trajectId);
         model.addAttribute("traject", traject);
-        return "wijzigtraject";
+        return "Trajectdomein/wijzigtraject";
     }
 
     @RequestMapping(value = {"/updatetraject-{trajectId}"}, method = RequestMethod.POST)
@@ -49,7 +49,7 @@ public class TrajectenoverzichtController {
         trajectService.update(traject);
         model.addAttribute("succes, Traject", traject.getNaam() + " "
                 + "is gewijzigd");
-        return "bevestigingspagina";
+        return "Algemeen/bevestigingspagina";
 
     }
 
@@ -57,14 +57,14 @@ public class TrajectenoverzichtController {
     public String deleteTrajectGet(@PathVariable int trajectId, Traject traject, ModelMap model) {
         traject = trajectService.read(trajectId);
         model.addAttribute("traject", traject);
-        return "verwijdertraject";
+        return "Trajectdomein/verwijdertraject";
     }
 
     @RequestMapping(value = {"delete-{trajectId}"}, method = RequestMethod.POST)
     public String deleteTrajectPost(@PathVariable int trajectId, Traject traject, ModelMap model) {
         trajectService.delete(trajectService.read(trajectId));
         model.addAttribute("succes", "Dit traject is succesvol verwijderd uit de database");
-        return "bevestigingspagina";
+        return "Algemeen/bevestigingspagina";
     }
 
 //    @RequestMapping(value = {"/updatetraject-{trajectId}"}, method = RequestMethod.POST, params = "verwijdermodule")
@@ -81,7 +81,7 @@ public class TrajectenoverzichtController {
 
         model.addAttribute("traject", traject);
 
-        return "nieuwtraject";
+        return "Trajectdomein/nieuwtraject";
     }
 
     @RequestMapping(value = {"nieuwtraject"}, method = RequestMethod.POST)
@@ -89,14 +89,14 @@ public class TrajectenoverzichtController {
             ModelMap model) {
 
         if (result.hasErrors()) {
-            return "nieuwtraject";
+            return "Trajectdomein/nieuwtraject";
         }
 
         trajectService.create(traject);
         int trajectId = traject.getId();
         model.addAttribute("succes", traject.getNaam() + ": "
                 + traject.getOmschrijving() + " staat geregistreerd." + "<br><a href=\"http://localhost:8080/Cursisttraject4.0/trajecten/updatetraject-" + trajectId + "\"><b>Nu modules toevoegen aan traject: " + traject.getNaam() + "</b></a>");
-        return "bevestigingspagina";
+        return "Algemeen/bevestigingspagina";
     }
 
     @RequestMapping(value = {"/{trajectId}/nieuwemoduleintraject"}, method = RequestMethod.GET)
@@ -106,14 +106,14 @@ public class TrajectenoverzichtController {
         module.setTraject(trajectService.read(trajectId));
         model.addAttribute("module", module);
 
-        return "nieuwemoduleintraject";
+        return "Trajectdomein/nieuwemoduleintraject";
     }
 
     @RequestMapping(value = {"/{trajectId}/nieuwemoduleintraject"}, method = RequestMethod.POST)
     public String nieuweModulePost(@PathVariable int trajectId, @Valid Module module, BindingResult result, ModelMap model) {
 
         if (result.hasErrors()) {
-            return "nieuwemoduleintraject";
+            return "Trajectdomein/nieuwemoduleintraject";
         }
         Traject trajectRead = trajectService.read(trajectId);
         trajectRead.getModules().add(module);
@@ -123,7 +123,7 @@ public class TrajectenoverzichtController {
         trajectService.update(trajectRead);
 
         model.addAttribute("succes", module.getOmschrijving() + ": " + "in " + module.getTraject().getNaam() + " staat geregistreerd.");
-        return "bevestigingspagina";
+        return "Algemeen/bevestigingspagina";
 
     }
 
@@ -155,6 +155,6 @@ public class TrajectenoverzichtController {
 //        persoonsrolService.delete(persoonsrol);
 //        service.update(persoon);
 
-        return "wijzigtraject";
+        return "Trajectdomein/wijzigtraject";
     }
 }
