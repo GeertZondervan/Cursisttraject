@@ -20,5 +20,6 @@
         <p><input type="submit" onclick="location.href='${pageContext.request.contextPath}/trajecten/'" class="hoofdmenubutton" value="Trajectenbeheer" /></p>
         <p><input type="submit" onclick="location.href='${pageContext.request.contextPath}/expertises/'" class="hoofdmenubutton" value="Expertisebeheer" /></p>
         <p><input type="submit" onclick="location.href='${pageContext.request.contextPath}/toetsen/'" class="hoofdmenubutton" value="Toetsbeheer" /></p>
+        <p><input type="submit" onclick="location.href='${pageContext.request.contextPath}/materialen/'" class="hoofdmenubutton" value="Materiaalbeheer" /></p>
     </body>
 </html>

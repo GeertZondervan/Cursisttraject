@@ -44,7 +44,8 @@
             </c:forEach>
         </table>
         <br/>
-        <a href="<c:url value='/toetsen/nieuwetoets' />">Voeg nieuwe toets toe</a><p>
+        <a href="${pageContext.request.contextPath}/toetsen/nieuwetoets" onclick="window.open('${pageContext.request.contextPath}/toetsen/nieuwetoets', 'Nieuwe toets', 'width=600,height=425,scrollbars=no,toolbar=no,location=no');
+                return false" >Nieuwe toets toevoegen</a>
             <a href="<c:url value='/home' />">Home</a>
     </body>
 </html>

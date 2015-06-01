@@ -43,7 +43,7 @@ public class Materiaal implements java.io.Serializable {
         this.id = id;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "bestand_id")
     public Bestand getBestand() {
         return this.bestand;
@@ -107,7 +107,7 @@ public class Materiaal implements java.io.Serializable {
         this.isbn10 = isbn10;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @JoinTable(
             name = "materiaal_has_module",
             joinColumns = @JoinColumn(name = "materiaal_id"),
@@ -121,7 +121,7 @@ public class Materiaal implements java.io.Serializable {
         this.modules = modules;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "materiaal", cascade = {CascadeType.ALL})
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "materiaal", cascade = {CascadeType.ALL})
     public Set<PersoonsrolHasMateriaal> getHeeftPersoonsrollen() {
         return heeftPersoonsrollen;
     }

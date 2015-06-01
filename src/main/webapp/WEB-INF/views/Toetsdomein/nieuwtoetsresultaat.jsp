@@ -45,7 +45,7 @@
 
                 <tr>
                     <td><label for="datum">Datum: </label> </td>
-                    <td><form:input path="datum" id="datum" type="localDate"/></td>
+                    <td><form:input path="datum" id="datum" type="localdate" /></td>
                     <td><form:errors path="datum" cssClass="error"/></td>
                 </tr>
                 <tr>

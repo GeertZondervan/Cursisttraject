@@ -28,7 +28,7 @@
                     <td>${toetsresultaat.persoonsrol.rol.naam}</td>
                     <td>${toetsresultaat.resultaat}</td>
                     <td>${toetsresultaat.toets.minimumResultaat}</td>
-                    <td>${toetsresultaat.datum}</td>
+                    <td type="localdate">${toetsresultaat.datum}</td>
                     <td><input type="submit" onclick="window.open('${pageContext.request.contextPath}/toetsen/update-toetsresultaat-${toetsresultaat.toets.id}-${toetsresultaat.persoonsrol.persoon.id}', 'Wijzig toetsresultaat', 'width=600,height=425,scrollbars=no,toolbar=no,location=no');
                             return false" name="wijzig" class="button" value="Wijzig" /></td>
                     <td><input type="submit" onclick="window.open('${pageContext.request.contextPath}/toetsen/delete-toetsresultaat-${toetsresultaat.toets.id}-${toetsresultaat.persoonsrol.persoon.id}', 'Verwijder toetsresultaat', 'width=600,height=425,scrollbars=no,toolbar=no,location=no');
