@@ -131,9 +131,9 @@ public class TrajectenoverzichtController {
 
     // Toetsresulaat verwijderen
     @RequestMapping(value = {"/delete-module-in-traject-{moduleId}"}, method = RequestMethod.GET)
-    public String verwijderModuleGet( @PathVariable int moduleId, ModelMap model) {
+    public String verwijderModuleGet(@PathVariable int moduleId, @ModelAttribute("module") Module module, BindingResult result, ModelMap model) {
         
-        Module module = moduleService.read(moduleId);
+        module = moduleService.read(moduleId);
         Traject traject = module.getTraject();
         model.addAttribute("traject", traject);
         model.addAttribute("module", module);        
@@ -142,18 +142,31 @@ public class TrajectenoverzichtController {
     }
 
     @RequestMapping(value = {"/delete-module-in-traject-{moduleId}"}, method = RequestMethod.POST)
-    public String verwijderModulePost(@PathVariable int moduleId, ModelMap model) {
-
-        Module module = moduleService.read(moduleId);
-        Traject traject = module.getTraject();
-        traject.getModules().remove(module);
-        module.setTraject(new Traject());
-        
+    public String deleteModulePost(@PathVariable int moduleId, @ModelAttribute("module") Module module, BindingResult result, ModelMap model) {
+        Module moduleRead = moduleService.read(moduleId);
+        Traject traject = moduleRead.getTraject();
+        moduleRead = module;
+        moduleRead.setId(moduleId);
+        traject.getModules().remove(moduleRead);
         trajectService.update(traject);
-        moduleService.update(module);
         
-        model.addAttribute("succes", "De module " +  module.getOmschrijving()+ " in traject " + traject.getNaam() + " is verwijderd");
-
+        moduleService.delete(moduleRead);
+         model.addAttribute("succes", "De module " + " is verwijderd");
         return "Algemeen/bevestigingspagina";
     }
+//    @RequestMapping(value = {"/delete-module-in-traject-{moduleId}"}, method = RequestMethod.POST)
+//    public String verwijderModulePost(@PathVariable int moduleId, ModelMap model) {
+//
+//        Module module = moduleService.read(moduleId);
+//        Traject traject = module.getTraject();
+//        traject.getModules().remove(module);
+//        module.setTraject(new Traject());
+//        
+//        trajectService.update(traject);
+//        moduleService.update(module);
+//        
+//        model.addAttribute("succes", "De module " +  module.getOmschrijving()+ " in traject " + traject.getNaam() + " is verwijderd");
+//
+//        return "Algemeen/bevestigingspagina";
+//    }
 }

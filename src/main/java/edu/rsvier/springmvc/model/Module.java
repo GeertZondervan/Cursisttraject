@@ -39,7 +39,7 @@ public class Module implements java.io.Serializable {
         this.id = id;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL /*CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST*/})
     @JoinColumn(name = "traject_id", nullable = false)
     public Traject getTraject() {
         return this.traject;

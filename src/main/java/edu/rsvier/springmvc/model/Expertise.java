@@ -38,7 +38,7 @@ public class Expertise implements java.io.Serializable {
         this.id = id;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @JoinColumn(name = "module_id")
     public Module getModule() {
         return this.module;
