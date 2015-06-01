@@ -34,9 +34,12 @@
                     <td>${toets.omschrijving}</td>
                     <td>${toets.status}</td>
                     <td>${toets.minimumResultaat}</td>
-                    <td><input type="submit" onclick="location.href = '${pageContext.request.contextPath}/toetsen/update-toets-${toets.id} '" name="wijzig" class="button" value="Wijzig" /></td>
-                    <td><input type="submit" onclick="location.href = '${pageContext.request.contextPath}/toetsen/delete-toets-${toets.id} '" name="verwijder" class="button" value="Verwijder" /></td>
-                    <td><input type="submit" onclick="location.href = '${pageContext.request.contextPath}/toetsen/toets-resultaten-${toets.id}'" name="getresultaten" class="button" value="Resultaten" /></td>
+                    <td><input type="submit" onclick="window.open('${pageContext.request.contextPath}/toetsen/update-toets-${toets.id}', 'Wijzig toets', 'width=600,height=425,scrollbars=no,toolbar=no,location=no');
+                            return false" name="wijzig" class="button" value="Wijzig" /></td>
+                    <td><input type="submit" onclick="window.open('${pageContext.request.contextPath}/toetsen/delete-toets-${toets.id}', 'Verwijder toets', 'width=600,height=425,scrollbars=no,toolbar=no,location=no');
+                            return false" name="verwijder" class="button" value="Verwijder" /></td>
+
+                    <td><p><input type="submit" onclick="location.href='${pageContext.request.contextPath}/toetsen/toets-resultaten-${toets.id}'" name="resultaten" class="button" value="Resultaten" /></p></td>
                 </tr>
             </c:forEach>
         </table>

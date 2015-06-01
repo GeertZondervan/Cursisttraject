@@ -10,7 +10,7 @@ and open the template in the editor.
 
 body{
     font-family: Helvetica;
-    font-size:12px;
+    font-size:16px;
     padding: auto;
     margin:20px;
     
@@ -34,8 +34,8 @@ table{
     border:2px dashed darkcyan;
 }
 
-input{
-    font-size:12px;
+input, option, select{
+    font-size:16px;
 }
 
 .wijzig h3{

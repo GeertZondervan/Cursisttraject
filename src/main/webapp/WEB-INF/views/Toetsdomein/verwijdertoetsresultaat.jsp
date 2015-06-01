@@ -21,27 +21,29 @@
 
     <body>
 
-        <h2>U staat op het punt de volgende toets te verwijderen:</h2>
+        <h2>U staat op het punt het volgende toetsresultaat te verwijderen:</h2>
 
 
-        <form:form method="POST" modelAttribute="toets">
+        <form:form method="POST" modelAttribute="toetsresultaat">
             <table>
-                <tr>
-                    <td><label for="naam">Naam: </label> </td>
-                    <td>${toets.naam}</td>
-
-
+                
+                 <tr>
+                    <td><label for="toets.naam">Toets: </label> </td>
+                    <td>${toetsresultaat.toets.naam}</td>
                 </tr>
                 <tr>
-                    <td><label for="omschrijving">Omschrijving: </label></td>
-                    <td>${toets.omschrijving}</td>
-                    <td><form:errors path="omschrijving" cssClass="error"/></td>
+                    <td><label for="persoonsrol.persoon.volledigeNaam">Persoon: </label> </td>
+                    <td>${toetsresultaat.persoonsrol.persoon.volledigeNaam}</td>
                 </tr>
                 <tr>
-                    <td><label for="module">Module </label></td>
-                    <td>${toets.module}</td>
-                    <td><form:errors path="omschrijving" cssClass="error"/></td>
+                    <td><label for="resultaat">Resultaat: </label> </td>
+                    <td>${toetsresultaat.resultaat}</td>
                 </tr>
+                <tr>
+                    <td><label for="resultaat">Datum: </label> </td>
+                    <td>${toetsresultaat.datum}</td>
+                </tr>
+                
                 <tr>
                     <td colspan="3"><input type="submit" value="Bevestig"/></td>
 

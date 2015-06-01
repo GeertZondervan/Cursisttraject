@@ -29,7 +29,6 @@
     <body>
 
         <h2>Nieuw toetsresultaat toevoegen voor ${toetsresultaat.toets.naam}</h2>
-        Let op! Alleen mogelijk indien gekozen persoon de rol student heeft
 
         <form:form method="POST" modelAttribute="toetsresultaat">
             <table>

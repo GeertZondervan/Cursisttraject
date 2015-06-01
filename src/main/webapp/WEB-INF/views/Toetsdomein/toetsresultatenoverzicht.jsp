@@ -29,14 +29,17 @@
                     <td>${toetsresultaat.resultaat}</td>
                     <td>${toetsresultaat.toets.minimumResultaat}</td>
                     <td>${toetsresultaat.datum}</td>
-                    <td><input type="submit" onclick="location.href = '${pageContext.request.contextPath}/toetsen/update-toetsresultaat-${toetsresultaat.toets.id}-${toetsresultaat.persoonsrol.persoon.id}'" name="wijzig" class="button" value="Wijzig" /></td>
-                    <td><input type="submit" onclick="location.href = '${pageContext.request.contextPath}/toetsen/delete-toetsresultaat-${toetsresultaat.toets.id}-${toetsresultaat.persoonsrol.persoon.id} '" name="verwijder" class="button" value="Verwijder" /></td>
+                    <td><input type="submit" onclick="window.open('${pageContext.request.contextPath}/toetsen/update-toetsresultaat-${toetsresultaat.toets.id}-${toetsresultaat.persoonsrol.persoon.id}','Wijzig toetsresultaat', 'width=600,height=425,scrollbars=no,toolbar=no,location=no'); return false" name="wijzig" class="button" value="Wijzig" /></td>
+                    <td><input type="submit" onclick="window.open('${pageContext.request.contextPath}/toetsen/delete-toetsresultaat-${toetsresultaat.toets.id}-${toetsresultaat.persoonsrol.persoon.id}','Verwijder toetsresultaat', 'width=600,height=425,scrollbars=no,toolbar=no,location=no'); return false" name="verwijder" class="button" value="Verwijder" /></td>
                 </tr>
             </c:forEach>
         </table>
         <br/>
         
-        <a href="${pageContext.request.contextPath}/toetsen/${toets.id}/nieuwtoetsresultaat" onclick="window.open('${pageContext.request.contextPath}/toetsen/${toets.id}/nieuwtoetsresultaat','Nieuw toetsresultaat', 'width=600,height=425,scrollbars=no,toolbar=no,location=no'); return false">Voeg nieuw toetsresultaat toe</a>
-            <a href="<c:url value='/home' />">Home</a>
+        <a href="${pageContext.request.contextPath}/toetsen/" >Terug naar toetsoverzicht</a>
+        <br>
+        <br>
+
+        <a href="${pageContext.request.contextPath}">Terug naar hoofdmenu</a>
     </body>
 </html>

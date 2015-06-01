@@ -13,14 +13,8 @@
         <h2>Bewerking geslaagd</h2>
         <p>${succes}</p>
         <br/>
-        <br/>
-        <a href="<c:url value='/personen' />">Ga terug naar de persoonslijst</a>
-        <br/>
-        <br/>
-        <a href="<c:url value='/rollen' />">Ga terug naar de rollenlijst</a>
-        <br/>
-        <br/>
-        <a href="<c:url value='/home' />">Home</a>
+        <td><input type="submit" onclick="window.close()" name="sluitvenster" class="button" value="Sluit venster" /></td>
+        
     </body>
 
 </html>
