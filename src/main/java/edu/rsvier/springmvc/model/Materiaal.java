@@ -168,7 +168,7 @@ public class Materiaal implements java.io.Serializable {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 17 * hash + (this.bestand != null ? this.bestand.hashCode() : 0);
+        
         hash = 17 * hash + (this.titel != null ? this.titel.hashCode() : 0);
         hash = 17 * hash + (this.auteur != null ? this.auteur.hashCode() : 0);
         hash = 17 * hash + (this.omschrijving != null ? this.omschrijving.hashCode() : 0);

@@ -26,7 +26,10 @@
 
         <form:form method="POST" modelAttribute="materiaal">
             <table>
-
+                <tr hidden>
+                    <td><label for="Id">Id: </label> </td>
+                    <td><form:input path="id"/></td>
+                </tr>
                 <tr>
                     <td><label for="titel">Titel: </label> </td>
                     <td><form:input path="titel" id="titel" required="true"/></td>

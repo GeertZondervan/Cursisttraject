@@ -59,10 +59,7 @@ public class MateriaalController {
 
     @RequestMapping(value = {"/update-materiaal-{materiaalId}"}, method = RequestMethod.POST)
     public String wijzigMateriaalPost(@PathVariable int materiaalId, @ModelAttribute("materiaal") Materiaal materiaal, BindingResult result, ModelMap model) {
-        Materiaal materiaalRead = materiaalService.read(materiaalId);
-        materiaalRead = materiaal;
-        materiaalRead.setId(materiaalId);
-        materiaalService.update(materiaalRead);
+        materiaalService.update(materiaal);
         model.addAttribute("succes", "Het materiaal " + materiaal.getOmschrijving() + " is gewijzigd");
         return "Algemeen/bevestigingspagina";
     }
@@ -77,10 +74,9 @@ public class MateriaalController {
 
     @RequestMapping(value = {"/delete-materiaal-{materiaalId}"}, method = RequestMethod.POST)
     public String deleteMateriaalPost(@PathVariable int materiaalId, @ModelAttribute("materiaal") Materiaal materiaal, BindingResult result, ModelMap model) {
-        Materiaal materiaalRead = materiaalService.read(materiaalId);
-        materiaalRead = materiaal;
-        materiaalRead.setId(materiaalId);
-        materiaalService.delete(materiaalRead);
+      
+        materiaalService.delete(materiaal);
+        
         model.addAttribute("succes", "Het materiaal " + materiaal.getOmschrijving() + " is verwijderd");
         return "Algemeen/bevestigingspagina";
     }
