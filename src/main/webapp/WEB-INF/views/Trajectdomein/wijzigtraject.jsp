@@ -61,10 +61,12 @@
 
                         <td>${module.omschrijving}</td>
                         <td>${module.lengteInWeken}</td>
-                        <td><button id="verwijdermodule" name="verwijdermodule" value="${module.id}"  >Verwijder </button></td>
-                    </tr>
+                      
+                    <td><input type="submit" onclick="window.open('${pageContext.request.contextPath}/trajecten/delete-module-in-traject-${module.id}', 'Verwijder module', 'width=600,height=425,scrollbars=no,toolbar=no,location=no');
+                            return false" name="verwijder" class="button" value="Verwijder" /></td>
                 </c:forEach>
-                            <a href="${pageContext.request.contextPath}/trajecten/${traject.id}/nieuwemoduleintraject" onclick="window.open('${pageContext.request.contextPath}/trajecten/${traject.id}/nieuwemoduleintraject','Nieuwe Module', 'width=600,height=425,scrollbars=no,toolbar=no,location=no'); return false">Voeg nieuwe module toe</a>
+                <a href="${pageContext.request.contextPath}/trajecten/${traject.id}/nieuwemoduleintraject" onclick="window.open('${pageContext.request.contextPath}/trajecten/${traject.id}/nieuwemoduleintraject', 'Nieuwe Module', 'width=600,height=425,scrollbars=no,toolbar=no,location=no');
+                                    return false">Voeg nieuwe module toe</a>
             </table>
         </form:form>
 
@@ -72,7 +74,7 @@
         <br/>
         <br/>
         <a href="<c:url value='/trajecten/' />">Terug naar traject overzicht</a><p>
-        <a href="<c:url value='/home/' />">Home</a>
+            <a href="<c:url value='/home/' />">Home</a>
 
     </body>
 </html>

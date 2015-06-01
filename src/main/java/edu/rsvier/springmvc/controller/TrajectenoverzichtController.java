@@ -12,6 +12,7 @@ import edu.rsvier.springmvc.service.ModuleService;
 import edu.rsvier.springmvc.service.TrajectService;
 import javax.validation.Valid;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -99,6 +100,7 @@ public class TrajectenoverzichtController {
         return "Algemeen/bevestigingspagina";
     }
 
+    //Module toevoegen aan een Traject
     @RequestMapping(value = {"/{trajectId}/nieuwemoduleintraject"}, method = RequestMethod.GET)
     public String nieuweModuleGet(@PathVariable int trajectId, Module module, ModelMap model) {
 
@@ -127,34 +129,31 @@ public class TrajectenoverzichtController {
 
     }
 
-    @RequestMapping(value = {"/updatetraject-{trajectId}"}, method = RequestMethod.POST, params = "verwijdermodule")
-    public String verwijderModule(@PathVariable int trajectId, @RequestParam(value = "verwijdermodule") int moduleId, ModelMap model) {
+    // Toetsresulaat verwijderen
+    @RequestMapping(value = {"/delete-module-in-traject-{moduleId}"}, method = RequestMethod.GET)
+    public String verwijderModuleGet( @PathVariable int moduleId, ModelMap model) {
         
-        Traject traject = trajectService.read(trajectId);
         Module module = moduleService.read(moduleId);
-        System.out.println("ID: " + traject.getId());
-        
-        //if(traject.getModules().contains(module)){
-         traject.getModules().remove(module);
-        //}
-        //else{
-          //  System.out.println("module not found");
-        //}
-        trajectService.update(traject);
-        
-        
-       // Persoonsrol persoonsrol = persoonsrolService.read(persoonid, rolId);
-       // PersoonsrolId persoonsrolId = persoonsrol.getId();
-       // System.out.println("Persoonsrolid: " + persoonsrolId);
-//        if (persoon.getPersoonsrollen().contains(persoonsrol)) {
-//            persoon.getPersoonsrollen().remove(persoonsrol);
-//        } else {
-//            System.out.println("persoonsrol not found");
-//        }
-//
-//        persoonsrolService.delete(persoonsrol);
-//        service.update(persoon);
+        Traject traject = module.getTraject();
+        model.addAttribute("traject", traject);
+        model.addAttribute("module", module);        
 
-        return "Trajectdomein/wijzigtraject";
+        return "Trajectdomein/verwijdermoduleintraject";
+    }
+
+    @RequestMapping(value = {"/delete-module-in-traject-{moduleId}"}, method = RequestMethod.POST)
+    public String verwijderModulePost(@PathVariable int moduleId, ModelMap model) {
+
+        Module module = moduleService.read(moduleId);
+        Traject traject = module.getTraject();
+        traject.getModules().remove(module);
+        module.setTraject(new Traject());
+        
+        trajectService.update(traject);
+        moduleService.update(module);
+        
+        model.addAttribute("succes", "De module " +  module.getOmschrijving()+ " in traject " + traject.getNaam() + " is verwijderd");
+
+        return "Algemeen/bevestigingspagina";
     }
 }
