@@ -148,7 +148,7 @@ public class PersoonslijstController {
 
     @RequestMapping(value = {"/update-persoonsrol/pId-{persoonId}/rId-{rolId}"}, method = RequestMethod.GET)
     public String wijzigPersoonsrolGet(@PathVariable("persoonId") int persoonId, @PathVariable("rolId") int rolId,
-            @ModelAttribute("toetsresultaat") Persoonsrol persoonsrol, BindingResult result, ModelMap model) {
+            @ModelAttribute("persoonsrol") Persoonsrol persoonsrol, BindingResult result, ModelMap model) {
         persoonsrol = persoonsrolService.read(persoonId, rolId);
         PersoonsrolId persoonsrolId = persoonsrol.getId();
         model.addAttribute("persoonsrolId", persoonsrolId);
@@ -159,7 +159,7 @@ public class PersoonslijstController {
 
     @RequestMapping(value = {"/update-persoonsrol/pId-{persoonId}/rId-{rolId}"}, method = RequestMethod.POST)
     public String wijzigPersoonsrolPost(@PathVariable("persoonId") int persoonId, @PathVariable("rolId") int rolId,
-            @ModelAttribute("toetsresultaat") Persoonsrol persoonsrol, BindingResult result, ModelMap model) {
+            @ModelAttribute("persoonsrol") Persoonsrol persoonsrol, BindingResult result, ModelMap model) {
        
         persoonsrol = persoonsrolService.read(persoonId, rolId);
         PersoonsrolId persoonsrolId = persoonsrol.getId();
@@ -173,7 +173,7 @@ public class PersoonslijstController {
 
     @RequestMapping(value = {"/delete-persoonsrol/pId-{persoonId}/rId-{rolId}"}, method = RequestMethod.GET)
     public String verwijderPersoonsrolGet(@PathVariable("persoonId") int persoonId, @PathVariable("rolId") int rolId,
-            @ModelAttribute("toetsresultaat") Persoonsrol persoonsrol, BindingResult result, ModelMap model) {
+            @ModelAttribute("persoonsrol") Persoonsrol persoonsrol, BindingResult result, ModelMap model) {
 
         persoonsrol = persoonsrolService.read(persoonId, rolId);
         //PersoonsrolId persoonsrolId = persoonsrol.getId();
@@ -185,7 +185,7 @@ public class PersoonslijstController {
 
     @RequestMapping(value = {"/delete-persoonsrol/pId-{persoonId}/rId-{rolId}"}, method = RequestMethod.POST)
     public String verwijderPersoonsrolPost(@PathVariable("persoonId") int persoonId, @PathVariable("rolId") int rolId,
-            @ModelAttribute("toetsresultaat") Persoonsrol persoonsrol, BindingResult result, ModelMap model) {
+            @ModelAttribute("persoonsrol") Persoonsrol persoonsrol, BindingResult result, ModelMap model) {
         persoonsrol = persoonsrolService.read(persoonId, rolId);
         Persoon persoon = service.read(persoonId);
 
