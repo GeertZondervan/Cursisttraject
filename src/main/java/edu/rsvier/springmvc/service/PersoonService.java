@@ -19,4 +19,6 @@ public interface PersoonService {
     Persoon read(int id);
     
     void flushSession();
+    
+    List<Persoon> getWithRol(String rolnaam);
 }

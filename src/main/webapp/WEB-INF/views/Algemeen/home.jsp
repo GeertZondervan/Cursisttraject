@@ -16,6 +16,7 @@
         <img src="${pageContext.request.contextPath}/resources/images/rsvier.png" alt="RSVIER" id="rsvierlogo">
          <h2>Hoofdmenu</h2>
         <p><input type="submit" onclick="location.href='${pageContext.request.contextPath}/personen/'" class="hoofdmenubutton" value="Persoonsbeheer" /></p>
+        <p><input type="submit" onclick="location.href='${pageContext.request.contextPath}/studenten/'" class="hoofdmenubutton" value="Studentenbeheer" /></p>
         <p><input type="submit" onclick="location.href='${pageContext.request.contextPath}/rollen/'" class="hoofdmenubutton" value="Rollenbeheer" /></p>
         <p><input type="submit" onclick="location.href='${pageContext.request.contextPath}/trajecten/'" class="hoofdmenubutton" value="Trajectenbeheer" /></p>
         <p><input type="submit" onclick="location.href='${pageContext.request.contextPath}/expertises/'" class="hoofdmenubutton" value="Expertisebeheer" /></p>
