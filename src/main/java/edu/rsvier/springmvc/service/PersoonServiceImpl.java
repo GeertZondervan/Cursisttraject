@@ -2,6 +2,9 @@ package edu.rsvier.springmvc.service;
 
 import edu.rsvier.springmvc.dao.PersoonDao;
 import edu.rsvier.springmvc.model.Persoon;
+import edu.rsvier.springmvc.model.Persoonsrol;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,5 +52,7 @@ public class PersoonServiceImpl implements PersoonService {
     public void flushSession() {
         dao.flushSession();
     }
+
+
 
 }

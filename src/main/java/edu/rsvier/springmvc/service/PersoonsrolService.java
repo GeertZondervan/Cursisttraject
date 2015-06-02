@@ -2,6 +2,7 @@ package edu.rsvier.springmvc.service;
 
 import edu.rsvier.springmvc.model.Persoonsrol;
 import edu.rsvier.springmvc.model.PersoonsrolId;
+import java.util.List;
 
 public interface PersoonsrolService {
 
@@ -16,4 +17,8 @@ public interface PersoonsrolService {
     void flushSession();
     
     Persoonsrol read(int persoonId, int rolId) throws NullPointerException;
+    
+    public List<Persoonsrol>getAll();
+        
+    public List<Persoonsrol>getAllWithRol(String rolNaam);
 }

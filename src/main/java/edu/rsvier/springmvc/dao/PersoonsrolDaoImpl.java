@@ -2,6 +2,7 @@ package edu.rsvier.springmvc.dao;
 
 import edu.rsvier.springmvc.model.Persoonsrol;
 import edu.rsvier.springmvc.model.PersoonsrolId;
+import java.util.List;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
@@ -32,6 +33,4 @@ public class PersoonsrolDaoImpl extends GenericDaoImpl<Persoonsrol> implements P
         }
         return (Persoonsrol) query.list().get(0);
     }
-    
-    
 }
