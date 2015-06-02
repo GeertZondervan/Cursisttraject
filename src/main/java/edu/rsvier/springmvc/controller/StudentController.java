@@ -18,6 +18,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.validation.Valid;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -38,12 +39,16 @@ public class StudentController {
     ToetsResultaatService resultaatService;
 
     @RequestMapping(value = {"", "lijst"}, method = RequestMethod.GET)
-    public String listPersonen(ModelMap model) {
-        
-        List<Persoon> studenten = persoonService.getWithRol("Student");
-        
-        
-        model.addAttribute("personen", studenten);
+    public String listStudenten(ModelMap model) {
+        List<Persoonsrol>studentenRollen = persoonsrolService.getAllWithRol("Student");
+        model.addAttribute("studentenrollen", studentenRollen);
         return "Studentdomein/studentenlijst";
+    }
+    
+    @RequestMapping(value = {"update-{persoonid}-{rolid}"}, method = RequestMethod.GET)
+    public String getPersoon(@PathVariable int persoonid, @PathVariable int rolid, @ModelAttribute("persoonsrol") Persoonsrol persoonsrol, BindingResult result, ModelMap model) {
+        persoonsrol=persoonsrolService.read(persoonid, rolid);
+        model.addAttribute("persoonsrol", persoonsrol);
+        return "Studentdomein/wijzigstudent";
     }
 }

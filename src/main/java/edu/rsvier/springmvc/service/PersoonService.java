@@ -20,5 +20,4 @@ public interface PersoonService {
     
     void flushSession();
     
-    List<Persoon> getWithRol(String rolnaam);
 }

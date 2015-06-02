@@ -73,7 +73,7 @@ public class Persoonsrol implements java.io.Serializable {
         this.einddatum = einddatum;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "persoonsrol", cascade = {CascadeType.ALL})
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "persoonsrol", cascade = {CascadeType.ALL})
     public Set<ToetsResultaat> getToetsResultaten() {
         return this.toetsResultaten;
     }
@@ -82,7 +82,7 @@ public class Persoonsrol implements java.io.Serializable {
         this.toetsResultaten = toetsResultaten;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "persoonsrol", cascade = {CascadeType.ALL})
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "persoonsrol", cascade = {CascadeType.ALL})
     public Set<PersoonsrolHasMateriaal> getHeeftMateriaal() {
         return heeftMateriaal;
     }
@@ -91,7 +91,7 @@ public class Persoonsrol implements java.io.Serializable {
         this.heeftMateriaal = heeftMateriaal;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "persoonsrol", cascade = {CascadeType.ALL})
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "persoonsrol", cascade = {CascadeType.ALL})
     public Set<PersoonsrolHasTraject> getHeeftTrajecten() {
         return heeftTrajecten;
     }
