@@ -52,8 +52,8 @@
                     <td>${persoonsrol.rol.naam}</td>
                     <td>${persoonsrol.id.begindatum}</td>
                     <td>${persoonsrol.einddatum}</td>
-                    <td><button id="wijzigpersoonsrol" name="wijzigrpersoonsrol" value="${persoonsrol.rol.id}" >Wijzig data </button></td>
-
+                    <td><input type="submit" onclick="window.open('${pageContext.request.contextPath}/personen/update-persoonsrol/pId-${persoonsrol.persoon.id}/rId-${persoonsrol.rol.id}', 'Wijzig persoonsrol', 'width=600,height=425,scrollbars=no,toolbar=no,location=no');
+                            return false" name="wijzig" class="button" value="Wijzig" /></td>
                     <td><input type="submit" onclick="window.open('${pageContext.request.contextPath}/personen/delete-persoonsrol/pId-${persoonsrol.persoon.id}/rId-${persoonsrol.rol.id}', 'Verwijder persoonsrol', 'width=600,height=425,scrollbars=no,toolbar=no,location=no');
                             return false" name="verwijder" class="button" value="Verwijder" /></td>
                 </tr>
