@@ -17,6 +17,7 @@ import edu.rsvier.springmvc.service.ToetsResultaatService;
 import java.time.LocalDate;
 import javax.validation.Valid;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -72,27 +73,6 @@ public class PersoonslijstController {
         }
     }
 
-    @RequestMapping(value = {"update-{persoonid}"}, method = RequestMethod.POST, params = "verwijderpersoonsrol")
-    public String verwijderPersoonsrol(@PathVariable int persoonid, @RequestParam(value = "verwijderpersoonsrol") int rolId, ModelMap model) {
-
-        Persoon persoon = service.read(persoonid);
-        System.out.println("ID: " + persoon.getId());
-
-        Persoonsrol persoonsrol = persoonsrolService.read(persoonid, rolId);
-        PersoonsrolId persoonsrolId = persoonsrol.getId();
-        System.out.println("Persoonsrolid: " + persoonsrolId);
-        if (persoon.getPersoonsrollen().contains(persoonsrol)) {
-            persoon.getPersoonsrollen().remove(persoonsrol);
-        } else {
-            System.out.println("persoonsrol not found");
-        }
-
-        persoonsrolService.delete(persoonsrol);
-        service.update(persoon);
-
-        return "Persoondomein/wijzig";
-    }
-
     @RequestMapping(value = {"delete-{persoonid}"}, method = RequestMethod.GET)
     public String deletePersoonGet(@PathVariable int persoonid, Persoon persoon, ModelMap model) {
         persoon = service.read(persoonid);
@@ -145,35 +125,65 @@ public class PersoonslijstController {
         System.out.println(rolId);
         System.out.println(persoonid);
         System.out.println(persoon);
-        
+
         PersoonsrolId persoonsrolId = new PersoonsrolId();
         persoonsrolId.setPersoonId(persoonid);
         persoonsrolId.setRolId(rolId);
         persoonsrolId.setBegindatum(LocalDate.now());
-        
-        
+
         persoon = service.read(persoonid);
         Persoonsrol persoonsrol = new Persoonsrol();
         persoonsrol.setPersoon(persoon);
         persoonsrol.setRol(rolService.read(rolId));
         persoonsrol.setId(persoonsrolId);
         persoonsrolService.create(persoonsrol);
-        
+
         persoon.getPersoonsrollen().add(persoonsrol);
         service.update(persoon);
-        
+
         model.addAttribute("persoon", persoon);
-        
-        
+
         return "Persoondomein/wijzig";
     }
-    
-    @RequestMapping(value = {"{persoonid}-persoonsrolwijzigen"}, method = RequestMethod.GET, params = "wijzigrpersoonsrol")
-    public String wijzigPersoonsrolGet(@PathVariable int persoonid, @RequestParam(value = "wijzigrpersoonsrol") int rolId, @Valid Persoon persoon, BindingResult result, ModelMap model){
-        System.out.println("Geert is cool");
-        return "Algemeen/home";
+
+//    @RequestMapping(value = {"{persoonid}-persoonsrolwijzigen"}, method = RequestMethod.GET, params = "wijzigrpersoonsrol")
+//    public String wijzigPersoonsrolGet(@PathVariable int persoonid, @RequestParam(value = "wijzigrpersoonsrol") int rolId, @Valid Persoon persoon, BindingResult result, ModelMap model){
+//        System.out.println("Geert is cool");
+//        return "Algemeen/home";
+//    }
+//
+
+    @RequestMapping(value = {"/delete-persoonsrol/pId-{persoonId}/rId-{rolId}"}, method = RequestMethod.GET)
+    public String verwijderPersoonsrolGet(@PathVariable("persoonId") int persoonId, @PathVariable("rolId") int rolId,
+            @ModelAttribute("toetsresultaat") Persoonsrol persoonsrol, BindingResult result, ModelMap model) {
+
+        persoonsrol = persoonsrolService.read(persoonId, rolId);
+        PersoonsrolId persoonsrolId = persoonsrol.getId();
+        model.addAttribute("persoonsrol", persoonsrol);
+        model.addAttribute("persoonsrolId", persoonsrolId);
+
+        return "Persoondomein/verwijderpersoonsrol";
     }
 
+    @RequestMapping(value = {"/delete-persoonsrol/pId-{persoonId}/rId-{rolId}"}, method = RequestMethod.POST)
+    public String verwijderPersoonsrolPost(@PathVariable("persoonId") int persoonId, @PathVariable("rolId") int rolId,
+            @ModelAttribute("toetsresultaat") Persoonsrol persoonsrol, BindingResult result, ModelMap model) {
+        persoonsrol = persoonsrolService.read(persoonId, rolId);
+        Persoon persoon = service.read(persoonId);
+       
+        if (persoon.getPersoonsrollen().contains(persoonsrol)) {
+            persoon.getPersoonsrollen().remove(persoonsrol);
+        } else {
+            System.out.println("persoonsrol not found");
+        }
+
+        persoonsrolService.delete(persoonsrol);
+        service.update(persoon);
+
+        model.addAttribute("succes", "De rol " + persoonsrol.getRol() + " is verwijderd uit de persoon " + persoonsrol.getPersoon().getVoornaam() + " " + 
+                persoonsrol.getPersoon().getAchternaam());
+        return "Algemeen/bevestigingspagina";
+    }
 //    @RequestMapping(value = {"/resultaten-{id}"}, method = RequestMethod.GET)
 //    public String resultatenPersoonGet(@PathVariable int id, Persoon persoon, ModelMap model) {
 //        persoon = service.read(id);

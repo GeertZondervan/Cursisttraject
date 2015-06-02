@@ -54,7 +54,8 @@
                     <td>${persoonsrol.einddatum}</td>
                     <td><button id="wijzigpersoonsrol" name="wijzigrpersoonsrol" value="${persoonsrol.rol.id}" >Wijzig data </button></td>
 
-                    <td><button id="verwijder" name="verwijderpersoonsrol" value="${persoonsrol.rol.id}" >Verwijder </button></td>
+                    <td><input type="submit" onclick="window.open('${pageContext.request.contextPath}/personen/delete-persoonsrol/pId-${persoonsrol.persoon.id}/rId-${persoonsrol.rol.id}', 'Verwijder persoonsrol', 'width=600,height=425,scrollbars=no,toolbar=no,location=no');
+                            return false" name="verwijder" class="button" value="Verwijder" /></td>
                 </tr>
             </c:forEach>
             <tr><td><a href="<c:url value='/personen/${persoon.id}-persoonsroltoevoegen ' />">Voeg nieuwe persoonsrol toe</a></td></tr>
