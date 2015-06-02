@@ -2,6 +2,7 @@ package edu.rsvier.springmvc.dao;
 
 import edu.rsvier.springmvc.model.Persoonsrol;
 import edu.rsvier.springmvc.model.PersoonsrolId;
+import java.util.List;
 
 public interface PersoonsrolDao {
 
@@ -16,5 +17,8 @@ public interface PersoonsrolDao {
     void flushSession();
 
     public Persoonsrol read(int persoonId, int rolId);
+    
+    public List<Persoonsrol>getAll();
+
 
 }

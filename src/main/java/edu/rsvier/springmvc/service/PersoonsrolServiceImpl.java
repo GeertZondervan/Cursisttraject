@@ -3,6 +3,8 @@ package edu.rsvier.springmvc.service;
 import edu.rsvier.springmvc.dao.PersoonsrolDao;
 import edu.rsvier.springmvc.model.Persoonsrol;
 import edu.rsvier.springmvc.model.PersoonsrolId;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,4 +50,22 @@ public class PersoonsrolServiceImpl implements PersoonsrolService {
         return persoonsrol;
     }
 
+    public List<Persoonsrol> getAll() {
+        return dao.getAll();
+    }
+
+    public List<Persoonsrol> getAllWithRol(String rolNaam) {
+        List<Persoonsrol> persoonsrolWithRol = new ArrayList<Persoonsrol>();
+
+        for (Persoonsrol persoonsrol : getAll()) {
+            if (persoonsrol.getRol().getNaam().contains("Student")) {
+                persoonsrolWithRol.add(persoonsrol);
+                {
+                }
+
+            }
+            
+        }
+        return persoonsrolWithRol;
+    }
 }
