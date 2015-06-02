@@ -8,7 +8,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css">
-        <title>Nieuwe rol toevoegen</title>
+        <title>Nieuw materiaal toevoegen voor ${persoonsrolHeeftMateriaal.persoonsrol.persoon.volledigeNaam}</title>
 
         <style>
 
@@ -21,16 +21,14 @@
 
     <body>
 
-        <h2>Nieuwe materiaal toevoegen voor student ${persoonsrol.persoon.volledigeNaam}</h2>
+        <h2>Nieuw materiaal toevoegen voor ${persoonsrolHeeftMateriaal.persoonsrol.persoon.volledigeNaam}</h2>
 
-        <form:form method="POST" modelAttribute="persoonsrol">
+        <form:form method="POST" modelAttribute="persoonsrolHeeftMateriaal">
             <table>
                 
-                <tr>
-                    <td><label for="naam">Naam: </label> </td>
-                    <td><form:input path="naam" id="naam"/></td>
-                    <td><form:errors path="naam" cssClass="error"/></td>
-                </tr>
+                 <form:select path="materiaal.id">      
+                            <form:options items="${materialen}" itemValue="id" itemLabel="titel"/>  
+                        </form:select>  
                 
                 <tr>
                     <td colspan="3"><input type="submit" value="Register"/></td>

@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import edu.rsvier.springmvc.model.Persoon;
 import edu.rsvier.springmvc.model.Persoonsrol;
+import edu.rsvier.springmvc.model.PersoonsrolHasMateriaal;
 import edu.rsvier.springmvc.model.PersoonsrolId;
 import edu.rsvier.springmvc.model.Rol;
+import edu.rsvier.springmvc.service.MateriaalService;
 import edu.rsvier.springmvc.service.PersoonService;
 import edu.rsvier.springmvc.service.PersoonsrolService;
 import edu.rsvier.springmvc.service.RolService;
@@ -37,18 +39,30 @@ public class StudentController {
 
     @Autowired
     ToetsResultaatService resultaatService;
+    
+     @Autowired
+    MateriaalService materiaalService;
 
     @RequestMapping(value = {"", "lijst"}, method = RequestMethod.GET)
     public String listStudenten(ModelMap model) {
-        List<Persoonsrol>studentenRollen = persoonsrolService.getAllWithRol("Student");
+        List<Persoonsrol> studentenRollen = persoonsrolService.getAllWithRol("Student");
         model.addAttribute("studentenrollen", studentenRollen);
         return "Studentdomein/studentenlijst";
     }
-    
+
     @RequestMapping(value = {"update-{persoonid}-{rolid}"}, method = RequestMethod.GET)
     public String getPersoon(@PathVariable int persoonid, @PathVariable int rolid, @ModelAttribute("persoonsrol") Persoonsrol persoonsrol, BindingResult result, ModelMap model) {
-        persoonsrol=persoonsrolService.read(persoonid, rolid);
+        persoonsrol = persoonsrolService.read(persoonid, rolid);
         model.addAttribute("persoonsrol", persoonsrol);
         return "Studentdomein/wijzigstudent";
     }
+
+    @RequestMapping(value = {"voegmateriaaltoe-{persoonid}-{rolid}"}, method = RequestMethod.GET)
+    public String nieuwMateriaalVoorStudent(@PathVariable int persoonid, @PathVariable int rolid, @ModelAttribute("persoonsrolHeeftMateriaal") PersoonsrolHasMateriaal persoonsrolHasMateriaal, BindingResult result, ModelMap model) {
+        persoonsrolHasMateriaal.setPersoonsrol(persoonsrolService.read(persoonid, rolid));
+        model.addAttribute("persoonsrolHeeftMateriaal", persoonsrolHasMateriaal);
+        model.addAttribute("materialen", materiaalService.getAll());
+        return "Studentdomein/voegmateriaaltoe";
+    }
+
 }
