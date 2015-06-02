@@ -136,7 +136,7 @@ public class Persoonsrol implements java.io.Serializable {
         int hash = 5;
         hash = 11 * hash + (this.persoon != null ? this.persoon.hashCode() : 0);
         hash = 11 * hash + (this.rol != null ? this.rol.hashCode() : 0);
-        hash = 11 * hash + (this.toetsResultaten != null ? this.toetsResultaten.hashCode() : 0);
+        //hash = 11 * hash + (this.toetsResultaten != null ? this.toetsResultaten.hashCode() : 0);
         hash = 11 * hash + (this.einddatum != null ? this.einddatum.hashCode() : 0);
         return hash;
     }

@@ -47,7 +47,7 @@
                     <td>${persoonsrolheeftraject.succesvolAfgerond}</td>
                 </tr>
             </c:forEach>
-
+           <td><input type="submit" onclick="location.href = '${pageContext.request.contextPath}/studenten/voegtrajecttoe-${persoonsrol.persoon.id}-${persoonsrol.rol.id} '" name="wijzig" class="button" value="Voeg traject toe" /></td>
 
         </table>
 
@@ -56,16 +56,17 @@
         <br/>
         <table class="wijzig">
             <tr><td><h3>Materialen</h3></td></tr>
-            <tr class="tabelheader"><td>Titel</td><td>Auteur</td>
-            <c:forEach items="${persoonsrol.heeftMateriaal}" var="persoonsrolHasMateriaal" >
+            <tr class="tabelheader"><td>Titel</td><td>Auteur</td><td>ISBN13</td>
+                <c:forEach items="${persoonsrol.heeftMateriaal}" var="persoonsrolHasMateriaal" >
 
                 <tr>
                     <td>${persoonsrolHasMateriaal.materiaal.titel}</td>
                     <td>${persoonsrolHasMateriaal.materiaal.auteur}</td>
+                    <td>${persoonsrolHasMateriaal.materiaal.isbn13}</td>
 
                 </tr>
             </c:forEach>
-
+            <td><input type="submit" onclick="location.href = '${pageContext.request.contextPath}/studenten/voegmateriaaltoe-${persoonsrol.persoon.id}-${persoonsrol.rol.id} '" name="wijzig" class="button" value="Voeg materiaal toe" /></td>
 
         </table>
         <br/>

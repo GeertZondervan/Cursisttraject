@@ -110,12 +110,8 @@ public class ToetsResultaat implements java.io.Serializable {
         }
         final ToetsResultaat other = (ToetsResultaat) obj;
 
-        if (this.persoonsrol.getId() != other.persoonsrol.getId() && (this.persoonsrol.getId() == null || !this.persoonsrol.getId().equals(other.persoonsrol.getId()))) {
-            return false;
-        }
-        if (this.toets.getId() != other.toets.getId() && (this.toets.getId() == null || !this.toets.getId().equals(other.toets.getId()))) {
-            return false;
-        }
+      
+       
         if (this.datum != other.datum && (this.datum == null || !this.datum.equals(other.datum))) {
             return false;
         }
@@ -128,8 +124,8 @@ public class ToetsResultaat implements java.io.Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 47 * hash + (this.persoonsrol.getId() != null ? this.persoonsrol.getId().hashCode() : 0);
-        hash = 47 * hash + (this.toets.getId() != null ? this.toets.getId().hashCode() : 0);
+       
+        
         hash = 47 * hash + (this.datum != null ? this.datum.hashCode() : 0);
         hash = 47 * hash + Float.floatToIntBits(this.resultaat);
         return hash;
